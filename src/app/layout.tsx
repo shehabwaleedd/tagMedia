@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar"
-const inter = Inter({ subsets: ["latin"] });
+import SmoothScrolling from "@/animation/SmoothScrolling";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Navbar />
-      <body className={inter.className}>
-        {children}
+      <body>
+        <Navbar />
+        <SmoothScrolling>
+          {children}
+        </SmoothScrolling>
       </body>
     </html>
   );

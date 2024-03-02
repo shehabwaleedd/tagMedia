@@ -14,7 +14,6 @@ export default function index() {
                         return (
                             <div key={`b_${i}`} className={styles.linkContainer}>
                                 <motion.div
-                                    href={href}
                                     custom={i}
                                     variants={perspective}
                                     initial="initial"

@@ -1,0 +1,19 @@
+.brief {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+    h2 {
+        font-size: var(--body-font-size);
+        color: var(--title-color);
+    }
+    p {
+        font-family: var(--title-font);
+        font-size: var(--semi-big-font-size);
+        color: var(--title-color);
+        width: 70%;
+    }
+
+}

@@ -7,10 +7,14 @@
   --hue: 0;
   --sat: 0%;
   --hover-color: #91171F;
-  --accent-color: #0EA7A5;
+  --accent-color: #5CE6A1;
+  --accent-second-color: #327BC4;
   --lighter-text-color: #989898;
   --background-color: #1c1c1c;
   --border-color: #c1c1c1;
+  --animation-primary: 0.4s cubic-bezier(0.5, 0.75, 0, 1);
+  --section-padding: min(3.5vw, 3.5em);
+  
 
   /* Responsive Sizes  */
 
@@ -35,10 +39,11 @@
   --body-font-size: 1.236rem;
   --medium-font-size: 1.318rem;
   --big-font-size: 1.618rem;
+  --semi-big-font-size: 2rem;
   --bigger-font-size: 2.618rem;
   --biggest-font-size: 4.236rem;
   --navigation-font-size: 6.618rem;
-
+  --title-size: clamp(5em, 7.5vw, 7.5em);
 }
 
 * {
