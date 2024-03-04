@@ -1,25 +1,18 @@
+'use client'
 import React from 'react'
 import './Marquee.css'
+import Marquee from 'react-fast-marquee';
 
-const Marquee = () => {
+const Announcment = () => {
     return (
-        <div className='marquee'>
-            <div className="marquee__container containered">
+        <Marquee className='marquee' gradient={false} speed={50} pauseOnHover={true}>
+            <div className="marquee-content">
                 <h3>
-                    <div className="marquee-wrapper">
-                        <div className="marquee-title">
-                            Elevating <span className="text-stroke-black">Women&apos;s Health </span>
-                            &amp;
-                            / Empowering <span className="text-stroke-black">Personal Development </span>
-                            &amp;
-                            / Unleashing <span className="text-stroke-black">Career Growth </span>
-                            &amp;
-                        </div>
-                    </div>
+                    Dare to be the best! 
                 </h3>
             </div>
-        </div>
+        </Marquee>
     )
 }
 
-export default Marquee
+export default Announcment

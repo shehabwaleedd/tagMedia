@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "./style.module.scss"
 import Image from 'next/image'
 import Magnetic from '@/animation/Magnetic'
-
+import RoundedButton from '@/animation/RoundedButton'
 const index = () => {
 
     const data = [
@@ -77,11 +77,11 @@ const index = () => {
             <div className={styles.featured__miniServices}>
                 <div className={styles.featured__miniServices__container}>
                     {miniServices.map((item, index) => (
-                        <Magnetic key={index}>
+                        <RoundedButton key={index}>
                             <div className={styles.featured__miniServices__item}>
                                 <p>{item.name}</p>
                             </div>
-                        </Magnetic>
+                        </RoundedButton>
                     ))}
                 </div>
             </div>

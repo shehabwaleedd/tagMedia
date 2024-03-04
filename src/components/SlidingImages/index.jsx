@@ -41,7 +41,7 @@ export default function ImagesSlider() {
         offset: ["start end", "end start"]
     })
 
-    const x1 = useTransform(scrollYProgress,[0, 1], ['50vw', '-100vw'])
+    const x1 = useTransform(scrollYProgress, [0, 1], ['50vw', '-100vw'])
 
     return (
         <div ref={container} className={styles.slidingImages}>

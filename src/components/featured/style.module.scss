@@ -77,23 +77,10 @@
             gap: 1rem;
             justify-content: center;
             align-content: center;
+            flex-wrap: wrap;
         }
         &__item {
-            border: 1px solid var(--title-color);
-            border-radius: 2rem;
             padding: 0.4rem;
-            &:hover {
-                background-color: var(--accent-color);
-                transition: var(--animation-primary);
-                border-radius: 2rem;
-                transition: var(--animation-primary);
-                h3 {
-                    color: var(--background-color);
-                }
-                p {
-                    color: var(--background-color);
-                }
-            }
         }
     }
 }

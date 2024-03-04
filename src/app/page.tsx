@@ -8,11 +8,13 @@ import ImageSlider from "@/components/SlidingImages";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <Landing />
-      <Brief />
-      <Featured />
-      <ImageSlider />
-    </main>
+    <>
+      <main className={styles.main}>
+        <Landing />
+        <Brief />
+        <Featured />
+        <ImageSlider />
+      </main>
+    </>
   );
 }
