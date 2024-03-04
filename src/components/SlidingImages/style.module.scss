@@ -11,6 +11,15 @@
         padding: 3rem;
         font-size: var(--title-size);
         color: var(--title-color);
+
+        @media (max-width: 970px) {
+            padding: 1rem;
+            font-size: var(--biggest-font-size);
+        }
+        @media (max-width: 570px) {
+            padding: 0.5rem;
+            font-size: var(--bigger-font-size);
+        }
     }
     .slider{
         display: flex;

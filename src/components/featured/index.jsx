@@ -1,9 +1,14 @@
-import React from 'react'
+'use client'
+import React, { useState, useEffect } from 'react';
 import styles from "./style.module.scss"
 import Image from 'next/image'
-import Magnetic from '@/animation/Magnetic'
 import RoundedButton from '@/animation/RoundedButton'
-const index = () => {
+import { motion } from 'framer-motion';
+
+const Projects = () => {
+    const [isHovered, setIsHovered] = useState(false);
+    const [hoveredProject, setHoveredProject] = useState(null);
+
 
     const data = [
         {
@@ -56,28 +61,36 @@ const index = () => {
     ]
 
     return (
-        <section className={styles.featured}>
+
+        <motion.section className={styles.featured}>
             <div className={styles.featured__container}>
                 {data.map((item, index) => (
-                    <div key={index} className={styles.featured__item}>
-                        <Image src={item.image} alt={item.name}
-                            width={500}
-                            height={500}
-                            placeholder='blur'
-                            blurDataURL={item.image}
+                    <motion.div key={index}
+                        className={styles.featured__item}
+                        onMouseEnter={() => setHoveredProject(index)}
+                        onMouseLeave={() => setHoveredProject(null)}
+                        animate={{
+                            scale: hoveredProject === index ? 1 : (hoveredProject !== null ? 0.924 : 1),
+
+                        }}
+                    >
+                        <Image src={item.image} alt={item.name} width={500} height={500} 
+                            style={{
+                                filter: hoveredProject === index || hoveredProject === null ? "" : "grayscale(100%)"
+                            }}
                         />
                         <div className={styles.featured__item__content}>
                             <h3>{item.name}</h3>
                             <p>{item.role}</p>
                             <p>{item.year}</p>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
             <div className={styles.featured__miniServices}>
                 <div className={styles.featured__miniServices__container}>
                     {miniServices.map((item, index) => (
-                        <RoundedButton key={index}>
+                        <RoundedButton key={index} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
                             <div className={styles.featured__miniServices__item}>
                                 <p>{item.name}</p>
                             </div>
@@ -85,8 +98,8 @@ const index = () => {
                     ))}
                 </div>
             </div>
-        </section>
-    )
+        </motion.section>
+    );
 }
 
-export default index
+export default Projects

@@ -12,12 +12,26 @@ const icons = [<IoDiamondOutline />, <IoIosArrowDown />, <FaGlobeAfrica />, <FaA
 
 const Landing = () => {
     const [currentIcon, setCurrentIcon] = useState(0);
+    const [windowWidth, setWindowWidth] = useState(null);
     const container = useRef(null);
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ["end start", "end center"]
     })
     const y = useTransform(scrollYProgress, [0, 1], [400, 0])
+
+    useEffect(() => {
+        setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', () => {
+            setWindowWidth(window.innerWidth);
+        });
+
+        return () => {
+            window.removeEventListener('resize', () => {
+                setWindowWidth(window.innerWidth);
+            });
+        }
+    }, []);
 
 
     useEffect(() => {
@@ -29,17 +43,30 @@ const Landing = () => {
 
     return (
         <section className={styles.landing}>
-            <motion.div className={styles.landing__content} ref={container} style={{ y }}>
-                <div className={styles.landing__content_title}>
-                    <h2>Crafting</h2>
-                    <h2>Tomorrow&apos;s</h2>
-                </div>
-                <div className={styles.landing__content_title}>
-                    <div>
-                        {icons[currentIcon]}
-                    </div>
-                    <h2>Markets, Today.</h2>
-                </div>
+            <motion.div className={styles.landing__content} ref={container} style={{ y: windowWidth > 1200 ? y : 0 }}>
+                {windowWidth > 1200 ? (
+                    <>
+                        <div className={styles.landing__content_title}>
+                            <h2>Crafting</h2>
+                            <h2>Tomorrow&apos;s</h2>
+                        </div>
+                        <div className={styles.landing__content_title}>
+                            <div>
+                                {icons[currentIcon]}
+                            </div>
+                            <h2>Markets, Today.</h2>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className={styles.landing__content_title_mobile}>
+                            <h2>Crafting <br /> Tomorrow&apos;s <br />Markets, Today.</h2>
+                            <div className={styles.landing__content_icons_mobile}>
+                                {icons[currentIcon]}
+                            </div>
+                        </div>
+                    </>
+                )}
             </motion.div>
             <div className={styles.stripe}>
                 <div className={styles.landing__middle}>

@@ -7,38 +7,76 @@
     width: 100%;
     padding: 3rem;
     padding-top: 20vh;
-
+    height: 100%;
     @media (max-width: 999px) {
         padding: 1rem;
+        padding-top: 10vh;
     }
-    
+
     &__content {
         display: block;
         width: 100%;
         height: 100%;
+        @media (max-width: 570px) {
+            height: fit-content;
+        }
+
         h2 {
             font-size: var(--title-size);
             margin-bottom: 1rem;
             color: var(--title-color);
+
+            @media (max-width: 570px) {
+                font-size: 10vw;
+            }
         }
+
         &_title {
             display: flex;
             width: 100%;
             justify-content: space-between;
             align-items: center;
+
             svg {
                 font-size: var(--title-size);
                 color: var(--accent-color);
                 cursor: pointer;
             }
         }
+
+        &_title_mobile {
+            display: none;
+
+            @media (max-width: 999px) {
+                display: flex;
+                width: 100%;
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+
+                svg {
+                    font-size: var(--title-size);
+                    color: var(--accent-color);
+                    cursor: pointer;
+                }
+            }
+        }
+        &_icons_mobile {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            width: 100%;
+        }
     }
+
     .stripe {
         height: 1px;
         width: 100%;
         background-color: var(--border-color);
         margin: 2rem 0;
     }
+
     &__middle {
         display: flex;
         width: 100%;
@@ -49,7 +87,12 @@
         position: relative;
         z-index: 2;
 
+        @media (max-width: 570px) {
+            display: none;
+        }
+
     }
+
     &__lower {
         display: flex;
         width: 100%;
@@ -59,8 +102,13 @@
         margin: 2rem 0;
         position: relative;
         z-index: 2;
-    
+        @media (max-width: 570px) {
+            margin: 0;
+        }
+
+
     }
+
     video {
         width: 100%;
         height: 100%;
@@ -68,5 +116,9 @@
         object-fit: cover;
         position: relative;
         z-index: 2;
+
+        @media (max-width: 570px) {
+            height: 50vh;
+        }
     }
 }

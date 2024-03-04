@@ -7,18 +7,29 @@
     width: 100%;
     padding: var(--section-padding) 0;
     padding: 3rem;
+
     @media (max-width: 999px) {
-        padding: 1rem;
+        padding: 0.5rem;
     }
+
     h2 {
         font-size: var(--body-font-size);
         color: var(--title-color);
     }
+
     p {
         font-family: var(--title-font);
         font-size: var(--semi-big-font-size);
         color: var(--title-color);
         width: 60%;
+
+        @media (max-width: 570px) {
+            width: 100%;
+            font-size: 6vw;
+            line-height: 1.2;
+            padding: 0;
+            text-align: start;
+        }
     }
 
 }

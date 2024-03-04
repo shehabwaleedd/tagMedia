@@ -12,6 +12,9 @@
     @media (max-width: 999px) {
         padding: 1rem;
     }
+    @media (max-width: 570px) {
+        padding: 0.5rem;
+    }
 
     cursor: pointer;
 
@@ -21,6 +24,12 @@
         object-fit: cover;
         border-radius: 1rem;
         transition: var(--animation-primary);
+
+        @media (max-width: 999px) {
+            height: 40vh;
+            width: 100%;
+        }
+
     }
     &__container {
         display: grid;
@@ -30,8 +39,14 @@
         padding: 1rem;
         justify-content: center;
         align-items: center;
-        @media (max-width: 999px) {
-            grid-template-columns: 1fr;
+        @media (max-width: 570px) {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 0;
+            justify-content: flex-start;
+            align-items: flex-start;
+
         }
     }
     &__item {
@@ -51,10 +66,18 @@
             h3 {
                 font-size: var(--semi-big-font-size);
                 color: var(--title-color);
+
+                @media (max-width: 570px) {
+                    font-size: var(--medium-font-size);
+                }
             }
             p {
                 font-size: var(--body-font-size);
                 color: var(--title-color);
+
+                @media (max-width: 570px) {
+                    font-size: var(--normal-font-size);
+                }
             }
         }
         &:hover {
@@ -73,6 +96,10 @@
         gap: 1rem;
         width: 100%;
         padding: 1rem;
+
+        @media (max-width: 570px) {
+            padding: 0;
+        }
         h3 {
             font-size: var(--semi-big-font-size);
             color: var(--title-color);
@@ -88,6 +115,13 @@
             justify-content: center;
             align-content: center;
             flex-wrap: wrap;
+
+            @media (max-width: 570px) {
+                display: flex;
+                gap: 1rem;
+                justify-content: flex-start;
+                align-content: flex-start;
+            }
         }
         &__item {
             padding: 0.4rem;

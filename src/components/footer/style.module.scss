@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--title-color);
+    background-color: var(--background-color);
     position: relative;
     padding: 2rem;
 
@@ -19,6 +19,10 @@
         h2 {
             font-size: 16vw;
             color: var(--container-color);
+
+            @media (max-width: 570px) {
+                font-size: 12vw;
+            }
         }
 
         p {
@@ -36,6 +40,14 @@
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
+
+
+            @media (max-width: 570px) {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
             li {
                 font-size: var(--body-font-size);
                 color: var(--container-color);
