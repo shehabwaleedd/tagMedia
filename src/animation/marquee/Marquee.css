@@ -1,10 +1,11 @@
 .marquee {
-    width: 100%;
     background-color: var(--accent-color);
     text-align: center;
     overflow: hidden;
     height: 100%;
     position: relative;
+    border-bottom-left-radius: 4rem;
+    border-bottom-right-radius: 4rem;
 }
 
 .marquee h3 {
@@ -17,27 +18,11 @@
     margin: 0 1rem;
 }
 
-.marquee .marquee-wrapper {
-    width: 6250rem;
-    animation: marqueeAnimation 68s linear 0s infinite running;
-}
-
 .marquee h3 .marquee-title {
     margin-right: 1.25rem;
     float: left;
 }
 
-.text-stroke-black {
-    color: transparent;
-    -webkit-text-stroke: 1px;
-    -webkit-text-stroke-color: var(--subtitle-color);
-}
-
-@keyframes marqueeAnimation {
-    100% {
-        transform: translateX(-4600px);
-    }
-}
 
 
 @media (max-width: 992px) {

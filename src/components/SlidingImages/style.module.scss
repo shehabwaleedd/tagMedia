@@ -3,10 +3,12 @@
     flex-direction: column;
     gap: 3vw;
     position: relative;
-    padding: var(--section-padding) 0;
     z-index: 1;
     width: 100%;
+    padding: var(--section-padding) 0;
+    overflow: hidden;
     h2 {
+        padding: 3rem;
         font-size: var(--title-size);
         color: var(--title-color);
     }

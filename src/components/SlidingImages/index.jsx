@@ -4,6 +4,7 @@ import { useScroll, useTransform, motion } from 'framer-motion';
 import styles from './style.module.scss';
 import Image from 'next/image';
 
+
 const slider1 = [
     {
         src: "/assets/stars/AHMED ZAHER.png"
