@@ -13,7 +13,7 @@
         width: 100%;
         position: relative;
         top: 0;
-
+        mix-blend-mode: difference;
         &_left {
             position: relative;
             left: 50px;
@@ -28,17 +28,22 @@
                 top: 2.125rem;
             }
 
-            h2 {
-                font-size: 2vw;
-                font-family: var(--title-font);
-                letter-spacing: 0.05rem;
-                font-weight: normal;
-                color: var(--title-color);
-
-                @media (max-width: 1256px) {
-                    font-size: 1.5rem;
+            .branding {
+                display: flex;
+                width: 100%;
+                gap: 0.05rem;
+                h2 {
+                    font-size: 2vw;
+                    font-family: var(--title-font);
+                    letter-spacing: 0.05rem;
+                    font-weight: normal;
+                    color: var(--title-color);
+    
+                    @media (max-width: 1256px) {
+                        font-size: 1.5rem;
+                    }
+    
                 }
-
             }
 
             span {

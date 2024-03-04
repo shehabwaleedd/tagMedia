@@ -77,8 +77,8 @@ export default function Index() {
         closed: {
             width: "50px",
             height: "50px",
-            top: "0px",
-            right: "0px",
+            top: "2px",
+            right: "2px",
             borderRadius: "2rem",
             transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1] }
         }

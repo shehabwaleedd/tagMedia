@@ -1,0 +1,38 @@
+.slidingImages{
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+    position: relative;
+    margin-top: 200px;
+    z-index: 1;
+    h2 {
+        font-size: var(--title-size);
+        color: var(--title-color);
+    }
+    .slider{
+        display: flex;
+        position: relative;
+        gap: 3vw;
+        width: 200vw;
+        left: -10vw;
+        .project{
+            width: 100%;
+            height: 40vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .imageContainer{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                img{
+                    object-fit: cover;
+                    border-radius: 2rem;
+                    width: 100%;
+                    height: 100%;
+
+                }
+            }
+        }
+    }
+}
