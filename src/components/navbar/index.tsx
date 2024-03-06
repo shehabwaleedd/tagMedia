@@ -17,27 +17,31 @@ const Navbar = () => {
             opacity: 1,
             transition: { delay: i * 0.05 },
         }),
-        hidden: { x: -4, opacity: 0, },
+        hidden: (i: number) => ({
+            opacity: 0,
+            transition: { delay: i * -0.014 },
+        })
     };
 
-    useEffect(() => {
-        const handleScroll = (): void => {
-            if (window.scrollY > 50) { // Adjust the value as needed
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
-        };
+useEffect(() => {
+    const handleScroll = (): void => {
+        if (window.scrollY > 50) { // Adjust the value as needed
+            setIsScrolled(true);
+        } else {
+            setIsScrolled(false);
+        }
+    };
 
-        // Add event listener
-        window.addEventListener('scroll', handleScroll);
+    // Add event listener
+    window.addEventListener('scroll', handleScroll);
 
-        // Clean up function
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-    return (
+    // Clean up function
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, []);
+return (
+    <>
         <nav className={styles.navbar}>
             <div className={styles.navbar__container}>
                 <div className={styles.navbar__container_left}>
@@ -60,11 +64,12 @@ const Navbar = () => {
                     </Link>
                 </div>
             </div>
-            <div className={styles.navbar__container_right}>
-                <Header />
-            </div>
         </nav>
-    )
+        <div className={styles.navbar__container_right}>
+            <Header />
+        </div>
+    </>
+)
 }
 
 export default Navbar

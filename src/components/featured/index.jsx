@@ -68,12 +68,7 @@ const Projects = () => {
                     <motion.div key={index}
                         className={styles.featured__item}
                         onMouseEnter={() => setHoveredProject(index)}
-                        onMouseLeave={() => setHoveredProject(null)}
-                        animate={{
-                            scale: hoveredProject === index ? 1 : (hoveredProject !== null ? 0.924 : 1),
-
-                        }}
-                    >
+                        onMouseLeave={() => setHoveredProject(null)}>
                         <Image src={item.image} alt={item.name} width={500} height={500} 
                             style={{
                                 filter: hoveredProject === index || hoveredProject === null ? "" : "grayscale(100%)"

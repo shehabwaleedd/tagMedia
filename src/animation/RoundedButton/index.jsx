@@ -5,7 +5,7 @@ import styles from './style.module.scss';
 import gsap from 'gsap';
 import Magnetic from '../Magnetic';
 
-const RoundedButton = ({children, backgroundColor="var(--accent-color)", ...attributes}) => {
+const RoundedButton = ({children, ...attributes}) => {
 
   const circle = useRef(null);
   let timeline = useRef(null);
@@ -34,7 +34,7 @@ const RoundedButton = ({children, backgroundColor="var(--accent-color)", ...attr
           {
             children
           }
-        <div ref={circle} style={{backgroundColor}} className={styles.circle}></div>
+        <div ref={circle} style={{backgroundColor: "var(--accent-color)"}} className={styles.circle}></div>
       </div>
     </Magnetic>
   )
