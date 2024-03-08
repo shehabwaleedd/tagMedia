@@ -53,9 +53,11 @@ export default function ImagesSlider() {
                         return <div key={index} className={styles.project} >
                             <div className={styles.imageContainer}>
                                 <Image
-                                    fill={true}
                                     alt={"image"}
-                                    src={project.src} />
+                                    src={project.src} 
+                                    width={500}
+                                    height={500}
+                                    />
                             </div>
                         </div>
                     })

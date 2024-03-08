@@ -38,25 +38,25 @@ const Projects = () => {
     ]
     const miniServices = [
         {
-            name: "Social Media Management",
+            name: "Content Creation",
         },
         {
-            name: "Influencer Marketing"
+            name: "Marketing Strategy"
         },
         {
-            name: "Analytics and Reporting"
+            name: "Branding"
         },
         {
-            name: "Web Development"
+            name: "Media Production"
         },
         {
-            name: "Pay-Per-Click Advertising"
+            name: "Community Management"
         },
         {
-            name: "Content Marketing"
+            name: "Influencer Management"
         },
         {
-            name: "Search Engine Optimization"
+            name: "Media Buying"
         },
     ]
 

@@ -5,6 +5,7 @@ import { IoDiamondOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaGlobeAfrica, FaAsterisk, FaRegGrinStars, FaBullseye } from "react-icons/fa";
 import { useScroll, motion, useTransform } from 'framer-motion';
+import getChars from "@/animation/animatedHeaders/getChars"
 
 // eslint-disable-next-line react/jsx-key
 const icons = [<IoDiamondOutline />, <IoIosArrowDown />, <FaGlobeAfrica />, <FaAsterisk />, <FaBullseye />, <FaRegGrinStars />];
@@ -44,17 +45,23 @@ const Landing = () => {
     return (
         <section className={styles.landing}>
             <motion.div className={styles.landing__content} ref={container} style={{ y: windowWidth > 1200 ? y : 0 }}>
-                {windowWidth > 1200 ? (
+                {windowWidth > 570 ? (
                     <>
                         <div className={styles.landing__content_title}>
-                            <h2>Crafting</h2>
-                            <h2>Tomorrow&apos;s</h2>
+                            <div>
+                                {getChars("Crafting")}
+                            </div>
+                            <div>
+                                {getChars("Tomorrow's")}
+                            </div>
                         </div>
                         <div className={styles.landing__content_title}>
                             <div>
                                 {icons[currentIcon]}
                             </div>
-                            <h2>Markets, Today.</h2>
+                            <div>
+                                {getChars("Markets, Today.")}
+                            </div>
                         </div>
                     </>
                 ) : (

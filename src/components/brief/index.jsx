@@ -6,7 +6,7 @@ const index = () => {
         <section className={styles.brief}>
             <h2 className={styles.brief__title}>Tag Media</h2>
             <p>
-                we are a leading digital marketing agency in the Egypt. We are a team of passionate, creative, and result-oriented professionals, aimed to deliver cutting-edge digital experience.
+                we are one of the marketing and creative consultancy agencies in Egypt and the Middle east. We are working closely with our partners to manage their publicity and social media presence.We build awareness campaigns for our clients that would drive more traffic and engagement.
             </p>
         </section>
     )

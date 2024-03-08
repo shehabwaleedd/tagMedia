@@ -15,6 +15,7 @@
         justify-content: center;
         gap: 1rem;
         width: 100%;
+        border-bottom: 1px solid var(--border-color);
 
         h2 {
             font-size: 16vw;
@@ -34,6 +35,8 @@
     &__lower {
         display: flex;
         width: 100%;
+        padding-top: 5vh;
+
         ul {
             display: flex;
             width: 100%;
@@ -51,13 +54,16 @@
             li {
                 font-size: var(--body-font-size);
                 color: var(--container-color);
+
                 a {
                     text-decoration: none;
                     color: var(--container-color);
                 }
+
                 span {
                     font-size: var(--body-font-size);
                     color: var(--container-color);
+
                     a {
                         text-decoration: none;
                         color: var(--accent-color);
