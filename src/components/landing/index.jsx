@@ -76,6 +76,7 @@ const Landing = () => {
                 )}
             </motion.div>
             <div className={styles.stripe}>
+            </div>
                 <div className={styles.landing__middle}>
                     <span>
                         Transforming brands for growth
@@ -84,7 +85,6 @@ const Landing = () => {
                         What can we do for you?
                     </span>
                 </div>
-            </div>
             <div className={styles.landing__lower}>
                 <video src="/mainVideo.mp4" autoPlay loop muted type="video/mp4" playsInline></video>
             </div>

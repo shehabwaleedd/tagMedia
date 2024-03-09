@@ -3,7 +3,7 @@ import Landing from "@/components/landing";
 import Brief from "@/components/brief"
 import Featured from "@/components/featured";
 import ImageSlider from "@/components/SlidingImages";
-
+import ServicesCo from "@/components/servicesCo"
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
         <Brief />
         <Featured />
         <ImageSlider />
-
+        <ServicesCo />
       </main>
     </>
   );

@@ -5,14 +5,14 @@ import styles from "./style.module.scss"
 import getChars from "@/animation/animatedHeaders/getChars"
 
 
-const AboutUpper = () => {
-    const [windowWidth, setWindowWidth] = useState<number | null>(null);
-    const container = useRef(null);
+const AboutUpper: React.FC = () => {
+    const [windowWidth, setWindowWidth] = useState<number>(0); // Initialize as 0 or another non-null value
+    const container = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ["end start", "end center"]
     })
-    const y = useTransform(scrollYProgress, [0, 1], [400, 0])
+    const y = useTransform(scrollYProgress, [0, 1], [300, 0])
 
     useEffect(() => {
         setWindowWidth(window.innerWidth);
@@ -28,17 +28,19 @@ const AboutUpper = () => {
     }, []);
 
     return (
-        <section className={styles.about__upper} ref={container} style={{ y: windowWidth > 1200 ? y : 0 }}>
-            <div className={styles.about__upper_title}>
-                {getChars("We Transform")}
+        <motion.section className={styles.about__upper} ref={container} style={{ y: windowWidth > 1200 ? y : 0 }}>
+            <div className={styles.about__upper_content}>
+                <div className={styles.about__upper_content_title}>
+                    {getChars("We Transform")}
+                </div>
+                <div className={styles.about__upper_content_title}>
+                    {getChars("Brands To Power")}
+                </div>
+                <div className={styles.about__upper_content_title}>
+                    {getChars("Growth")}
+                </div>
             </div>
-            <div className={styles.about__upper_title}>
-                {getChars("Brands To Power")}
-            </div>
-            <div className={styles.about__upper_title}>
-                {getChars("Growth")}
-            </div>
-        </section>
+        </motion.section>
     )
 }
 

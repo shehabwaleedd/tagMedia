@@ -34,7 +34,7 @@ const RoundedButton = ({ children, ...attributes }) => {
         {
           children
         }
-        <div ref={circle} className={styles.circle}></div>
+        <div ref={circle} className={styles.circle} style={{backgroundColor: "var(--accent-color)"}}></div>
       </div>
     </Magnetic>
   )

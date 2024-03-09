@@ -8,14 +8,19 @@
     justify-content: center;
     outline: none;
     padding: 0.5rem;
-    p {
+
+    p,
+    a {
         position: relative;
         z-index: 1;
         transition: var(--animation-primary);
+        color: var(--title-color);
     }
 
     &:hover {
-        p {
+
+        p,
+        a {
             color: var(--title-color);
         }
     }
@@ -27,5 +32,4 @@
     position: absolute;
     border-radius: 50%;
     top: 100%;
-    background-color: red;
 }

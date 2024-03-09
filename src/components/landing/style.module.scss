@@ -83,7 +83,7 @@
         height: 1px;
         width: 100%;
         background-color: var(--border-color);
-        margin: 2rem 0;
+
     }
 
     &__middle {
@@ -92,9 +92,10 @@
         justify-content: space-between;
         align-items: center;
         gap: 2rem;
-        margin: 2rem 0;
+        padding: 2rem 0;
         position: relative;
         z-index: 2;
+        background-color: var(--container-color);
         @media (max-width: 570px) {
             display: none;
         }
@@ -107,7 +108,6 @@
         justify-content: flex-start;
         align-items: center;
         gap: 2rem;
-        margin: 2rem 0;
         position: relative;
         z-index: 2;
         @media (max-width: 570px) {
@@ -119,7 +119,7 @@
 
     video {
         width: 100%;
-        height: 100%;
+        height: 80vh;
         border-radius: 2rem;
         object-fit: cover;
         position: relative;

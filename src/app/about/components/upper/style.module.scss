@@ -1,20 +1,27 @@
 .about__upper {
     display: flex;
-    flex-direction: column;
-    width: 100%;
     justify-content: flex-end;
-    align-items: flex-end;
+    flex-direction: column;
+    padding: var(--section-padding) 0;
+    width: 100%;
     padding: 3rem;
     height: 100%;
-    padding-top: 6vh;
-    &_title {
-        display: flex;
+    padding-top: 40vh;
+    &_content {
+        display: block;
         width: 100%;
-        h2 {
-            color: var(--title-color);
-            line-height: 1.2;
-            @media (max-width: 570px) {
-                font-size: 10vw;
+        height: 100%;
+        &_title {
+            display: flex;
+            width: 100%;
+
+            h2 {
+                color: var(--title-color);
+                line-height: 1.2;
+
+                @media (max-width: 570px) {
+                    font-size: 10vw;
+                }
             }
         }
     }
