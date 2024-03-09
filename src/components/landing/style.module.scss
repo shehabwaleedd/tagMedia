@@ -110,10 +110,10 @@
         gap: 2rem;
         position: relative;
         z-index: 2;
+        background-color: var(--container-color);
         @media (max-width: 570px) {
             margin: 0;
         }
-
 
     }
 

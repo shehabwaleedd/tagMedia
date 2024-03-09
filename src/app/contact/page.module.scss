@@ -1,0 +1,20 @@
+.contact {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 70lvh;
+    border-radius: 4rem;
+    position: relative;
+    z-index: 2;
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+}

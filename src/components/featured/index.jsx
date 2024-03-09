@@ -69,7 +69,7 @@ const Projects = () => {
                         className={styles.featured__item}
                         onMouseEnter={() => setHoveredProject(index)}
                         onMouseLeave={() => setHoveredProject(null)}>
-                        <Image src={item.image} alt={item.name} width={500} height={500} 
+                        <Image src={item.image} alt={item.name} width={500} height={500}
                             style={{
                                 filter: hoveredProject === index || hoveredProject === null ? "" : "grayscale(100%)"
                             }}
@@ -85,10 +85,8 @@ const Projects = () => {
             <div className={styles.featured__miniServices}>
                 <div className={styles.featured__miniServices__container}>
                     {miniServices.map((item, index) => (
-                        <RoundedButton key={index} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-                            <div className={styles.featured__miniServices__item}>
-                                <p>{item.name}</p>
-                            </div>
+                        <RoundedButton key={index}>
+                            <p>{item.name}</p>
                         </RoundedButton>
                     ))}
                 </div>

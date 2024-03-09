@@ -1,0 +1,64 @@
+.contact_right {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+        padding: 1rem;
+        &__input {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            label {
+                font-size: var(--medium-font-size);
+                color: var(--title-color);
+                margin-bottom: 0.5rem;
+            }
+            input {
+                font-size: var(--body-font-size);
+                color: var(--title-color);
+                padding: 0.5rem 0;
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid var(--border-color);
+                outline: none;
+                background-color: transparent;
+                &:focus {
+                    outline: none;
+                    border-bottom: 1px solid var(--accent-color);
+                }
+            }
+            textarea {
+                font-size: var(--body-font-size);
+                color: var(--title-color);
+                padding: 0.5rem 0;
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid var(--border-color);
+                outline: none;
+                background-color: transparent;
+                &:focus {
+                    outline: none;
+                    border-bottom: 1px solid var(--accent-color);
+                }
+            }
+        }   
+    }
+    button {
+        font-size: var(--body-font-size);
+        color: var(--title-color);
+        background-color: transparent;
+        cursor: pointer;
+        transition: var(--animation-primary);
+    }
+    .btn {
+        width: fit-content;
+    }
+}
