@@ -8,6 +8,10 @@
     position: relative;
     padding: 2rem;
 
+    @media (max-width: 567px) {
+        padding-top: 10vh;
+    }
+
     &__upper {
         display: flex;
         flex-direction: column;
@@ -22,7 +26,7 @@
             color: var(--container-color);
 
             @media (max-width: 570px) {
-                font-size: 12vw;
+                font-size: 15vw;
             }
         }
 

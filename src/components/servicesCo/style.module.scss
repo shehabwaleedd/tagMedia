@@ -6,6 +6,11 @@
     padding: 3rem;
     background-color: var(--background-color);
     border-radius: 3rem;
+
+    @media (max-width: 888px) {
+        padding: 1rem;
+        border-radius: 2rem;
+    }
     &_upper {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -15,17 +20,29 @@
         justify-content: start;
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 5vh;
+        
 
         @media (max-width: 888px) {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
         h2 {
             font-size: var(--title-size);
             color: var(--container-color);
+            @media (max-width: 570px) {
+                font-size: var(--bigger-font-size);
+            }
+            
         }
         p {
             font-size: var(--bigger-font-size);
             color: var(--container-color);
+
+            @media (max-width: 888px) {
+                font-size: var(--medium-font-size);
+                padding-top: 1rem;
+            }
 
         }
     }
@@ -51,6 +68,12 @@
                 justify-content: start;
                 padding: 2rem 0;
                 border-bottom: 1px solid var(--border-color);
+
+                @media (max-width: 888px) {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                }
                 &_bottom {
                     display: flex;
                     flex-direction: column;
@@ -81,6 +104,15 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     width: 100%;
+                    @media (max-width: 888px) {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        gap: 0.4rem;
+                        padding-top: 1rem;
+
+                    }
+
                     li {
                         font-size: var(--body-font-size);
                         color: var(--container-color)

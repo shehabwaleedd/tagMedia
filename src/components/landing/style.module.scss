@@ -50,6 +50,12 @@
                 font-size: var(--title-size);
                 color: var(--accent-color);
                 cursor: pointer;
+
+                @media (max-width: 570px) {
+                    font-size: var(--semi-big-font-size);
+                    padding-bottom: 1rem;
+                }
+
             }
         }
 
@@ -76,6 +82,7 @@
             justify-content: flex-end;
             align-items: flex-end;
             width: 100%;
+            padding-bottom: 1rem;
         }
     }
 
@@ -127,6 +134,7 @@
 
         @media (max-width: 570px) {
             height: 50vh;
+            margin-top: 1rem;
         }
     }
 }
