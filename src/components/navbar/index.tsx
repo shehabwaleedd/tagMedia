@@ -5,22 +5,42 @@ import styles from './style.module.scss'
 import Header from "@/components/Header"
 import { motion, AnimatePresence } from 'framer-motion'
 
-const letters = ["T", "a", "g", "M", "e", "d", "i", "a"];
+const word1 = ["T", "a", "g"];
+const word2 = ["M", "e", "d", "i", "a"];
 
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
 
+    const containerVariants = {
+        visible: {
+            transition: {
+                staggerChildren: 0.05,
+            },
+        },
+        hidden: {
+            transition: {
+                staggerChildren: 0.05,
+                staggerDirection: -1, // Reverse the animation order on hide
+            },
+        },
+    };
+
     const letterVariants = {
-        visible: (i: number) => ({
-            x: 0,
-            opacity: 1,
-            transition: { delay: i * 0.05 },
-        }),
-        hidden: (i: number) => ({
+        initial: {
             opacity: 0,
-            transition: { delay: i * -0.014 },
-        })
+            x: -20
+        },
+        enter: (i: number) => ({
+            opacity: 1,
+            x: 0,
+            transition: { delay: i * 0.1, duration: 0.4 }
+        }),
+        exit: (i: number) => ({
+            opacity: i === 0 ? 1 : 0, // Keep the first letter visible
+            x: i === 0 ? 0 : -20, // Move others out of view
+            transition: { duration: 0.2 }
+        }),
     };
 
     useEffect(() => {
@@ -47,22 +67,31 @@ const Navbar = () => {
                     <div className={styles.navbar__container_left}>
                         <Link href="/">
                             <AnimatePresence mode='wait'>
-                                <motion.div className={styles.branding} initial="hidden" animate={isScrolled ? "scrolled" : "visible"}>
-                                    {letters.map((letter, i) => (
-                                        i === 0 ? ( 
-                                            <motion.h2 key={i} custom={i} animate="visible" variants={letterVariants}>
-                                                {letter}
-                                            </motion.h2>
-                                        ) : (
-                                            <motion.h2
-                                                key={i}
-                                                custom={i}
-                                                variants={letterVariants}
-                                                animate={isScrolled ? "scrolledVariant" : "visible"}
-                                            >
-                                                {letter}
-                                            </motion.h2>
-                                        )
+                                <motion.div
+                                    className={styles.branding}
+                                    initial="initial"
+                                    animate="enter"
+                                    exit="exit"
+                                    variants={containerVariants}>
+                                    {word1.map((letter, index) => (
+                                        <motion.h2
+                                            key={`word1-${index}`}
+                                            custom={[index, word1.length]}
+                                            variants={letterVariants}
+                                            animate={isScrolled && index !== 0 ? "exit" : "enter"}
+                                        >
+                                            {letter}
+                                        </motion.h2>
+                                    ))}
+                                    {word2.map((letter, index) => (
+                                        <motion.h2
+                                            key={`word2-${index}`}
+                                            custom={[index, word2.length]}
+                                            variants={letterVariants}
+                                            animate={isScrolled ? "exit" : "enter"}
+                                        >
+                                            {letter}
+                                        </motion.h2>
                                     ))}
                                 </motion.div>
                             </AnimatePresence>
