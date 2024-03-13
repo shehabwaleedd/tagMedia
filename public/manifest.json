@@ -1,0 +1,12 @@
+{
+    "name": "F365 Global",
+    "slug": "f365-global",
+    "short_name": "F365",
+    "description": "F365 – Empowering women through health, personal development, and career growth. Join our thriving community for transformative workshops, networking events, and mentorship programs. Elevate your well-being and career with F365",
+    "image": "https://f365.org/wp-content/uploads/2021/06/F365-Logo-1.png",
+    "theme_color": "#F4EDE4",
+    "background_color": "#F4EDE4",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "/"
+}
