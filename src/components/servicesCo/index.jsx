@@ -2,6 +2,7 @@ import React from 'react'
 import styles from "./style.module.scss"
 import RoundedButton from '@/animation/RoundedButton'
 import Link from 'next/link'
+import Testimonials from '@/components/testimonials';
 
 const index = () => {
 
@@ -114,6 +115,7 @@ const index = () => {
                     ))
                 }
             </div>
+            <Testimonials />
         </section>
     )
 }
