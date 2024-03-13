@@ -6,6 +6,10 @@
     height: 100%;
     box-sizing: border-box;
     position: relative;
+
+    @media (max-width: 555px) {
+        
+    }
     
     .body{
         display: flex;
@@ -22,7 +26,8 @@
             color: black;
             font-size: 3.875rem;
             @media (max-width: 1234px) {
-                font-size: 2rem;
+                font-size: 3rem;
+                color: var(--title-color);
             }
         }
     }

@@ -11,6 +11,15 @@
     border-bottom-left-radius: 4rem;
     border-bottom-right-radius: 4rem;
 
+    @media (max-width: 888px) {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        border-bottom-left-radius: 3rem;
+        border-bottom-right-radius: 3rem;
+        gap: 1rem;
+    }
+
     &_left {
         display: flex;
         flex-direction: column;
@@ -20,6 +29,9 @@
             font-size: var(--body-font-size);
             color: var(--subtitle-color);
             text-transform: lowercase;
+        }
+        @media (max-width: 888px) {
+            width: 100%;
         }
     }
     &_right {
@@ -31,6 +43,10 @@
         p {
             font-size: var(--semi-big-font-size);
             color: var(--title-color);
+
+            @media (max-width: 888px) {
+                font-size: var(--medium-font-size);
+            }
 
         }
     }

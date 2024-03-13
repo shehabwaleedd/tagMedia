@@ -7,6 +7,10 @@
     width: 100%;
     padding: var(--section-padding) 0;
     overflow: hidden;
+
+    @media (max-width: 555px) {
+        margin-bottom: 7vh;
+    }
     h2 {
         padding: 3rem;
         font-size: var(--title-size);
@@ -19,6 +23,7 @@
         @media (max-width: 570px) {
             padding: 0.5rem;
             font-size: var(--bigger-font-size);
+
         }
     }
     .slider{
@@ -33,6 +38,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+
+
+
             .imageContainer{
                 position: relative;
                 width: 100%;

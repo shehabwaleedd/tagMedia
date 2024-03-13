@@ -7,6 +7,10 @@
     padding: 3rem;
     height: 100%;
     padding-top: 40vh;
+    @media (max-width: 570px) {
+        padding: 2rem;
+        padding-top: 20vh;
+    }
     &_content {
         display: block;
         width: 100%;

@@ -7,20 +7,18 @@ const AboutLower: React.FC = () => {
         <section className={styles.aboutLower}>
             <div className={styles.aboutLower_left}>
                 <h3>
-                    BaseCreate is a leading strategy and creative agency
-                    helping forward-thinking companies to realise their growth potential
+                    Tag Media: Egypt&apos;s Pioneer in Digital and Influencer Marketing
                 </h3>
             </div>
             <div className={styles.aboutLower_right}>
                 <p>
-                    We are committed to brand growth and transformation. Our agency helps clients uncover new possibilities to adapt to a changing market, supply chain, and future.
+                    As Egypt&apos;s pioneering digital marketing and influencer marketing agency, Tag Media stands at the forefront of the industry. Our dedication to pushing the boundaries of digital strategy has positioned us as one of the top agencies in Egypt.
                 </p>
                 <p>
-                    To us, growth is more than just sales – it also means growing closer to your customers, and developing a common vision around topics they care about, like environmental and social issues.
+                    Our mission at Tag Media is to foster brand growth and transformation. We empower our clients by unveiling new opportunities to navigate through evolving markets, optimize supply chains, and prepare for the future with innovative solutions.
                 </p>
                 <p>
-                    Our approach embraces new strategies and multidisciplinary creative approaches to help your brand continually evolve to stay relevant.
-
+                    Growth, to us, signifies more than an increase in sales; it represents building a deeper connection with your audience and aligning with their values, especially concerning vital societal and environmental topics. At Tag Media, we leverage cutting-edge strategies and creative excellence to ensure your brand remains relevant and continues to thrive.
                 </p>
             </div>
         </section>

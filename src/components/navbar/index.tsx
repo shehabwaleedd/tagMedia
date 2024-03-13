@@ -5,7 +5,7 @@ import styles from './style.module.scss'
 import Header from "@/components/Header"
 import { motion, AnimatePresence } from 'framer-motion'
 
-const letters = ["T", "a", "g", "  ", "M", "e", "d", "i", "a"];
+const letters = ["T", "a", "g", "M", "e", "d", "i", "a"];
 
 
 const Navbar = () => {
@@ -23,53 +23,51 @@ const Navbar = () => {
         })
     };
 
-useEffect(() => {
-    const handleScroll = (): void => {
-        if (window.scrollY > 50) { // Adjust the value as needed
-            setIsScrolled(true);
-        } else {
-            setIsScrolled(false);
-        }
-    };
+    useEffect(() => {
+        const handleScroll = (): void => {
+            if (window.scrollY > 50) { // Adjust the value as needed
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
 
-    // Add event listener
-    window.addEventListener('scroll', handleScroll);
+        // Add event listener
+        window.addEventListener('scroll', handleScroll);
 
-    // Clean up function
-    return () => {
-        window.removeEventListener('scroll', handleScroll);
-    };
-}, []);
-return (
-    <>
-        <nav className={styles.navbar}>
-            <div className={styles.navbar__container}>
-                <div className={styles.navbar__container_left}>
-                    <Link href="/">
-                        <AnimatePresence mode='wait'>
-                            <motion.div className={styles.branding}>
-                                {letters.map((letter, i) => (
-                                    <motion.h2
-                                        key={i}
-                                        custom={i}
-                                        initial="visible"
-                                        animate={isScrolled && i > 0 ? "hidden" : "visible"}
-                                        variants={letterVariants}
-                                    >
-                                        {letter}
-                                    </motion.h2>
-                                ))}
-                            </motion.div>
-                        </AnimatePresence>
-                    </Link>
+        // Clean up function
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    return (
+        <>
+            <nav className={styles.navbar}>
+                <div className={styles.navbar__container}>
+                    <div className={styles.navbar__container_left}>
+                        <Link href="/">
+                            <AnimatePresence mode='wait'>
+                                <motion.div className={styles.branding} initial="hidden" animate="visible">
+                                    {letters.map((letter, i) => (
+                                        <motion.h2
+                                            key={i}
+                                            custom={i}
+                                            variants={letterVariants}
+                                        >
+                                            {letter}
+                                        </motion.h2>
+                                    ))}
+                                </motion.div>
+                            </AnimatePresence>
+                        </Link>
+                    </div>
                 </div>
+            </nav>
+            <div className={styles.navbar__container_right}>
+                <Header />
             </div>
-        </nav>
-        <div className={styles.navbar__container_right}>
-            <Header />
-        </div>
-    </>
-)
+        </>
+    )
 }
 
 export default Navbar
