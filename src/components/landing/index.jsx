@@ -86,7 +86,7 @@ const Landing = () => {
                 </span>
             </div>
             <div className={styles.landing__lower}>
-            <video src="/mainVideo.mp4" loop autoPlay muted playsInline security='restricted' preload="metadata" />
+            <video src="https://res.cloudinary.com/dfxz1hh8s/video/upload/v1710317866/mainVideo_br5ern.mp4" loop autoPlay muted playsInline security='restricted' preload="metadata" />
 
             </div>
         </section>
