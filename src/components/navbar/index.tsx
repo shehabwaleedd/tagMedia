@@ -49,13 +49,11 @@ const Navbar = () => {
                             <AnimatePresence mode='wait'>
                                 <motion.div className={styles.branding} initial="hidden" animate={isScrolled ? "scrolled" : "visible"}>
                                     {letters.map((letter, i) => (
-                                        i === 0 ? (
-                                            // First letter with a constant animation state
+                                        i === 0 ? ( 
                                             <motion.h2 key={i} custom={i} animate="visible" variants={letterVariants}>
                                                 {letter}
                                             </motion.h2>
                                         ) : (
-                                            // Other letters respond to scrolling
                                             <motion.h2
                                                 key={i}
                                                 custom={i}
@@ -71,7 +69,7 @@ const Navbar = () => {
                         </Link>
                     </div>
                 </div>
-            </nav>
+            </nav >
             <div className={styles.navbar__container_right}>
                 <Header />
             </div>
