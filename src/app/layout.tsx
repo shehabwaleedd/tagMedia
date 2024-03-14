@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     description: "Tag Media is Egypt's pioneer in digital and influencer marketing. We transform brands to power growth.",
     type: "website",
     images: {
-      url: "/og-image.jpg",
+      url: "https://res.cloudinary.com/dfxz1hh8s/image/upload/v1710376514/iiqbbhbi0ccgdsm8xtl6.jpg",
       alt: "Tag Media",
       width: 1200,
       height: 630,
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: "Tag Media",
     description: "Tag Media is Egypt's pioneer in digital and influencer marketing. We transform brands to power growth.",
     images: {
-      url: "/og-image.jpg",
+      url: "https://res.cloudinary.com/dfxz1hh8s/image/upload/v1710376514/iiqbbhbi0ccgdsm8xtl6.jpg",
       alt: "Tag Media",
       width: 1200,
       height: 630,
