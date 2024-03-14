@@ -149,7 +149,7 @@ const Testimonials = () => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-            <AnimatePresence>
+            <AnimatePresence mode='wait'>
                 {detailsOpen && selectedTestimonial && (
                     <motion.div
                         initial={{ opacity: 0 }}

@@ -20,18 +20,18 @@ export const links = [
 export const footerLinks = [
     {
         title: "Facebook",
-        href: "https://www.facebook.com/shehabwaleedd"
+        href: "https://www.facebook.com/TagMediaeg"
     },
     {
-        title: "LinkedIn",
-        href: "https://www.linkedin.com/in/shehabwaleedd/"
+        title: "Tiktok",
+        href: "https://www.tiktok.com/@tagmediaeg"
     },
     {
         title: "Instagram",
-        href: "https://www.instagram.com/shehabwaleedd/"
+        href: "https://www.instagram.com/tagmediaeg"
     },
     {
         title: "Twitter",
-        href: "/"
+        href: "https://twitter.com/TagMediaEg"
     }
 ]
