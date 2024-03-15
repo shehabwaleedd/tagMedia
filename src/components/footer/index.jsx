@@ -3,8 +3,10 @@ import React, { useRef } from 'react'
 import { useScroll, motion, useTransform } from 'framer-motion';
 import styles from './style.module.scss'
 import Link from 'next/link';
-
+import { usePathname } from 'next/navigation';
 const Footer = () => {
+    const router = usePathname();
+    const isProjectPage = router === '/projects';
     const container = useRef(null);
     const { scrollYProgress } = useScroll({
         target: container,
@@ -15,7 +17,7 @@ const Footer = () => {
 
 
     return (
-        <motion.footer className={styles.footer} ref={container} style={{y}}>
+        <motion.footer className={styles.footer} ref={container} style={{ y, display: isProjectPage ? "none" : "" }}>
             <div className={styles.footer__upper}>
                 <h2>
                     TAG MEDIA
@@ -32,7 +34,7 @@ const Footer = () => {
                         <Link href="https://www.facebook.com/TagMediaeg" target='_blank' aria-label="Facebook Page Link">Facebook </Link>
                     </li>
                     <li>
-                        <Link href= "https://www.instagram.com/tagmediaeg" target='_blank' aria-label="Instagram Page Link">Instagram </Link>
+                        <Link href="https://www.instagram.com/tagmediaeg" target='_blank' aria-label="Instagram Page Link">Instagram </Link>
                     </li>
                     <li>
                         <Link href="https://twitter.com/TagMediaEg" target='_blank' aria-label="Twitter Page Link">Twitter </Link>

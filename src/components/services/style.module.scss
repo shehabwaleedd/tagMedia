@@ -1,0 +1,160 @@
+.ourProjects {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin: 20vh 0;
+    position: relative;
+
+    @media (max-width: 552px) {
+        margin: 10vh 0;
+
+    }
+
+
+    &__bottom {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 1rem;
+        gap: 10vh;
+        position: relative;
+
+
+        @media (max-width: 1277px) {
+            top: 0;
+            padding: 0rem;
+        }
+
+        @media (max-width: 677px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+
+
+        &_container {
+            display: flex;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            cursor: pointer;
+
+            @media (max-width: 1277px) {
+                padding: 0.5rem;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+
+            @media (max-width: 577px) {
+                flex-direction: column;
+                padding: 0rem;
+            }
+
+            &_image {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                justify-content: flex-start;
+                align-items: flex-start;
+                z-index: 1;
+                cursor: pointer;
+                img {
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                    transition: var(--animation-primary);
+                    cursor: pointer;
+                    border-radius: 1rem;
+
+                    @media (max-width: 777px) {
+                        height: 50vh;
+                    }
+                }
+                &:hover {
+                    transition: var(--animation-primary);
+                    img {
+                        transition: var(--animation-primary);
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            &_btns {
+                position: relative;
+                top: 1rem;
+                left: 1rem;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                padding: 3rem;
+                &_lower {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    width: fit-content;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                }
+                @media (max-width: 577px) {
+                    padding: 0rem;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    left: 0;
+                }
+                a {
+                    background-color: transparent;
+                    outline: none;
+                    border-radius: 1rem;
+                    color: var(--container-color);
+                    cursor: pointer;
+                    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+                    padding: 0 0.5rem;
+                    @media (max-width: 556px) {
+                        font-size: 0.8rem;
+                    }
+                }
+                span {
+                    color: var(--container-color);
+                }
+
+                h3 {
+                    font-size: var(--semi-title-size);
+                    color: var(--container-color);
+                    margin-bottom: 1rem;
+                    @media (max-width: 556px) {
+                        font-size: var(--semi-big-font-size);
+                        line-height: 1.1;
+                        letter-spacing: normal;
+                    }
+                }
+                p {
+                    font-size: var(--medium-font-size);
+                    color: var(--container-color);
+                    padding: 0.2rem;
+                    @media (max-width: 556px) {
+                        font-size: var(--normal-font-size);
+                    }
+                
+                }
+            }
+        }
+    }
+}
+
+.reverse {
+    flex-direction: row-reverse;
+    width: 100%;
+    @media (max-width: 577px) {
+        flex-direction: column;
+    }
+    /* Flip layout for even services */
+}

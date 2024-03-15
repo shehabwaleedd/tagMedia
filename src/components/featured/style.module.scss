@@ -1,93 +1,37 @@
 .featured {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    text-align: center;
+    text-align: left;
     transition: var(--animation-primary);
     width: 100%;
     gap: 1rem;
     padding: 3rem;
+    background-color: var(--title-color);
+    border-radius: 4rem;
 
     @media (max-width: 999px) {
         padding: 1rem;
     }
     @media (max-width: 570px) {
         padding: 0.5rem;
+        border-radius: 2rem;
     }
 
-    cursor: pointer;
-
-    img {
-        height: 80vh;
-        width: 45vw;
-        object-fit: cover;
-        border-radius: 1rem;
+    h2 {
+        font-size: var(--title-size);
+        color: var(--container-color);
         transition: var(--animation-primary);
+        text-align: left;
 
-        @media (max-width: 999px) {
-            height: 40vh;
-            width: 100%;
-        }
-
-    }
-    &__container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6vw;
-        width: 100%;
-        padding: 1rem;
-        justify-content: center;
-        align-items: center;
         @media (max-width: 570px) {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 0;
-            justify-content: flex-start;
-            align-items: flex-start;
-
+            font-size: var(--bigger-font-size);
+            position: relative;
+            top: 2rem;
         }
     }
-    &__item {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        width: 100%;
-        transition: var(--animation-primary);
-        &__content {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            width: 100%;
-            padding-top: 1rem;
-            h3 {
-                font-size: var(--semi-big-font-size);
-                color: var(--title-color);
 
-                @media (max-width: 570px) {
-                    font-size: var(--medium-font-size);
-                }
-            }
-            p {
-                font-size: var(--body-font-size);
-                color: var(--title-color);
-
-                @media (max-width: 570px) {
-                    font-size: var(--normal-font-size);
-                }
-            }
-        }
-        &:hover {
-            transition: var(--animation-primary);
-            img {
-                transition: var(--animation-primary);
-                border-radius: 50%;
-            }
-        }
-    }
     &__miniServices {
         display: flex;
         flex-direction: column;
@@ -102,11 +46,11 @@
         }
         h3 {
             font-size: var(--semi-big-font-size);
-            color: var(--title-color);
+            color: var(--container-color);
         }
         p {
             font-size: var(--body-font-size);
-            color: var(--title-color);
+            color: var(--container-color);
         }
         &__container {
             display: flex;

@@ -1,10 +1,13 @@
+'use client'
 import React from 'react'
 import styles from "./style.module.scss"
 import Marquee from "@/animation/marquee/Marquee"
-
-const index = () => {
+import { usePathname } from 'next/navigation';
+const AboveFooter = () => {
+    const router = usePathname();
+    const isProjectPage = router === '/projects';
     return (
-        <section className={styles.aboveFooter}>
+        <section className={styles.aboveFooter} style={{ display: isProjectPage ? "none" : "" }}>
             <div className={styles.aboveFooter__container}>
                 <h4>Tag Media</h4>
                 <address>
@@ -18,4 +21,4 @@ const index = () => {
     )
 }
 
-export default index
+export default AboveFooter

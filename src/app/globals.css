@@ -47,6 +47,7 @@
   --biggest-font-size: 4.236rem;
   --navigation-font-size: 6.618rem;
   --title-size: clamp(5em, 7.5vw, 7.5em);
+  --semi-title-size: clamp(3em, 5vw, 5em);
 }
 
 * {
