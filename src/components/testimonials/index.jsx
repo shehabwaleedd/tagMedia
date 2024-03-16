@@ -1,10 +1,10 @@
 'use client'
 import React, { useRef, useState } from 'react';
 import styles from './style.module.scss';
-import { GoArrowRight } from "react-icons/go";
-import { GoArrowLeft } from "react-icons/go";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import SwiperCore from 'swiper';
+import  { Navigation, Pagination } from "swiper/modules"
 import Magnetic from '@/animation/Magnetic';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import "swiper/css";
@@ -119,7 +119,6 @@ const Testimonials = () => {
                     ref={swiperRef}
                     spaceBetween={isMobile ? 20 : 50}
                     slidesPerView={isMobile ? 1 : 3}
-                    pagination={{ clickable: true }}
                     navigation={
                         {
                             nextEl: ".swiper-button-next",

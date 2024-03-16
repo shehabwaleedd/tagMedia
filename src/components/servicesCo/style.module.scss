@@ -115,7 +115,11 @@
 
                     li {
                         font-size: var(--body-font-size);
-                        color: var(--container-color)
+                        color: var(--container-color);
+                        @media (max-width: 888px) {
+                            font-size: var(--normal-font-size);   
+                        }
+                        
                     }
                 }
             }

@@ -9,6 +9,7 @@
     padding: 2rem;
 
     @media (max-width: 567px) {
+        padding: 0.5rem;
         padding-top: 10vh;
     }
 
@@ -24,10 +25,6 @@
         h2 {
             font-size: 16vw;
             color: var(--container-color);
-
-            @media (max-width: 570px) {
-                font-size: 15vw;
-            }
         }
 
         p {

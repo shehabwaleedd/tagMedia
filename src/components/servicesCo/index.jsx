@@ -98,7 +98,6 @@ const index = () => {
                                                 Get in touch
                                             </Link>
                                         </RoundedButton>
-                                        <h4>Questions we answer</h4>
                                     </div>
                                 </div>
                                 <div>
