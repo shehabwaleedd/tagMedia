@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { links, footerLinks } from './data';
 import { perspective, slideIn } from "./anim";
 import Link from 'next/link';
+import TransitionLink from '@/components/transitionLink';
 
 export default function index() {
     return (
@@ -20,9 +21,7 @@ export default function index() {
                                     animate="enter"
                                     exit="exit"
                                 >
-                                    <Link href={href}>
-                                        {title}
-                                    </Link>
+                                    <TransitionLink href={href} label={title}/>
                                 </motion.div>
                             </div>
                         )
