@@ -34,11 +34,13 @@
     .footer{
         display: flex;
         flex-wrap: wrap;
+        gap: 1rem;
         a{
-            width: 50%;
             text-decoration: none;
-            color:black;
+            color:#0c4434;
             margin-top: 5px;
+            font-size: 1.25rem;
+            
         }
     }
 }

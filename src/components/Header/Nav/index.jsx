@@ -31,7 +31,7 @@ export default function index() {
             <motion.div className={styles.footer}>
                 {
                     footerLinks.map((link, i) => {
-                        const { title, href } = link;
+                        const { icon, href } = link;
                         return (
                             <motion.a
                                 variants={slideIn}
@@ -45,7 +45,7 @@ export default function index() {
                                 rel="noopener noreferrer"
 
                             >
-                                {title}
+                                {icon}
                             </motion.a>
                         )
                     })

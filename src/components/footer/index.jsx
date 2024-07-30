@@ -12,7 +12,7 @@ const Footer = () => {
         target: container,
         offset: ["start end", "end end"]
     })
-    const y = useTransform(scrollYProgress, [0, 1], [-500, 0])
+    const y = useTransform(scrollYProgress, [0, 1], [-300, 0])
 
 
 

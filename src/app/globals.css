@@ -1,14 +1,13 @@
 :root {
 
-  --container-color: #F2F0EB;
+  --container-color: #F8F0E3;
   --subtitle-color: #515151;
   --title-color: #202020;
-  --text-color: #47393f;
-  --hue: 0;
-  --sat: 0%;
+  --text-color: #444444;
   --subtitle-color: #6a6a6a;
   --hover-color: #91171F;
-  --accent-color: #5CE6A1;
+  /* --accent-color: #5CE6A1; */
+  --accent-color: #45B5AA;
   --accent-second-color: #327BC4;
   --lighter-text-color: #989898;
   --background-color: #1c1c1c;
@@ -26,12 +25,10 @@
 
   /* Fonts */
 
-  --body-font: 'ClashDisplay-Regular', sans-serif;
-  --subtitle-font: 'ClashDisplay-Thin', sans-serif;
-  --title-font: 'ClashDisplay-Medium', sans-serif;
-  --heading-font: 'ClashDisplay-SemiBold', sans-serif;
-  --logo-font: 'ClashDisplay-Bold', sans-serif;
-  --nav-font: 'ClashDisplay-ExtraBold', sans-serif;
+  --body-font: 'Avantt-Light', sans-serif;
+  --subtitle-font: 'Avantt-Light', sans-serif;
+  --title-font: 'OVSoge-Medium', sans-serif;
+  --header-font: 'Youth-Medium', sans-serif;
 
   /* Font Sizes Based on Golden Ratio */
 
@@ -46,6 +43,15 @@
   --bigger-font-size: 2.618rem;
   --biggest-font-size: 4.236rem;
   --navigation-font-size: 6.618rem;
+
+  --body-font-weight: 400;
+  --subtitle-font-weight: 100;
+  --medium-font-weight: 500;
+  --title-font-weight: 700;
+  --heavy-font-weight: 900;
+  --semi-bold-font-weight: 600;
+  --gfs: 14.4;
+  --gfs-1: 16.2;
   --title-size: clamp(5em, 7.5vw, 7.5em);
   --semi-title-size: clamp(3em, 5vw, 5em);
 }
@@ -139,41 +145,26 @@ img {
 
 
 @font-face {
-  font-family: 'ClashDisplay-Light';
-  src: url('../../public/fonts/ClashDisplay-Light.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'ClashDisplay-Regular';
-  src: url('../../public/fonts/ClashDisplay-Regular.woff2') format('woff2');
+  font-family: 'OVSoge-Medium';
+  src: url('../../public/fonts/OVSoge-Medium.woff') format('woff');
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
-
 @font-face {
-  font-family: 'ClashDisplay-Medium';
-  src: url('../../public/fonts/ClashDisplay-Medium.woff2') format('woff2');
-  font-weight: 500;
+  font-family: 'Youth-Medium';
+  src: url('../../public/fonts/Youth-Medium.woff2') format('woff2');
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
 
 @font-face {
-  font-family: 'ClashDisplay-Semibold';
-  src: url('../../public/fonts/ClashDisplay-Semibold.woff2') format('woff2');
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'ClashDisplay-Bold';
-  src: url('../../public/fonts/ClashDisplay-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-family: 'Avantt-Light';
+  src: url('../../public/fonts/Avantt-Light.ttf') format("truetype");
+  font-weight: 300;
   font-display: swap;
   font-style: normal;
 }

@@ -22,7 +22,7 @@
 
 
         @media (max-width: 1233px) {
-            min-height: 20lvh;
+        min-height: 20lvh;
         }
 
         @media (max-width: 570px) {
@@ -37,6 +37,7 @@
         h2 {
             margin-bottom: 1rem;
             color: var(--title-color);
+            font-weight: 600;
 
             @media (max-width: 570px) {
                 font-size: 10vw;

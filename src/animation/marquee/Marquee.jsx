@@ -5,7 +5,7 @@ import Marquee from 'react-fast-marquee';
 
 const Announcment = () => {
     return (
-        <Marquee className='marquee' gradient={false} speed={100} pauseOnHover={true}>
+        <Marquee className='marquee' gradient={false} speed={100}>
             <h3>
                 Dare to be the best!
             </h3>
