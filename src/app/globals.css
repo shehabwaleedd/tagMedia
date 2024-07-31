@@ -1,6 +1,6 @@
 :root {
 
-  --container-color: #F8F0E3;
+  --container-color: #eceae6;
   --subtitle-color: #515151;
   --title-color: #202020;
   --text-color: #444444;
@@ -10,7 +10,7 @@
   --accent-color: #45B5AA;
   --accent-second-color: #327BC4;
   --lighter-text-color: #989898;
-  --background-color: #1c1c1c;
+  --background-color: #FCFAF6;
   --border-color: #c1c1c1;
   --animation-primary: 0.4s cubic-bezier(0.5, 0.75, 0, 1);
   --section-padding: min(3.5vw, 3.5em);
@@ -25,8 +25,9 @@
 
   /* Fonts */
 
-  --body-font: 'Avantt-Light', sans-serif;
+  --body-font: 'Satoshi-Regular', sans-serif;
   --subtitle-font: 'Avantt-Light', sans-serif;
+  --medium-font: 'Avantt-Medium', sans-serif;
   --title-font: 'OVSoge-Medium', sans-serif;
   --header-font: 'Youth-Medium', sans-serif;
 
@@ -159,11 +160,32 @@ img {
   font-display: swap;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Avantt-Medium';
+  src: url('../../public/fonts/Avantt-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avantt-Bold';
+  src: url('../../public/fonts/Avantt-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
 
 
 @font-face {
   font-family: 'Avantt-Light';
   src: url('../../public/fonts/Avantt-Light.ttf') format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi-Regular';
+  src: url('../../public/fonts/Satoshi-Regular.woff2') format("woff2");
   font-weight: 300;
   font-display: swap;
   font-style: normal;

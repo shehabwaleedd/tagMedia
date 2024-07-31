@@ -1,14 +1,20 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import styles from "./style.module.scss"
-import Image from 'next/image'
 import RoundedButton from '@/animation/RoundedButton'
-import { motion } from 'framer-motion';
-import ServicesHomePage from '@/components/services';
+import ProjectsHomePage from '@/components/projects';
+import { useScroll, motion, useTransform } from 'framer-motion';
 
-const Projects = () => {
-    const [isHovered, setIsHovered] = useState(false);
-    const [hoveredProject, setHoveredProject] = useState(null);
+const Projects = ({ work }: {
+    work: {
+        name: string;
+        image: {
+            url: string;
+        };
+        role: string;
+        year: string;
+    }[];
+}) => {
 
     const miniServices = [
         {
@@ -34,11 +40,19 @@ const Projects = () => {
         },
     ]
 
+    const container = useRef<HTMLDivElement | null>(null);
+    const { scrollYProgress } = useScroll({
+        target: container,
+        offset: ["end start", "end center"]
+    });
+    const y = useTransform(scrollYProgress, [0, 1], [400, 0]);
+
+
     return (
 
         <motion.section className={styles.featured}>
-            <h2> Our Projects </h2>
-            <ServicesHomePage />
+            {/* <h2> Our Projects </h2> */}
+            <ProjectsHomePage work={work} />
             <div className={styles.featured__miniServices}>
                 <div className={styles.featured__miniServices__container}>
                     {miniServices.map((item, index) => (

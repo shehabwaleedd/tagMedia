@@ -15,11 +15,12 @@
     }
 
     &__content {
-        display: block;
+        display: flex;
+        flex-direction: column;
         width: 100%;
         height: 100%;
         min-height: 35lvh;
-
+        
 
         @media (max-width: 1233px) {
         min-height: 20lvh;
@@ -29,60 +30,18 @@
             height: fit-content;
         }
 
-        div {
-            display: flex;
-            overflow: hidden;
-        }
-
         h2 {
-            margin-bottom: 1rem;
+            font-size: var(--navigation-font-size);
             color: var(--title-color);
-            font-weight: 600;
-
-            @media (max-width: 570px) {
-                font-size: 10vw;
-            }
+            letter-spacing: -0.1rem;
+            font-family: var(--medium-font);
+            font-weight: 400;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            line-height: 0.88;
         }
 
-        &_title {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
 
-            svg {
-                font-size: var(--title-size);
-                color: var(--accent-color);
-                cursor: pointer;
-
-                @media (max-width: 570px) {
-                    font-size: var(--semi-big-font-size);
-                    padding-bottom: 1rem;
-                }
-
-            }
-        }
-
-        &_title_mobile {
-            display: none;
-
-            @media (max-width: 999px) {
-                display: flex;
-                width: 100%;
-                justify-content: flex-start;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-
-                svg {
-                    font-size: var(--title-size);
-                    color: var(--accent-color);
-                    cursor: pointer;
-                }
-            }
-        }
-
-        &_icons_mobile {
+        .icon {
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
@@ -91,118 +50,10 @@
         }
     }
 
-    .stripe {
-        height: 1px;
-        width: 100%;
-        background-color: var(--border-color);
-
-    }
-
-    &__middle {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
-        padding: 2rem 0;
-        position: relative;
-        z-index: 2;
-        background-color: var(--container-color);
-
-        @media (max-width: 570px) {
-            display: none;
-        }
-
-    }
-
-    &__lower {
-        display: flex;
-        width: 100%;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 2rem;
-        position: relative;
-        z-index: 2;
-        background-color: var(--container-color);
-
-        @media (max-width: 570px) {
-            margin: 0;
-        }
-
-    }
-
-    video {
-        width: 100%;
-        height: 80vh;
-        border-radius: 2rem;
-        object-fit: cover;
-        position: relative;
-        z-index: 2;
-
-        @media (max-width: 570px) {
-            height: 50vh;
-            margin-top: 1rem;
+    .middle {
+        h2 {
+            font-size: 8rem;
         }
     }
 }
 
-.cursor,
-.cursorLabel {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    color: var(--title-color);
-    font-family: var(--title-font);
-    position: absolute;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    font-weight: 300;
-    pointer-events: none;
-
-}
-
-.cursorLabel {
-    background-color: transparent;
-}
-
-.videoModal {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-
-    video {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    &__close {
-        position: absolute;
-        top: 5rem;
-        right: 2rem;
-        font-size: 3rem;
-        color: var(--container-color);
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 999;
-        &:hover {
-            color: var(--accent-color);
-        }
-    }
-
-}

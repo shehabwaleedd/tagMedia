@@ -85,9 +85,9 @@
         cursor: pointer;
 
         img {
-            height: 50vh;
+            aspect-ratio: 4 / 5;
             object-fit: cover;
-            border-radius: 2rem;
+            border-radius: 1rem;
 
             @media (max-width: 970px) {
                 width: 100%;

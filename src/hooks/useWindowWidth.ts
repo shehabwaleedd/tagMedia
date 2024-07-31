@@ -1,12 +1,9 @@
-'use client'
-
 import { useState, useEffect } from 'react';
 
-const useWindowWidth = () => {
-    const [windowWidth, setWindowWidth] = useState(null);
+const useWindowSize = () => {
+    const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
     useEffect(() => {
-        // Only run this effect client-side
         if (typeof window !== 'undefined') {
             const handleResize = () => setWindowWidth(window.innerWidth);
             window.addEventListener('resize', handleResize);
@@ -15,7 +12,11 @@ const useWindowWidth = () => {
         }
     }, []);
 
-    return windowWidth;
+    const isMobile = windowWidth !== null && windowWidth < 468;
+    const isTablet = windowWidth !== null && windowWidth < 768;
+    const isDesktop = windowWidth !== null && windowWidth >= 1268;
+
+    return { windowWidth, isMobile, isTablet, isDesktop };
 };
 
-export default useWindowWidth;
+export default useWindowSize;

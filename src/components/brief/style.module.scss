@@ -7,7 +7,11 @@
     width: 100%;
     padding: var(--section-padding) 0;
     padding: 3rem;
+    min-height: 35lvh;
+    position: relative;
+    background-color: var(--container-color);
 
+    
     @media (max-width: 999px) {
         padding: 0.5rem;
     }

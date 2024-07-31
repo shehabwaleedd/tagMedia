@@ -2,9 +2,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar"
-import SmoothScrolling from "@/animation/SmoothScrolling";
+import SmoothScroller from "@/animation/SmoothScrolling";
 import Footer from "@/components/footer";
 import AboveFooter from "@/components/aboveFooter"
+import { Toaster } from "sonner";
 
 type Metadata = {
   title: string;
@@ -88,10 +89,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="App">
       <body>
+        <Toaster />
         <Navbar />
-        <SmoothScrolling>
+        <SmoothScroller />
           {children}
-        </SmoothScrolling>
         <AboveFooter />
         <Footer />
       </body>

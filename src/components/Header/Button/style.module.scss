@@ -16,16 +16,16 @@
         .el{
             width: 100%;
             height: 100%;
-            background-color:var(--title-color);
+            background-color:var(--accent-color);
             padding: 0.5rem;
             p{
                 margin: 0px;
-                color: var(--container-color);
+                color: var(--title-color);
                 svg {
                     width: 100%;
                     height: 100%;
                     padding: 0.3rem;
-                    fill: var(--container-color);
+                    fill: var(--title-color);
                 }
             }
         }

@@ -5,6 +5,9 @@ import styles from './style.module.scss'
 import Header from "@/components/Header"
 import Image from 'next/image'
 import { gsap } from 'gsap'
+import { RiMenu4Fill } from "react-icons/ri";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -38,20 +41,33 @@ const Navbar = () => {
     return (
         <>
             <nav className={styles.navbar}>
-                <div className={styles.navbar__container}>
-                    <div className={styles.navbar__container_left}>
+                <div className={styles.navbar__container_left}>
+                    <div className={styles.left}>
                         <Link href="/">
-                            <div className={styles.branding}>
-                                <Image src="/logo.png" alt="Tag Media Logo" width={75} height={75} />
-                                <h2 ref={tagRef}>Tag Media</h2>
-                            </div>
+                            <Image src="/logo.png" alt="Tag Media Logo" width={75} height={75} />
                         </Link>
+                        <h2 ref={tagRef}>Tag Media</h2>
+                    </div>
+                    <div className={`${styles.menu} ${styles.menuBar}`}>
+                        <h3>
+                            Home
+                        </h3>
+                        <div className={styles.toggle}>
+                            <RiMenu4Fill />
+                        </div>
+                    </div>
+
+                </div>
+                <div className={styles.right}>
+                    <div className={`${styles.fit} ${styles.menu}`}>
+                        <HiOutlineChatBubbleOvalLeftEllipsis style={{fontSize: "1.25rem"}}/>
+                    </div>
+                    <div className={`${styles.fit} ${styles.menu}`}>
+                        <h3>Contact us</h3>
+                        <MdOutlineKeyboardArrowRight />
                     </div>
                 </div>
-            </nav >
-            <div className={styles.navbar__container_right}>
-                <Header />
-            </div>
+            </nav>
         </>
     )
 }

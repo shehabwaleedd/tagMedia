@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper';
 import  { Navigation, Pagination } from "swiper/modules"
 import Magnetic from '@/animation/Magnetic';
-import useWindowWidth from '@/hooks/useWindowWidth';
+import useWindowSize from '@/hooks/useWindowWidth';
 import "swiper/css";
 import "swiper/css/pagination";
 import 'swiper/css/navigation';
@@ -76,8 +76,7 @@ const testimonialsData = [
 
 const Testimonials = () => {
     const swiperRef = useRef(null);
-    const windowWidth = useWindowWidth()
-    const isMobile = windowWidth < 777
+    const { isMobile } = useWindowSize();
     const [detailsOpen, setDetailsOpen] = useState(false);
     const [selectedTestimonial, setSelectedTestimonial] = useState(null); // New state to track selected testimonial
 
