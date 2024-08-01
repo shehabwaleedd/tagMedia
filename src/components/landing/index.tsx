@@ -3,12 +3,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './style.module.scss';
 import { BsYoutube, BsInstagram, BsTwitterX, BsTiktok, BsSnapchat } from "react-icons/bs";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { useScroll, motion, useTransform } from 'framer-motion';
-import getChars from "@/animation/animatedHeaders/getChars";
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import useWindowSize from '@/hooks/useWindowWidth';
-import Video from '../video';
+import Trusted from '../trusted';
 
-// Define the social media icons and their links
+gsap.registerPlugin(ScrollTrigger);
+
 const socialMediaIcons: { icon: JSX.Element; link: string }[] = [
     { icon: <FaFacebookF />, link: "https://www.facebook.com" },
     { icon: <BsYoutube />, link: "https://www.youtube.com" },
@@ -19,19 +20,30 @@ const socialMediaIcons: { icon: JSX.Element; link: string }[] = [
     { icon: <BsSnapchat />, link: "https://www.snapchat.com" },
 ];
 
-
-
 const Landing: React.FC = () => {
     const [currentIconIndex, setCurrentIconIndex] = useState(0);
     const { isMobile, isDesktop } = useWindowSize();
-    const container = useRef<HTMLDivElement | null>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ["end start", "end center"]
-    });
-    const y = useTransform(scrollYProgress, [0, 1], [400, 0]);
+    useEffect(() => {
+        if (containerRef.current) {
+            gsap.to(containerRef.current, {
+                opacity: 0,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top top",
+                    end: "bottom center",
+                    scrub: true,
+                    pin: true,
+                }
+            });
 
+        }
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -45,8 +57,8 @@ const Landing: React.FC = () => {
     };
 
     return (
-        <section className={styles.landing}>
-            <motion.div className={styles.landing__content} ref={container} style={{ y: isDesktop ? y : 0 }}>
+        <section className={styles.landing} ref={containerRef}>
+            <div className={styles.landing__content}>
                 <div className={styles.left}>
                     <h2>Crafting</h2>
                 </div>
@@ -59,8 +71,8 @@ const Landing: React.FC = () => {
                 <div onClick={() => handleIconClick(socialMediaIcons[currentIconIndex].link)} className={styles.icon}>
                     {socialMediaIcons[currentIconIndex].icon}
                 </div>
-
-            </motion.div>
+            </div>
+            <Trusted />
         </section>
     );
 };

@@ -87,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="App">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Toaster />
         <Navbar />

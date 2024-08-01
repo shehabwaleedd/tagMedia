@@ -3,13 +3,12 @@
     top: 0;
     left: 0;
     width: 100%;
-
     z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     padding: 1rem;
+    user-select: none;
 
     .navbar__container_left {
         position: relative;
@@ -23,8 +22,6 @@
             font-family: "CabinetGrotesk-Medium";
             letter-spacing: 0.05rem;
             color: var(--container-color);
-
-
         }
     }
 
@@ -34,16 +31,11 @@
         font-weight: 600;
         color: var(--title-color);
 
-
-        @media (max-width: 1256px) {
-            font-size: 2.5vw;
+        @media (max-width: 956px) {
+            display: none;
         }
-
-        @media (max-width: 756px) {
-            font-size: 2rem;
-        }
-
     }
+
 
 }
 
@@ -53,13 +45,28 @@
     align-items: center;
 }
 
+.left {
+    a {
+        @media (max-width: 999px) {
+            img {
+                background-color: var(--container-color);
+                border-radius: 1rem;
+                padding: 1rem;
+            }
+        }
+    }
+}
+
 .right {
     gap: 1rem;
+
+    @media (max-width: 999px) {
+        display: none;
+    }
 }
 
 .menu {
     background: #eceae6c6;
-    // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
     border: 1px solid rgba(236, 234, 230, 0.3);
@@ -74,16 +81,7 @@
         font-family: var(--body-font);
         color: var(--title-color);
         cursor: pointer;
-
-        @media (max-width: 1256px) {
-            font-size: 2.5vw;
-        }
-
-        @media (max-width: 756px) {
-            font-size: 2rem;
-        }
     }
-
 }
 
 .fit {
@@ -92,5 +90,27 @@
 }
 
 .menuBar {
+    position: fixed;
+    left: 15%;
     width: 20vw;
+    top: 2vh;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+
+    @media (max-width: 888px) {
+        width: 80vw;
+    }
+}
+
+.menuUpper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    padding-bottom: 1rem;
 }

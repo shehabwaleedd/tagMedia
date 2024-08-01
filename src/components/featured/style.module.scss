@@ -9,7 +9,7 @@
     gap: 1rem;
     padding: 3rem;
     position: relative;
-    background-color: var(--container-color);
+    background-color: var(--background-color);
     z-index: 2;
 
     @media (max-width: 999px) {
@@ -36,3 +36,4 @@
     }
 
 }
+

@@ -6,7 +6,7 @@ import ImageSlider from "@/components/SlidingImages";
 import ServicesCo from "@/components/servicesCo"
 import { serverDynamicFetch } from '@/lib/serverDynamicFetch'
 import Spacer from "@/components/spacer";
-import Trusted from "@/components/trusted";
+import Divider from "@/components/divider";
 
 export default async function Home() {
 
@@ -17,11 +17,11 @@ export default async function Home() {
     <>
       <main className={styles.main}>
         <Landing />
-        <Trusted />
-        <Spacer main="Projects" left="Transforming brands for growth" right="What can we do for you?" />
+        {/* <Spacer main="Projects" left="Transforming brands for growth" right="What can we do for you?" /> */}
         <Featured work={work} />
-        <Brief />
+        <Divider main="Celebrities"/>
         <ImageSlider actors={partners} />
+        {/* <Brief /> */}
         <ServicesCo />
       </main>
     </>

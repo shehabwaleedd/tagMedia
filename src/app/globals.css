@@ -14,7 +14,7 @@
   --border-color: #c1c1c1;
   --animation-primary: 0.4s cubic-bezier(0.5, 0.75, 0, 1);
   --section-padding: min(3.5vw, 3.5em);
-  
+  --border: 1px solid var(--border-color);
 
   /* Responsive Sizes  */
 
@@ -27,8 +27,8 @@
 
   --body-font: 'Satoshi-Regular', sans-serif;
   --subtitle-font: 'Avantt-Light', sans-serif;
-  --medium-font: 'Avantt-Medium', sans-serif;
-  --title-font: 'OVSoge-Medium', sans-serif;
+  --medium-font: 'Helvetica', sans-serif;
+  --title-font: 'Helvetica', sans-serif;
   --header-font: 'Youth-Medium', sans-serif;
 
   /* Font Sizes Based on Golden Ratio */
@@ -63,6 +63,7 @@
   box-sizing: border-box;
 
 }
+
 
 html {
   background-color: var(--background-color);
@@ -179,6 +180,13 @@ img {
 @font-face {
   font-family: 'Avantt-Light';
   src: url('../../public/fonts/Avantt-Light.ttf') format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../../public/fonts/Helvetica.woff') format("woff");
   font-weight: 300;
   font-display: swap;
   font-style: normal;

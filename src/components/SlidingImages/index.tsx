@@ -1,18 +1,12 @@
 'use client'
-import { useRef } from 'react';
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 import styles from './style.module.scss';
 import Image from 'next/image';
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Swiper as SwiperInstance } from 'swiper';
-import useWindowSize from '@/hooks/useWindowWidth';
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import 'swiper/css/navigation';
-SwiperCore.use([Navigation, Pagination]);
-import Magnetic from '@/animation/Magnetic';
-import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Actor {
     image: {
@@ -25,65 +19,66 @@ interface ImagesSliderProps {
 }
 
 export default function ImagesSlider({ actors }: ImagesSliderProps) {
-    const swiperRef = useRef<SwiperInstance | null>(null);
-    const { isMobile, isTablet, isDesktop } = useWindowSize();
-    const container = useRef<HTMLDivElement | null>(null);
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ["start end", "end start"]
-    });
+    const containerRef = useRef<HTMLDivElement>(null);
+    const sliderRef = useRef<HTMLDivElement>(null);
 
-    const x1 = useTransform(scrollYProgress, [0, 1], ['10vw', '-10vw']);
+    const displayedActors = actors.slice(0, 8);
+    const hasMoreActors = actors.length > 8;
 
-    const handleNextSlide = () => {
-        if (swiperRef.current) {
-            swiperRef.current.slideNext();
+    useEffect(() => {
+        if (containerRef.current && sliderRef.current) {
+            const slider = sliderRef.current;
+            
+            // Set the width of the slider to accommodate displayed images
+            const totalWidth = displayedActors.length * 25; // 25vw per image
+            slider.style.width = `${totalWidth}vw`;
+
+            // Calculate dynamic height (adjust multiplier as needed)
+            const dynamicHeight = `${Math.ceil(displayedActors.length / 4) * 50}vh`;
+            containerRef.current.style.height = dynamicHeight;
+
+            gsap.set(slider, {
+                x: '50%', // Start from the right edge of the container
+                y: '-50%',  // Center vertically
+            });
+
+            gsap.to(slider, {
+                x: () => -(slider.scrollWidth - document.documentElement.clientWidth),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top 50%",
+                    end: "bottom bottom",
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                }
+            });
         }
-    };
-
-    const handlePrevSlide = () => {
-        if (swiperRef.current) {
-            swiperRef.current.slidePrev();
-        }
-    };
+    }, [displayedActors]);
 
     return (
-        <div ref={container} className={styles.slidingImages}>
-            <h2> Our Stars </h2>
-            <div className={styles.slidingImages_btns}>
-                <Magnetic>
-                    <button onClick={handlePrevSlide}><GoArrowLeft /></button>
-                </Magnetic>
-                <Magnetic>
-                    <button onClick={handleNextSlide}><GoArrowRight /></button>
-                </Magnetic>
+        <div ref={containerRef} className={styles.slidingImages}>
+            <div ref={sliderRef} className={styles.slider}>
+                {displayedActors.map((actor, index) => (
+                    <div key={index} className={styles.project}>
+                        <div className={styles.imageContainer}>
+                            <Image
+                                alt={"image"}
+                                src={actor.image.url}
+                                width={1000}
+                                height={1000}
+                            />
+                        </div>
+                    </div>
+                ))}
             </div>
-            <motion.div style={{ x: x1 }} className={styles.slider}>
-                <Swiper
-                    onSwiper={(swiper) => { swiperRef.current = swiper; }}
-                    spaceBetween={isMobile ? 20 : 50}
-                    slidesPerView={isMobile ? 2 : isTablet ? 3 : isDesktop ? 4 : 5}
-                    navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev"
-                    }}
-                >
-                    {actors.map((project, index) => (
-                        <SwiperSlide key={index}>
-                            <div className={styles.project}>
-                                <div className={styles.imageContainer}>
-                                    <Image
-                                        alt={"image"}
-                                        src={project.image.url}
-                                        width={1000}
-                                        height={1000}
-                                    />
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </motion.div>
+            {hasMoreActors && (
+                <Link href="/work" className={styles.showMore}>
+                    Show More
+                </Link>
+            )}
         </div>
     );
 }

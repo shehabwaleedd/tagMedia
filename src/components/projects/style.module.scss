@@ -1,17 +1,14 @@
 .projectsSection {
-    position: relative;
-    min-height: 100vh;
+    max-height: 100vh;
 }
 
-
 .projectsContainer {
-    display: flex;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
     margin: 0 auto;
-    padding: 0 1rem;
-    position: sticky;
-    top: 0;
-    min-height: 100vh;
+    position: relative;
+    will-change: transform;
 
     @media (max-width: 768px) {
         flex-direction: column;
@@ -19,13 +16,15 @@
 }
 
 .projectColumn {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    will-change: transform;
 }
 
 .projectItem {
+    will-change: transform;
+
     &__image {
         aspect-ratio: 4/5;
         overflow: hidden;
@@ -44,6 +43,8 @@
     }
 
     &__info {
+        display: flex;
+        justify-content: space-between;
         margin-top: 1rem;
 
         h3 {
@@ -56,7 +57,10 @@
 .showMoreContainer {
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
+    height: fit-content;
+    width: 100%;
+    position: absolute;
+    bottom: 15vh;
 }
 
 @media (max-width: 768px) {
