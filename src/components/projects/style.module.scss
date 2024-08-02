@@ -1,5 +1,9 @@
 .projectsSection {
     max-height: 75vh;
+
+    @media (max-width: 768px) {
+        max-height: none;
+    }
 }
 
 .projectsContainer {
@@ -11,6 +15,7 @@
     will-change: transform;
 
     @media (max-width: 768px) {
+        display: flex;
         flex-direction: column;
     }
 }

@@ -6,17 +6,24 @@
     background-color: var(--background-color);
     position: relative;
     z-index: 3;
-    
+
     .container {
         mix-blend-mode: difference;
+        width: 100%;
         margin: 0 auto;
+
         img {
-            
+
             object-fit: contain;
             width: 7.5rem;
             height: 7.5rem;
             filter: grayscale(100%) invert(100%);
-    
+
+            @media (max-width: 555px) {
+                width: 5rem;
+                height: 5rem;
+            }
+
         }
     }
 }
@@ -28,5 +35,4 @@
     gap: 2rem;
     width: 100%;
     height: fit-content;
-    margin: 0 1rem;
 }

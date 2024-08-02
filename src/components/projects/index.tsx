@@ -18,8 +18,6 @@ interface Project {
 }
 
 const ProjectItem: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
-
-
     return (
         <div className={styles.projectItem} data-index={index}>
             <div className={styles.projectItem__image}>
@@ -43,17 +41,16 @@ const ProjectsHomePage: React.FC<ProjectsHomePageProps> = ({ work }) => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [displayedProjects, setDisplayedProjects] = useState<Project[]>([]);
-    const { isMobile } = useWindowSize();
+    const { isMobile, isDesktop } = useWindowSize();
 
     useEffect(() => {
         const limit = isMobile ? 5 : 8;
         setDisplayedProjects(work.slice(0, limit));
     }, [work, isMobile]);
 
-
-
     useEffect(() => {
-        if (sectionRef.current && containerRef.current) {
+        if (isDesktop && sectionRef.current && containerRef.current) {
+            gsap.registerPlugin(ScrollTrigger);
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
@@ -62,8 +59,8 @@ const ProjectsHomePage: React.FC<ProjectsHomePageProps> = ({ work }) => {
                     scrub: 1,
                 }
             });
+
             // Animate columns
-            // Get all columns
             const columns = gsap.utils.toArray<HTMLElement>(`.${styles.projectColumn}`);
 
             // Animate columns with reversed index
@@ -74,24 +71,18 @@ const ProjectsHomePage: React.FC<ProjectsHomePageProps> = ({ work }) => {
                     ease: "none",
                 }, 0);
             });
-
         }
 
         return () => {
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         };
-    }, []);
-
+    }, [isDesktop]);
 
     const columnProjects = [
         displayedProjects.filter((_, i) => i % 3 === 0),
         displayedProjects.filter((_, i) => i % 3 === 1),
         displayedProjects.filter((_, i) => i % 3 === 2)
     ];
-
-
-
-
 
     return (
         <section className={styles.projectsSection} ref={sectionRef}>
@@ -111,10 +102,8 @@ const ProjectsHomePage: React.FC<ProjectsHomePageProps> = ({ work }) => {
                     </div>
                 ))}
             </div>
-
         </section>
     );
 }
 
 export default ProjectsHomePage;
-

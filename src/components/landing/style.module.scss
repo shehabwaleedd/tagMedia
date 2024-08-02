@@ -13,6 +13,12 @@
     z-index: 1;
     background-color: var(--background-color);
 
+    @media (max-width: 555px) {
+        padding: 0.5rem;
+        min-height: 50vh;
+    }
+
+
     &__content {
         display: flex;
         flex-direction: column;
@@ -30,6 +36,10 @@
             font-weight: 400;
             transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
             line-height: 0.98;
+
+            @media (max-width: 555px) {
+                font-size: var(--bigger-font-size);
+            }
         }
 
     }
@@ -52,11 +62,19 @@
     position: absolute;
     right: 4rem;
 
+    @media (max-width: 555px) {
+        right: 1rem;
+    }
+
     svg {
         font-size: 4rem;
         color: var(--accent-second-color);
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         cursor: pointer;
+        @media (max-width: 555px) {
+            font-size: 2rem;
+        }
+
     }
 }
 
