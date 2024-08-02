@@ -1,12 +1,16 @@
 :root {
 
   --container-color: #eceae6;
-  --subtitle-color: #515151;
   --title-color: #202020;
   --text-color: #444444;
   --subtitle-color: #6a6a6a;
-  --hover-color: #91171F;
   /* --accent-color: #5CE6A1; */
+  --color1: #0080FF;
+  --color2: #AAF0D1;
+  --color3: #355BF5;
+  --card-background-color: #ffffff;
+  --primary-color: #000000;
+  --secondary-color: #333333;
   --accent-color: #45B5AA;
   --accent-second-color: #327BC4;
   --lighter-text-color: #989898;
@@ -161,6 +165,7 @@ img {
   font-display: swap;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Avantt-Medium';
   src: url('../../public/fonts/Avantt-Medium.woff2') format('woff2');
@@ -168,6 +173,7 @@ img {
   font-display: swap;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Avantt-Bold';
   src: url('../../public/fonts/Avantt-Bold.woff2') format('woff2');
@@ -184,6 +190,7 @@ img {
   font-display: swap;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Helvetica';
   src: url('../../public/fonts/Helvetica.woff') format("woff");
@@ -191,6 +198,7 @@ img {
   font-display: swap;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Satoshi-Regular';
   src: url('../../public/fonts/Satoshi-Regular.woff2') format("woff2");

@@ -1,10 +1,8 @@
-
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar"
 import SmoothScroller from "@/animation/SmoothScrolling";
 import Footer from "@/components/footer";
-import AboveFooter from "@/components/aboveFooter"
+import AboveFooter from "@/components/aboveFooter";
 import { Toaster } from "sonner";
 
 type Metadata = {
@@ -86,13 +84,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
         <Toaster />
         <Navbar />
         <SmoothScroller />
-          {children}
+        {children}
         <AboveFooter />
         <Footer />
       </body>

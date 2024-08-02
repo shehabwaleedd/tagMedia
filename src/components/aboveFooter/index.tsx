@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import styles from "./style.module.scss"
-import Marquee from "@/animation/marquee/Marquee"
+import Announcment from '@/animation/marquee/Marquee';
 import { usePathname } from 'next/navigation';
 const AboveFooter = () => {
     const router = usePathname();
@@ -16,7 +16,7 @@ const AboveFooter = () => {
                     <p>Email:  <a href="mailto:hello@tagmedia.com">Hello@tagmedia.com </a></p>
                 </address>
             </div>
-            <Marquee />
+            <Announcment />
         </section>
     )
 }

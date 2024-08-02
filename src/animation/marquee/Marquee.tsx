@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import './Marquee.css'
+import './Marquee.scss'
 import Marquee from 'react-fast-marquee';
 
 const Announcment = () => {

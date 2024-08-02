@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { RiMenu4Fill } from 'react-icons/ri';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { HiOutlineChatBubbleOvalLeftEllipsis } from 'react-icons/hi2';
-import useWindowSize from '@/hooks/useWindowWidth';
+
 import Menu from './menu';
 import axios from 'axios';
 import { toast } from 'sonner';
@@ -59,7 +59,7 @@ const Navbar = () => {
         if (menuRef.current && menuContentRef.current) {
             const menuHeight = (menuContentRef.current as HTMLElement)?.offsetHeight || 0;
             gsap.to(menuRef.current, {
-                height: menuOpen ? `${menuHeight + 58}px` : '48px', 
+                height: menuOpen ? `${menuHeight + 58}px` : '6vh', 
                 duration: 0.5,
                 ease: 'power3.inOut',
             });

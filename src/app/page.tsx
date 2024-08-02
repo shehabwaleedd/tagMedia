@@ -3,27 +3,31 @@ import Landing from "@/components/landing";
 import Brief from "@/components/brief"
 import Featured from "@/components/featured";
 import ImageSlider from "@/components/SlidingImages";
-import ServicesCo from "@/components/servicesCo"
+import ServicesComponent from "@/components/servicesCo";
 import { serverDynamicFetch } from '@/lib/serverDynamicFetch'
-import Spacer from "@/components/spacer";
+import Announcment from "@/animation/marquee2/Marquee";
 import Divider from "@/components/divider";
-
+import Testimonials from '@/components/testimonials';
+import MarqueeContent from "@/components/MarqueeContent";
+import NewsHomePage from "@/components/news";
 export default async function Home() {
 
   const partners = await serverDynamicFetch('partner');
   const work = await serverDynamicFetch('portfolio');
 
   return (
-    <>
-      <main className={styles.main}>
-        <Landing />
-        {/* <Spacer main="Projects" left="Transforming brands for growth" right="What can we do for you?" /> */}
-        <Featured work={work} />
-        <Divider main="Celebrities"/>
-        <ImageSlider actors={partners} />
-        {/* <Brief /> */}
-        <ServicesCo />
-      </main>
-    </>
+    <main className={styles.main}>
+      <Landing />
+      <Featured work={work} />
+      <Divider main="Celebrities" />
+      {/* <ImageSlider actors={partners} /> */}
+      <Announcment content={MarqueeContent(partners)} direction={"left"} />
+      <Divider main="Services" />
+      <ServicesComponent />
+      <Divider main="News" />
+      <NewsHomePage />
+      <Brief />
+      <Testimonials />
+    </main>
   );
 }

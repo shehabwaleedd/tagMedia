@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from 'swiper';
-import  { Navigation, Pagination } from "swiper/modules"
+import { Navigation, Pagination } from "swiper/modules"
 import Magnetic from '@/animation/Magnetic';
 import useWindowSize from '@/hooks/useWindowWidth';
 import "swiper/css";
@@ -89,29 +89,9 @@ const Testimonials = () => {
         setDetailsOpen(false); // Close the details view
     };
 
-    const handleNextSlide = () => {
-        if (swiperRef.current) {
-            swiperRef.current.slideNext();
-        }
-    };
-
-    const handlePrevSlide = () => {
-        if (swiperRef.current) {
-            swiperRef.current.slidePrev();
-        }
-    };
-
 
     return (
         <>
-            <div className={styles.testimonials_btns}>
-                <Magnetic>
-                    <button onClick={handlePrevSlide}><GoArrowLeft /></button>
-                </Magnetic>
-                <Magnetic>
-                    <button onClick={handleNextSlide}><GoArrowRight /></button>
-                </Magnetic>
-            </div>
             <section className={styles.testimonials}>
                 <Swiper
                     onSwiper={(swiper) => { swiperRef.current = swiper; }}
@@ -130,41 +110,46 @@ const Testimonials = () => {
                     {testimonialsData.map((testimonial, index) => (
                         <SwiperSlide key={index}>
                             <div className={styles.testimonials__slide_container}>
-                                <Image src={testimonial.img} alt="testimonial" width={200} height={200} priority="low" />
                                 <p>&quot;{testimonial.text.slice(0, 150)}...&quot;</p>
                                 <div className={styles.testimonials__slide_container_middle}>
                                     <CiCirclePlus />
-                                    <span  onClick={() => handleDetailsOpen(testimonial)}  className={styles.testimonials__slide_container_middle_readMore}>
+                                    <span onClick={() => handleDetailsOpen(testimonial)} className={styles.testimonials__slide_container_middle_readMore}>
                                         Read More
                                     </span>
                                 </div>
                                 <div className={styles.testimonials__slide_container_lower}>
-                                    <h4>{testimonial.name}</h4>
-                                    <h4>{testimonial.position}</h4>
-                                    <h4>{testimonial.company}</h4>
+                                    <div>
+                                        <Image src={testimonial.img} alt="testimonial" width={200} height={200} priority="low" />
+
+                                    </div>
+                                    <div>
+                                        <h4>{testimonial.name}</h4>
+                                        <h4>{testimonial.position}</h4>
+                                        <h4>{testimonial.company}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>
-            <AnimatePresence mode='wait'>
-                {detailsOpen && selectedTestimonial && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className={styles.testimonialsDetailsModal}
-                        onClick={handleDetailsClose}>
-                        <div className={styles.testimonialsDetailsContent}>
-                            <div className={styles.close}> <button onClick={handleDetailsClose}>Close</button> </div>
-                            <Image src={selectedTestimonial.img} alt="testimonial" width={200} height={200} />
-                            <p>{selectedTestimonial.text}</p>
-                            <h4>{selectedTestimonial.name}</h4>
-                            <h5>{selectedTestimonial.position}, {selectedTestimonial.company}</h5>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                <AnimatePresence mode='wait'>
+                    {detailsOpen && selectedTestimonial && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className={styles.testimonialsDetailsModal}
+                            onClick={handleDetailsClose}>
+                            <div className={styles.testimonialsDetailsContent}>
+                                <div className={styles.close}> <button onClick={handleDetailsClose}>Close</button> </div>
+                                <Image src={selectedTestimonial.img} alt="testimonial" width={200} height={200} />
+                                <p>{selectedTestimonial.text}</p>
+                                <h4>{selectedTestimonial.name}</h4>
+                                <h5>{selectedTestimonial.position}, {selectedTestimonial.company}</h5>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </section>
         </>
     );

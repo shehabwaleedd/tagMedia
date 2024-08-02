@@ -94,32 +94,25 @@ const ProjectsHomePage: React.FC<ProjectsHomePageProps> = ({ work }) => {
 
 
     return (
-        <>
-            <section className={styles.projectsSection} ref={sectionRef}>
-                <div className={styles.projectsContainer} ref={containerRef}>
-                    {columnProjects.map((projects, columnIndex) => (
-                        <div
-                            key={columnIndex}
-                            className={styles.projectColumn}
-                        >
-                            {projects.map((project, projectIndex) => (
-                                <ProjectItem
-                                    key={projectIndex}
-                                    project={project}
-                                    index={projectIndex}
-                                />
-                            ))}
-                        </div>
-                    ))}
-                </div>
-
-            </section>
-            <div className={styles.showMoreContainer}>
-                <RoundedButton>
-                    <Link href="/projects">Show More Projects</Link>
-                </RoundedButton>
+        <section className={styles.projectsSection} ref={sectionRef}>
+            <div className={styles.projectsContainer} ref={containerRef}>
+                {columnProjects.map((projects, columnIndex) => (
+                    <div
+                        key={columnIndex}
+                        className={styles.projectColumn}
+                    >
+                        {projects.map((project, projectIndex) => (
+                            <ProjectItem
+                                key={projectIndex}
+                                project={project}
+                                index={projectIndex}
+                            />
+                        ))}
+                    </div>
+                ))}
             </div>
-        </>
+
+        </section>
     );
 }
 

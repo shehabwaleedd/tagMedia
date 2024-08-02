@@ -8,6 +8,11 @@
     padding-top: 10vh;
     height: 100%;
     border-bottom: var(--border);
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 30% 30%, 100% 100%, 100% 0);
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-color);
+
     &__content {
         display: flex;
         flex-direction: column;
@@ -16,6 +21,7 @@
         height: 100%;
         min-height: 50vh;
         padding: 1rem;
+
         h2 {
             font-size: var(--navigation-font-size);
             color: var(--title-color);
@@ -31,7 +37,7 @@
 
 .middle {
     h2 {
-        color: var(--accent-color);
+        color: var(--accent-second-color);
     }
 }
 
@@ -44,11 +50,54 @@
     width: 100%;
     padding-bottom: 1rem;
     position: absolute;
-    right: 2rem;
+    right: 4rem;
+
     svg {
-        font-size: 3.5rem;
-        color: var(--accent-color);
+        font-size: 4rem;
+        color: var(--accent-second-color);
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         cursor: pointer;
+    }
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding-top: 1rem;
+}
+
+.contact {
+    background-color: var(--title-color) !important;
+
+    a {
+        color: var(--background-color) !important;
+    }
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    background-color: transparent;
+    border: var(--border);
+    color: var(--title-color);
+    font-family: var(--title-font);
+    font-size: var(--small-font-size);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: var(--animation-primary);
+    border-radius: 1rem;
+
+    a {
+        color: var(--title-color);
+        text-decoration: none;
+    }
+
+    &:hover {
+        background-color: var(--accent-second-color);
     }
 }

@@ -9,31 +9,6 @@
     gap: 1rem;
     padding: 3rem;
     position: relative;
-    background-color: var(--background-color);
     z-index: 2;
-
-    @media (max-width: 999px) {
-        padding: 1rem;
-    }
-    @media (max-width: 570px) {
-        padding: 0.5rem;
-        border-radius: 2rem;
-    }
-
-    h2 {
-        font-size: var(--title-size);
-        color: var(--title-color);
-        transition: var(--animation-primary);
-        text-align: left;
-        font-family: var(--header-font);
-        font-weight: 300;
-
-        @media (max-width: 570px) {
-            font-size: var(--bigger-font-size);
-            position: relative;
-            top: 2rem;
-        }
-    }
-
 }
 

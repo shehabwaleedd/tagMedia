@@ -7,6 +7,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import useWindowSize from '@/hooks/useWindowWidth';
 import Trusted from '../trusted';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,7 +67,19 @@ const Landing: React.FC = () => {
                     <h2>Tomorrow&apos;s</h2>
                 </div>
                 <div className={styles.right}>
-                    <h2>Markets, Today</h2>
+                    <h2>Markets, <span>Today</span></h2>
+                </div>
+                <div className={styles.buttons}>
+                    <div className={styles.button}>
+                        <Link href="/contact">
+                            About us
+                        </Link>
+                    </div>
+                    <div className={`${styles.button} ${styles.contact}`}>
+                        <Link href="/contact" >
+                            Contact us
+                        </Link>
+                    </div>
                 </div>
                 <div onClick={() => handleIconClick(socialMediaIcons[currentIconIndex].link)} className={styles.icon}>
                     {socialMediaIcons[currentIconIndex].icon}

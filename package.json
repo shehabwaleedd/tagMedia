@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
+    "@gsap/react": "^2.1.1",
     "@studio-freight/react-lenis": "^0.0.43",
     "@studio-freight/tempus": "^0.0.44",
     "framer-motion": "^10.18.0",
     "gsap": "^3.12.5",
+    "keen-slider": "^6.8.6",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",

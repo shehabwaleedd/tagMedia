@@ -24,12 +24,12 @@
 
         h2 {
             font-size: 16vw;
-            color: var(--container-color);
+            color: var(--title-color);
         }
 
         p {
             font-size: var(--body-font-size);
-            color: var(--container-color);
+            color: var(--title-color);
         }
     }
 
@@ -54,16 +54,16 @@
 
             li {
                 font-size: var(--body-font-size);
-                color: var(--container-color);
+                color: var(--title-color);
 
                 a {
                     text-decoration: none;
-                    color: var(--container-color);
+                    color: var(--title-color);
                 }
 
                 span {
                     font-size: var(--body-font-size);
-                    color: var(--container-color);
+                    color: var(--title-color);
 
                     a {
                         text-decoration: none;

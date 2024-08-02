@@ -1,0 +1,68 @@
+.newsHomePage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 3dvh 0;
+    gap: 3rem;
+
+    h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--title-color);
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        position: relative;
+        text-align: center;
+
+        @media (max-width: 768px) {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__upper {
+        display: flex;
+        align-items: center;
+        position: relative; // Added to enable absolute positioning of h2
+        gap: 2rem;
+        width: 100%;
+
+        h2 {
+            flex-grow: 1;
+            text-align: center;
+        }
+    }
+
+}
+    .moreNews {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        padding-bottom: 0;
+
+        span {
+            text-align: center;
+            font-size: 1rem;
+            font-family: var(--body-font);
+            color: var(--title-color);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 1rem;
+
+            &:hover {
+                background-color: var(--second-accent-color);
+                color: var(--accent-color);
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+        }
+
+    }
+
+
+.keen-slider {
+    max-width: 95vw;
+    margin: 0 auto;
+}

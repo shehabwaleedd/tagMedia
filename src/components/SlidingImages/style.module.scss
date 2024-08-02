@@ -1,6 +1,7 @@
 .slidingImages {
     position: relative;
     width: 100%;
+
     // overflow: hidden;
     .slider {
         position: absolute;
@@ -12,6 +13,8 @@
     .project {
         flex: 0 0 auto;
         width: 33vw; // Each project takes 25% of the viewport width
+        display: flex;
+        flex-direction: column;
 
         .imageContainer {
             position: relative;
@@ -27,21 +30,34 @@
                 object-fit: cover;
                 border-radius: 1rem;
             }
+            p {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 0.5rem;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: var(--container-color);
+                font-size: var(--medium-font-size);
+                font-family: var(--title-font);
+                font-weight: 300;
+                border-radius: 0 0 1rem 1rem;
+                text-align: center;
+            }
         }
     }
 
-    .showMore {
-        position: absolute;
-        bottom: 2rem;
-        right: 2rem;
-        padding: 0.5rem 1rem;
-        background-color: var(--accent-color);
-        color: var(--text-color);
-        text-decoration: none;
-        border-radius: 0.5rem;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-        z-index: 10;
+}
 
-    }
+.showMore {
+    position: relative;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+
 }

@@ -1,0 +1,116 @@
+.news__container_card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    justify-content: flex-start;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    gap: 0.5rem;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    z-index: 9;
+    align-self: stretch;
+    padding: 0.25rem;
+
+    .image {
+        position: relative;
+        height: 100%;
+        z-index: 9;
+        cursor: pointer;
+
+        img {
+            border-radius: 0.75rem;
+            width: 100%;
+            height: 30vh;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+    }
+
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 0.5rem;
+        h3 {
+            font-size: var(--big-font-size);
+            font-family: var(--title-font);
+            text-transform: capitalize;
+            color: var(--title-color);
+            text-align: left;
+            padding-bottom: 1rem;
+        }
+    }
+
+    .date {
+        font-size: var(--small-font-size);
+        font-family: var(--body-font);
+        color: var(--subtitle-color);
+        text-align: left;
+        padding-bottom: 0.24rem;
+    }
+
+
+    p {
+        font-size: var(--normal-font-size);
+        font-family: var(--body-font);
+        color: var(--subtitle-color);
+        text-align: left;
+        line-break: anywhere;
+    }
+    .subtitle {
+        padding-bottom: 1rem;
+    }
+
+    button {
+        font-size: var(--normal-font-size);
+        font-family: var(--body-font);
+        color: var(--second-accent-color);
+        text-align: center;
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        border: var(--border);
+        width: 100%;
+        border-radius: 0.75rem;
+        cursor: pointer;
+        transition: var(--animation-primary);
+
+
+        &:hover {
+            transition: var(--animation-primary);
+            background-color: var(--accent-color);
+            color: var(--background-color);
+
+        }
+    }
+
+    .btnDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+.category {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background-color: var(--accent-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    p {
+        font-size: var(--normal-font-size);
+        font-family: var(--body-font);
+        color: var(--background-color);
+        text-transform: capitalize;
+    }
+
+}

@@ -1,0 +1,48 @@
+.marquee {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 5vh 0;
+    margin: 0 auto;
+    background-color: var(--background-color);
+    border-top: var(--border);
+
+    h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--title-color);
+        text-transform: uppercase;
+        letter-spacing: 0.25rem;
+        position: relative;
+        text-align: center;
+
+        @media (max-width: 768px) {
+            font-size: 1.6rem;
+        }
+    }
+
+    &_partners {
+        display: flex;
+        gap: 1rem;
+        img {
+            width: 100%;
+            max-width: 33rem;
+            height: 50vh;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+    }
+    &_partner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
