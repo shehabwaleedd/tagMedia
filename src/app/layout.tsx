@@ -93,7 +93,7 @@ export default function RootLayout({
         <Navbar />
         <SmoothScroller />
         {children}
-        <AboveFooter />
+        {/* <AboveFooter /> */}
         <Footer />
       </body>
     </html>
