@@ -20,7 +20,7 @@
 .menuLinks,
 .by,
 .secondaryLinks {
-    background-color: rgba(230, 230, 230, .68);
+    background-color: rgba(230, 230, 230, .25);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(236, 234, 230, 0.3);
@@ -37,19 +37,8 @@
         gap: 0.5rem;
     }
 
-    a {
-        display: flex;
-        justify-content: flex-start;
-        gap: 1rem;
-        color: var(--title-color);
-        font-family: var(--body-font);
-        font-size: 1rem;
-        text-decoration: none;
-        transition: color 0.3s ease;
-
-        &:hover {
-            color: var(--primary-color);
-        }
+    h3 {
+        width: 100%;
     }
 }
 
@@ -58,7 +47,13 @@
     justify-content: space-between !important;
 
     a {
+        justify-content: flex-end !important;
         color: var(--subtitle-color);
+        transition: var(--animation-primary);
+
+        &:hover {
+            color: var(--accent-color) !important;
+        }
     }
 }
 

@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import common from "../../common.module.scss";
 import ImageUploader from '../createNews/components/ImageUploader';
 import axios from 'axios';
-import { Form, Formik, Field, FormikHelpers } from 'formik';
+import { Form, Formik, Field, FieldArray, FormikHelpers } from 'formik';
 import CustomField from '../createNews/components/CustomField';
 import * as Yup from 'yup';
 import { toast } from 'sonner';
@@ -11,8 +11,9 @@ import { toast } from 'sonner';
 interface FormValues {
     name: string;
     image: File | null;
-    position?: string;  // optional for team
-    description?: string, // optiomal for service
+    position?: string;
+    description?: string;
+    sections?: Array<{ title: string; subTitle: string; description: string; image: File | null }>;
 }
 
 const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfolio' | 'service' }> = ({ type }) => {
@@ -25,11 +26,10 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
         name: '',
         image: null,
         ...(type === 'team' && { position: '' }),
-        ...(type === 'service' && { description: '' })
-
+        ...(type === 'service' && { description: '' }),
+        ...(type === 'portfolio' || type === 'partner' ? { sections: [{ title: '', subTitle: '', description: '', image: null }] } : {})
     };
 
-    // Dynamic endpoint based on the type
     const endpoint = {
         'partner': '/partner',
         'workedWith': '/workedWith',
@@ -38,13 +38,22 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
         'service': '/service'
     }[type];
 
-    // Validation Schema including optional position field for team
     const validationSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
         image: Yup.mixed().required("An image is required"),
         ...(type === 'team' && {
             position: Yup.string().required("Position is required")
-        })
+        }),
+        ...(type === 'portfolio' || type === 'partner' ? {
+            sections: Yup.array().of(
+                Yup.object().shape({
+                    title: Yup.string().required("Section title is required"),
+                    subTitle: Yup.string(),
+                    description: Yup.string().required("Section description is required"),
+                    image: Yup.mixed().required("Section image is required")
+                })
+            )
+        } : {})
     });
 
     const handleSubmit = async (values: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
@@ -74,14 +83,35 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
                     'Content-Type': 'multipart/form-data'
                 },
             });
+            
             if (response.data.message === "Success") {
+                if (type === 'portfolio' || type === 'partner') {
+                    const id = response.data.data._id;
+                    const sectionPromises = values.sections?.map(async (section, index) => {
+                        const sectionFormData = new FormData();
+                        sectionFormData.append('title', section.title);
+                        sectionFormData.append('subTitle', section.subTitle);
+                        sectionFormData.append('description', section.description);
+                        if (section.image) {
+                            sectionFormData.append('image', section.image);
+                        }
+                        
+                        return axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/section/${id}`, sectionFormData, {
+                            headers: { token, 'Content-Type': 'multipart/form-data' },
+                        });
+                    });
+
+                    if (sectionPromises) {
+                        await Promise.all(sectionPromises);
+                    }
+                }
+
                 setSuccess(true);
                 setError('')
                 resetForm();
                 setImage(null);
                 toast.success(`${type} is created successfully`)
-            }
-            else {
+            } else {
                 throw new Error("Failed to create entry");
             }
         } catch (err: any) {
@@ -91,7 +121,6 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
             setError(message);
             toast.error(message);
             setSuccess(false)
-
         } finally {
             setLoading(false);
         }
@@ -106,7 +135,7 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
                 onSubmit={handleSubmit}
                 enableReinitialize
             >
-                {({ setFieldValue }) => (
+                {({ values, setFieldValue }) => (
                     <Form>
                         <CustomField name="name" label="Name" fieldType="input" />
                         {type === 'team' && <Field name="position" placeholder="Position" component="input" />}
@@ -115,6 +144,34 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
                             setImage(file);
                             setFieldValue('image', file);
                         }} title={type === "service" ? "Icon" : type} />
+                        
+                        {(type === 'portfolio' || type === 'partner') && (
+                            <FieldArray name="sections">
+                                {({ push, remove }) => (
+                                    <div>
+                                        {values.sections?.map((section, index) => (
+                                            <div key={index}>
+                                                <Field name={`sections.${index}.title`} placeholder="Section Title" />
+                                                <Field name={`sections.${index}.subTitle`} placeholder="Section Subtitle" />
+                                                <Field name={`sections.${index}.description`} as="textarea" placeholder="Description" />
+                                                <input
+                                                    type="file"
+                                                    onChange={(event) => {
+                                                        const file = event.target.files ? event.target.files[0] : null;
+                                                        setFieldValue(`sections.${index}.image`, file);
+                                                    }}
+                                                />
+                                                <button type="button" onClick={() => remove(index)}>Remove Section</button>
+                                            </div>
+                                        ))}
+                                        <button type="button" onClick={() => push({ title: '', subTitle: '', description: '', image: null })}>
+                                            Add Section
+                                        </button>
+                                    </div>
+                                )}
+                            </FieldArray>
+                        )}
+                        
                         <button className={common.submitButton} type="submit" disabled={loading}>
                             {loading ? `Creating ${type}...` : `Create ${type}`}
                         </button>

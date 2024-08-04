@@ -30,8 +30,8 @@ const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [reorderedEntities, setReorderedEntities] = useState<Entity[]>([]);
-    const windowWidth = useWindowWidth();
-    const isMobile = windowWidth !== null && windowWidth < 768;
+    const { isMobile } = useWindowWidth()
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -48,15 +48,35 @@ const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
     }, [type]);
 
     const handleDelete = async (id: string) => {
+        // Ask for confirmation
+        const isConfirmed = window.confirm("Are you sure you want to delete this item?");
+        
+        if (!isConfirmed) {
+            return; // If not confirmed, exit the function
+        }
+    
+        const token = Cookies.get("token");
+        if (!token) {
+            setError('Unauthorized: No token found');
+            return;
+        }
+    
         try {
-            const response = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/${type}/${id}`);
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/${type}/${id}`, {
+                headers: {
+                    token: token
+                }
+            });
             if (response.status === 200) {
                 setEntities(prev => prev.filter(entity => entity._id !== id));
+                setReorderedEntities(prev => prev.filter(entity => entity._id !== id));
+                alert("Item deleted successfully!"); // Confirm successful deletion
             } else {
                 throw new Error("Failed to delete entity");
             }
         } catch (err) {
             setError('Failed to delete entity');
+            alert("Failed to delete item. Please try again."); // Alert on failure
         }
     };
 

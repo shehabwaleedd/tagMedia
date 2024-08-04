@@ -77,11 +77,16 @@ const Navbar = () => {
         '/services': 'Services',
         '/news': 'News',
         '/contact': 'Contact',
+        '/account': 'Account',
+
     };
 
     const getRouteTitle = (pathname: string) => {
         if (pathname.startsWith('/news/')) {
             return 'News';
+        }
+        if (pathname.startsWith('/account/')) {
+            return 'Account';
         }
         return routeTitles[pathname] || pathname;
     };
