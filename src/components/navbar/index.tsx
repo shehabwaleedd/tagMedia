@@ -79,6 +79,14 @@ const Navbar = () => {
         '/contact': 'Contact',
     };
 
+    const getRouteTitle = (pathname: string) => {
+        if (pathname.startsWith('/news/')) {
+            return 'News';
+        }
+        return routeTitles[pathname] || pathname;
+    };
+
+
     return (
         <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
             <div className={styles.navbar__container_left}>
@@ -102,7 +110,7 @@ const Navbar = () => {
                     }}
                 >
                     <div className={styles.menuUpper} onClick={handleMenu}>
-                        <h3>{routeTitles[currentPathname]}</h3>
+                        <h3>{getRouteTitle(currentPathname)}</h3>
                         <motion.div
                             className={styles.toggle}
                             animate={{ rotate: menuOpen ? 180 : 0 }}
