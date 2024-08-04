@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import styles from './page.module.scss'
-import Loading from '@/animation/loading/Loading'
+
 import AllTours from '@/components/accountComponents/allNews'
 import DisplayEntities from './components/displayEntity'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -25,7 +25,7 @@ const Account = () => {
             <div className={styles.account__lower}>
                 <div className={styles.account__lower_left}>
                     <div className={styles.account__lower_left_lower}>
-                        <AdminView handleOpen={handleOpen} />
+                    <AdminView handleOpen={handleOpen} />
                     </div>
                 </div>
 

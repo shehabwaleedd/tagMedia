@@ -4,18 +4,12 @@
     justify-content: flex-start;
     align-items: flex-start;
     min-height: 100lvh;
-    padding-top: 6.5vh;
-
-
-    @media (max-width: 460px) {
-        padding-top: 5vh;
-    }
 
     h2 {
         font-size: 2vw;
         font-family: var(--title-font);
         color: var(--background-color);
-        transition: all 0.3s ease-in-out;
+        transition: var(--animation-primary);
         margin-top: 1rem;
 
         @media (max-width: 1143px) {
@@ -41,14 +35,13 @@
             gap: 1rem;
             width: 100%;
             height: 100%;
-            top: 4rem;
-            background-color: var(--accent-color);
-
-            @media (max-width: 1256px) {
-                top: 2.5rem;
-                padding: 0;
-            }
-
+            background: var(--container-color);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(236, 234, 230, 0.3);
+            border-radius: 1rem;
+            padding: 0 1rem;
+            padding-top: 10vh;
             &_lower {
                 display: flex;
                 flex-direction: column;
@@ -71,7 +64,7 @@
                         align-items: center;
                         width: 100%;
                         transition: var(--animation-primary);
-                        color: var(--background-color);
+                        color: var(--title-color);
                         font-size: 0.8rem;
 
                         button {
@@ -87,7 +80,7 @@
                 h2 {
                     font-size: 1rem;
                     font-family: var(--body-font);
-                    color: var(--background-color);
+                    color: var(--title-color);
                     letter-spacing: normal;
                     transition: var(--animation-primary);
 
@@ -107,15 +100,14 @@
             min-height: 100vh;
             position: relative;
             z-index: 9;
-            border-left: 1px solid var(--border-color);
-            background-color: var(--accent-color);
-
+            border-left: var(--border);
+            padding-top: 10vh;
 
             h1 {
                 font-size: 2rem;
-                font-family: var(---font);
-                color: var(--background-color);
-                transition: all 0.3s ease-in-out;
+                font-family: var(--title-font);
+                color: var(--title-color);
+                transition: var(--animation-primary);
             }
 
             button {
@@ -124,7 +116,7 @@
                     padding: 1rem 2rem;
                     border: none;
                     cursor: pointer;
-                    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                    transition: var(--animation-primary);
                     font-size: 1.5rem;
                 }
             }
@@ -155,7 +147,7 @@
 
                 &_content {
                     padding: 1rem;
-                    border: 1px solid var(--border-color);
+                    border: var(--border);
                     border-radius: 2rem;
 
                     h3 {
@@ -203,8 +195,8 @@
 
 
 .selectedCategory {
-    background-color: #093a6f;  // Example style for selected category
-    font-weight: bold;
+    transition: var(--animation-primary);
+    font-family: var(--title-font) !important;
     border-radius: 2rem;
     color: var(---title-color);
 

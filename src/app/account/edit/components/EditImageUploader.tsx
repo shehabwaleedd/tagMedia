@@ -18,11 +18,6 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ mainImg, setMainImg, setM
     return (
         <div className={styles.formField}>
             <label htmlFor="mainImg">{type} Image</label>
-            <input
-                type="file"
-                onChange={handleImageChange}
-                accept="image/*"
-            />
             {mainImgUrl && (
                 <Image
                     src={mainImgUrl}
@@ -41,6 +36,11 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ mainImg, setMainImg, setM
                     onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
                 />
             )}
+            <input
+                type="file"
+                onChange={handleImageChange}
+                accept="image/*"
+            />
         </div>
     );
 };

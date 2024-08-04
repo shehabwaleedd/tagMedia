@@ -8,6 +8,8 @@ import CustomField from '@/app/account/components/createNews/components/CustomFi
 import styles from './page.module.scss';
 import common from "../../../common.module.scss"
 import Link from 'next/link';
+import { BsArrowLeft } from "react-icons/bs";
+
 
 interface FormValues {
     name: string;
@@ -46,7 +48,7 @@ const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
         name: Yup.string().required("Name is required"),
         image: Yup.mixed().required("An image is required"),
         ...(type === 'team' && { position: Yup.string().required("Position is required") }),
-        
+
     });
 
     const handleSubmit = async (values: FormValues) => {
@@ -89,7 +91,12 @@ const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
     return (
         <main className={styles.editPage}>
             <section className={styles.editPage_upper}>
-                <Link href="/account">Back to account</Link>
+                <Link href="/account">
+                    <BsArrowLeft className={styles.backIcon} />
+                    <span>
+                        Back to account
+                    </span>
+                </Link>
             </section>
             <section className={styles.editContainer}>
                 <Formik
@@ -103,7 +110,7 @@ const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
                             <div className={common.group}>
                                 <CustomField name="name" label="Name" fieldType="input" />
                                 {type === 'team' && <CustomField name="position" label="Position" fieldType="input" />}
-                                {type === 'service' &&  <CustomField name="description" label="Description" fieldType="input" />}
+                                {type === 'service' && <CustomField name="description" label="Description" fieldType="input" />}
                             </div>
                             <ImageUploader
                                 mainImg={image}

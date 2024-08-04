@@ -7,17 +7,14 @@
     min-height: 100vh;
     height: 100%;
     gap: 2rem;
-    background-color: var(--accent-color);
+    background-color: var(--backgorund-color);
     position: relative;
-    padding-top: 15vh;
 
     h1 {
-        font-family: var(--semi-bold-font);
-        font-size: var(--biggest-font-size);
-        color: var(--background-color);
-        letter-spacing: normal;
-        text-transform: capitalize;
-        font-display: swap;
+        font-family: var(--title-font);
+        font-size: var(--semi-big-font-size);
+        color: var(--title-color);
+        padding-top: 3vh;
         text-align: center;
 
         @media (max-width: 777px) {
@@ -32,20 +29,17 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        max-width: 70vw;
+        max-width: 25vw;
         height: fit-content;
-        background-color: var(--accent-color);
-        box-shadow: 0 4px 30px rgba(96, 77, 58, 0.1);
-        backdrop-filter: blur(5px);
-        border: 1px solid var(--second-accent-color);
-        -webkit-backdrop-filter: blur(5px);
-        border-radius: 2rem;
-        padding: 1rem;
-        // border: 1px solid var(--border-color);
+        background: var(--container-color);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(236, 234, 230, 0.3);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.45);
+        border-radius: 1rem;
         gap: 2rem;
         z-index: 2;
         position: relative;
-        top: -3rem;
 
         @media (max-width: 977px) {
             max-width: 90vw;
@@ -69,10 +63,10 @@
 
                 width: 100%;
                 padding: 0.5rem;
-                border: 2px solid var(--title-color);
+                border: var(--border);
                 border-radius: 2rem;
                 font-size: 1.5rem;
-                background-color: var(--second-accent-color);
+                background-color: transparent;
                 color: var(--title-color);
                 cursor: pointer;
                 transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -100,7 +94,7 @@
                 border-bottom: 1px solid var(--border-color);
                 border-radius: 0;
                 outline: none;
-                color: var(--background-color);
+                color: var(--title-color);
                 background-color: transparent;
                 cursor: pointer;
                 transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -111,13 +105,12 @@
                 }
 
                 &::placeholder {
-                    color: var(--background-color);
+                    color: var(--title-color);
                 }
 
                 &::-moz-placeholder {
                     /* Firefox 19+ */
-                    color: var(--background-color);
-
+                    color: var(--title-color);
                     opacity: 1;
                 }
 
@@ -134,7 +127,7 @@
 
             label {
                 font-size: 1.5rem;
-                color: var(--background-color);
+                color: var(--title-color);
                 font-family: var(--title-font);
                 text-transform: capitalize;
 
