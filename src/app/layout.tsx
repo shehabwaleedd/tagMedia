@@ -2,7 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar"
 import SmoothScroller from "@/animation/SmoothScrolling";
 import Footer from "@/components/footer";
-import AboveFooter from "@/components/aboveFooter";
+import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "sonner";
 
 type Metadata = {
@@ -90,11 +90,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Toaster />
-        <Navbar />
-        <SmoothScroller />
-        {children}
-        {/* <AboveFooter /> */}
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <SmoothScroller />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
