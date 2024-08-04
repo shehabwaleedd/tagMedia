@@ -22,7 +22,7 @@ const Menu = ({ projectsCount, newsCount, currentPathname }: MenuProps) => {
 
     return (
         <>
-            <ul className={styles.menuItems}>
+            <ul>
                 {menuItems.map((item) => (
                     <li key={item.path}>
                         <Link

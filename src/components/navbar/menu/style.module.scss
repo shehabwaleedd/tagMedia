@@ -1,41 +1,4 @@
-.menuItems {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    gap: 1rem;
-    position: relative;
-    height: 100%;
-    padding: 1rem 0;
-    top: 0;
 
-    a {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: fit-content;
-        width: 100%;
-        gap: 1rem;
-        color: var(--title-color);
-        text-decoration: none;
-        font-family: var(--body-font);
-        font-size: 1rem;
-        transition: color 0.3s ease;
-
-        &:hover {
-            color: var(--primary-color);
-        }
-    }
-
-    .menuItem {
-        // Your existing styles for menu items
-
-        &.active {
-            text-decoration: underline;
-            font-family: var(--title-font);
-        }
-    }
-}
 
 .count {
     padding: 0.25rem 0.5rem;

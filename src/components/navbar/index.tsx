@@ -13,6 +13,24 @@ import Menu from './menu';
 import axios from 'axios';
 import { toast } from 'sonner';
 
+const menuVariants = {
+    closed: {
+        clipPath: 'inset(0% 0% 100% 0% round 1rem)',
+        transition: {
+            duration: 0.4,
+            ease: [0.16, 1, 0.3, 1]
+        }
+    },
+    open: {
+        clipPath: 'inset(0% 0% 0% 0% round 1rem)',
+        transition: {
+            duration: 0.6,
+            ease: [0.16, 1, 0.3, 1]
+        }
+    }
+};
+
+
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -77,6 +95,7 @@ const Navbar = () => {
                             ? 'inset(0% 0% 0% 0% round 1rem)'
                             : 'inset(0% 0% calc(100% - 58px) 0% round 1rem)'
                     }}
+
                     transition={{
                         duration: 0.6,
                         ease: [0.16, 1, 0.3, 1]
@@ -92,7 +111,13 @@ const Navbar = () => {
                             {menuOpen ? <RiCloseLine /> : <RiMenu4Fill />}
                         </motion.div>
                     </div>
-                    <Menu projectsCount={projectsCount} newsCount={newsCount} currentPathname={currentPathname} />
+                    <AnimatePresence mode='wait'>
+                        {menuOpen && (
+                            <motion.div initial="closed" animate="open" exit="closed" variants={menuVariants} className={styles.menuItems}>
+                                <Menu projectsCount={projectsCount} newsCount={newsCount} currentPathname={currentPathname} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </motion.div>
             </div>
             <div className={styles.right}>
