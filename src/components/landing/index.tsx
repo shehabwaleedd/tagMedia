@@ -22,9 +22,10 @@ const socialMediaIcons: { icon: JSX.Element; link: string }[] = [
 ];
 
 const Landing: React.FC = () => {
+    const [isHovered, setIsHovered] = useState(false);
     const [currentIconIndex, setCurrentIconIndex] = useState(0);
-    const { isMobile, isDesktop } = useWindowSize();
     const containerRef = useRef<HTMLDivElement>(null);
+    const iconMenuRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (containerRef.current) {
@@ -39,7 +40,6 @@ const Landing: React.FC = () => {
                     pin: true,
                 }
             });
-
         }
         return () => {
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -47,15 +47,31 @@ const Landing: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentIconIndex(currentIconIndex => (currentIconIndex + 1) % socialMediaIcons.length);
-        }, 700);
-        return () => clearInterval(intervalId);
-    }, []);
+        if (!isHovered) {
+            const intervalId = setInterval(() => {
+                setCurrentIconIndex((currentIconIndex + 1) % socialMediaIcons.length);
+            }, 700);
+
+            return () => clearInterval(intervalId);
+        }
+    }, [isHovered, currentIconIndex]);
 
     const handleIconClick = (link: string) => {
         window.open(link, '_blank');
     };
+
+    const handleHover = (isEntering: boolean) => {
+        setIsHovered(isEntering);
+        if (iconMenuRef.current) {
+            gsap.to(iconMenuRef.current, {
+                y: isEntering ? 0 : -20,
+                opacity: isEntering ? 1 : 0,
+                duration: 0.3,
+                ease: "power2.inOut"
+            });
+        }
+    };
+
 
     return (
         <section className={styles.landing} ref={containerRef}>
@@ -81,8 +97,23 @@ const Landing: React.FC = () => {
                         </Link>
                     </div>
                 </div>
-                <div onClick={() => handleIconClick(socialMediaIcons[currentIconIndex].link)} className={styles.icon}>
-                    {socialMediaIcons[currentIconIndex].icon}
+                <div className={styles.iconContainer} onMouseEnter={() => handleHover(true)} onMouseLeave={() => handleHover(false)}>
+                    <div className={`${styles.icon} ${!isHovered ? styles.flashing : ''}`}>
+                        {socialMediaIcons[currentIconIndex].icon}
+                    </div>
+                    <div className={styles.iconMenu} ref={iconMenuRef}>
+                        {socialMediaIcons
+                            .filter((_, index) => index !== currentIconIndex)
+                            .map((iconObj, index) => (
+                                <div
+                                    key={index}
+                                    className={styles.icon}
+                                    onClick={() => handleIconClick(iconObj.link)}
+                                >
+                                    {iconObj.icon}
+                                </div>
+                            ))}
+                    </div>
                 </div>
             </div>
             <Trusted />

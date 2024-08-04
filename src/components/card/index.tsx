@@ -5,6 +5,7 @@ import { NewsType } from '@/types/common';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styles from "./style.module.scss"
+import { GoArrowUpRight } from "react-icons/go";
 
 const NewsCard: React.FC<{ news: NewsType }> = ({ news }) => {
 
@@ -36,12 +37,15 @@ const NewsCard: React.FC<{ news: NewsType }> = ({ news }) => {
             </div>
             <div className={styles.bottom}>
                 <span className={styles.date}>
-                    {new Date(news.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric"})}
+                    {new Date(news.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
                 </span>
                 <h3>{news.title.slice(0, 50)}...</h3>
                 <p className={styles.subtitle}>{news.subTitle.replace(/<[^>]*>/g, '').slice(0, 150)}...</p>
                 <div className={styles.btnDiv}>
-                    <button onClick={() => handleTourClick(news.slug)}>Read More</button>
+                    <button onClick={() => handleTourClick(news.slug)}>
+                        <GoArrowUpRight />
+                        <span> Read More </span>
+                    </button>
                 </div>
             </div>
         </div>

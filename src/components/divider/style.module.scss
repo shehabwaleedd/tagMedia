@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     width: 100%;
-    height: fit-content;
+    height: 50vh;
     h2 {
         font-size: var(--navigation-font-size);
         color: var(--title-color);

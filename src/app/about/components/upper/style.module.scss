@@ -22,7 +22,7 @@
             h2 {
                 color: var(--title-color);
                 line-height: 1.2;
-
+                font-family: var(--title-font);
                 @media (max-width: 570px) {
                     font-size: 10vw;
                 }

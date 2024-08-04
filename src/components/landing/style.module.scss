@@ -8,7 +8,6 @@
     padding-top: 10vh;
     height: 100%;
     border-bottom: var(--border);
-    clip-path: polygon(0 0, 0 100%, 100% 100%, 30% 30%, 100% 100%, 100% 0);
     position: relative;
     z-index: 1;
     background-color: var(--background-color);
@@ -17,7 +16,6 @@
         padding: 0.5rem;
         min-height: 50vh;
     }
-
 
     &__content {
         display: flex;
@@ -41,7 +39,6 @@
                 font-size: var(--bigger-font-size);
             }
         }
-
     }
 }
 
@@ -51,33 +48,67 @@
     }
 }
 
-
-
-.icon {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    width: 100%;
-    padding-bottom: 1rem;
+.iconContainer {
     position: absolute;
     right: 4rem;
-
+    bottom: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    z-index: 99;
     @media (max-width: 555px) {
         right: 1rem;
     }
+}
+
+.iconMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 
     svg {
-        font-size: 4rem;
+        font-size: 3rem;
         color: var(--accent-second-color);
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        cursor: pointer;
+
         @media (max-width: 555px) {
             font-size: 2rem;
         }
+    }
 
+    &:hover svg {
+        color: var(--accent-color);
+        transform: scale(1.1);
+    }
+
+    &.flashing {
+        animation: flash 1s infinite;
     }
 }
 
+@keyframes flash {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.9;
+    }
+}
+
+// ... (rest of the CSS remains the same)
 .buttons {
     display: flex;
     align-items: center;

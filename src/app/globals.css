@@ -1,6 +1,6 @@
 :root {
 
-  --container-color: #eceae6;
+  --container-color: rgba(230, 230, 230, .48);
   --title-color: #202020;
   --text-color: #444444;
   --subtitle-color: #6a6a6a;
@@ -33,6 +33,7 @@
   --subtitle-font: 'Avantt-Light', sans-serif;
   --medium-font: 'Helvetica', sans-serif;
   --title-font: 'Helvetica', sans-serif;
+  --bold-font: 'Helvetica-Bold', sans-serif;
   --header-font: 'Youth-Medium', sans-serif;
 
   /* Font Sizes Based on Golden Ratio */
@@ -195,6 +196,14 @@ img {
   font-family: 'Helvetica';
   src: url('../../public/fonts/Helvetica.woff') format("woff");
   font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica-Bold';
+  src: url('../../public/fonts/HelveticaNeueMedium.ttf') format("truetype");
+  font-weight: normal;
   font-display: swap;
   font-style: normal;
 }

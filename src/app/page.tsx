@@ -10,6 +10,7 @@ import Divider from "@/components/divider";
 import Testimonials from '@/components/testimonials';
 import MarqueeContent from "@/components/MarqueeContent";
 import NewsHomePage from "@/components/news";
+import BentoGrid from "@/components/bentoGrid";
 export default async function Home() {
 
   const partners = await serverDynamicFetch('partner');
@@ -20,13 +21,14 @@ export default async function Home() {
       <Landing />
       <Featured work={work} />
       <Divider main="Celebrities" />
-      {/* <ImageSlider actors={partners} /> */}
-      <Announcment content={MarqueeContent(partners)} direction={"left"} />
-      <Divider main="Services" />
+      {/* <Announcment content={BentoGrid(partners)} direction={"left"} /> */}
+      <ImageSlider actors={partners} />
+      {/* <BentoGrid actors={partners} /> */}
+      {/* <Divider main="Services" /> */}
+      <Brief />
       <ServicesComponent />
       <Divider main="News" />
       <NewsHomePage />
-      <Brief />
       <Testimonials />
     </main>
   );

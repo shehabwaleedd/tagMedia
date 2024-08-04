@@ -33,9 +33,11 @@ const ProjectItem: React.FC<{ project: Project; index: number }> = ({ project, i
     );
 };
 
+
 interface ProjectsHomePageProps {
     work: Project[];
 }
+
 
 const ProjectsHomePage: React.FC<ProjectsHomePageProps> = ({ work }) => {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -49,34 +51,37 @@ const ProjectsHomePage: React.FC<ProjectsHomePageProps> = ({ work }) => {
     }, [work, isMobile]);
 
     useEffect(() => {
-        if (isDesktop && sectionRef.current && containerRef.current) {
-            gsap.registerPlugin(ScrollTrigger);
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                    end: "bottom center",
-                    scrub: 1,
-                }
-            });
+        gsap.registerPlugin(ScrollTrigger);
 
-            // Animate columns
-            const columns = gsap.utils.toArray<HTMLElement>(`.${styles.projectColumn}`);
+        let mm = gsap.matchMedia();
 
-            // Animate columns with reversed index
-            columns.forEach((column, columnIndex) => {
-                const reversedIndex = columns.length - 1 - columnIndex;
-                tl.to(column, {
-                    y: `-${15 + (reversedIndex + 1) * 25}%`,
-                    ease: "none",
-                }, 0);
-            });
-        }
+        mm.add("(min-width: 769px)", () => {
+            if (sectionRef.current && containerRef.current) {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 80%",
+                        end: "bottom center",
+                        scrub: 1,
+                    }
+                });
+
+                const columns = gsap.utils.toArray<HTMLElement>(`.${styles.projectColumn}`);
+
+                columns.forEach((column, columnIndex) => {
+                    const reversedIndex = columns.length - 1 - columnIndex;
+                    tl.to(column, {
+                        y: `-${15 + (reversedIndex + 1) * 25}%`,
+                        ease: "none",
+                    }, 0);
+                });
+            }
+        });
 
         return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            mm.revert();
         };
-    }, [isDesktop]);
+    }, []);
 
     const columnProjects = [
         displayedProjects.filter((_, i) => i % 3 === 0),

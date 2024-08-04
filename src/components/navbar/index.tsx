@@ -1,17 +1,17 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './style.module.scss';
 import Image from 'next/image';
-import { RiMenu4Fill } from 'react-icons/ri';
+import { RiMenu4Fill, RiCloseLine } from 'react-icons/ri';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { HiOutlineChatBubbleOvalLeftEllipsis } from 'react-icons/hi2';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Menu from './menu';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { gsap } from 'gsap';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -19,9 +19,6 @@ const Navbar = () => {
     const [projectsCount, setProjectsCount] = useState(0);
     const [newsCount, setNewsCount] = useState(0);
     const currentPathname = usePathname();
-    
-    const menuRef = useRef(null);
-    const menuContentRef = useRef(null);
 
     const handleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -55,17 +52,6 @@ const Navbar = () => {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        if (menuRef.current && menuContentRef.current) {
-            const menuHeight = (menuContentRef.current as HTMLElement)?.offsetHeight || 0;
-            gsap.to(menuRef.current, {
-                height: menuOpen ? `${menuHeight + 58}px` : '6vh', 
-                duration: 0.5,
-                ease: 'power3.inOut',
-            });
-        }
-    }, [menuOpen]);
-
     const routeTitles: { [key: string]: string } = {
         '/': 'Home',
         '/work': 'Work',
@@ -82,27 +68,38 @@ const Navbar = () => {
                     <Link href="/">
                         <Image src="/logo.png" alt="Tag Media Logo" width={75} height={75} />
                     </Link>
-                    <h2 style={{ opacity: isScrolled ? 0 : 1, transition: 'opacity 0.3s' }}>
-                        Tag Media
-                    </h2>
                 </div>
-                <div className={`${styles.menu} ${styles.menuBar}`} ref={menuRef}>
+                <motion.div
+                    className={`${styles.menu} ${styles.menuBar}`}
+                    initial={false}
+                    animate={{
+                        clipPath: menuOpen
+                            ? 'inset(0% 0% 0% 0% round 1rem)'
+                            : 'inset(0% 0% calc(100% - 58px) 0% round 1rem)'
+                    }}
+                    transition={{
+                        duration: 0.6,
+                        ease: [0.16, 1, 0.3, 1]
+                    }}
+                >
                     <div className={styles.menuUpper} onClick={handleMenu}>
                         <h3>{routeTitles[currentPathname]}</h3>
-                        <div className={styles.toggle} style={{ transform: `rotate(${menuOpen ? 180 : 0}deg)`, transition: 'transform 0.3s' }}>
-                            <RiMenu4Fill />
-                        </div>
+                        <motion.div
+                            className={styles.toggle}
+                            animate={{ rotate: menuOpen ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            {menuOpen ? <RiCloseLine /> : <RiMenu4Fill />}
+                        </motion.div>
                     </div>
-                    <div ref={menuContentRef}>
-                        <Menu menuOpen={menuOpen} projectsCount={projectsCount} newsCount={newsCount} />
-                    </div>
-                </div>
+                    <Menu projectsCount={projectsCount} newsCount={newsCount} currentPathname={currentPathname} />
+                </motion.div>
             </div>
             <div className={styles.right}>
                 <div className={`${styles.fit} ${styles.menu}`}>
                     <HiOutlineChatBubbleOvalLeftEllipsis style={{ fontSize: '1.25rem' }} />
                 </div>
-                <div className={`${styles.fit} ${styles.menu}`}>
+                <div className={styles.contact}>
                     <h3>Contact us</h3>
                     <MdOutlineKeyboardArrowRight />
                 </div>

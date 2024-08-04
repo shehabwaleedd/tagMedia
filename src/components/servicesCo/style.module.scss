@@ -1,36 +1,86 @@
 .servicesContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    align-items: start;
     justify-content: center;
     width: 100%;
-    padding: 2rem;
-    border-top: var(--border);
     background-color: var(--background-color);
     position: relative;
     z-index: 2;
-    .servicesList {
+    padding: var(--section-padding) 1rem;
+
+    @media (max-width: 855px) {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem;
+        gap: 1rem;
+    }
+
+    .servicesList {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
         justify-content: center;
         width: 100%;
+        max-width: 80%;
+        margin: 0 auto;
+
+        @media (max-width: 855px) {
+            max-width: 90%;
+        }
+
+        @media (max-width: 655px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
     }
+
+    .specialCard {
+        padding: 1.5rem;
+        width: 100%;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+        @media (max-width: 555px) {
+            max-width: none;
+            width: 100%;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            color: var(--title-color);
+            font-family: var(--bold-font);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: var(--subtitle-color);
+        }
+    }
+
 
     .serviceCard {
         background-color: var(--container-color);
         border-radius: 1rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
-        width: calc(33% - 2rem);
-        min-width: 280px;
-        max-width: 400px;
+        width: 100%;
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
+        @media (max-width: 555px) {
+            max-width: none;
+            width: 100%;
+        }
+
         &:hover {
-            transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
+
         .serviceIcon {
             margin-right: 0.5rem;
             font-size: 1.75rem;
@@ -45,8 +95,8 @@
 
             h3 {
                 font-size: 1.75rem;
-                font-weight: 500;
-                color: var(--secondary-color);
+                color: var(--title-color);
+                font-family: var(--bold-font);
             }
         }
 
