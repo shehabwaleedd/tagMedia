@@ -6,7 +6,6 @@ import "./globals.css";
 import Navbar from "@/components/navbar"
 import SmoothScroller from "@/animation/SmoothScrolling";
 import Footer from "@/components/footer";
-import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "sonner";
 import { FacebookPixel } from "@/tags/FacebookPixel";
 import { GoogleAnalytics } from "@/tags/GoogleAnalytics";
@@ -89,12 +88,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Toaster />
-        <AuthProvider>
-          <Navbar />
-          <SmoothScroller />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <Navbar />
+        <SmoothScroller />
+        {children}
+        <Footer />
         <LinkedInInsightTag partnerId={process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID} />
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
         <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FACEBOOK_PIXEL || ""} />

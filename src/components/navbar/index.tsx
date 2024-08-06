@@ -86,16 +86,12 @@ const Navbar = () => {
         '/about': 'About',
         '/news': 'News',
         '/contact': 'Contact',
-        '/account': 'Account',
 
     };
 
     const getRouteTitle = (pathname: string) => {
         if (pathname.startsWith('/news/')) {
             return 'News';
-        }
-        if (pathname.startsWith('/account/')) {
-            return 'Account';
         }
         if (pathname.startsWith('/work/')) {
             return 'Work';
