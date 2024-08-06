@@ -4,7 +4,7 @@ import axios from 'axios';
 import styles from './style.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import { DragDropContext, Droppable, Draggable, DroppableProvided, DraggableProvided, DropResult } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import Cookies from 'js-cookie'
 import useWindowWidth from '@/hooks/useWindowWidth';
 
@@ -21,9 +21,8 @@ interface Entity {
         url: string;
     };
     position?: string;
+    link?: string;
 }
-
-
 
 const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
     const [entities, setEntities] = useState<Entity[]>([]);
@@ -37,7 +36,7 @@ const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/${type}`);
                 setEntities(response.data.data);
-                setReorderedEntities(response.data.data);  // Initialize reorderedEntities
+                setReorderedEntities(response.data.data);
                 setLoading(false);
             } catch (err) {
                 setError('Failed to fetch data');
@@ -48,11 +47,10 @@ const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
     }, [type]);
 
     const handleDelete = async (id: string) => {
-        // Ask for confirmation
         const isConfirmed = window.confirm("Are you sure you want to delete this item?");
         
         if (!isConfirmed) {
-            return; // If not confirmed, exit the function
+            return;
         }
     
         const token = Cookies.get("token");
@@ -70,13 +68,13 @@ const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
             if (response.status === 200) {
                 setEntities(prev => prev.filter(entity => entity._id !== id));
                 setReorderedEntities(prev => prev.filter(entity => entity._id !== id));
-                alert("Item deleted successfully!"); // Confirm successful deletion
+                alert("Item deleted successfully!");
             } else {
                 throw new Error("Failed to delete entity");
             }
         } catch (err) {
             setError('Failed to delete entity');
-            alert("Failed to delete item. Please try again."); // Alert on failure
+            alert("Failed to delete item. Please try again.");
         }
     };
 
@@ -88,7 +86,7 @@ const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
         const items = Array.from(reorderedEntities);
         const [reorderedItem] = items.splice(source.index, 1);
         items.splice(destination.index, 0, reorderedItem);
-        setReorderedEntities(items);  // Update temporary state
+        setReorderedEntities(items);
     };
 
     const handleSaveOrder = async () => {
@@ -101,7 +99,7 @@ const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
                 },
             });
             alert('Order saved successfully!');
-            setEntities(reorderedEntities);  // Update the main state to reflect the new order
+            setEntities(reorderedEntities);
         } catch (err) {
             console.error('Failed to save new order:', err);
             setError('Failed to save new order');
@@ -115,7 +113,7 @@ const DisplayEntities: React.FC<EntityProps> = ({ type }) => {
         <DragDropContext onDragEnd={onDragEnd}>
             <div className={styles.allEntities}>
                 <div className={styles.upper}>
-                    <h1> {type.charAt(0).toUpperCase() + type.slice(1) + (type === 'partner' ? 's' : '')}</h1>
+                    <h1>{type.charAt(0).toUpperCase() + type.slice(1) + (type === 'partner' ? 's' : '')}</h1>
                     <button onClick={handleSaveOrder} className={styles.saveButton}>Save Order</button>
                 </div>
                 <Droppable droppableId={`${type}-list`}>

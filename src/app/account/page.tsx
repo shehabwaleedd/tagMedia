@@ -25,7 +25,7 @@ const Account = () => {
             <div className={styles.account__lower}>
                 <div className={styles.account__lower_left}>
                     <div className={styles.account__lower_left_lower}>
-                    <AdminView handleOpen={handleOpen} />
+                        <AdminView handleOpen={handleOpen} />
                     </div>
                 </div>
 
@@ -37,11 +37,15 @@ const Account = () => {
                         {activeSection === 'createTeam' && <CreateCommon type='team' />}
                         {activeSection === 'createPortfolio' && <CreateCommon type='portfolio' />}
                         {activeSection === 'createService' && <CreateCommon type='service' />}
+                        {activeSection === 'createLogo' && <CreateCommon type='logo' />}
+                        {activeSection === 'createIntegration' && <CreateCommon type='integration' />}
                         {activeSection === 'partners' && <DisplayEntities type='partner' />}
                         {activeSection === 'workedWith' && <DisplayEntities type='workedWith' />}
                         {activeSection === 'team' && <DisplayEntities type='team' />}
                         {activeSection === 'portfolio' && <DisplayEntities type='portfolio' />}
                         {activeSection === 'services' && <DisplayEntities type='service' />}
+                        {activeSection === 'logos' && <DisplayEntities type='logo' />}
+                        {activeSection === 'integrations' && <DisplayEntities type='integration' />}
                         {activeSection === 'aboutPage' && <EditAboutPage />}
                         {activeSection === 'aboutPageSEO' && <SEOForm page="about" />}
                         {activeSection === 'homePageSEO' && <SEOForm page="homePage" />}

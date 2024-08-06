@@ -9,5 +9,12 @@
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
+
+        p {
+            @media (max-width: 555px) {
+                font-size: var(--small-font-size);
+            }
+        }
     }
+
 }

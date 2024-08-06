@@ -15,13 +15,7 @@ const miniServices: MiniService[] = [
         name: "Marketing Strategy"
     },
     {
-        name: "Branding"
-    },
-    {
         name: "Media Production"
-    },
-    {
-        name: "Community Management"
     },
     {
         name: "Influencer Management"

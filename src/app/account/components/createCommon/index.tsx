@@ -13,10 +13,11 @@ interface FormValues {
     image: File | null;
     position?: string;
     description?: string;
+    link?: string;
     sections?: Array<{ title: string; subTitle: string; description: string; image: File | null }>;
 }
 
-const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfolio' | 'service' }> = ({ type }) => {
+const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfolio' | 'service' | 'logo' | 'integration' }> = ({ type }) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     const [success, setSuccess] = useState<boolean>(false);
@@ -27,6 +28,8 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
         image: null,
         ...(type === 'team' && { position: '' }),
         ...(type === 'service' && { description: '' }),
+        ...(type === 'logo' && { link: '' }),
+        ...(type === 'integration' && { link: '' }),
         ...(type === 'portfolio' || type === 'partner' ? { sections: [{ title: '', subTitle: '', description: '', image: null }] } : {})
     };
 
@@ -35,7 +38,9 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
         'workedWith': '/workedWith',
         'team': '/team',
         'portfolio': '/portfolio',
-        'service': '/service'
+        'service': '/service',
+        'logo': '/logo',
+        'integration': '/integration'
     }[type];
 
     const validationSchema = Yup.object().shape({
@@ -43,6 +48,15 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
         image: Yup.mixed().required("An image is required"),
         ...(type === 'team' && {
             position: Yup.string().required("Position is required")
+        }),
+        ...(type === 'service' && {
+            description: Yup.string().required("Description is required")
+        }),
+        ...(type === 'logo' && {
+            link: Yup.string().url("Must be a valid URL").required("Link is required")
+        }),
+        ...(type === 'integration' && {
+            link: Yup.string().url("Must be a valid URL").required("Link is required")
         }),
         ...(type === 'portfolio' || type === 'partner' ? {
             sections: Yup.array().of(
@@ -72,7 +86,10 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
             formData.append('position', values.position);
         }
         if (values.description) {
-            formData.append('description', values.description)
+            formData.append('description', values.description);
+        }
+        if (values.link) {
+            formData.append('link', values.link);
         }
 
         try {
@@ -140,6 +157,7 @@ const CreateCommon: React.FC<{ type: 'partner' | 'workedWith' | 'team' | 'portfo
                         <CustomField name="name" label="Name" fieldType="input" />
                         {type === 'team' && <Field name="position" placeholder="Position" component="input" />}
                         {type === 'service' && <Field name="description" placeholder="Description" component="textarea" />}
+                        {(type === 'logo' || type === 'integration') && <Field name="link" placeholder="Link" component="input" />}
                         <ImageUploader mainImg={image} setMainImg={(file) => {
                             setImage(file);
                             setFieldValue('image', file);

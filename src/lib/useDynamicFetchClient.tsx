@@ -10,7 +10,7 @@ export interface DataType {
 }
 
 const useDynamicFetchClient = (query: string) => {
-    const [data, setData] = useState<DataType[] | null>(null);
+    const [data, setData] = useState(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
     useEffect(() => {

@@ -16,8 +16,6 @@ interface ImageData {
     public_id: string;
 }
 
-
-
 interface Section {
     _id?: string;
     title: string;
@@ -26,19 +24,22 @@ interface Section {
     image: ImageData | File | null;
 }
 
-interface FormValues {
+export interface FormValues {
     name: string;
     image: ImageData | File | null;
     position?: string;
     description?: string;
     sections?: Section[];
+    link?: string;  
 }
 
-interface EditEntityProps {
-    data: FormValues;
-    type: 'partner' | 'workedWith' | 'team' | 'portfolio' | 'service';
+export interface EditEntityProps {
+    data: FormValues | null;
+    type: 'partner' | 'workedWith' | 'team' | 'portfolio' | 'service' | 'logo' | 'integration';
     id: string;
+    loading: boolean;
 }
+
 
 const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
     const [loading, setLoading] = useState(false);
@@ -48,8 +49,10 @@ const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
         image: null,
         position: '',
         description: '',
-        sections: []
+        sections: [],
+        link: ''  // Added for logo and integration types
     });
+
 
     useEffect(() => {
         if (data) {
@@ -61,7 +64,8 @@ const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
                 sections: data.sections?.map(section => ({
                     ...section,
                     image: section.image || null
-                })) || []
+                })) || [],
+                link: data.link || ''  // Added for logo and integration types
             });
         }
     }, [data]);
@@ -80,7 +84,8 @@ const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
                     image: Yup.mixed().required("Section image is required")
                 })
             )
-        } : {})
+        } : {}),
+        ...((type === 'logo' || type === 'integration') && { link: Yup.string() })
     });
 
     const handleSubmit = async (values: FormValues) => {
@@ -104,6 +109,11 @@ const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
             if (type === 'service' && values.description) {
                 formData.append('description', values.description);
             }
+            if ((type === 'logo' || type === 'integration') && values.link) {
+                formData.append('link', values.link);
+            }
+    
+
 
             const response = await axios.patch(`${process.env.NEXT_PUBLIC_BASE_URL}/${type}/${id}`, formData, {
                 headers: {
@@ -172,6 +182,7 @@ const EditEntity: React.FC<EditEntityProps> = ({ data, type, id }) => {
                                 <CustomField name="name" label="Name" fieldType="input" />
                                 {type === 'team' && <CustomField name="position" label="Position" fieldType="input" />}
                                 {type === 'service' && <CustomField name="description" label="Description" fieldType="textarea" />}
+                                {(type === 'logo' || type === 'integration') && <CustomField name="link" label="Link" fieldType="input" />}
                             </div>
                             <ImageUploader
                                 mainImg={values.image instanceof File ? values.image : null}

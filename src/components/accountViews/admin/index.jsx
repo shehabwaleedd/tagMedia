@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaNewspaper, FaUsers, FaHandshake, FaBriefcase, FaTv, FaTools, FaSearch, FaInfoCircle } from 'react-icons/fa';
+import { FaNewspaper, FaUsers, FaHandshake, FaBriefcase, FaTv, FaTools, FaSearch, FaInfoCircle, FaPuzzlePiece, FaImage } from 'react-icons/fa';
 import styles from '@/app/account/page.module.scss'; 
 
 const AdminView = ({ handleOpen }) => {
@@ -40,6 +40,20 @@ const AdminView = ({ handleOpen }) => {
             options: [
                 { value: 'workedWith', label: 'Manage Series' },
                 { value: 'createWorkedWith', label: 'Create Worked With' },
+            ],
+        },
+        Logos: {
+            icon: <FaImage />,
+            options: [
+                { value: 'logos', label: 'Manage Logos' },
+                { value: 'createLogo', label: 'Create Logo' },
+            ],
+        },
+        Integrations: {
+            icon: <FaPuzzlePiece />,
+            options: [
+                { value: 'integrations', label: 'Manage Integrations' },
+                { value: 'createIntegration', label: 'Create Integration' },
             ],
         },
         Services: {
