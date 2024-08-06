@@ -1,13 +1,15 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import styles from './style.module.scss';
 import Image from 'next/image';
 import { RiMenu4Fill, RiCloseLine } from 'react-icons/ri';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { HiOutlineChatBubbleOvalLeftEllipsis } from 'react-icons/hi2';
 import { motion, AnimatePresence } from 'framer-motion';
+import { PiDiamondFill } from "react-icons/pi";
 
 import Menu from './menu';
 import axios from 'axios';
@@ -17,14 +19,14 @@ const menuVariants = {
     closed: {
         clipPath: 'inset(0% 0% 100% 0% round 1rem)',
         transition: {
-            duration: 0.4,
+            duration: 1,
             ease: [0.16, 1, 0.3, 1]
         }
     },
     open: {
         clipPath: 'inset(0% 0% 0% 0% round 1rem)',
         transition: {
-            duration: 0.6,
+            duration: 1,
             ease: [0.16, 1, 0.3, 1]
         }
     }
@@ -37,10 +39,18 @@ const Navbar = () => {
     const [projectsCount, setProjectsCount] = useState(0);
     const [newsCount, setNewsCount] = useState(0);
     const currentPathname = usePathname();
-
+    const router = useRouter();
     const handleMenu = () => {
         setMenuOpen(!menuOpen);
     };
+
+    const closeMenu = useCallback(() => {
+        setMenuOpen(false);
+    }, []);
+
+    useEffect(() => {
+        closeMenu();
+    }, [router, currentPathname, closeMenu]);
 
     useEffect(() => {
         const handleScroll = (): void => {
@@ -61,7 +71,7 @@ const Navbar = () => {
                 ]);
 
                 setProjectsCount(partnersRes.data.data.length + portfolioRes.data.data.length);
-                setNewsCount(newsRes.data.length);
+                setNewsCount(newsRes.data.data.result.length);
             } catch (error: any) {
                 toast.error('Error fetching data:', error);
             }
@@ -74,7 +84,6 @@ const Navbar = () => {
         '/': 'Home',
         '/work': 'Work',
         '/about': 'About',
-        '/services': 'Services',
         '/news': 'News',
         '/contact': 'Contact',
         '/account': 'Account',
@@ -87,6 +96,9 @@ const Navbar = () => {
         }
         if (pathname.startsWith('/account/')) {
             return 'Account';
+        }
+        if (pathname.startsWith('/work/')) {
+            return 'Work';
         }
         return routeTitles[pathname] || pathname;
     };
@@ -110,15 +122,15 @@ const Navbar = () => {
                     }}
 
                     transition={{
-                        duration: 0.6,
+                        duration: 1,
                         ease: [0.16, 1, 0.3, 1]
                     }}
                 >
                     <div className={styles.menuUpper} onClick={handleMenu}>
-                        <h3>{getRouteTitle(currentPathname)}</h3>
+                        <h3>{getRouteTitle(currentPathname)} <PiDiamondFill /></h3>
                         <motion.div
                             className={styles.toggle}
-                            animate={{ rotate: menuOpen ? 180 : 0 }}
+                            animate={{ rotate: menuOpen ? 90 : 0 }}
                             transition={{ duration: 0.3 }}
                         >
                             {menuOpen ? <RiCloseLine /> : <RiMenu4Fill />}

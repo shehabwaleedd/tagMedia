@@ -8,8 +8,13 @@
 
     h1 {
         font-size: 3rem;
-        color: var(--title-color)
+        color: var(--title-color);
+        @media (max-width: 1377px) {
+            font-size: 2rem;
+            line-height: 1;
+        }
     }
+    
 
     &__upper {
         width: 100%;
@@ -24,6 +29,11 @@
 
     &__content {
         gap: 0 !important;
+        p {
+            font-size: var(--small-font-size);
+            color: var(--subtitle-color);
+            font-family: var(--body-font);
+        }
     }
 
     &__upper_content,
@@ -68,11 +78,19 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    gap: 0.5rem;
+    gap: 1rem;
+    padding: 3vh 0;
 
     img {
         height: 50vh;
         width: 100%;
         object-fit: cover;
+        border-radius: 0.5rem;
     }
+}
+
+.subtitle {
+    font-size: var(--small-font-size);
+    color: var(--subtitle-color);
+    font-family: var(--body-font);
 }

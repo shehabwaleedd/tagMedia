@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import axios from 'axios'
 import styles from "./page.module.scss"
 import { Field, FieldArray, Formik, Form } from 'formik';
@@ -78,7 +78,7 @@ const CreateNews = () => {
                 toast.success("Post created successfully");
 
                 // Triggering section updates
-                const sectionPromises = values.sections.map(async (section: any, index: number) => {
+                const sectionPromises = values.sections.map(async (section: any) => {
                     const sectionFormData = new FormData();
                     Object.entries(section).forEach(([key, value]) => {
                         if (value instanceof File) {
@@ -92,6 +92,7 @@ const CreateNews = () => {
                         headers: { token, 'Content-Type': 'multipart/form-data' },
                     });
                 });
+
 
                 const sectionResults = await Promise.all(sectionPromises);
                 sectionResults.forEach(result => {
@@ -111,6 +112,41 @@ const CreateNews = () => {
             setSubmitting(false);
         }
     }
+
+    const renderSectionFields = useCallback(({ remove, push, form }: { remove: any, push: any, form: any }) => (
+        <div className={styles.groupCheckboxes}>
+            {form.values.sections.map((section: any, index: number) => (
+                <div key={index} style={{ border: "1px solid var(--border-color)", borderRadius: "1rem", padding: "0.4rem" }}>
+                    <Field name={`sections.${index}.title`} placeholder="Section Title" />
+                    <Field name={`sections.${index}.subTitle`} placeholder="Section Subtitle" />
+                    <Field as="textarea" name={`sections.${index}.description`} placeholder="Description" />
+                    <input
+                        type="file"
+                        onChange={(event) => {
+                            const file = event.target.files ? event.target.files[0] : null;
+                            form.setFieldValue(`sections.${index}.image`, file);
+                        }}
+                    />
+                    {section.image && <img src={URL.createObjectURL(section.image)} alt="Selected" style={{ width: "100px", height: "100px" }} />}
+
+                    <div className={styles.spaceBetween}>
+                        <button type="button" onClick={() => remove(index)}>
+                            Remove
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                push({ title: '', subTitle: '', description: '', image: null });
+                            }}
+                        >
+                            Add Section
+                        </button>
+                    </div>
+                </div>
+            ))}
+        </div>
+    ), []);
+
 
     return (
         <main className={styles.createTour}>
@@ -132,45 +168,11 @@ const CreateNews = () => {
                                 <ImageUploader mainImg={seoImage} setMainImg={setSeoImage} title='SEO Image' />
                             </div>
                             <div className={styles.checkboxField} style={{ padding: "1rem" }}>
-                                <FieldArray name="section">
-                                    {({ insert, remove, push }) => (
-                                        <div className={styles.groupCheckboxes} >
-                                            {values.sections.map((section, index) => (
-                                                <div key={index} style={{ border: "1px solid var(--border-color)", borderRadius: "1rem", padding: "0.4rem" }}>
-                                                    <Field name={`sections.${index}.title`} placeholder="Section Title" />
-                                                    <Field name={`sections.${index}.subTitle`} placeholder="Section Subtitle" />
-                                                    <Field as="textarea" name={`sections.${index}.description`} placeholder="Description" />
-                                                    <input
-                                                        type="file"
-                                                        onChange={(event) => {
-                                                            const file = event.target.files ? event.target.files[0] : null;
-                                                            setFieldValue(`sections.${index}.image`, file);
-                                                        }}
-                                                    />
-                                                    {section.image && <img src={URL.createObjectURL(section.image)} alt="Selected" style={{ width: "100px", height: "100px" }} />}
-
-                                                    <div className={styles.spaceBetween}>
-                                                        <button type="button" onClick={() => remove(index)}>
-                                                            Remove
-                                                        </button>
-                                                        <button
-                                                            type="button"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                push({ title: '', subTitle: '', description: '' });
-                                                            }}
-                                                        >
-                                                            Add Section
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
+                                <FieldArray name="sections">
+                                    {renderSectionFields}
                                 </FieldArray>
-
-
                             </div>
+                            
                             <CheckboxGroupFieldArray name='seoKeywords' options={keywordOptions.map((cat) => ({ value: cat.value, label: cat.label }))} setFieldValue={setFieldValue} values={values.seoKeywords ?? []} />
                             <CheckboxGroupFieldArray name='tags' options={categoryOptions.map((cat) => ({ value: cat.value, label: cat.label }))} setFieldValue={setFieldValue} values={values.tags ?? []} />
                             <div className={styles.checkboxField}>

@@ -68,8 +68,8 @@ const NewsCard: React.FC<{ news: NewsType }> = ({ news }) => {
                 </p>
                 <div className={styles.btnDiv}>
                     <button onClick={(e) => { e.stopPropagation(); handleTourClick(news.slug || '')}}>
-                        <GoArrowUpRight />
                         <span> Read More </span>
+                        <GoArrowUpRight />
                     </button>
                 </div>
             </div>

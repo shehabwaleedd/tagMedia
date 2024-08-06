@@ -12,12 +12,19 @@
     user-select: none;
     transition: var(--animation-primary);
 
+    @media (max-width: 555px) {
+        padding: 0.5rem;
+    }
+
     &__container_left {
         position: relative;
         display: flex;
         gap: 1rem;
         width: 100%;
         height: fit-content;
+        @media (max-width: 555px) {
+            gap: 0.05rem;
+        }
     }
 
 }
@@ -26,6 +33,10 @@
 .left {
     position: relative;
     z-index: 999;
+
+    @media (max-width: 555px) {
+        width: 20%;
+    }
 
     a {
         display: inline-block; // to make the link behave as a block element
@@ -43,6 +54,11 @@
             height: 2.5rem;
             object-fit: cover;
             display: block; // to remove any inline spacing
+
+            @media (max-width: 555px) {
+
+            }
+            
         }
     }
 }
@@ -70,11 +86,9 @@
     transition: var(--animation-primary);
     overflow: hidden; // Add this line
 
-    @media (max-width: 1299px) {}
-
     @media (max-width: 1088px) {
         position: relative;
-        width: 75vw;
+        width: 100%;
         align-items: center;
     }
 }
@@ -87,7 +101,6 @@
     border: 1px solid rgba(236, 234, 230, 0.3);
     border-radius: 1rem;
     padding: 1rem;
-    padding-bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -99,16 +112,23 @@
     }
 
     h3 {
+        display: flex;
+        align-items: center;
         font-size: 1rem;
         font-family: var(--body-font);
         color: var(--title-color);
         cursor: pointer;
+        svg {
+            font-size: 0.5rem;
+            margin-left: 0.5rem;
+            transition: var(--animation-primary);
+        }
     }
 }
 
 .fit {
     width: fit-content;
-    height: fit-content;
+    align-items: center;
 
     span {
         font-size: 1rem;
@@ -196,3 +216,4 @@
         }
     }
 }
+

@@ -11,7 +11,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 
 const Footer = () => {
     const router = usePathname();
-    const isProjectPage = router === '/projects';
+    const isProjectPage = router === '/work';
     const [newsCount, setNewsCount] = useState<number>(0);
     const [projectsCount, setProjectsCount] = useState<number>(0);
 
@@ -25,7 +25,7 @@ const Footer = () => {
                 ]);
 
                 setProjectsCount(partnersRes.data.data.length + portfolioRes.data.data.length);
-                setNewsCount(newsRes.data.length);
+                setNewsCount(newsRes.data.data.result.length);
             } catch (error: any) {
                 toast.error('Error fetching data:', error.message || error.toString());
             }
@@ -34,7 +34,7 @@ const Footer = () => {
         fetchData();
     }, []);
 
-    if (isProjectPage) return null;
+    // if (isProjectPage) return null;
 
     return (
         <footer className={styles.footer}>
@@ -54,7 +54,6 @@ const Footer = () => {
                                     </Link>
                                 </li>
                                 <li><Link href="/about">About</Link></li>
-                                <li><Link href="/services">Services</Link></li>
                                 <li>
                                     <Link href="/news">
                                         <h4>News</h4>
@@ -67,14 +66,30 @@ const Footer = () => {
                         <div className={styles.footer__upper_right_content_lower}>
                             <nav aria-label="Secondary navigation" className={styles.menuLinks}>
                                 <ul>
-                                    <li><Link href="/">Sustainability</Link></li>
                                     <li>
-                                        <Link href="/work">
+                                        <Link href="/careers">
                                             <h4>Careers</h4>
                                             <span className={styles.count}>coming soon</span>
                                         </Link>
                                     </li>
-                                    <li><Link href="/">Snippets</Link></li>
+                                    <li>
+                                        <Link href="/snippets">
+                                            <h4>Snippets</h4>
+                                            <span className={styles.count}>coming soon</span>
+                                        </Link>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <Link href="/policy">
+                                            <h4>Policy</h4>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/cookies">
+                                            <h4>Cookies</h4>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </nav>
                             <div className={styles.by}>

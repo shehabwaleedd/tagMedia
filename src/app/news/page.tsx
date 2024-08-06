@@ -1,9 +1,9 @@
 import React from 'react'
 import { serverUseNews } from '@/lib/serverAllNews';
-import Image from 'next/image'
 import styles from "./page.module.scss"
 import { NewsType } from '@/types/common'
 import NewsCard from '@/components/card';
+import UpperDivider from './components/TopDivider';
 
 export async function generateMetadata() {
     return {
@@ -37,15 +37,8 @@ export default async function News() {
 
     return (
         <main className={styles.news}>
-            <section className={styles.news__upper}>
-                <div className={styles.news__upper_content}>
-                    <div>
-                        <h1>Our News</h1>
-                    </div>
-                    <div className={styles.divider}></div>
-                </div>
-            </section>
-            {/* <NewsCards data={data} /> */}
+            <UpperDivider main="News" />
+
             <section className={styles.news__container}>
                 {data.map((news: NewsType, index: number) => (
                     <div key={index} className={styles.news__container_card}>

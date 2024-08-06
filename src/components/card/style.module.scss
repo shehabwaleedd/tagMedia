@@ -70,29 +70,23 @@
     button {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
-        gap: 1rem;
-        font-family: var(--body-font);
-        background-color: transparent;
+        justify-content: center;
         width: 100%;
+        padding: 1rem 2rem;
+        background-color:rgba(230, 230, 230, .78);
+        color: var(--title-color);
+        font-size: var(--normal-font-size);
+        font-family: var(--body-font);
+        border: none;
+        border-radius: 0.5rem;
         cursor: pointer;
-        svg {
-            font-size: 2rem;
-            background-color: var(--title-color);
-            padding: 0.5rem;
-            border-radius: 0.25rem;
-            color: var(--background-color);
-            transition: var(--animation-primary);
-        }
-
+        transition: var(--animation-primary);
         &:hover {
             transition: var(--animation-primary);
-            svg {
-                
-                transform: rotate(45deg);
-            }
+            background-color: rgba(215, 212, 212, 0.98);
         }
     }
+
 
     .btnDiv {
         display: flex;

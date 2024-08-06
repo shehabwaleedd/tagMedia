@@ -1,6 +1,6 @@
 {
   "name": "tag_media",
-  "version": "0.1.0",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.0",
     "@emailjs/browser": "^4.3.3",
     "@gsap/react": "^2.1.1",
     "@studio-freight/react-lenis": "^0.0.43",
     "@studio-freight/tempus": "^0.0.44",
+    "axios": "^1.7.3",
     "formik": "^2.4.6",
     "framer-motion": "^10.18.0",
     "gsap": "^3.12.5",

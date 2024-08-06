@@ -1,11 +1,10 @@
 'use client'
 import React from 'react'
 import styles from "./style.module.scss"
-import Video from '@/components/video'
+
 
 const AboutLower: React.FC = () => {
     return (
-        <>
             <section className={styles.aboutLower}>
                 <div className={styles.aboutLower_left}>
                     <h3>
@@ -21,8 +20,6 @@ const AboutLower: React.FC = () => {
                     </p>
                 </div>
             </section>
-            <Video />
-        </>
     )
 }
 

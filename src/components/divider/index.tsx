@@ -3,21 +3,19 @@ import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from "./style.module.scss"
-import useWindowSize from '@/hooks/useWindowWidth';
 
 const Divider = ({ main }: { main: string }) => {
-
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (containerRef.current) {
+    if (containerRef.current) {
             gsap.to(containerRef.current, {
                 opacity: 0,
                 ease: "none",
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top top",
-                    end: "bottom 40%",
+                    end: "bottom 30%",
                     scrub: true,
                     pin: true,
                 }

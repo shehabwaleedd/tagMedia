@@ -33,6 +33,7 @@ export function ImageSlider({ images }: ImageSliderProps) {
 
     return (
         <>
+            <h3> Gallery </h3>
             <section aria-label="Image Slider" className="image-slider">
                 <a href="#after-image-slider-controls" className="skip-link"> Skip Image Slider Controls </a>
                 <div className="image-slider-wrapper" onClick={toggleImageModal}>

@@ -8,15 +8,11 @@
     position: relative;
     z-index: 2;
     background-color: var(--background-color);
-    border-bottom-left-radius: 4rem;
-    border-bottom-right-radius: 4rem;
 
     @media (max-width: 888px) {
         display: flex;
         flex-direction: column;
-        padding: 2rem;
-        border-bottom-left-radius: 3rem;
-        border-bottom-right-radius: 3rem;
+        padding: 0;
         gap: 1rem;
     }
 
@@ -45,7 +41,7 @@
             color: var(--title-color);
 
             @media (max-width: 888px) {
-                font-size: var(--medium-font-size);
+                font-size: var(--normal-font-size);
             }
 
         }

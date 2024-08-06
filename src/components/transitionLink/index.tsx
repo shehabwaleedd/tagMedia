@@ -1,31 +1,111 @@
-"use client"
-import { usePathname, useRouter } from "next/navigation"
-import { animatePageOut } from "@/animation/transition"
-import Link from 'next/link';
+"use client";
+import { usePathname, useRouter } from "next/navigation";
+import { animatePageIn } from "../../animation/animatePageOut"
+import styles from "../../components/navbar/style.module.scss"
+import Link from "next/link";
 
-interface Props {
-    href: string
-    label: string
-}
-
-const TransitionLink = ({ href, label }: Props) => {
-    const router = useRouter()
-    const pathname = usePathname()
+export const TransitionLink = ({ href, label }: { href: string, label: string }) => {
+    const router = useRouter();
+    const pathname = usePathname();
 
     const handleClick = () => {
         if (pathname !== href) {
-            animatePageOut(href, router)
+            animatePageIn(href, router);
         }
-    }
+    };
 
     return (
-        <Link href={href}
-            className="text-xl text-neutral-900 hover:text-neutral-700"
-            onClick={handleClick}
-        >
+        <button onClick={handleClick} aria-label={label}>
             {label}
-        </Link>
-    )
+        </button>
+    );
+};
+
+export const TransitionLogo = ({ href, label }: { href: string, label: string }) => {
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const handleClick = () => {
+        if (pathname !== href) {
+            animatePageIn(href, router);
+        }
+    };
+
+    return (
+        <span onClick={handleClick} style={{ cursor: 'pointer' }} aria-label={label}>
+            {label}
+        </span>
+    );
+};
+
+
+export const TransitionH4 = ({ href, label }: { href: string, label: string }) => {
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const handleClick = () => {
+        if (pathname !== href) {
+            animatePageIn(href, router);
+        }
+    };
+
+    return (
+        <div className={styles.navbar__links_user_btn}>
+            <h4 onClick={handleClick} aria-label={label}>
+                {label}
+            </h4>
+        </div>
+    );
 }
 
-export default TransitionLink
+export const TransitionButton = ({ href, label }: { href: string, label: string }) => {
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const handleClick = () => {
+        if (pathname !== href) {
+            animatePageIn(href, router);
+        }
+    };
+
+    return (
+        <button onClick={handleClick} aria-label={label}>
+            {label}
+        </button>
+    );
+}
+
+export const TransitionCard = ({ href, children, className }: { href: string; children: React.ReactNode, className: string }) => {
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const handleClick = () => {
+        if (pathname !== href) {
+            animatePageIn(href, router);
+        }
+    };
+
+    return (
+        <div onClick={handleClick} className={className} style={{ cursor: 'pointer' }}>
+            {children}
+        </div>
+    );
+}
+
+
+export const TransitionP = ({ href, children, label }: { href: string; children: React.ReactNode, label: string }) => {
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const handleClick = () => {
+        if (pathname !== href) {
+            animatePageIn(href, router);
+        }
+    };
+
+    return (
+        <p onClick={handleClick} aria-label={label}>
+            {children}
+        </p>
+    );
+}

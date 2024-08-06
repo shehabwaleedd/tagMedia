@@ -1,20 +1,9 @@
 'use client'
-import { useEffect } from "react";
-import styles from "./page.module.scss";
-import { animatePageIn } from "@/animation/transition";
-
-
-
-
+import { motion } from "framer-motion";
 export default function Template({ children }: { children: React.ReactNode }) {
-    useEffect(() => {
-        animatePageIn()
-    }, [])
-
     return (
-        <div>
-            <div className={styles.banner} id="banner"/>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{  duration: 0.6, ease: [0.4, 0, 0.2, 1] }}>
             {children}
-        </div>
+        </motion.div>
     );
 }

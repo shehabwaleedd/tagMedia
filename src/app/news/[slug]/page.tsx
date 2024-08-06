@@ -59,7 +59,7 @@ export default async function NewsDetails({ params }: { params: { slug: string }
             <section className={styles.details__content}>
                 <Navigation newsDetails={newsDetails} />
                 <h1>{newsDetails?.title}</h1>
-                {newsDetails?.date}
+                <p>{newsDetails?.date}</p>
             </section>
             <section className={styles.details__upper_content}>
                 <div>
@@ -67,7 +67,7 @@ export default async function NewsDetails({ params }: { params: { slug: string }
                         return (
                             <div key={index} className={styles.blog_content}>
                                 <h2>{section.title}</h2>
-                                <p>{section.subTitle}</p>
+                                <p className={styles.subtitle}>{section.subTitle}</p>
                                 <p>{section.description}</p>
                                 {section?.image && <Image src={section.image?.url} alt="news" width={1920} height={1080} />}
                             </div>

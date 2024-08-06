@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./style.module.scss"
 
-const Spacer = ({ main, left, right }: { main: string, left: string, right: string }) => {
+const Spacer = ({ left, right }: { left: string, right: string }) => {
     return (
         <div className={styles.spacer}>
             <div className={styles.stripe}></div>
@@ -9,8 +9,6 @@ const Spacer = ({ main, left, right }: { main: string, left: string, right: stri
                 <span>
                     {left}
                 </span>
-                {/* <h2> {main} </h2> */}
-                
                 <span>
                     {right}
                 </span>

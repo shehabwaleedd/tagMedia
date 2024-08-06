@@ -17,12 +17,11 @@ const Menu = ({ projectsCount, newsCount, currentPathname }: MenuProps) => {
         { path: '/work', label: 'Work' },
         { path: '/about', label: 'About' },
         { path: '/news', label: 'News' },
-        { path: '/contact', label: 'Contact' },
     ];
 
     return (
         <>
-            <ul>
+            <ul className={styles.ul}>
                 {menuItems.map((item) => (
                     <li key={item.path}>
                         <Link
@@ -58,10 +57,6 @@ const Menu = ({ projectsCount, newsCount, currentPathname }: MenuProps) => {
                     </ul>
                 </div>
                 <div className={styles.by}>
-                    <h3>Website By</h3>
-                    <Link href="https://www.cairo-studio.com" target='_blank'>Cairo Studio</Link>
-                </div>
-                <div className={styles.by}>
                     <h3>Follow us</h3>
                     <div className={styles.social}>
                         <Link href="https://www.facebook.com/TagMediaeg" target='_blank' aria-label="Facebook Page Link">
@@ -80,6 +75,10 @@ const Menu = ({ projectsCount, newsCount, currentPathname }: MenuProps) => {
                             <FaSnapchat />
                         </Link>
                     </div>
+                </div>
+                <div className={styles.by}>
+                    <h3>Website By</h3>
+                    <Link href="https://www.cairo-studio.com" target='_blank'>Cairo Studio</Link>
                 </div>
             </div>
         </>

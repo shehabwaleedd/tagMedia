@@ -34,9 +34,6 @@ export default async function NewsHomePage() {
     return (
         <section className="newsHomePage">
             <Slider content={content(spliceNews)} />
-            <Link href="/news" aria-label="View More News" className="moreNews">
-                <span className="newsHomePage__btn">View More News</span>
-            </Link>
         </section>
     )
 }

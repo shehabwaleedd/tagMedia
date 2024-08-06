@@ -6,14 +6,18 @@
     gap: 1rem;
     width: 100%;
     padding: var(--section-padding) 0;
-    padding: 3rem;
-    min-height: 35lvh;
     position: relative;
-    background-color: var(--background-color);
-
+    background-color: var(--container-color);
+    border-radius: 2rem;
+    padding: 10vh 2rem;
+    z-index: 99;
 
     @media (max-width: 999px) {
-        padding: 0.5rem;
+        padding: 0rem;
+    }
+
+    @media (max-width: 555px) {
+        padding-top: 5vh;
     }
 
     h2 {
@@ -21,7 +25,17 @@
         color: var(--title-color);
     }
 
-    p {
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        padding-top: 0;
+        padding-bottom: 2rem;
+        min-height: 55lvh;
+    }
+
+    span {
         font-family: var(--title-font);
         font-size: var(--semi-big-font-size);
         color: var(--title-color);
@@ -29,7 +43,7 @@
 
         @media (max-width: 570px) {
             width: 100%;
-            font-size: 6vw;
+            font-size: var(--body-font-size);
             line-height: 1.2;
             padding: 0;
             text-align: start;

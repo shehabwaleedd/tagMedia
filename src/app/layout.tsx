@@ -4,6 +4,9 @@ import SmoothScroller from "@/animation/SmoothScrolling";
 import Footer from "@/components/footer";
 import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "sonner";
+import { FacebookPixel } from "@/tags/FacebookPixel";
+import { GoogleAnalytics } from "@/tags/GoogleAnalytics";
+import { LinkedInInsightTag } from "@/tags/LinkedInInsightTag";
 
 type Metadata = {
   title: string;
@@ -96,6 +99,9 @@ export default function RootLayout({
           {children}
           <Footer />
         </AuthProvider>
+        <LinkedInInsightTag partnerId={process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID} />
+        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+        <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FACEBOOK_PIXEL || ""} />
       </body>
     </html>
   );

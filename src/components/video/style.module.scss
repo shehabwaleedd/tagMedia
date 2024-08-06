@@ -1,4 +1,8 @@
 .video {
+
+    @media (max-width: 555px) {
+        padding: 0.75rem;
+    }
     .content {
         display: flex;
         width: 100%;
@@ -7,7 +11,6 @@
         gap: 2rem;
         position: relative;
         z-index: 2;
-        background-color: var(--container-color);
 
         @media (max-width: 570px) {
             margin: 0;
@@ -23,7 +26,7 @@
         z-index: 2;
 
         @media (max-width: 570px) {
-            height: 50vh;
+            height: fit-content;
             margin-top: 1rem;
         }
     }
