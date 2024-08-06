@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaNewspaper, FaUsers, FaHandshake, FaBriefcase, FaTv, FaTools, FaSearch, FaInfoCircle, FaPuzzlePiece, FaImage } from 'react-icons/fa';
+import { FaNewspaper, FaUsers, FaHandshake, FaBriefcase, FaTv, FaTools, FaSearch, FaPuzzlePiece, FaImage } from 'react-icons/fa';
 import styles from '@/app/account/page.module.scss'; 
 
 const AdminView = ({ handleOpen }) => {
@@ -68,16 +68,9 @@ const AdminView = ({ handleOpen }) => {
             options: [
                 { value: 'aboutPageSEO', label: 'About Page SEO' },
                 { value: 'homePageSEO', label: 'Home Page SEO' },
-                { value: 'servicesPageSEO', label: 'Services Page SEO' },
-                { value: 'contactPageSEO', label: 'Contact Page SEO' },
+                { value: 'workPageSEO', label: 'Work Page SEO' },
                 { value: 'newsPageSEO', label: 'News Page SEO' },
-            ],
-        },
-        About: {
-            icon: <FaInfoCircle />,
-            options: [
-                { value: 'aboutPage', label: 'Manage About Page' },
-                { value: 'aboutPageSEO', label: 'About Page SEO' },
+                { value: 'contactPageSEO', label: 'Contact Page SEO' },
             ],
         },
     };

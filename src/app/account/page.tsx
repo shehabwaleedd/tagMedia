@@ -49,7 +49,7 @@ const Account = () => {
                         {activeSection === 'aboutPage' && <EditAboutPage />}
                         {activeSection === 'aboutPageSEO' && <SEOForm page="about" />}
                         {activeSection === 'homePageSEO' && <SEOForm page="homePage" />}
-                        {activeSection === 'servicesPageSEO' && <SEOForm page="services" />}
+                        {activeSection === 'workPageSEO' && <SEOForm page="work" />}
                         {activeSection === 'newsPageSEO' && <SEOForm page="news" />}
                         {activeSection === 'contactPageSEO' && <SEOForm page="contact" />}
                         {activeSection === 'news' && <AllTours />}
