@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaFacebookF, FaSnapchat, FaInstagram } from "react-icons/fa6";
 import { AiOutlineYoutube } from "react-icons/ai";
+import useWindowSize from '@/hooks/useWindowWidth';
 
 interface MenuProps {
     projectsCount: number;
@@ -12,12 +13,21 @@ interface MenuProps {
 }
 
 const Menu = ({ projectsCount, newsCount, currentPathname }: MenuProps) => {
+    const { isDesktop } = useWindowSize();
+
     const menuItems = [
         { path: '/', label: 'Home' },
         { path: '/work', label: 'Work' },
         { path: '/about', label: 'About' },
         { path: '/news', label: 'News' },
     ];
+
+    if (!isDesktop) {
+        menuItems.push({ path: '/contact', label: 'Contact' });
+    }
+    
+
+    
 
     return (
         <>
@@ -29,6 +39,7 @@ const Menu = ({ projectsCount, newsCount, currentPathname }: MenuProps) => {
                             className={`${styles.menuItem} ${currentPathname === item.path ? styles.active : ''}`}
                         >
                             {item.label}
+                            
                             {item.path === '/work' && (
                                 <span className={styles.count}>{projectsCount}</span>
                             )}

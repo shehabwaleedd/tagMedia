@@ -8,6 +8,13 @@
     position: relative;
     z-index: 3;
     padding: 0.75rem;
+
+
+    @media (max-width: 570px) {
+        padding-top: 10vh;
+
+    }
+
     h1 {
         margin-bottom: 20px;
     }
@@ -29,8 +36,7 @@
             justify-content: flex-start;
         }
         @media (max-width: 570px) {
-            padding: 2rem;
-            padding-top: 10vh;
+            padding: 2rem 1rem;
 
         }
 

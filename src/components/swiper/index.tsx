@@ -32,7 +32,7 @@ const Slider: React.FC<SliderProps> = ({ content, type }) => {
             "(min-width: 1924px)": { slides: { perView: 5.5, spacing: 30 } },
             "(min-width: 2224px)": { slides: { perView: 6.5, spacing: 30 } },
         },
-        slides: { perView: 1, spacing: 10, origin: "auto" },
+        slides: { perView: 1.25, spacing: 10, origin: "auto" },
     });
 
     const moreLink = type === 'news' ? '/news' : `/work/${type}`;

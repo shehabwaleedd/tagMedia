@@ -16,11 +16,12 @@
     h2 {
         margin-bottom: 1rem;
         color: var(--title-color);
-        font-family: var(--header-font);
+        font-family: var(--body-font);
         letter-spacing: normal;
-
         font-size: 5rem;
+        font-weight: 600;
         @media (max-width: 570px) {
+            font-size: var(--semi-big-font-size);
         }
     }
     &_title {
