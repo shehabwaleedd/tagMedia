@@ -13,7 +13,7 @@ interface CarouselProps {
 
 const CarouselContent: React.FC<CarouselProps> = ({ content, type }) => (
     <>
-        {content.map((item) => (
+        {content.map((item, index) => (
             <div key={item._id} className={`keen-slider__slide carouselItem`}>
                 <Link href={`/work/${type}/${slugify(item.name)}`} className='carouselLink'>
                     <div className='imageWrapper'>
@@ -24,6 +24,7 @@ const CarouselContent: React.FC<CarouselProps> = ({ content, type }) => (
                             alt={item.name}
                             layout="responsive"
                             objectFit="cover"
+                            priority={type === 'actor' ? index < 3 : false}
                         />
                     </div>
                 </Link>

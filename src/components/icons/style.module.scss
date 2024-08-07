@@ -33,7 +33,6 @@
     svg {
         font-size: 3rem;
         color: var(--accent-second-color);
-        animation: colorChange 3s infinite alternate;
 
         @media (max-width: 555px) {
             font-size: 2rem;
@@ -44,29 +43,6 @@
         color: var(--accent-color);
         transform: scale(1.1);
     }
-
-    &.flashing {
-        animation: flash 1s infinite;
-    }
 }
 
-@keyframes flash {
 
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.9;
-    }
-}
-
-@keyframes colorChange {
-    0% {
-        color: var(--accent-color);
-    }
-    100% {
-        color: var(--accent-second-color);
-    }
-}

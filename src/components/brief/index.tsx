@@ -1,39 +1,10 @@
-'use client'
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styles from "./style.module.scss"
 import MiniServices from '../miniServices'
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
 const Brief = () => {
-    const briefContainerRef = useRef(null);
-
-    // useEffect(() => {
-    //     if (briefContainerRef.current) {
-    //         const tl = gsap.timeline({
-    //             scrollTrigger: {
-    //                 trigger: briefContainerRef.current,
-    //                 start: "top top",
-    //                 end: "bottom 50%",
-    //                 scrub: true,
-    //                 pin: true,
-    //                 pinSpacing: false,
-    //                 anticipatePin: 1
-    //             }
-    //         });
-
-    //         tl.fromTo(briefContainerRef.current, { opacity: 1 }, { opacity: 0 });
-    //     }
-
-    //     return () => {
-    //         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    //     };
-    // }, []);
 
     return (
-        <section className={styles.brief} ref={briefContainerRef}>
+        <section className={styles.brief}>
             <div className={styles.content}>
                 <h2 className={styles.brief__title}>Tag Media</h2>
                 <span>

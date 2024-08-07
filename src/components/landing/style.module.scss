@@ -50,7 +50,6 @@
 
 .middle {
     h2 {
-        animation: colorChange 3s infinite alternate;
         color: var(--accent-second-color);
     }
 }
@@ -72,11 +71,3 @@
 }
 
 
-@keyframes colorChange {
-    0% {
-        color: var(--accent-color);
-    }
-    100% {
-        color: var(--accent-second-color);
-    }
-}

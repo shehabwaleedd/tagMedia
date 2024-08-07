@@ -1,14 +1,14 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import styles from "./page.module.scss";
 import Landing from "@/components/landing";
-import Brief from "@/components/brief";
-import ServicesComponent from "@/components/servicesCo";
 import { serverDynamicFetch } from '@/lib/serverDynamicFetch';
-import Testimonials from "@/components/testimonials";
-import NewsHomePage from "@/components/news";
-import WorkWithUs from "@/components/workWithUs";
-import Integration from "@/components/integration";
-import Carousel from "@/components/carousel";
+const Brief = dynamic(() => import("@/components/brief"), { ssr: false });
+const ServicesComponent = dynamic(() => import("@/components/servicesCo"), { ssr: false });
+const NewsHomePage = dynamic(() => import("@/components/news"), { ssr: false });
+const WorkWithUs = dynamic(() => import("@/components/workWithUs"), { ssr: false });
+const Integration = dynamic(() => import("@/components/integration"), { ssr: false });
+const Carousel = dynamic(() => import("@/components/carousel"), { ssr: false });
 
 const Home: React.FC = async () => {
   const partners = await serverDynamicFetch('partner');
