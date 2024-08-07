@@ -7,6 +7,7 @@ import Trusted from '../trusted';
 import Link from 'next/link';
 import Icons from '../icons';
 import { GoArrowUpRight } from "react-icons/go";
+import global from "@/app/page.module.scss"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,24 +15,24 @@ gsap.registerPlugin(ScrollTrigger);
 const Landing: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (containerRef.current) {
-            gsap.to(containerRef.current, {
-                opacity: 0,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top top",
-                    end: "bottom center",
-                    scrub: true,
-                    pin: true,
-                }
-            });
-        }
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []);
+    // useEffect(() => {
+    //     if (containerRef.current) {
+    //         gsap.to(containerRef.current, {
+    //             opacity: 0,
+    //             ease: "none",
+    //             scrollTrigger: {
+    //                 trigger: containerRef.current,
+    //                 start: "top top",
+    //                 end: "bottom center",
+    //                 scrub: true,
+    //                 pin: true,
+    //             }
+    //         });
+    //     }
+    //     return () => {
+    //         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    //     };
+    // }, []);
 
 
 
@@ -49,18 +50,17 @@ const Landing: React.FC = () => {
                     <h2>Markets, <span>Today</span></h2>
                 </div>
                 <div className={styles.buttons}>
-                    <Link href="/contact" className={styles.button}>
-                        <GoArrowUpRight />
+                    <Link href='/about' className={global.button}>
                         <span>
                             About us
                         </span>
-                    </Link>
-                    <Link href="/contact" className={styles.button}>
                         <GoArrowUpRight />
+                    </Link>
+                    <Link href='/about' className={global.button}>
                         <span>
                             Contact us
                         </span>
-
+                        <GoArrowUpRight />
                     </Link>
                 </div>
                 <Icons />

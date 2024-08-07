@@ -10,27 +10,27 @@ gsap.registerPlugin(ScrollTrigger);
 const Brief = () => {
     const briefContainerRef = useRef(null);
 
-    useEffect(() => {
-        if (briefContainerRef.current) {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: briefContainerRef.current,
-                    start: "top top",
-                    end: "bottom 50%",
-                    scrub: true,
-                    pin: true,
-                    pinSpacing: false,
-                    anticipatePin: 1
-                }
-            });
+    // useEffect(() => {
+    //     if (briefContainerRef.current) {
+    //         const tl = gsap.timeline({
+    //             scrollTrigger: {
+    //                 trigger: briefContainerRef.current,
+    //                 start: "top top",
+    //                 end: "bottom 50%",
+    //                 scrub: true,
+    //                 pin: true,
+    //                 pinSpacing: false,
+    //                 anticipatePin: 1
+    //             }
+    //         });
 
-            tl.fromTo(briefContainerRef.current, { opacity: 1 }, { opacity: 0 });
-        }
+    //         tl.fromTo(briefContainerRef.current, { opacity: 1 }, { opacity: 0 });
+    //     }
 
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []);
+    //     return () => {
+    //         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    //     };
+    // }, []);
 
     return (
         <section className={styles.brief} ref={briefContainerRef}>

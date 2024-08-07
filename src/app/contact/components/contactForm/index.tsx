@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, ChangeEvent, FormEvent } from 'reac
 import styles from "./style.module.scss"
 import emailjs from '@emailjs/browser';
 import RoundedButton from '@/animation/RoundedButton';
+import global from "@/app/page.module.scss"
 
 interface FormData {
     name: string;
@@ -94,11 +95,9 @@ const ContactForm = () => {
                     </div>
                 </div>
                 <div className={styles.btn}>
-                    <RoundedButton>
-                        <button type="submit">
-                            <p>Submit</p>
-                        </button>
-                    </RoundedButton>
+                    <button type="submit" className={global.button}>
+                        <p>Submit</p>
+                    </button>
                 </div>
             </form>
         </section>

@@ -29,14 +29,12 @@ const RoundedButton = ({ children, ...attributes }) => {
   }
 
   return (
-    <Magnetic>
-      <div className={styles.roundedButton} style={{ overflow: "hidden" }} onMouseEnter={() => { manageMouseEnter() }} onMouseLeave={() => { manageMouseLeave() }} {...attributes}>
-        {
-          children
-        }
-        <div ref={circle} className={styles.circle} style={{backgroundColor: "var(--accent-color)"}}></div>
-      </div>
-    </Magnetic>
+    <div className={styles.roundedButton} style={{ overflow: "hidden" }} onMouseEnter={() => { manageMouseEnter() }} onMouseLeave={() => { manageMouseLeave() }} {...attributes}>
+      {
+        children
+      }
+      <div ref={circle} className={styles.circle} style={{ backgroundColor: "var(--accent-color)" }}></div>
+    </div>
   )
 }
 

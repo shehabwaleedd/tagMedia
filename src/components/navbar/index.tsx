@@ -145,10 +145,10 @@ const Navbar = () => {
                 <div className={`${styles.fit} ${styles.menu}`}>
                     <HiOutlineChatBubbleOvalLeftEllipsis style={{ fontSize: '1.25rem' }} />
                 </div>
-                <div className={styles.contact}>
+                <Link className={styles.contact} href='/contact'>
                     <h3>Contact us</h3>
                     <MdOutlineKeyboardArrowRight />
-                </div>
+                </Link>
             </div>
         </nav>
     );

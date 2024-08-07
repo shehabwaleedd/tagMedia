@@ -1,14 +1,22 @@
 .roundedButton {
-    border-radius: 2rem;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    outline: none;
-    padding: 0.5rem 1rem;
-
+    width: fit-content;
+    padding: 1rem 2rem;
+    background-color:rgba(230, 230, 230, .78);
+    color: var(--title-color);
+    font-size: var(--normal-font-size);
+    font-family: var(--body-font);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    gap: 1rem;;
+    transition: var(--animation-primary);
+    &:hover {
+        transition: var(--animation-primary);
+        background-color: rgba(215, 212, 212, 0.98);
+    }
     p,
     a {
         position: relative;

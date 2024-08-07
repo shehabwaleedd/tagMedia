@@ -1,6 +1,6 @@
 import React from 'react'
-import RoundedButton from '@/animation/RoundedButton'
 import styles from "./style.module.scss"
+import global from "@/app/page.module.scss"
 
 type MiniService = {
     name: string;
@@ -31,9 +31,7 @@ const MiniServices = () => {
         <section className={styles.miniServices}>
             <div className={styles.miniServices__container}>
                 {miniServices.map((item, index) => (
-                    <RoundedButton key={index}>
-                        <p>{item.name}</p>
-                    </RoundedButton>
+                    <p key={index} className={global.button}>{item.name}</p>
                 ))}
             </div>
         </section>

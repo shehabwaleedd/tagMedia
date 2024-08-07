@@ -9,7 +9,7 @@
     position: relative;
     background-color: var(--container-color);
     border-radius: 2rem;
-    padding: 10vh 2rem;
+    padding: 5vh 2rem;
     z-index: 99;
 
     @media (max-width: 999px) {
@@ -32,7 +32,7 @@
         padding: 1rem;
         padding-top: 0;
         padding-bottom: 2rem;
-        min-height: 55lvh;
+        min-height: 35lvh;
     }
 
     span {

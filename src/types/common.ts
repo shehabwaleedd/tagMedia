@@ -18,12 +18,37 @@ export interface NewsType {
     seoDescription?: string | null;
     seoImage?: MainImg | null;
     seoKeywords?: string[] | null
-    
+}
 
+
+export interface PartnerSeriesTypes {
+    image: {
+        url: string;
+        public_id: string;
+    };
+    _id: string;
+    name: string;
+    sections: PartnerSeriesSection[];
+    index: number;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+}
+
+interface PartnerSeriesSection {
+    image: {
+        url: string;
+        public_id: string;
+    };
+    _id: string;
+    title: string;
+    subTitle: string;
+    description: string;
+    partnerId: string;
 }
 
 export interface NewsDataType {
-    data? : NewsType[]
+    data?: NewsType[]
 }
 
 export interface Section {
@@ -47,3 +72,4 @@ export interface ImageFile {
     file: File | string; // File for uploads, string for existing URLs
     previewUrl: string; // URL for displaying the image
 }
+

@@ -1,0 +1,61 @@
+.carousel {
+    position: relative;
+    z-index: 99;
+    padding: 10vh 0;
+
+    .carouselItem {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .carouselLink {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .imageWrapper {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1rem;
+        max-height: 50vh;
+        min-height: 49.6vh;
+    }
+
+    .itemTitle {
+        margin-top: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 0 5px;
+
+        @media (min-width: 768px) {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.keen-slider {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.keen-slider__slide {
+    position: relative;
+    overflow: visible;
+    width: 100%;
+    min-height: 250px;
+}
