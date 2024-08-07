@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "./style.module.scss"
 import Image from 'next/image'
+import Link from 'next/link'
 
 type IntegrationProps = {
     name: string;
@@ -26,9 +27,9 @@ const Integration: React.FC<Integration> = ({ integrations }) => {
             </div>
             <div className={styles.content}>
                 {integrations.map((integration, i) => (
-                    <div key={i}>
+                    <Link key={i} href={integration.link}aria-label={integration.name} target="_blank">
                         <Image src={integration.image.url} alt={integration.name} width={800} height={800} />
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>

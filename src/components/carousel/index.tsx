@@ -15,7 +15,7 @@ const CarouselContent: React.FC<CarouselProps> = ({ content, type }) => (
     <>
         {content.map((item) => (
             <div key={item._id} className={`keen-slider__slide carouselItem`}>
-                <Link href={`/work/${type}/${item._id}/${slugify(item.name)}`} className='carouselLink'>
+                <Link href={`/work/${type}/${slugify(item.name)}`} className='carouselLink'>
                     <div className='imageWrapper'>
                         <Image
                             src={item.image.url}
