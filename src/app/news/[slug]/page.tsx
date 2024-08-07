@@ -2,9 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { serverDynamicFetch } from '@/lib/serverDynamicFetch';
 import styles from "./page.module.scss";
-import Link from 'next/link';
 import ImageSlider from '@/components/imageSlider/ImageSlider';
-import UnifiedNewsComponent from '../components/unifiedNewsComponent';
 import Navigation from "../components/Navigation"
 export async function generateMetadata({ params }: { params: { slug: string } }) {
     const query = `blog/${decodeURIComponent(params.slug)}`;
@@ -76,8 +74,6 @@ export default async function NewsDetails({ params }: { params: { slug: string }
                 </div>
                 {newsDetails?.images && <ImageSlider images={newsDetails.images} name='slider' />}
             </section>
-            <UnifiedNewsComponent type='recommended' />
-            <UnifiedNewsComponent type='like' />
         </main>
     );
 }
