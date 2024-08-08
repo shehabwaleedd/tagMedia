@@ -1,10 +1,10 @@
 .carousel {
     position: relative;
     z-index: 99;
-    padding: 10vh 0;
+    padding: 5vh 0;
 
-    @media (max-width: 888px) {
-        padding-bottom: 0;
+    @media (max-width: 1288px) {
+        padding: 3vh 0;
     }
 
     .carouselItem {

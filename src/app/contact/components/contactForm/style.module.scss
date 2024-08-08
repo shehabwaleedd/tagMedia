@@ -12,10 +12,23 @@
         padding: 1rem;
         &__input {
             display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
             align-items: flex-start;
+            flex-direction: column;
             width: 100%;
+            padding: 1rem;
+            background-color:rgba(230, 230, 230, .78);
+            color: var(--title-color);
+            font-size: var(--normal-font-size);
+            font-family: var(--body-font);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            gap: 0.25rem;;
+            transition: var(--animation-primary);
+            &:hover {
+                transition: var(--animation-primary);
+                background-color: rgba(215, 212, 212, 0.98);
+            }
             label {
                 font-size: var(--medium-font-size);
                 color: var(--title-color);
@@ -27,7 +40,6 @@
                 padding: 0.5rem 0;
                 width: 100%;
                 border: none;
-                border-bottom: 1px solid var(--border-color);
                 outline: none;
                 background-color: transparent;
                 &:focus {
@@ -41,7 +53,6 @@
                 padding: 0.5rem 0;
                 width: 100%;
                 border: none;
-                border-bottom: 1px solid var(--border-color);
                 outline: none;
                 background-color: transparent;
                 &:focus {
@@ -51,14 +62,15 @@
             }
         }   
     }
-    button {
-        font-size: var(--body-font-size);
-        color: var(--title-color);
-        background-color: transparent;
-        cursor: pointer;
-        transition: var(--animation-primary);
-    }
     .btn {
+        padding-left: 1rem;
         width: fit-content;
     }
+}
+
+.group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
 }

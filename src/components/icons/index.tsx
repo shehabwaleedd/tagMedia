@@ -4,6 +4,7 @@ import { BsYoutube, BsInstagram, BsTwitterX, BsTiktok, BsSnapchat } from "react-
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import styles from "./style.module.scss"
 import { gsap } from 'gsap';
+import useWindowSize from '@/hooks/useWindowWidth';
 
 const socialMediaIcons: { icon: JSX.Element; link: string }[] = [
     { icon: <FaFacebookF />, link: "https://www.facebook.com" },
@@ -15,50 +16,65 @@ const socialMediaIcons: { icon: JSX.Element; link: string }[] = [
     { icon: <BsSnapchat />, link: "https://www.snapchat.com" },
 ];
 
-
-
-
 const Icons = () => {
-    const [isHovered, setIsHovered] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [currentIconIndex, setCurrentIconIndex] = useState<number>(0);
     const iconMenuRef = useRef<HTMLDivElement>(null);
-
+    const { isMobile, isTablet } = useWindowSize();
+    const isTouchDevice = isMobile || isTablet;
 
     useEffect(() => {
-        if (!isHovered) {
+        if (!isOpen) {
             const intervalId = setInterval(() => {
                 setCurrentIconIndex((currentIconIndex + 1) % socialMediaIcons.length);
             }, 700);
 
             return () => clearInterval(intervalId);
         }
-    }, [isHovered, currentIconIndex]);
+    }, [isOpen, currentIconIndex]);
 
     const handleIconClick = (link: string) => {
-        window.open(link, '_blank');
+        if (isTouchDevice && !isOpen) {
+            setIsOpen(true);
+        } else {
+            window.open(link, '_blank');
+        }
     };
 
+    const handleToggle = () => {
+        if (isTouchDevice) {
+            setIsOpen(!isOpen);
+        }
+    };
 
     const handleHover = (isEntering: boolean) => {
-        setIsHovered(isEntering);
+        if (!isTouchDevice) {
+            setIsOpen(isEntering);
+        }
+    };
+
+    useEffect(() => {
         if (iconMenuRef.current) {
             gsap.to(iconMenuRef.current, {
-                y: isEntering ? 0 : -20,
-                opacity: isEntering ? 1 : 0,
+                y: isOpen ? 0 : -20,
+                opacity: isOpen ? 1 : 0,
                 duration: 0.3,
                 ease: "power2.inOut"
             });
         }
-    };
-
-
+    }, [isOpen]);
 
     return (
-        <div className={styles.iconContainer} onMouseEnter={() => handleHover(true)} onMouseLeave={() => handleHover(false)}>
-            <div className={`${styles.icon} ${!isHovered ? styles.flashing : ''}`}>
+        <div 
+            className={styles.iconContainer} 
+            onMouseEnter={() => handleHover(true)} 
+            onMouseLeave={() => handleHover(false)}
+            onClick={handleToggle}
+        >
+            <div className={`${styles.icon} ${!isOpen ? styles.flashing : ''}`}>
                 {socialMediaIcons[currentIconIndex].icon}
             </div>
-            <div className={styles.iconMenu}  ref={iconMenuRef}>
+            <div className={styles.iconMenu} ref={iconMenuRef}>
                 {socialMediaIcons
                     .filter((_, index) => index !== currentIconIndex)
                     .map((iconObj, index) => (
@@ -71,7 +87,8 @@ const Icons = () => {
                         </div>
                     ))}
             </div>
-        </div>)
+        </div>
+    )
 }
 
-export default Icons
+export default Icons;

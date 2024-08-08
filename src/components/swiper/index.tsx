@@ -24,10 +24,10 @@ const Slider: React.FC<SliderProps> = ({ content, type }) => {
             setLoaded(true);
         },
         breakpoints: {
-            "(min-width: 440px)": { slides: { perView: 1.5, spacing: 10 } },
-            "(min-width: 768px)": { slides: { perView: 2.5, spacing: 20 } },
-            "(min-width: 1024px)": { slides: { perView: 3.5, spacing: 30 } },
-            "(min-width: 1324px)": { slides: { perView: 3.5, spacing: 30 } },
+            "(min-width: 440px)": { slides: { perView: 1.25, spacing: 10 } },
+            "(min-width: 768px)": { slides: { perView: 2.15, spacing: 20 } },
+            "(min-width: 1024px)": { slides: { perView: 3.15, spacing: 30 } },
+            "(min-width: 1324px)": { slides: { perView: 3.15, spacing: 30 } },
             "(min-width: 1624px)": { slides: { perView: 4.5, spacing: 30 } },
             "(min-width: 1924px)": { slides: { perView: 5.5, spacing: 30 } },
             "(min-width: 2224px)": { slides: { perView: 6.5, spacing: 30 } },

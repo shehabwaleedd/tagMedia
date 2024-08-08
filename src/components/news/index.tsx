@@ -26,11 +26,9 @@ const NewsHomePage: React.FC = async () => {
         return null;
     }
 
-    const spliceNews = news.slice(0, 6);
-
     return (
         <section className="newsHomePage">
-            <Slider content={<NewsContent news={spliceNews} />} type='news' />
+            <Slider content={<NewsContent news={news} />} type='news' />
         </section>
     );
 };

@@ -52,4 +52,8 @@
         transition: var(--animation-primary);
         background-color: rgba(215, 212, 212, 0.98);
     }
+
+    @media (max-width: 400px) {
+        padding: 1rem;
+    }
 }

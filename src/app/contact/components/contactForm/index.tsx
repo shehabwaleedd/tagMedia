@@ -1,9 +1,9 @@
 'use client'
-import React, { useState, useEffect, useRef, ChangeEvent, FormEvent } from 'react';
-import styles from "./style.module.scss"
+import React, { useState, useRef } from 'react';
+import { toast } from 'sonner';
 import emailjs from '@emailjs/browser';
-import RoundedButton from '@/animation/RoundedButton';
-import global from "@/app/page.module.scss"
+import styles from "./style.module.scss";
+import global from "@/app/page.module.scss";
 
 interface FormData {
     name: string;
@@ -11,97 +11,102 @@ interface FormData {
     message: string;
 }
 
-// Define the type for form errors
-interface FormErrors {
-    name?: string;
-    email?: string;
-    message?: string;
-}
+const initialFormData: FormData = {
+    name: "",
+    email: "",
+    message: "",
+};
 
+const ContactForm: React.FC = () => {
+    const [formData, setFormData] = useState<FormData>(initialFormData);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const formRef = useRef<HTMLFormElement>(null);
 
-const ContactForm = () => {
-    const form = useRef<HTMLFormElement>(null);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
-    const [formData, setFormData] = useState<FormData>({
-        name: "",
-        email: "",
-        message: "",
-    });
-    const [formErrors, setFormErrors] = useState<FormErrors>({});
-    const sendEmail = () => {
-        if (form.current) {
-            emailjs.sendForm('service_5y7rll1', 'template_3xzot3e', form.current, '4nyzjigYhVGMwCX0W')
-                .then((response) => {
-                    console.log('Email sent:', response);
-                    alert("Your message has been sent successfully!");
-                })
-                .catch((error) => {
-                    console.error('Email error:', error);
-                    alert("An error occurred while sending your message. Please try again later.");
-                });
+    const sendEmail = async () => {
+        if (!formRef.current) return;
 
-            setFormData({
-                name: "",
-                email: "",
-                message: "",
+        try {
+            const response = await emailjs.sendForm(
+                'service_5y7rll1',
+                'template_3xzot3e',
+                formRef.current,
+                '4nyzjigYhVGMwCX0W'
+            );
+            console.log('Email sent:', response);
+            toast.success("Your message has been sent successfully!");
+            setFormData(initialFormData);
+        } catch (error) {
+            console.error('Email error:', error);
+            toast.error("An error occurred while sending your message. Please try again later.");
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        const errors = Object.entries(formData).reduce((acc, [key, value]) => {
+            if (!value.trim()) {
+                acc[key as keyof FormData] = `${key.charAt(0).toUpperCase() + key.slice(1)} is required`;
+            }
+            return acc;
+        }, {} as Partial<Record<keyof FormData, string>>);
+
+        if (Object.keys(errors).length === 0) {
+            await sendEmail();
+        } else {
+            Object.entries(errors).forEach(([field, message]) => {
+                toast.error(message);
             });
         }
-    };
 
-    const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, checked } = e.target;
-        setFormData({ ...formData, [name]: checked });
-    };
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        // Validate form fields
-        const errors: FormErrors = {};
-        if (formData.name.trim() === "") {
-            errors.name = "Name is required";
-        }
-        if (formData.email.trim() === "") {
-            errors.email = "Email is required";
-        }
-        if (formData.message.trim() === "") {
-            errors.message = "Message is required";
-        }
-        if (Object.keys(errors).length === 0) {
-            sendEmail();
-            setFormErrors({}); // Clear form errors on successful submission
-        } else {
-            setFormErrors(errors);
-        }
+        setIsSubmitting(false);
     };
 
     return (
         <section className={styles.contact_right}>
-            <form onSubmit={handleSubmit} ref={form}>
+            <form onSubmit={handleSubmit} ref={formRef}>
                 <div className={styles.contact_right__container}>
-                    <div className={styles.contact_right__container__input}>
-                        <label htmlFor="name">Name</label>
-                        <input type="text" name="name" placeholder="John Doe" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />{formErrors.name && <p className="error-message">{formErrors.name}</p>}
-                    </div>
-                    <div className={styles.contact_right__container__input}>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" placeholder="your@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
-                        {formErrors.email && <p className={styles.error}>{formErrors.email}</p>}
+                    <div className={styles.group}>
+                        {['name', 'email'].map((key) => (
+                            <div key={key} className={styles.contact_right__container__input}>
+                                <label htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+                                <input
+                                    type={key === 'email' ? 'email' : 'text'}
+                                    id={key}
+                                    name={key}
+                                    value={formData[key as keyof FormData]}
+                                    onChange={handleChange}
+                                    placeholder={`Enter your ${key}...`}
+                                    required
+                                />
+                            </div>
+                        ))}
                     </div>
                     <div className={styles.contact_right__container__input}>
                         <label htmlFor="message">Message</label>
-                        <textarea name="message" cols={30} rows={5} placeholder="Hello, I want to start a project about..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} required></textarea>
-                        {formErrors.message && <p className={styles.error}>{formErrors.message}</p>}
+                        <textarea
+                            id="message"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            placeholder="Enter your message..."
+                            required
+                            rows={5}
+                        />
                     </div>
-                </div>
-                <div className={styles.btn}>
-                    <button type="submit" className={global.button}>
-                        <p>Submit</p>
+                    <button type="submit" className={global.button} disabled={isSubmitting}>
+                        <p>{isSubmitting ? 'Submitting...' : 'Submit'}</p>
                     </button>
                 </div>
             </form>
         </section>
-    )
-}
+    );
+};
 
-export default ContactForm
+export default ContactForm;

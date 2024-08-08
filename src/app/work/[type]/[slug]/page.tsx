@@ -7,6 +7,7 @@ import axios from 'axios';
 import { notFound } from 'next/navigation';
 import { Person, CreativeWork } from 'schema-dts';
 import { JsonLd } from 'react-schemaorg';
+import CurrentLocation from '@/app/work/[type]/[slug]/components/location';
 
 interface ItemData {
     _id: string;
@@ -136,6 +137,7 @@ export default async function WorkItem({ params }: PageProps) {
                     />
                 </div>
                 <section className={styles.lower}>
+                    <CurrentLocation />
                     <h1 className={styles.itemTitle}>{item.name}</h1>
                     {item?.sections?.map((section, index) => (
                         <div key={index} className={styles.section}>

@@ -81,3 +81,29 @@
         color: var(--subtitle-color);
     }
 }
+
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.separator {
+    margin: 0 5px;
+    color: #666;
+}
+
+.crumbLink {
+    color: #0070f3;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.currentPage {
+    color: #666;
+}

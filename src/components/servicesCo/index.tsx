@@ -60,7 +60,7 @@ const ServicesComponent = () => {
     return (
         <section className={styles.servicesContainer}>
             <div>
-                <h3> What we offer </h3>
+                <h3> We offer </h3>
             </div>
             <div className={styles.servicesList}>
                 {data.map((service, index) => (

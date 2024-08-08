@@ -27,7 +27,7 @@ const Landing: React.FC = () => {
                         </span>
                         <GoArrowUpRight />
                     </Link>
-                    <Link href='/about' className={global.button}>
+                    <Link href='/contact' className={global.button}>
                         <span>
                             Contact us
                         </span>

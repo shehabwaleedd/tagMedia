@@ -86,6 +86,7 @@ const Navbar = () => {
         '/about': 'About',
         '/news': 'News',
         '/contact': 'Contact',
+        '/privacy': 'Privacy',
 
     };
 

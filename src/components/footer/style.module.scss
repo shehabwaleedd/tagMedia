@@ -24,6 +24,11 @@
         padding: 2rem;
         padding-bottom: 0;
 
+        @media (min-width: 812px) and (max-width: 1255px) {
+            grid-template-columns: 1fr 2fr;
+        }
+
+
         @media (max-width: 777px) {
             display: flex;
             flex-direction: column;

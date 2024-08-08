@@ -1,7 +1,7 @@
 .iconContainer {
     position: absolute;
     right: 4rem;
-    bottom: 10rem;
+    top: 10rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -10,6 +10,7 @@
 
     @media (max-width: 555px) {
         right: 1rem;
+        top: 6vh;
     }
 }
 
