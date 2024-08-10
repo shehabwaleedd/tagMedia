@@ -1,22 +1,11 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
-import { BsYoutube, BsInstagram, BsTwitterX, BsTiktok, BsSnapchat } from "react-icons/bs";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import styles from "./style.module.scss"
 import { gsap } from 'gsap';
 import useWindowSize from '@/hooks/useWindowWidth';
+import socialIcons from '../navbar/Header/Nav/socialIcons';
 
-const socialMediaIcons: { icon: JSX.Element; link: string }[] = [
-    { icon: <FaFacebookF />, link: "https://www.facebook.com" },
-    { icon: <BsYoutube />, link: "https://www.youtube.com" },
-    { icon: <BsInstagram />, link: "https://www.instagram.com" },
-    { icon: <BsTwitterX />, link: "https://www.twitter.com" },
-    { icon: <BsTiktok />, link: "https://www.tiktok.com" },
-    { icon: <FaLinkedinIn />, link: "https://www.linkedin.com" },
-    { icon: <BsSnapchat />, link: "https://www.snapchat.com" },
-];
-
-const Icons = () => {
+const Icons: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [currentIconIndex, setCurrentIconIndex] = useState<number>(0);
     const iconMenuRef = useRef<HTMLDivElement>(null);
@@ -26,18 +15,18 @@ const Icons = () => {
     useEffect(() => {
         if (!isOpen) {
             const intervalId = setInterval(() => {
-                setCurrentIconIndex((currentIconIndex + 1) % socialMediaIcons.length);
+                setCurrentIconIndex((prevIndex) => (prevIndex + 1) % socialIcons.length);
             }, 700);
 
             return () => clearInterval(intervalId);
         }
-    }, [isOpen, currentIconIndex]);
+    }, [isOpen]);
 
-    const handleIconClick = (link: string) => {
+    const handleIconClick = (href: string) => {
         if (isTouchDevice && !isOpen) {
             setIsOpen(true);
         } else {
-            window.open(link, '_blank');
+            window.open(href, '_blank');
         }
     };
 
@@ -64,6 +53,8 @@ const Icons = () => {
         }
     }, [isOpen]);
 
+    const CurrentIcon = socialIcons[currentIconIndex].Icon;
+
     return (
         <div 
             className={styles.iconContainer} 
@@ -72,18 +63,19 @@ const Icons = () => {
             onClick={handleToggle}
         >
             <div className={`${styles.icon} ${!isOpen ? styles.flashing : ''}`}>
-                {socialMediaIcons[currentIconIndex].icon}
+                <CurrentIcon />
             </div>
             <div className={styles.iconMenu} ref={iconMenuRef}>
-                {socialMediaIcons
+                {socialIcons
                     .filter((_, index) => index !== currentIconIndex)
-                    .map((iconObj, index) => (
+                    .map(({ Icon, href, label }, index) => (
                         <div
                             key={index}
                             className={styles.icon}
-                            onClick={() => handleIconClick(iconObj.link)}
+                            onClick={() => handleIconClick(href)}
+                            aria-label={label}
                         >
-                            {iconObj.icon}
+                            <Icon />
                         </div>
                     ))}
             </div>

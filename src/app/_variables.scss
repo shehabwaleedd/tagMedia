@@ -1,0 +1,84 @@
+// _variables.scss
+
+// Breakpoints
+$breakpoints: (
+    mobile: 767px,
+    tablet: 1168px,
+    desktop: 1424px,
+    big-desktop: 1940px
+);
+
+// Colors
+$colors: (
+    container: rgba(49, 48, 48, 0.48),
+    hover: rgba(69, 68, 68, 0.48),
+    title: #fafafa,
+    text: #e8e7e7,
+    subtitle: #bebebe,
+    ui-dark: #161616,
+    light-grey: #a7a7a7,
+    dark-grey: #4b4b4b,
+    color1: #0080FF,
+    color2: #AAF0D1,
+    color3: #355BF5,
+    alternative: #18cde1,
+    card-background: #ffffff,
+    primary: #000000,
+    secondary: #333333,
+    accent: #26FFE9,
+    accent-second: #327BC4,
+    lighter-text: #989898,
+    border: #c1c1c1
+);
+
+// Fonts
+$fonts: (
+    body: ('Satoshi-Regular', sans-serif),
+    subtitle: ('Avantt-Light', sans-serif),
+    medium: ('Helvetica', sans-serif),
+    title: ('Helvetica', sans-serif),
+    bold: ('Helvetica-Bold', sans-serif),
+    header: ('Youth-Medium', sans-serif)
+);
+
+// Font Sizes
+$font-sizes: (
+    small: 0.8rem,
+    normal: 1rem,
+    body: 1.236rem,
+    medium: 1.318rem,
+    big: 1.618rem,
+    semi-big: 2rem,
+    bigger: 2.618rem,
+    biggest: 4.236rem,
+    header: 5.618rem,
+    navigation: 6.618rem
+);
+
+// Font Weights
+$font-weights: (
+    body: 400,
+    subtitle: 100,
+    medium: 500,
+    title: 700,
+    heavy: 900,
+    semi-bold: 600
+);
+
+// Other variables
+$animation-primary: 0.4s cubic-bezier(0.5, 0.75, 0, 1);
+$section-padding: min(3.5vw, 3.5em);
+$border: 1px solid map-get($colors, border);
+
+// Mixins for responsive design
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Unknown breakpoint: #{$breakpoint}.";
+    }
+}

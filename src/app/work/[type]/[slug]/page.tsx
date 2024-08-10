@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import styles from './page.module.scss';
 import axios from 'axios';
 import { notFound } from 'next/navigation';
-import { Person, CreativeWork } from 'schema-dts';
+import { Person, CreativeWork, Organization } from 'schema-dts';
 import { JsonLd } from 'react-schemaorg';
 import CurrentLocation from '@/app/work/[type]/[slug]/components/location';
 
@@ -33,7 +33,22 @@ interface PageProps {
     };
 }
 
-async function fetchItems(endpoint: string) {
+async function fetchItems(type: string) {
+    let endpoint;
+    switch (type) {
+        case 'actor':
+            endpoint = 'partner';
+            break;
+        case 'series':
+            endpoint = 'portfolio';
+            break;
+        case 'production-companies':
+            endpoint = 'workedWith';
+            break;
+        default:
+            throw new Error(`Invalid type: ${type}`);
+    }
+
     try {
         const response = await axios.get(`https://tagmedia.onrender.com/${endpoint}`);
         return response.data.data;
@@ -49,8 +64,7 @@ function slugToName(slug: string): string {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { type, slug } = params;
-    const endpoint = type === 'actor' ? 'partner' : 'portfolio';
-    const items: ItemData[] | null = await fetchItems(endpoint);
+    const items: ItemData[] | null = await fetchItems(type);
 
     if (!items) {
         return {
@@ -69,10 +83,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         };
     }
 
-    const itemType = type === 'actor' ? 'Actor' : 'Series';
+    const itemType = type === 'actor' ? 'Actor' : type === 'series' ? 'Series' : 'Production Company';
     const description = type === 'actor'
         ? `${name} is an actor at TAG Media Agency. Learn more about their work and achievements.`
-        : `${name} is a series at TAG Media Agency. Explore their episodes and story.`;
+        : type === 'series'
+        ? `${name} is a series at TAG Media Agency. Explore their episodes and story.`
+        : `${name} is a production company that has worked with TAG Media Agency. Discover their collaborations and projects.`;
 
     const imageUrl = item.image?.url || '/ob-image.jpg';
 
@@ -81,13 +97,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description,
         openGraph: {
             title: `${name} | ${itemType} at TAG Media Agency`,
-            description: `Learn more about ${name}, a talented ${itemType.toLowerCase()} at TAG Media Agency. Explore their work and achievements.`,
+            description: `Learn more about ${name}, a ${itemType.toLowerCase()} ${type === 'production-companies' ? 'that has worked with' : 'at'} TAG Media Agency. Explore their work and achievements.`,
             images: [
                 {
                     url: imageUrl,
                     width: 1200,
                     height: 630,
-                    alt: `${name} at TAG Media Agency`,
+                    alt: `${name} ${type === 'production-companies' ? 'working with' : 'at'} TAG Media Agency`,
                 },
             ],
             type: 'profile',
@@ -95,7 +111,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         twitter: {
             card: 'summary_large_image',
             title: `${name} | ${itemType} at TAG Media Agency`,
-            description: `Learn more about ${name}, a talented ${itemType.toLowerCase()} at TAG Media Agency. Explore their work and achievements.`,
+            description: `Learn more about ${name}, a ${itemType.toLowerCase()} ${type === 'production-companies' ? 'that has worked with' : 'at'} TAG Media Agency. Explore their work and achievements.`,
             images: [imageUrl],
         },
     };
@@ -103,9 +119,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function WorkItem({ params }: PageProps) {
     const { type, slug } = params;
-    const endpoint = type === 'actor' ? 'partner' : 'portfolio';
-
-    const items: ItemData[] | null = await fetchItems(endpoint);
+    const items: ItemData[] | null = await fetchItems(type);
 
     if (!items) {
         return <div className={styles.error}>Failed to load data</div>;
@@ -118,7 +132,7 @@ export default async function WorkItem({ params }: PageProps) {
         notFound(); // This will trigger the 404 page
     }
 
-    const itemType = type === 'actor' ? 'Actor' : 'Portfolio Item';
+    const itemType = type === 'actor' ? 'Actor' : type === 'series' ? 'Series' : 'Production Company';
     const canonicalUrl = `https://www.tagmediaagency.com/work/${type}/${slug}`;
 
     return (
@@ -130,7 +144,7 @@ export default async function WorkItem({ params }: PageProps) {
                 <div className={styles.itemImageWrapper}>
                     <Image
                         src={item?.image?.url ?? '/noimage.png'}
-                        alt={`${item.name} - ${itemType} at TAG Media Agency`}
+                        alt={`${item.name} - ${itemType} ${type === 'production-companies' ? 'working with' : 'at'} TAG Media Agency`}
                         width={1920}
                         height={1020}
                         priority
@@ -158,12 +172,12 @@ export default async function WorkItem({ params }: PageProps) {
                     ))}
                 </section>
             </div>
-            <JsonLd<Person | CreativeWork>
+            <JsonLd<Person | CreativeWork | Organization>
                 item={{
                     "@context": "https://schema.org",
-                    "@type": type === 'actor' ? "Person" : "CreativeWork",
+                    "@type": type === 'actor' ? "Person" : type === 'series' ? "CreativeWork" : "Organization",
                     "name": item.name,
-                    "description": item.sections?.[0]?.description || `${item.name} is a ${itemType.toLowerCase()} at TAG Media Agency.`,
+                    "description": item.sections?.[0]?.description || `${item.name} is a ${itemType.toLowerCase()} ${type === 'production-companies' ? 'working with' : 'at'} TAG Media Agency.`,
                     "image": item.image?.url,
                     "url": canonicalUrl,
                     ...(type === 'actor' && {
@@ -172,6 +186,9 @@ export default async function WorkItem({ params }: PageProps) {
                             "@type": "Organization",
                             "name": "TAG Media Agency"
                         }
+                    }),
+                    ...(type === 'production-companies' && {
+                        "sameAs": `https://www.tagmediaagency.com/work/production-companies/${slug}`
                     })
                 }}
             />

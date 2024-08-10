@@ -1,51 +1,16 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { AiOutlineYoutube } from "react-icons/ai";
-import { FaFacebookF, FaSnapchat, FaInstagram } from "react-icons/fa6";
-import { RiTwitterXFill } from "react-icons/ri";
 import styles from './style.module.scss';
-import { perspective, slideIn } from "./anim";
+import { perspective } from "./anim";
 import routesLinks from '../../routes';
+import socialIcons from './socialIcons';
 
 interface MenuProps {
     projectsCount: number;
     newsCount: number;
     currentPathname: string;
 }
-
-interface MenuItem {
-    href: string;
-    label: string;
-}
-
-const menuItems: MenuItem[] = [
-    { href: '/', label: 'Home' },
-    { href: '/work', label: 'Work' },
-    { href: '/about', label: 'About' },
-    { href: '/news', label: 'News' },
-];
-
-const socialLinks = [
-    { href: "https://www.facebook.com/TagMediaeg", Icon: FaFacebookF, label: "Facebook Page Link" },
-    { href: "https://www.instagram.com/tagmediaeg", Icon: FaInstagram, label: "Instagram Page Link" },
-    { href: "https://twitter.com/TagMediaEg", Icon: RiTwitterXFill, label: "Twitter Page Link" },
-    { href: "https://www.youtube.com/channel/UCZv3g6bq9P7wU5KZn6a3v8A", Icon: AiOutlineYoutube, label: "Youtube Page Link" },
-    { href: "https://www.snapchat.com/add/tagmediaeg", Icon: FaSnapchat, label: "Snapchat Page Link" },
-];
-
-const menuItemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        transition: {
-            delay: 0.1 * i,
-            duration: 0.5,
-            ease: [0.215, 0.61, 0.355, 1],
-        },
-    }),
-};
 
 const footerVariants = {
     hidden: { opacity: 0 },
@@ -97,7 +62,7 @@ const Menu: React.FC<MenuProps> = ({ projectsCount, newsCount, currentPathname }
                 <div className={styles.by}>
                     <h3>Follow us</h3>
                     <div className={styles.social}>
-                        {socialLinks.map(({ href, Icon, label }) => (
+                        {socialIcons.map(({ href, Icon, label }) => (
                             <Link key={href} href={href} target='_blank' aria-label={label}>
                                 <Icon />
                             </Link>

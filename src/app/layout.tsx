@@ -47,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
       homePageSeoKeywords: "tag media, digital marketing, influencer marketing",
       homePageSeoImage: "https://res.cloudinary.com/dfxz1hh8s/image/upload/v1710376514/iiqbbhbi0ccgdsm8xtl6.jpg",
     };
-  }
+}
 
   return {
     title: variables.homePageSeoTitle,

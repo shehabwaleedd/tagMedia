@@ -8,7 +8,7 @@
     justify-content: space-between;
     height: fit-content;
     max-height: 10vh;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     user-select: none;
     transition: var(--animation-primary);
 
@@ -27,46 +27,55 @@
             gap: 0.05rem;
         }
     }
-
 }
 
+%flex-center {
+    display: flex;
+    align-items: center;
+}
+
+%link-styles {
+    color: var(--title-color);
+    font-size: 1rem;
+    font-family: var(--body-font);
+    cursor: pointer;
+    transition: var(--animation-primary);
+
+    &:hover {
+        color: var(--accent-color);
+    }
+}
 
 .left {
     position: relative;
     z-index: 999;
-    display: flex;
+    @extend %flex-center;
     align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
     gap: 1rem;
     height: fit-content;
 
     @media (max-width: 555px) {
         width: 100%;
-        
     }
 
     a {
-        display: flex;
-        align-items: center;
-
+        @extend %flex-center;
         position: relative;
         z-index: 9;
-
 
         img {
             width: 2.5rem;
             height: 2.5rem;
             object-fit: cover;
-            display: block; // to remove any inline spacing
-
+            display: block;
         }
 
         h2 {
-            font-size: 1rem;
-            font-family: var(--body-font);
-            color: var(--title-color);
-            cursor: pointer;
-            transition: var(--animation-primary);
+            @extend %link-styles;
             padding: 0.5rem 1rem;
+
             @media (max-width: 555px) {
                 padding: 0.25rem;
             }
@@ -74,43 +83,40 @@
     }
 }
 
-.right {
+.center, .right {
+    @extend %flex-center;
     gap: 1rem;
     width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    a {
-        color: var(--title-color);
-        transition: var(--animation-primary);
-
-        &:hover {
-            transition: var(--animation-primary);
-            color: var(--accent-color);
-        }
-    }
-
     @media (max-width: 1088px) {
         display: none;
     }
+
+    a {
+        @extend %link-styles;
+    }
 }
 
+.center {
+    justify-content: center;
+}
 
-
+.right {
+    justify-content: flex-end;
+    
+    
+}
 
 .menu {
-    display: flex;
+    @extend %flex-center;
     justify-content: space-between;
-    align-items: center;
     transition: var(--animation-primary);
     position: fixed;
-    top: 0vh;
+    top: 0;
     right: 0;
     z-index: 999;
+
     @media (min-width: 1055px) {
         display: none;
-        
     }
 
     @media (max-width: 555px) {
@@ -118,12 +124,8 @@
     }
 
     h3 {
-        display: flex;
-        align-items: center;
-        font-size: 1rem;
-        font-family: var(--body-font);
-        color: var(--title-color);
-        cursor: pointer;
+        @extend %flex-center;
+        @extend %link-styles;
 
         svg {
             font-size: 0.5rem;

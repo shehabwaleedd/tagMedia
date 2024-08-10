@@ -20,7 +20,7 @@ interface Project {
     };
     role: string;
     year: string;
-    type: 'partner' | 'portfolio'; // Add this line
+    type: 'partner' | 'portfolio' | 'production'; 
 
 }
 
@@ -28,10 +28,11 @@ async function fetchData() {
     try {
         const partners = await serverDynamicFetch('partner');
         const work = await serverDynamicFetch('portfolio');
-        return { partners, work };
+        const production = await serverDynamicFetch('workedWith');
+        return { partners, work, production };
     } catch (error) {
         console.error('Failed to fetch data:', error);
-        return { partners: null, work: null };
+        return { partners: null, work: null, production: null };
     }
 }
 
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
 };
 
 export default async function WorkPage() {
-    const { partners, work } = await fetchData();
+    const { partners, work, production } = await fetchData();
 
     if (!partners || !work) {
         return <div className={styles.error}>Failed to load data</div>;
@@ -71,18 +72,20 @@ export default async function WorkPage() {
         image: partner.image,
         role: 'Partner',
         year: partner.year || new Date().getFullYear().toString(),
-        type: 'partner' 
+        type: 'partner'
     }));
 
-    const formattedWork: Project[] = work.map((item: any) => ({
+    const formattedProductionCombines: Project[] = production.map((item: any) => ({
         name: item.name,
         image: item.image,
-        role: 'Portfolio',
+        role: 'Production Company',
         year: item.year || new Date().getFullYear().toString(),
-        type: 'portfolio'
+        type: 'production'
     }));
 
-    const combinedData: Project[] = [...formattedPartners, ...formattedWork];
+
+
+    const combinedData: Project[] = [...formattedPartners, ...formattedProductionCombines];
 
     return (
         <>
@@ -92,7 +95,7 @@ export default async function WorkPage() {
             <div className={styles.workPage}>
                 <h1 className={styles.visually_hidden}>Our Work and Partners at TAG Media Agency</h1>
                 <UpperDivider main="All Work" />
-                <AnimatedGrid projects={combinedData} title="All Work" typeUrlMap={{ partner: 'actor', portfolio: 'series' }} />
+                <AnimatedGrid projects={combinedData} title="All Work" typeUrlMap={{ partner: 'actor', portfolio: 'series', production: 'production-companies' }} />
             </div>
             <JsonLd<CreativeWork>
                 item={{

@@ -1,10 +1,11 @@
 'use client'
-import React  from 'react';
+import React from 'react';
 import Link from 'next/link';
 import styles from './style.module.scss';
 import Image from 'next/image';
 import Header from "./Header/index"
 import routesLinks from './routes';
+import socialIcons from './Header/Nav/socialIcons';
 
 const Navbar = () => {
     return (
@@ -20,11 +21,20 @@ const Navbar = () => {
                     <Header />
                 </div>
             </div>
-            <ul className={styles.right}>
+            <ul className={styles.center}>
                 {routesLinks.map(({ href, label }) => (
                     <li key={href}>
                         <Link href={href}>
                             {label}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+            <ul className={styles.right}>
+                {socialIcons.map(({ href, Icon, label }) => (
+                    <li key={href}>
+                        <Link href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                            <Icon />
                         </Link>
                     </li>
                 ))}

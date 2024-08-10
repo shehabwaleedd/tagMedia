@@ -15,13 +15,14 @@ interface Project {
     };
     role: string;
     year: string;
-    type: 'partner' | 'portfolio';
+    type: 'partner' | 'portfolio' | 'production'; 
+
 }
 
 interface AnimatedGridProps {
     projects: Project[];
     title: string;
-    typeUrlMap: Record<'partner' | 'portfolio', string>;
+    typeUrlMap: Record<'partner' | 'portfolio' | 'production', string>;
 }
 
 const AnimatedGrid: React.FC<AnimatedGridProps> = ({ projects, title, typeUrlMap }) => {
@@ -82,6 +83,9 @@ const AnimatedGrid: React.FC<AnimatedGridProps> = ({ projects, title, typeUrlMap
                                         alt={project.name}
                                         placeholder='blur'
                                         blurDataURL={project.image.url}
+                                        className={
+                                            `${project.type === 'production' ? styles.productionImg : ''}`
+                                        }
                                     />
                                 </div>
                                 <div className={styles.projectItem__info}>
