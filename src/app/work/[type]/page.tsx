@@ -159,7 +159,7 @@ export default async function WorkListPage({ params }: PageProps) {
                 />
             </main>
             <footer style={{ display: "none" }}>
-                <p>Tag Media - Egypt's pioneer in digital and influencer marketing. Transforming brands to power growth.</p>
+                <p>Tag Media - Egypt&apos;s pioneer in digital and influencer marketing. Transforming brands to power growth.</p>
             </footer>
             <JsonLd<any>
                 item={{
