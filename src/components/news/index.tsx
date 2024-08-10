@@ -19,7 +19,7 @@ const NewsContent: React.FC<{ news: NewsType[] }> = ({ news }) => (
     </>
 );
 
-const NewsHomePage: React.FC = async () => {
+const NewsHomePage = async () => {
     const news = await serverUseNews();
 
     if (!news) {

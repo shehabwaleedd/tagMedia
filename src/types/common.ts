@@ -73,3 +73,12 @@ export interface ImageFile {
     previewUrl: string; // URL for displaying the image
 }
 
+
+
+export type LogoData = {
+    image: {
+        url: string;
+    },
+    name: string;
+    link: string;
+}

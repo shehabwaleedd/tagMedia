@@ -8,7 +8,7 @@ import { slugify } from '@/utils/slugify';
 
 interface CarouselProps {
     content: PartnerSeriesTypes[];
-    type: 'actor' | 'series';
+    type: 'actor' | 'serie';
 }
 
 const CarouselContent: React.FC<CarouselProps> = ({ content, type }) => (

@@ -10,6 +10,8 @@ import { Toaster } from "sonner";
 import { FacebookPixel } from "@/tags/FacebookPixel";
 import { GoogleAnalytics } from "@/tags/GoogleAnalytics";
 import { LinkedInInsightTag } from "@/tags/LinkedInInsightTag";
+import Background from '@/components/background';
+
 
 // Define the shape of your variables
 interface Variables {
@@ -87,6 +89,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <Background /> 
         <Toaster />
         <Navbar />
         <SmoothScroller />

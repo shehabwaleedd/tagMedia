@@ -13,6 +13,7 @@
     align-self: stretch;
     padding: 0.25rem;
     background-color: var(--container-color);
+
     .image {
         position: relative;
         height: 100%;
@@ -37,6 +38,7 @@
         align-items: flex-start;
         justify-content: space-between;
         padding: 0.5rem;
+
         h3 {
             font-size: var(--big-font-size);
             font-family: var(--title-font);
@@ -63,6 +65,7 @@
         text-align: left;
         line-break: anywhere;
     }
+
     .subtitle {
         padding-bottom: 1rem;
     }
@@ -73,7 +76,7 @@
         justify-content: center;
         width: 100%;
         padding: 1rem 2rem;
-        background-color:rgba(230, 230, 230, .78);
+        background-color: var(--container-color);
         color: var(--title-color);
         font-size: var(--normal-font-size);
         font-family: var(--body-font);
@@ -81,9 +84,10 @@
         border-radius: 0.5rem;
         cursor: pointer;
         transition: var(--animation-primary);
+
         &:hover {
             transition: var(--animation-primary);
-            background-color: rgba(215, 212, 212, 0.98);
+            background-color: var(--card);
         }
     }
 
@@ -103,10 +107,11 @@
     background-color: var(--accent-color);
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
+
     p {
         font-size: var(--normal-font-size);
         font-family: var(--body-font);
-        color: var(--background-color);
+        color: var(--ui-dark);
         text-transform: capitalize;
     }
 

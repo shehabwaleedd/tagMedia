@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import { useKeenSlider } from "keen-slider/react";
 import "@/components/news/NewsHomePage.scss";
 import "keen-slider/keen-slider.min.css";
@@ -8,20 +8,38 @@ import Link from 'next/link';
 
 interface SliderProps {
     content: ReactNode;
-    type: 'actor' | 'series' | 'news';
+    type: 'actor' | 'serie' | 'news';
 }
+
+const animation = { duration: 5000, easing: (t: number) => t }
 
 const Slider: React.FC<SliderProps> = ({ content, type }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [loaded, setLoaded] = useState(false);
     const [sliderRef, instanceRef] = useKeenSlider({
-        loop: false,
+        loop: true,
         initial: 0,
+        renderMode: "performance",
+        mode: "free",
+        drag: true,
         slideChanged(slider) {
             setCurrentSlide(slider.track.details.rel);
         },
-        created() {
+        created(s) {
             setLoaded(true);
+            if (type !== 'news') {
+                s.moveToIdx(1, true, animation);
+            }
+        },
+        updated(s) {
+            if (type !== 'news') {
+                s.moveToIdx(s.track.details.abs + 1, true, animation);
+            }
+        },
+        animationEnded(s) {
+            if (type !== 'news') {
+                s.moveToIdx(s.track.details.abs + 1, true, animation);
+            }
         },
         breakpoints: {
             "(min-width: 440px)": { slides: { perView: 1.25, spacing: 10 } },
@@ -35,14 +53,24 @@ const Slider: React.FC<SliderProps> = ({ content, type }) => {
         slides: { perView: 1.25, spacing: 10, origin: "auto" },
     });
 
-    const moreLink = type === 'news' ? '/news' : `/work/${type}`;
+    useEffect(() => {
+        if (loaded && instanceRef.current && type !== 'news') {
+            const interval = setInterval(() => {
+                instanceRef.current?.next();
+            }, 5000);
+
+            return () => clearInterval(interval);
+        }
+    }, [loaded, instanceRef, type]);
+
+    const moreLink = type === 'news' ? '/news' : `/work/${type}s`;
     const moreLinkText = `More ${type.charAt(0).toUpperCase() + type.slice(1)}`;
 
     return (
         <div className="navigation-wrapper">
             <div className='group'>
                 <Link href={moreLink} aria-label={moreLinkText} className="moreLink">
-                    <span className="slider__btn">{moreLinkText}</span>
+                    <span className="slider__btn">{moreLinkText}s?</span>
                 </Link>
                 <div>
                     {loaded && instanceRef.current && (
@@ -75,7 +103,6 @@ const Slider: React.FC<SliderProps> = ({ content, type }) => {
         </div>
     );
 };
-
 
 interface ArrowProps {
     disabled: boolean;

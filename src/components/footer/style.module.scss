@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--background-color);
+    // background-color: var(--ui-dark);
     position: relative;
     overflow: hidden;
     bottom: 0;
@@ -86,6 +86,7 @@
                     gap: 1rem;
                     width: 100%;
                 }
+
                 &_lower {
                     nav {
                         display: flex;
@@ -163,7 +164,7 @@
 .count {
     padding: 0.25rem 0.5rem;
     border-radius: 1rem;
-    background-color: var(--title-color);
+    background-color: var(--ui-dark);
     color: #fff;
     font-size: var(--small-font-size);
 }

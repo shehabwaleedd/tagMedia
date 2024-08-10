@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react'
 import Marquee from "react-fast-marquee";
 import Image from 'next/image';
 import styles from './style.module.scss'
-import Logos from './logos';
+import Link from 'next/link';
+import { LogoData } from '@/types/common';
 
-const Trusted = ({ direction }: { direction?: "left" | "right" }) => {
+const Trusted = ({ direction, data }: { direction?: "left" | "right", data: LogoData[] }) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -17,17 +18,19 @@ const Trusted = ({ direction }: { direction?: "left" | "right" }) => {
             <div className={styles.container}>
                 {mounted && (
                     <Marquee autoFill={true} speed={40} direction={direction ?? "left"}>
-                        {Logos.map((item, index) => (
-                            <div key={index} className={styles.logo_marquee_content}>
+                        {data.map((item, index) => (
+                            <Link key={index} className={styles.logo_marquee_content} href={item.link} aria-label={item.name} target="_blank">
                                 <Image 
-                                    src={item.img} 
-                                    alt="logo"
+                                    src={item.image.url} 
+                                    alt={item.name}
                                     width={96}
                                     height={96}
                                     priority={true}
                                     sizes="(max-width: 555px) 80px, 96px"
+                                    title={item.name}
+
                                 />
-                            </div>
+                            </Link>
                         ))}
                     </Marquee>
                 )}

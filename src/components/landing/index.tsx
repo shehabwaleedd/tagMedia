@@ -1,10 +1,10 @@
 import React  from 'react';
 import styles from './style.module.scss';
-import Trusted from '../trusted';
 import Link from 'next/link';
 import Icons from '../icons';
 import { GoArrowUpRight } from "react-icons/go";
 import global from "@/app/page.module.scss"
+import Image from 'next/image';
 
 
 const Landing: React.FC = () => {
@@ -36,7 +36,7 @@ const Landing: React.FC = () => {
                 </div>
                 <Icons />
             </div>
-            <Trusted />
+
         </section>
     );
 };

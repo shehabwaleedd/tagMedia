@@ -35,6 +35,10 @@
         border-radius: 1rem;
         max-height: 50vh;
         min-height: 49.6vh;
+        // filter: grayscale(100%);
+        &:hover {
+            filter: grayscale(0%);
+        }
     }
 
     .itemTitle {

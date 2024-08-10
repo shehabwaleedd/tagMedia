@@ -4,13 +4,13 @@
     flex-direction: column;
     min-height: 80vh;
     width: 100%;
-    padding: 1rem;
     padding-top: 10vh;
     height: 100%;
-    border-bottom: var(--border);
+    background-color: var(--container-color);
+    padding: 1rem;
+    border-radius: 1rem;
     position: relative;
     z-index: 1;
-    background-color: var(--background-color);
 
     @media (min-width: 812px) and (max-width: 1255px) {
         min-height: 70vh;
@@ -30,16 +30,12 @@
         height: 100%;
         min-height: 60vh;
         padding: 1rem;
-        background-color: var(--container-color);
         border-radius: 2rem;
 
-        @media (max-width: 555px) {
-
-        }
+        @media (max-width: 555px) {}
 
         h2 {
             font-size: var(--navigation-font-size);
-            color: var(--title-color);
             letter-spacing: -0.1rem;
             font-family: var(--medium-font);
             font-weight: 400;
@@ -55,7 +51,7 @@
 
 .middle {
     h2 {
-        color: var(--accent-second-color);
+        color: var(--accent-color);
     }
 }
 
@@ -71,8 +67,6 @@
     background-color: var(--title-color) !important;
 
     a {
-        color: var(--background-color) !important;
+        color: var(--ui-dark) !important;
     }
 }
-
-

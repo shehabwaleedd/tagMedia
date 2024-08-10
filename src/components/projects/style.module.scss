@@ -1,10 +1,11 @@
 .projectsSection {
     max-height: 120vh;
-    background-color: var(--background-color);
+    background-color: var(--ui-dark);
     height: 100%;
     position: relative;
     z-index: 99;
     padding: 1rem;
+
     @media (max-width: 768px) {
         max-height: none;
         padding: 0;
@@ -19,6 +20,7 @@
     position: relative;
     will-change: transform;
     padding-top: 2.5%;
+
     @media (max-width: 768px) {
         display: flex;
         flex-direction: column;

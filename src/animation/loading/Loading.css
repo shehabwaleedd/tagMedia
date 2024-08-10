@@ -22,7 +22,7 @@
 
 @media (max-width: 456px) {
     .loader {
-        background-color: var(--background-color);
+        background-color: var(--ui-dark);
         width: 100%;
     }
 }

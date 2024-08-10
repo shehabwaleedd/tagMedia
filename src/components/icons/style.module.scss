@@ -9,8 +9,8 @@
     z-index: 99;
 
     @media (max-width: 555px) {
-        right: 1rem;
-        top: 6vh;
+        right: 1.5rem;
+        top: 12.5vh;
     }
 }
 
@@ -33,16 +33,11 @@
 
     svg {
         font-size: 3rem;
-        color: var(--accent-second-color);
+        color: var(--accent-color);
 
         @media (max-width: 555px) {
             font-size: 2rem;
         }
-    }
-
-    &:hover svg {
-        color: var(--accent-color);
-        transform: scale(1.1);
     }
 }
 
