@@ -1,6 +1,36 @@
 import React from 'react'
 import styles from "./page.module.scss"
 import Data from './Data'
+import { Metadata } from 'next'
+
+
+export async function generateMetadata() {
+    return {
+        title: "Privacy Policy | Tag Media",
+        description: "Tag Media Privacy Policy",
+        keywords: ["Tag Media", "Privacy Policy"],
+        openGraph: {
+            title: "Privacy Policy | Tag Media",
+            description: "Tag Media Privacy Policy",
+            url: "https://www.tagmedia.eg/privacy",
+            siteName: "Tag Media",
+            locale: "en_US",
+            type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "Privacy Policy | Tag Media",
+            description: "Tag Media Privacy Policy",
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
+        alternates: {
+            canonical: "https://www.tagmedia.eg/privacy",
+        },
+    }
+}
 const Privacy = () => {
     return (
         <section className={styles.privacy}>

@@ -36,7 +36,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             description,
             images,
             url,
-        }
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
+        alternates: {
+            canonical: url,
+        },
     }
 
 }

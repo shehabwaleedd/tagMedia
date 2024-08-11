@@ -118,6 +118,9 @@ export async function generateMetadata(
             description,
             images: ['https://www.tagmediaagency.com/twitter-image.jpg'],
         },
+        alternates: {
+            canonical: `https://www.tagmediaagency.com/work/${type}`,
+        },
     };
 }
 

@@ -24,7 +24,10 @@ export async function generateMetadata() {
             description: "Explore the latest news and updates from TAG Media. Stay informed with our in-depth articles covering industry trends, company updates, and more.",
             images: "/assets/covers/news_cover.webp",
             url: "https://tagmedia.me/news",
-        }
+        },
+        alternates: {
+            canonical: "https://www.tagmediaeg.com/news",
+        },
 
     }
 }
@@ -32,9 +35,6 @@ export async function generateMetadata() {
 
 export default async function News() {
     const data = await serverUseNews()
-
-
-
     return (
         <main className={styles.news}>
             <UpperDivider main="News" />

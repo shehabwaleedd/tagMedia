@@ -97,8 +97,6 @@ body {
   overscroll-behavior-x: none;
   touch-action: pan-y;
   overflow-x: hidden;
-
-
 }
 
 .no-scroll {

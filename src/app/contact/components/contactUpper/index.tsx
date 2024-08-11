@@ -7,7 +7,8 @@ const ContactUpper = () => {
     return (
         <section className={styles.contactUpper_left}>
             <div className={styles.contactUpper_left_title}>
-                <h2> Let&apos;s Grow <br /> Together </h2>
+                <h2> Let&apos;s Grow </h2>
+                <h2 className={styles.accent}> Together </h2>
             </div>
         </section>
     )

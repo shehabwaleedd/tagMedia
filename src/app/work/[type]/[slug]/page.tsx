@@ -114,6 +114,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             description: `Learn more about ${name}, a ${itemType.toLowerCase()} ${type === 'production-companies' ? 'that has worked with' : 'at'} TAG Media Agency. Explore their work and achievements.`,
             images: [imageUrl],
         },
+        alternates: {
+            canonical: `https://www.tagmediaagency.com/work/${type}/${slug}`,
+        },
+        
     };
 }
 

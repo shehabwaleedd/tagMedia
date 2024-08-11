@@ -16,6 +16,7 @@ const Home: React.FC = async () => {
   const work = await serverDynamicFetch('portfolio');
   const integration = await serverDynamicFetch('integration');
   const logos = await serverDynamicFetch('logo');
+  const services = await serverDynamicFetch('service');
 
   return (
     <main className={styles.main}>
@@ -27,7 +28,7 @@ const Home: React.FC = async () => {
       <Integration integrations={integration} />
       <WorkWithUs />
       <NewsHomePage/>
-      <ServicesComponent />
+      <ServicesComponent data={services}/>
     </main>
   );
 };

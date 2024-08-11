@@ -58,6 +58,13 @@ export const metadata: Metadata = {
         description: 'Explore our portfolio of creative projects and meet our talented partners. Discover how TAG Media Agency delivers exceptional media solutions.',
         images: ['https://example.com/twitter-image.jpg'],
     },
+    robots: {
+        index: true,
+        follow: true,
+    },
+    alternates: {
+        canonical: 'https://www.tagmediaagency.com/work',
+    },
 };
 
 export default async function WorkPage() {
