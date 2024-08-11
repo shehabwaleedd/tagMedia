@@ -15,17 +15,21 @@ interface Project {
     slug: string;
     role: string;
     year: string;
-    type: 'partner' | 'portfolio' | 'production'; 
+    type: 'partner' | 'portfolio' | 'production';
 
 }
 
 interface AnimatedGridProps {
     projects: Project[];
     title: string;
-    typeUrlMap: Record<'partner' | 'portfolio' | 'production', string>;
+    typeUrlMap: {
+        partner: string;
+        portfolio: string;
+        production: string;
+    };
 }
 
-const AnimatedGrid: React.FC<AnimatedGridProps> = ({ projects, title, typeUrlMap }) => {
+const AnimatedGrid: React.FC<AnimatedGridProps> = ({ projects, typeUrlMap }) => {
     const gridRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

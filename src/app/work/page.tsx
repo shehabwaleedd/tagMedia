@@ -15,6 +15,7 @@ interface Project {
     image: {
         url: string;
     };
+    slug: string;
     role: string;
     year: string;
     type: 'partner' | 'portfolio' | 'production';
@@ -114,6 +115,7 @@ export default async function WorkPage() {
         name: partner.name,
         image: partner.image,
         role: 'Partner',
+        slug: partner.slug,
         year: partner.year || new Date().getFullYear().toString(),
         type: 'partner'
     }));
@@ -122,6 +124,7 @@ export default async function WorkPage() {
         name: item.name,
         image: item.image,
         role: 'Production Company',
+        slug: item.slug,
         year: item.year || new Date().getFullYear().toString(),
         type: 'production'
     }));
@@ -138,7 +141,13 @@ export default async function WorkPage() {
             <div className={styles.workPage}>
                 <h1 className={styles.visually_hidden}>Our Work and Partners at TAG Media Agency</h1>
                 <UpperDivider main="All Work" />
-                <AnimatedGrid projects={combinedData} title="All Work" typeUrlMap={{ partner: 'actor', portfolio: 'series', production: 'production-companies' }} />
+                <AnimatedGrid projects={combinedData} title="All Work" 
+                typeUrlMap={{
+                    partner: 'actors',
+                    portfolio: 'series',
+                    production: 'production-companies'
+                }}
+                />
             </div>
             <JsonLd<CreativeWork>
                 item={{

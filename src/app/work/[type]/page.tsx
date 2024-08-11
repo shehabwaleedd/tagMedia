@@ -14,6 +14,7 @@ interface Item {
     image?: {
         url: string;
     };
+    slug: string;
     year?: string;
     description?: string;
 }
@@ -23,6 +24,7 @@ interface Project {
     image: {
         url: string;
     };
+    slug: string;
     role: string;
     year: string;
     type: 'partner' | 'portfolio' | 'production';
@@ -142,6 +144,7 @@ export default async function WorkListPage({ params }: PageProps) {
         name: item.name,
         image: item.image || { url: '/placeholder-image.jpg' },
         role: title,
+        slug: item.slug,
         year: item.year || new Date().getFullYear().toString(),
         type: type === 'actors' ? 'partner' : type === 'series' ? 'portfolio' : 'production',
         description: item.description || `${item.name} is part of Tag Media's ${title.toLowerCase()} network, contributing to digital marketing excellence in Egypt.`

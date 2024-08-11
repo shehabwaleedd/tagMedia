@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         };
     }
 
-    const name = slug;
+    const name = slugToName(slug);
     const item = items.find(item => item.slug === slug);
 
     if (!item) {

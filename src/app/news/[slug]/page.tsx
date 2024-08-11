@@ -4,8 +4,9 @@ import { serverDynamicFetch } from '@/lib/serverDynamicFetch';
 import styles from "./page.module.scss";
 import ImageSlider from '@/components/imageSlider/ImageSlider';
 import Navigation from "../components/Navigation"
+import Description from '@/components/card/Description';
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-    const query = `blog/${decodeURIComponent(params.slug)}`;
+    const query = `blog/${params.slug}`;
     const newsDetails = await serverDynamicFetch(query);
     if (!newsDetails) {
         return null;
@@ -48,9 +49,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 }
 
-
-
-
 export default async function NewsDetails({ params }: { params: { slug: string } }) {
     const query = `blog/${params.slug}`;
     const newsDetails = await serverDynamicFetch(query);
@@ -67,6 +65,9 @@ export default async function NewsDetails({ params }: { params: { slug: string }
                 <Navigation newsDetails={newsDetails} />
                 <h1>{newsDetails?.title}</h1>
                 <p>{newsDetails?.date}</p>
+            </section>
+            <section className={styles.details__content}>
+                <Description description={newsDetails?.subTitle} />
             </section>
             <section className={styles.details__upper_content}>
                 <div>
