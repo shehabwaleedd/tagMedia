@@ -34,7 +34,7 @@
         flex-direction: column;
         gap: 1rem;
         a{
-            width: 50%;
+
             text-decoration: none;
             color:black;
             margin-top: 5px;
@@ -71,11 +71,6 @@
         flex-direction: column;
         gap: 0.5rem;
     }
-
-    h3 {
-        width: 100%;
-    }
-
     h4,
     h3 {
         font-family: var(--body-font);
@@ -86,7 +81,7 @@
 .by {
     flex-direction: row !important;
     justify-content: space-between !important;
-
+    width: 100% !important;
     a {
         justify-content: flex-end !important;
         color: var(--accent-color) !important;

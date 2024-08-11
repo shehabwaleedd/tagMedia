@@ -24,16 +24,29 @@ interface HeaderProps {
 const getResponsiveSize = (width: number): ResponsiveSize => {
     let menuWidth: number, menuHeight: number, right: number, top: number;
 
-    if (width <= 480) {
+    if (width <= 380) {
+        // Tablets
+        menuWidth = width * 0.9; // 60% of viewport width
+        menuHeight = 450;
+        right = -menuWidth * 0.022; // 5% of widt
+        top = -menuHeight * 0.015; // 5% of height
+    } else if (width <= 420) {
+        // Tablets
+        menuWidth = width * 0.9; // 60% of viewport width
+        menuHeight = 425;
+        right = -menuWidth * 0.022; // 5% of widt
+        top = -menuHeight * 0.015; // 5% of height
+
+    } else if (width <= 480) {
         // Mobile phones
         menuWidth = width * 0.8; // 80% of viewport width
         menuHeight = menuWidth / aspectRatio;
         right = -menuWidth * 0.02; // 2% of width
         top = -menuHeight * 0.02; // 2% of height
-    } else if (width <= 1068) {
+    } else if (width <= 1067) {
         // Tablets
-        menuWidth = width * 0.6; // 60% of viewport width
-        menuHeight = 400;
+        menuWidth = width * 0.7; // 60% of viewport width
+        menuHeight = 430;
         right = -menuWidth * 0.022; // 5% of widt
         top = -menuHeight * 0.015; // 5% of height
     } else {
