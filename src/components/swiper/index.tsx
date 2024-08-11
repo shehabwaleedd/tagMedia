@@ -57,7 +57,7 @@ const Slider: React.FC<SliderProps> = ({ content, type }) => {
         if (loaded && instanceRef.current && type !== 'news') {
             const interval = setInterval(() => {
                 instanceRef.current?.next();
-            }, 5000);
+            }, 195000);
 
             return () => clearInterval(interval);
         }
