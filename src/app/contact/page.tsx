@@ -4,35 +4,80 @@ import ContactUpper from "./components/contactUpper"
 import ContactForm from './components/contactForm'
 import ServicesCo from '@/components/servicesCo'
 import Icons from '@/components/icons';
-import { Metadata } from 'next'
 import { serverDynamicFetch } from '@/lib/serverDynamicFetch';
+import axios from 'axios'
+import { Metadata } from 'next';
 
-
-export const metadata: Metadata = {
-    title: 'Contact Tag Media | Egypt\'s Digital & Influencer Marketing Pioneer',
-    description: 'Get in touch with Tag Media, Egypt\'s leader in digital and influencer marketing. Transform your brand and power growth with our expertise.',
-    keywords: ['Tag Media', 'digital marketing', 'influencer marketing', 'Egypt', 'brand growth', 'contact'],
-    openGraph: {
-        title: 'Contact Tag Media | Egypt\'s Digital & Influencer Marketing Pioneer',
-        description: 'Transform your brand and power growth with Tag Media, Egypt\'s leader in digital and influencer marketing. Contact us today!',
-        url: 'https://www.tagmedia.eg/contact',
-        siteName: 'Tag Media',
-        locale: 'en_US',
-        type: 'website',
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Contact Tag Media | Egypt\'s Digital Marketing Experts',
-        description: 'Reach out to Tag Media, Egypt\'s pioneer in digital and influencer marketing. Let\'s power your brand\'s growth together!',
-    },
-    robots: {
-        index: true,
-        follow: true,
-    },
-    alternates: {
-        canonical: 'https://www.tagmedia.eg/contact',
-    },
+interface Variables {
+    contactPageSeoTitle: string;
+    contactPageSeoDescription: string;
+    contactPageSeoKeywords: string;
+    contactPageSeoImage: string;
 }
+
+async function getVariables(): Promise<Variables> {
+    try {
+        const response = await axios.get<Variables>(`${process.env.NEXT_PUBLIC_BASE_URL}/variable`, {
+            headers: { 'Cache-Control': 'max-age=3600' } // Cache for 1 hour
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Failed to fetch variables:', error);
+        throw error;
+    }
+}
+
+
+export async function generateMetadata(): Promise<Metadata> {
+    let variables: Variables;
+    try {
+        variables = await getVariables();
+    } catch (error) {
+        console.error('Failed to fetch variables:', error);
+        variables = {
+            contactPageSeoTitle: "Contact Us - Tag Media",
+            contactPageSeoDescription: "Get in touch with Tag Media, Egypt's leading digital and influencer marketing agency. We're here to answer your questions and help your brand grow.",
+            contactPageSeoKeywords: "contact Tag Media, digital marketing inquiries, influencer marketing contact, Tag Media Egypt",
+            contactPageSeoImage: "https://res.cloudinary.com/dfxz1hh8s/image/upload/v1710376514/iiqbbhbi0ccgdsm8xtl6.jpg",
+        };
+    }
+
+    return {
+        title: variables.contactPageSeoTitle,
+        description: variables.contactPageSeoDescription,
+        themeColor: "#000000",
+        openGraph: {
+            title: variables.contactPageSeoTitle,
+            description: variables.contactPageSeoDescription,
+            type: "website",
+            images: {
+                url: variables.contactPageSeoImage,
+                alt: "Tag Media",
+                width: 1200,
+                height: 630,
+            },
+            siteName: "Tag Media",
+        },
+        twitter: {
+            card: "summary_large_image",
+            site: "@tagmediaeg",
+            title: variables.contactPageSeoTitle,
+            description: variables.contactPageSeoDescription,
+            images: {
+                url: variables.contactPageSeoImage,
+                alt: "Tag Media",
+                width: 1200,
+                height: 630,
+            },
+        },
+        keywords: variables.contactPageSeoKeywords,
+        alternates: {
+            canonical: "https://www.tagmediaeg.com/about",
+        },
+    };
+}
+
+
 
 
 const Contact: React.FC = async () => {

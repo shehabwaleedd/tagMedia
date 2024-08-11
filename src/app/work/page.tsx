@@ -7,11 +7,8 @@ import UpperDivider from '../news/components/TopDivider';
 import AnimatedGrid from './components/AnimatedGrid';
 import { JsonLd } from 'react-schemaorg';
 import { CreativeWork } from 'schema-dts';
+import axios from 'axios'
 
-
-interface PageProps {
-    searchParams: { type?: string };
-}
 
 interface Project {
     name: string;
@@ -20,7 +17,7 @@ interface Project {
     };
     role: string;
     year: string;
-    type: 'partner' | 'portfolio' | 'production'; 
+    type: 'partner' | 'portfolio' | 'production';
 
 }
 
@@ -36,36 +33,75 @@ async function fetchData() {
     }
 }
 
-export const metadata: Metadata = {
-    title: 'Our Work and Partners | TAG Media Agency',
-    description: 'Explore our portfolio of creative projects and meet our talented partners. Discover how TAG Media Agency delivers exceptional media solutions.',
-    openGraph: {
-        title: 'Our Work and Partners | TAG Media Agency',
-        description: 'Explore our portfolio of creative projects and meet our talented partners. Discover how TAG Media Agency delivers exceptional media solutions.',
-        images: [
-            {
-                url: 'https://example.com/ob-image.jpg',
+interface Variables {
+    servicesSeoTitle: string;
+    servicesSeoDescription: string;
+    servicesSeoKeywords: string;
+    servicesSeoImage: string;
+}
+
+async function getVariables(): Promise<Variables> {
+    try {
+        const response = await axios.get<Variables>(`${process.env.NEXT_PUBLIC_BASE_URL}/variable`, {
+            headers: { 'Cache-Control': 'max-age=3600' }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Failed to fetch variables:', error);
+        throw error;
+    }
+}
+
+
+export async function generateMetadata(): Promise<Metadata> {
+    let variables: Variables;
+    try {
+        variables = await getVariables();
+    } catch (error) {
+        console.error('Failed to fetch variables:', error);
+        variables = {
+            servicesSeoTitle: "Work | Tag Media",
+            servicesSeoDescription: "Explore the innovative projects and success stories by Tag Media, Egypt's leader in digital and influencer marketing.",
+            servicesSeoKeywords: "Tag Media portfolio, digital marketing case studies, influencer marketing projects, Tag Media Egypt",
+            servicesSeoImage: "https://res.cloudinary.com/dfxz1hh8s/image/upload/v1710376514/iiqbbhbi0ccgdsm8xtl6.jpg",
+        };
+
+    }
+
+    return {
+        title: variables.servicesSeoTitle,
+        description: variables.servicesSeoDescription,
+        themeColor: "#000000",
+        openGraph: {
+            title: variables.servicesSeoTitle,
+            description: variables.servicesSeoDescription,
+            type: "website",
+            images: {
+                url: variables.servicesSeoImage,
+                alt: "Tag Media",
                 width: 1200,
                 height: 630,
-                alt: 'TAG Media Agency Work and Partners',
             },
-        ],
-        type: 'website',
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Our Work and Partners | TAG Media Agency',
-        description: 'Explore our portfolio of creative projects and meet our talented partners. Discover how TAG Media Agency delivers exceptional media solutions.',
-        images: ['https://example.com/twitter-image.jpg'],
-    },
-    robots: {
-        index: true,
-        follow: true,
-    },
-    alternates: {
-        canonical: 'https://www.tagmediaagency.com/work',
-    },
-};
+            siteName: "Tag Media",
+        },
+        twitter: {
+            card: "summary_large_image",
+            site: "@tagmediaeg",
+            title: variables.servicesSeoTitle,
+            description: variables.servicesSeoDescription,
+            images: {
+                url: variables.servicesSeoImage,
+                alt: "Tag Media",
+                width: 1200,
+                height: 630,
+            },
+        },
+        keywords: variables.servicesSeoKeywords,
+        alternates: {
+            canonical: "https://www.tagmediaeg.com/about",
+        },
+    };
+}
 
 export default async function WorkPage() {
     const { partners, work, production } = await fetchData();

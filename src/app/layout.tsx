@@ -1,5 +1,3 @@
-// app/layout.tsx
-
 import { Metadata } from 'next';
 import axios from 'axios';
 import "./globals.css";
