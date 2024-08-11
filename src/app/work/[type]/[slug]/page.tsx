@@ -15,6 +15,7 @@ interface ItemData {
     image?: {
         url: string;
     };
+    slug: string;
     sections?: {
         title: string;
         description: string;
@@ -73,8 +74,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         };
     }
 
-    const name = slugToName(slug);
-    const item = items.find(item => item.name.toLowerCase() === name.toLowerCase());
+    const name = slug;
+    const item = items.find(item => item.slug === slug);
 
     if (!item) {
         return {

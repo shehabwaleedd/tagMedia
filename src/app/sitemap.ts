@@ -34,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const blogResponse = await serverDynamicFetch('blog') as BlogResponse;
         if (Array.isArray(actors)) {
             actorUrls = actors.map((actor: any) => ({
-                url: `${baseUrl}/work/actor/${actor._id}/${slugify(actor.name)}`,
+                url: `${baseUrl}/work/actor/${actor._id}/${actor.slug}`,
                 lastmod: new Date(actor.createdAt).toISOString(),
                 changefreq: 'monthly',
                 priority: 0.7,
@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         if (Array.isArray(portfolioItems)) {
             portfolioUrls = portfolioItems.map((item: any) => ({
-                url: `${baseUrl}/work/${slugify(item.name)}`,
+                url: `${baseUrl}/work/${item.slug}`,
                 lastmod: new Date(item.createdAt).toISOString(),
                 changefreq: 'monthly',
                 priority: 0.7,

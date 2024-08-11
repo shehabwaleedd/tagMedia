@@ -8,7 +8,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import useWindowSize from '@/hooks/useWindowWidth';
 import { usePathname } from 'next/navigation';
-import { slugify } from '@/utils/slugify';
+
 
 interface Project {
     _id: string;
@@ -16,6 +16,7 @@ interface Project {
     image: {
         url: string;
     };
+    slug: string;
     role: string;
     year: string;
 }
@@ -30,7 +31,7 @@ interface ProjectItemProps {
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ project, index, isActor }) => {
     const type = isActor ? 'actor' : 'series';
-    const href = `/work/${type}/${project._id}/${slugify(project.name)}`;
+    const href = `/work/${type}/${project._id}/${project.slug}`;
 
 
 

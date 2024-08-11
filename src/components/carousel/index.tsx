@@ -4,7 +4,6 @@ import Image from 'next/image';
 import "./Carousel.scss";
 import Slider from '../swiper';
 import { PartnerSeriesTypes } from '@/types/common';
-import { slugify } from '@/utils/slugify';
 
 interface CarouselProps {
     content: PartnerSeriesTypes[];
@@ -15,7 +14,7 @@ const CarouselContent: React.FC<CarouselProps> = ({ content, type }) => (
     <>
         {content.map((item, index) => (
             <div key={item._id} className={`keen-slider__slide carouselItem`}>
-                <Link href={`/work/${type}/${slugify(item.name)}`} className='carouselLink'>
+                <Link href={`/work/${type}/${item.slug}`} className='carouselLink'>
                     <div className='imageWrapper'>
                         <Image
                             src={item.image.url}

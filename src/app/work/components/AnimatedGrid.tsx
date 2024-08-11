@@ -6,13 +6,13 @@ import styles from './style.module.scss';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
-import { slugify } from '@/utils/slugify';
 
 interface Project {
     name: string;
     image: {
         url: string;
     };
+    slug: string;
     role: string;
     year: string;
     type: 'partner' | 'portfolio' | 'production'; 
@@ -74,7 +74,7 @@ const AnimatedGrid: React.FC<AnimatedGridProps> = ({ projects, title, typeUrlMap
                 {columns.map((column, columnIndex) => (
                     <div key={columnIndex} className={`${styles.column} ${columnIndex === 1 ? styles.middleColumn : ''}`}>
                         {column.map((project, index) => (
-                            <Link className={styles.projectItem} key={index} href={`/work/${typeUrlMap[project.type]}/${slugify(project.name)}`}>
+                            <Link className={styles.projectItem} key={index} href={`/work/${typeUrlMap[project.type]}/${project.slug}`}>
                                 <div className={styles.projectItem__image}>
                                     <Image
                                         src={project.image.url}

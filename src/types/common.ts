@@ -26,6 +26,7 @@ export interface PartnerSeriesTypes {
         url: string;
         public_id: string;
     };
+    slug: string;
     _id: string;
     name: string;
     sections: PartnerSeriesSection[];

@@ -5,13 +5,12 @@ import { NewsType } from '@/types/common';
 import NewsCard from '../card';
 import Slider from '../swiper';
 import Link from 'next/link';
-import { slugify } from '@/utils/slugify';
 
 const NewsContent: React.FC<{ news: NewsType[] }> = ({ news }) => (
     <>
         {news.map((newsItem) => (
             <div key={newsItem._id} className="keen-slider__slide">
-                <Link href={`/news/${slugify(newsItem.title)}`}>
+                <Link href={`/news/${newsItem.slug}`}>
                     <NewsCard news={newsItem} />
                 </Link>
             </div>

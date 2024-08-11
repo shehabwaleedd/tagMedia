@@ -1,0 +1,35 @@
+.soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 75%;
+    margin: 0 auto;
+    gap: 1rem;
+    padding: 1rem;
+    min-height: 100vh;
+
+    &_container {
+        background-color: var(--container-color);
+        padding: 3rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: fit-content;
+
+        h1 {
+            font-size: var(--big-font-size);
+            color: var(--title-color);
+        }
+        p {
+            font-size: var(--normal-font-size);
+            color: var(--subtitle-color);
+            font-family: var(--body-font);
+        }
+
+
+    }
+}

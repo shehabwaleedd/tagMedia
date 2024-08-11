@@ -1,11 +1,19 @@
 'use client'
 
-import React from 'react'
+import React, { useMemo, useCallback } from 'react';
+
 import { NewsType } from '@/types/common';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styles from "./style.module.scss"
 import { GoArrowUpRight } from "react-icons/go";
+import { Parser } from 'html-to-react';
+import Description from './Description';
+
+const htmlToReactParser = Parser();
+
+
+
 
 const NewsCard: React.FC<{ news: NewsType }> = ({ news }) => {
     const router = useRouter();
@@ -26,12 +34,6 @@ const NewsCard: React.FC<{ news: NewsType }> = ({ news }) => {
         return title.length <= 15 ? title : `${title.slice(0, 15)}...`;
     }
 
-    const formatDescription = (description: string | undefined) => {
-        if (!description) return '';
-        // Remove HTML tags and extra whitespace
-        const cleanText = description.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
-        return cleanText.length <= 150 ? cleanText : `${cleanText.slice(0, 150)}...`;
-    }
 
     const formatDate = (dateString: string | undefined) => {
         if (!dateString) return '';
@@ -42,6 +44,8 @@ const NewsCard: React.FC<{ news: NewsType }> = ({ news }) => {
             return '';
         }
     }
+
+
 
     return (
         <div className={styles.news__container_card} onClick={() => handleTourClick(news.slug || '')}>
@@ -64,10 +68,10 @@ const NewsCard: React.FC<{ news: NewsType }> = ({ news }) => {
                 </span>
                 <h3>{formatTitle(news.title)}</h3>
                 <p className={styles.subtitle}>
-                    {formatDescription(news.subTitle)}
+                    <Description description={news.subTitle || ''} maxLength={100} />
                 </p>
                 <div className={styles.btnDiv}>
-                    <button onClick={(e) => { e.stopPropagation(); handleTourClick(news.slug || '')}}>
+                    <button onClick={(e) => { e.stopPropagation(); handleTourClick(news.slug || '') }}>
                         <span> Read More </span>
                         <GoArrowUpRight />
                     </button>
