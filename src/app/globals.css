@@ -33,12 +33,11 @@
 
   /* Fonts */
 
-  --body-font: 'Satoshi-Regular', sans-serif;
-  --subtitle-font: 'Avantt-Light', sans-serif;
-  --medium-font: 'Helvetica', sans-serif;
-  --title-font: 'Helvetica', sans-serif;
-  --bold-font: 'Helvetica-Bold', sans-serif;
-  --header-font: 'Youth-Medium', sans-serif;
+  --body-font: var(--font-satoshi-regular), sans-serif;
+  --subtitle-font: var(--font-avantt-light), sans-serif;
+  --medium-font: var(--font-helvetica), sans-serif;
+  --title-font: var(--font-helvetica), sans-serif;
+  --bold-font: var(--font-helvetica-bold), sans-serif;
 
   /* Font Sizes Based on Golden Ratio */
 
@@ -166,68 +165,3 @@ img {
   display: none;
 }
 
-
-@font-face {
-  font-family: 'OVSoge-Medium';
-  src: url('../../public/fonts/OVSoge-Medium.woff') format('woff');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Youth-Medium';
-  src: url('../../public/fonts/Youth-Medium.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Avantt-Medium';
-  src: url('../../public/fonts/Avantt-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Avantt-Bold';
-  src: url('../../public/fonts/Avantt-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
-}
-
-
-@font-face {
-  font-family: 'Avantt-Light';
-  src: url('../../public/fonts/Avantt-Light.ttf') format("truetype");
-  font-weight: 300;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url('../../public/fonts/Helvetica.woff') format("woff");
-  font-weight: 300;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Helvetica-Bold';
-  src: url('../../public/fonts/HelveticaNeueMedium.ttf') format("truetype");
-  font-weight: normal;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Satoshi-Regular';
-  src: url('../../public/fonts/Satoshi-Regular.woff2') format("woff2");
-  font-weight: 300;
-  font-display: swap;
-  font-style: normal;
-}

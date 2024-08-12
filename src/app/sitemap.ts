@@ -89,14 +89,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${baseUrl}/careers`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.7 },
     ];
 
-    console.log('URLs generated:', {
-        staticUrls: staticUrls.length,
-        actorUrls: actorUrls.length,
-        seriesUrls: seriesUrls.length,
-        productionCompanyUrls: productionCompanyUrls.length,
-        newsUrls: newsUrls.length
-    });
-
     return [
         ...staticUrls,
         ...actorUrls,

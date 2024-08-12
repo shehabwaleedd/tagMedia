@@ -9,6 +9,41 @@ import { FacebookPixel } from "@/tags/FacebookPixel";
 import { GoogleAnalytics } from "@/tags/GoogleAnalytics";
 import { LinkedInInsightTag } from "@/tags/LinkedInInsightTag";
 import Background from '@/components/background';
+import localFont from 'next/font/local';
+
+
+const satoshi = localFont({
+  src: '../../public/fonts/Satoshi-Regular.woff2',
+  variable: '--font-satoshi',
+  display: 'swap',
+  preload: true,
+});
+
+
+const avanttLight = localFont({
+  src: '../../public/fonts/Avantt-Light.ttf',
+  variable: '--font-avantt-light',
+  display: 'swap',
+});
+
+const helvetica = localFont({
+  src: '../../public/fonts/Helvetica.woff',
+  variable: '--font-helvetica',
+  display: 'swap',
+});
+
+const helveticaBold = localFont({
+  src: '../../public/fonts/HelveticaNeueMedium.ttf',
+  variable: '--font-helvetica-bold',
+  display: 'swap',
+});
+
+const satoshiRegular = localFont({
+  src: '../../public/fonts/Satoshi-Regular.woff2',
+  variable: '--font-satoshi-regular',
+  display: 'swap',
+});
+
 
 
 // Define the shape of your variables
@@ -88,9 +123,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${avanttLight.variable} ${helvetica.variable} ${helveticaBold.variable} ${satoshiRegular.variable}`}>
       <head>
         <meta name="theme-color" content="#161616" />
+        <link rel="preload" href="/fonts/Avantt-Light.ttf" as="font" type="font/ttf" crossOrigin="anonymous"/>
+        <link rel="preload" href="/fonts/Helvetica.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/HelveticaNeueMedium.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>
       </head>
       <body>
         <Background />

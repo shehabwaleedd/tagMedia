@@ -37,7 +37,6 @@ const ContactForm: React.FC = () => {
                 formRef.current,
                 '4nyzjigYhVGMwCX0W'
             );
-            console.log('Email sent:', response);
             toast.success("Your message has been sent successfully!");
             setFormData(initialFormData);
         } catch (error) {
