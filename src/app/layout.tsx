@@ -89,6 +89,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="theme-color" content="#161616" />
+      </head>
       <body>
         <Background />
         <Toaster />
