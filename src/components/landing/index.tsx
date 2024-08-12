@@ -1,11 +1,10 @@
+import dynamic from 'next/dynamic';
 import React  from 'react';
 import styles from './style.module.scss';
 import Link from 'next/link';
-import Icons from '../icons';
 import { GoArrowUpRight } from "react-icons/go";
 import global from "@/app/page.module.scss"
-import Image from 'next/image';
-
+const Icons = dynamic(() => import('../icons'), { ssr: false });
 
 const Landing: React.FC = () => {
     return (
