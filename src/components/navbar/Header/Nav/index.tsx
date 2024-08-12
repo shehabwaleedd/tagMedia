@@ -53,13 +53,8 @@ const Menu: React.FC<MenuProps> = ({ projectsCount, newsCount, currentPathname }
                     </div>
                 ))}
             </div>
-            <motion.footer
-                className={styles.footer}
-                variants={footerVariants}
-                initial="hidden"
-                animate="visible"
-            >
-                <div className={styles.by}>
+            <motion.footer className={styles.footer}>
+                <motion.div className={styles.by} variants={footerVariants} initial="hidden" animate="visible">
                     <h3>Follow us</h3>
                     <div className={styles.social}>
                         {socialIcons.map(({ href, Icon, label }) => (
@@ -68,11 +63,11 @@ const Menu: React.FC<MenuProps> = ({ projectsCount, newsCount, currentPathname }
                             </Link>
                         ))}
                     </div>
-                </div>
-                <div className={styles.by}>
+                </motion.div>
+                <motion.div className={styles.by} variants={footerVariants} initial="hidden" animate="visible">
                     <h3>Website By</h3>
                     <Link href="https://www.cairo-studio.com" target='_blank'>Cairo Studio</Link>
-                </div>
+                </motion.div>
             </motion.footer>
         </motion.nav>
     );
