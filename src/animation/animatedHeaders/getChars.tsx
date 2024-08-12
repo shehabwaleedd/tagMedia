@@ -4,7 +4,11 @@ import { translate } from "@/components/navbar/anim";
 import { motion } from "framer-motion"
 import styles from "./style.module.scss"
 
-const getChars = (word) => {
+interface GetCharsProps {
+    word: string;
+}
+
+const GetChars: React.FC<GetCharsProps> = ({ word }) => {
     return word.split("").map((char, i) => (
         <div className={styles.getChars} key={char + i}>
             <motion.h2
@@ -19,4 +23,4 @@ const getChars = (word) => {
     ));
 };
 
-export default getChars;
+export default GetChars;

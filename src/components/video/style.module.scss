@@ -1,6 +1,8 @@
 .video {
     width: 100%;
     background-color: var(--ui-dark);
+
+
     @media (max-width: 555px) {
         padding: 0.75rem;
     }
@@ -13,6 +15,9 @@
         position: relative;
         z-index: 2;
         padding: 2rem;
+
+
+
         @media (max-width: 570px) {
             margin: 0;
             padding: 1rem;

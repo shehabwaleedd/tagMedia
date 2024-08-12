@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import styles from './style.module.scss';
-import { perspective } from "./anim";
+import { perspective } from './anim';
 import routesLinks from '../../routes';
 import socialIcons from './socialIcons';
 

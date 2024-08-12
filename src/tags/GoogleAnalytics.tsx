@@ -12,7 +12,7 @@ export const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({ measurementId 
 
     return (
         <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="lazyOnload" />
             <Script id="google-analytics" strategy="afterInteractive">
                 {`
                     window.dataLayer = window.dataLayer || [];

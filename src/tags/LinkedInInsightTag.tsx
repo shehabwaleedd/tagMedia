@@ -8,18 +8,21 @@ export type LinkedInInsightTagProps = {
 export const LinkedInInsightTag = (props: LinkedInInsightTagProps) => {
     const partnerId = props.partnerId || process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
 
+    if (!partnerId) return null;
+    
+
     return (
         <>
             {partnerId && (
                 <>
-                    <Script id="linkedin-insight-script">
+                    <Script id="linkedin-insight-script" strategy="lazyOnload">
                         {`
                             _linkedin_partner_id = "${partnerId}";
                             window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
                             window._linkedin_data_partner_ids.push(_linkedin_partner_id);
                         `}
                     </Script>
-                    <Script id="linkedin-insight-script">
+                    <Script id="linkedin-insight-script" strategy="lazyOnload">
                         {`
               (function(l) {
               if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};

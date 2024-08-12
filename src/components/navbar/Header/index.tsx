@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import styles from './style.module.scss';
 import Button from "./Button";
 import Nav from "./Nav";
-import axios from 'axios';
 import { toast } from 'sonner';
-
-const aspectRatio = 480 / 600;
 
 interface ResponsiveSize {
     width: string;
@@ -16,41 +13,32 @@ interface ResponsiveSize {
     top: string;
 }
 
-interface HeaderProps {
-    projectsCount: number;
-    newsCount: number;
-}
+const aspectRatio = 480 / 600;
 
 const getResponsiveSize = (width: number): ResponsiveSize => {
     let menuWidth: number, menuHeight: number, right: number, top: number;
 
     if (width <= 380) {
-        // Tablets
-        menuWidth = width * 0.9; // 60% of viewport width
+        menuWidth = width * 0.9;
         menuHeight = 450;
-        right = -menuWidth * 0.022; // 5% of widt
-        top = -menuHeight * 0.015; // 5% of height
+        right = -menuWidth * 0.022;
+        top = -menuHeight * 0.015;
     } else if (width <= 420) {
-        // Tablets
-        menuWidth = width * 0.9; // 60% of viewport width
+        menuWidth = width * 0.9;
         menuHeight = 425;
-        right = -menuWidth * 0.022; // 5% of widt
-        top = -menuHeight * 0.015; // 5% of height
-
+        right = -menuWidth * 0.022;
+        top = -menuHeight * 0.015;
     } else if (width <= 480) {
-        // Mobile phones
-        menuWidth = width * 0.8; // 80% of viewport width
+        menuWidth = width * 0.8;
         menuHeight = menuWidth / aspectRatio;
-        right = -menuWidth * 0.02; // 2% of width
-        top = -menuHeight * 0.02; // 2% of height
+        right = -menuWidth * 0.02;
+        top = -menuHeight * 0.02;
     } else if (width <= 1067) {
-        // Tablets
-        menuWidth = width * 0.7; // 60% of viewport width
+        menuWidth = width * 0.7;
         menuHeight = 430;
-        right = -menuWidth * 0.022; // 5% of widt
-        top = -menuHeight * 0.015; // 5% of height
+        right = -menuWidth * 0.022;
+        top = -menuHeight * 0.015;
     } else {
-        // Desktop
         menuWidth = 480;
         menuHeight = 500;
         right = -25;
@@ -69,22 +57,17 @@ const Header: React.FC = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
     const [projectsCount, setProjectsCount] = useState<number>(0);
     const [newsCount, setNewsCount] = useState<number>(0);
-
-    const [responsiveSize, setResponsiveSize] = useState<ResponsiveSize>({
-        width: '480px',
-        height: '650px',
-        right: '-25px',
-        top: '-25px'
-    });
+    const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
     const pathname = usePathname();
 
+    const responsiveSize = useMemo(() => getResponsiveSize(windowWidth), [windowWidth]);
+
     useEffect(() => {
         const handleResize = () => {
-            setResponsiveSize(getResponsiveSize(window.innerWidth));
+            setWindowWidth(window.innerWidth);
         };
 
-        handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -93,15 +76,16 @@ const Header: React.FC = () => {
         const fetchData = async () => {
             try {
                 const [partnersRes, portfolioRes, newsRes] = await Promise.all([
-                    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/partner`),
-                    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio`),
-                    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`)
+                    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/partner`).then(res => res.json()),
+                    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio`).then(res => res.json()),
+                    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`).then(res => res.json())
                 ]);
 
-                setProjectsCount(partnersRes.data.data.length + portfolioRes.data.data.length);
-                setNewsCount(newsRes.data.data.result.length);
+                setProjectsCount(partnersRes.data.length + portfolioRes.data.length);
+                setNewsCount(newsRes.data.result.length);
             } catch (error: any) {
-                toast.error('Error fetching data:', error.message);
+                toast.error('Error fetching data');
+                console.error('Error fetching data:', error);
             }
         };
 
@@ -126,7 +110,7 @@ const Header: React.FC = () => {
         }
     };
 
-    const toggleMenu = () => setIsActive(!isActive);
+    const toggleMenu = () => setIsActive(prev => !prev);
 
     return (
         <header className={styles.header}>

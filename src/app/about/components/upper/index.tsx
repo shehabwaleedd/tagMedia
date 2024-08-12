@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import styles from "./style.module.scss"
-import getChars from "@/animation/animatedHeaders/getChars"
+import GetChars from '@/animation/animatedHeaders/getChars';
 
 
 const AboutUpper: React.FC = () => {
@@ -31,13 +31,13 @@ const AboutUpper: React.FC = () => {
         <motion.section className={styles.about__upper} ref={container} style={{ y: windowWidth > 1200 ? y : 0 }}>
             <div className={styles.about__upper_content}>
                 <div className={styles.about__upper_content_title}>
-                    {getChars("We Transform")}
+                    <GetChars word="We Transform" />
                 </div>
                 <div className={styles.about__upper_content_title}>
-                    {getChars("Brands To Power")}
+                    <GetChars word="Brands To Power" />
                 </div>
                 <div className={styles.about__upper_content_title}>
-                    {getChars("Growth")}
+                    <GetChars word="Growth" />
                 </div>
             </div>
         </motion.section>

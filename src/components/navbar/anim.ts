@@ -1,6 +1,8 @@
-const transition = { duration: 1, ease: [0.76, 0, 0.24, 1] }
+import { Transition, Variants } from 'framer-motion';
 
-export const opacity = {
+const transition: Transition = { duration: 1, ease: [0.76, 0, 0.24, 1] };
+
+export const opacity: Variants = {
     initial: {
         opacity: 0
     },
@@ -12,9 +14,9 @@ export const opacity = {
         opacity: 0,
         transition: { duration: 0.35 }
     }
-}
+};
 
-export const height = {
+export const height: Variants = {
     initial: {
         height: 0
     },
@@ -26,8 +28,9 @@ export const height = {
         height: 0,
         transition
     }
-}
-export const contactPageHeight = {
+};
+
+export const contactPageHeight: Variants = {
     initial: {
         height: 0
     },
@@ -39,9 +42,9 @@ export const contactPageHeight = {
         height: 0,
         transition
     }
-}
+};
 
-export const background = {
+export const background: Variants = {
     initial: {
         height: 0
     },
@@ -53,9 +56,9 @@ export const background = {
         height: 0,
         transition
     }
-}
+};
 
-export const blur = {
+export const blur: Variants = {
     initial: {
         filter: "blur(0px)",
         opacity: 1
@@ -69,11 +72,21 @@ export const blur = {
         filter: "blur(0px)",
         opacity: 1,
         transition: { duration: 0.3 }
-
     }
+};
+
+interface TranslateCustom extends Variants {
+    enter: (i: number[]) => {
+        y: string | number;
+        transition: Transition;
+    };
+    exit: (i: number[]) => {
+        y: string | number;
+        transition: Transition;
+    };
 }
 
-export const translate = {
+export const translate: TranslateCustom = {
     initial: {
         y: "100%",
     },
@@ -85,4 +98,4 @@ export const translate = {
         y: "100%",
         transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: i[1] }
     })
-}
+};
