@@ -155,14 +155,14 @@
         gap: 1rem;
     }
 
-    h4 {
+    h3 {
         font-family: var(--body-font);
         font-weight: 300;
     }
 }
 
 .count {
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 1rem;
     border-radius: 1rem;
     background-color: var(--ui-dark);
     color: #fff;
@@ -201,4 +201,8 @@
 .social {
     display: flex;
     gap: 0.5rem;
+}
+
+.visuallyHidden {
+    display: none;
 }

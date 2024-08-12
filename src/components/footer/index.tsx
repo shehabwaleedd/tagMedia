@@ -45,18 +45,19 @@ const Footer = () => {
                 <div className={styles.footer__upper_right}>
                     <div className={styles.footer__upper_right_content}>
                         <nav aria-label="Main navigation" className={styles.footer__upper_right_content_upper}>
+                            <h3 className={styles.visuallyHidden}>Main Menu</h3>
                             <ul className={styles.menuLinks}>
                                 <li><Link href="/">Home</Link></li>
                                 <li>
                                     <Link href="/work">
-                                        <h4>Work</h4>
+                                        Work
                                         <span className={styles.count}>{projectsCount}</span>
                                     </Link>
                                 </li>
                                 <li><Link href="/about">About</Link></li>
                                 <li>
                                     <Link href="/news">
-                                        <h4>News</h4>
+                                        News
                                         <span className={styles.count}>{newsCount ?? 0}</span>
                                     </Link>
                                 </li>
@@ -65,16 +66,17 @@ const Footer = () => {
                         </nav>
                         <div className={styles.footer__upper_right_content_lower}>
                             <nav aria-label="Secondary navigation" className={styles.menuLinks}>
+                                <h3 className={styles.visuallyHidden}>Secondary Menu</h3>
                                 <ul>
                                     <li>
                                         <Link href="/careers">
-                                            <h4>Careers</h4>
+                                            Careers
                                             <span className={styles.count}>coming soon</span>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/snippets">
-                                            <h4>Snippets</h4>
+                                            Snippets
                                             <span className={styles.count}>coming soon</span>
                                         </Link>
                                     </li>
@@ -82,7 +84,7 @@ const Footer = () => {
                                 <ul>
                                     <li>
                                         <Link href="/privacy">
-                                            <h4>Policy</h4>
+                                            Policy
                                         </Link>
                                     </li>
                                 </ul>
