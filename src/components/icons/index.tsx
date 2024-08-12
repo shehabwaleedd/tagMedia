@@ -1,15 +1,16 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from "./style.module.scss"
-import { motion, AnimatePresence } from 'framer-motion';
 import useWindowSize from '@/hooks/useWindowWidth';
 import socialIcons from '../navbar/Header/Nav/socialIcons';
+import { gsap } from 'gsap';
 
 const Icons: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [currentIconIndex, setCurrentIconIndex] = useState<number>(0);
     const { isMobile, isTablet } = useWindowSize();
     const isTouchDevice = isMobile || isTablet;
+    const iconMenuRef = useRef<HTMLUListElement>(null);
 
     useEffect(() => {
         if (!isOpen) {
@@ -18,6 +19,30 @@ const Icons: React.FC = () => {
             }, 3000);
 
             return () => clearInterval(intervalId);
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (iconMenuRef.current) {
+            if (isOpen) {
+                gsap.to(iconMenuRef.current, { 
+                    opacity: 1, 
+                    duration: 0.5, 
+                    ease: "power2.out" 
+                });
+                gsap.to(iconMenuRef.current.children, { 
+                    opacity: 1, 
+                    duration: 0.3, 
+                    stagger: 0.1, 
+                    ease: "power2.out" 
+                });
+            } else {
+                gsap.to(iconMenuRef.current, { 
+                    opacity: 0, 
+                    duration: 0.5, 
+                    ease: "power2.in" 
+                });
+            }
         }
     }, [isOpen]);
 
@@ -45,52 +70,41 @@ const Icons: React.FC = () => {
     const CurrentIcon = socialIcons[currentIconIndex].Icon;
 
     return (
-        <motion.div 
+        <div 
             className={styles.iconContainer} 
             onMouseEnter={() => handleHover(true)} 
             onMouseLeave={() => handleHover(false)}
             onClick={handleToggle}
         >
-            <button  className={`${styles.icon} ${styles.mainIcon}`}  aria-label="Toggle social media icons">
+            <button className={`${styles.icon} ${styles.mainIcon}`} aria-label="Toggle social media icons">
                 <CurrentIcon />
             </button>
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.ul 
-                        className={styles.iconMenu}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1}}
-                        exit={{ opacity: 0 }}
-                        transition={{ staggerChildren: 0.05, delayChildren: 0.2 }}
-                    >
-                        {socialIcons
-                            .filter((_, index) => index !== currentIconIndex)
-                            .map(({ Icon, href, label }, index) => (
-                                <motion.li 
-                                    key={index}
-                                    initial={{ opacity: 0}}
-                                    animate={{ opacity: 1}}
-                                    exit={{ opacity: 0}}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <motion.a
-                                        href={href}
-                                        className={styles.icon}
-                                        onClick={(e) => handleIconClick(href, e)}
-                                        aria-label={label}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <Icon />
-                                    </motion.a>
-                                </motion.li>
-                            ))}
-                    </motion.ul>
-                )}
-            </AnimatePresence>
-        </motion.div>
+            <ul 
+                ref={iconMenuRef}
+                className={styles.iconMenu}
+                style={{ opacity: 0 }}
+            >
+                {socialIcons
+                    .filter((_, index) => index !== currentIconIndex)
+                    .map(({ Icon, href, label }, index) => (
+                        <li 
+                            key={index}
+                            style={{ opacity: 0 }}
+                        >
+                            <a
+                                href={href}
+                                className={styles.icon}
+                                onClick={(e) => handleIconClick(href, e)}
+                                aria-label={label}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Icon />
+                            </a>
+                        </li>
+                    ))}
+            </ul>
+        </div>
     )
 }
 
