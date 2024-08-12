@@ -12,14 +12,6 @@ import Background from '@/components/background';
 import localFont from 'next/font/local';
 
 
-const satoshi = localFont({
-  src: '../../public/fonts/Satoshi-Regular.woff2',
-  variable: '--font-satoshi',
-  display: 'swap',
-  preload: true,
-});
-
-
 const avanttLight = localFont({
   src: '../../public/fonts/Avantt-Light.ttf',
   variable: '--font-avantt-light',
