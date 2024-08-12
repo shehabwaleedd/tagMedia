@@ -25,28 +25,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://www.tagmediaeg.com';
 
     let actorUrls: UrlObject[] = [];
-    let portfolioUrls: UrlObject[] = [];
+    let seriesUrls: UrlObject[] = [];
+    let productionCompanyUrls: UrlObject[] = [];
     let newsUrls: UrlObject[] = [];
 
     try {
         const actors = await serverDynamicFetch('partner');
-        const portfolioItems = await serverDynamicFetch('portfolio');
+        const seriesItems = await serverDynamicFetch('portfolio');
+        const productionCompanies = await serverDynamicFetch('workedWith');
         const blogResponse = await serverDynamicFetch('blog') as BlogResponse;
+
         if (Array.isArray(actors)) {
             actorUrls = actors.map((actor: any) => ({
-                url: `${baseUrl}/work/actor/${actor._id}/${actor.slug}`,
+                url: `${baseUrl}/work/actors/${actor.slug}`,
                 lastmod: new Date(actor.createdAt).toISOString(),
                 changefreq: 'monthly',
                 priority: 0.7,
             }));
         }
 
-        if (Array.isArray(portfolioItems)) {
-            portfolioUrls = portfolioItems.map((item: any) => ({
-                url: `${baseUrl}/work/${item.slug}`,
+        if (Array.isArray(seriesItems)) {
+            seriesUrls = seriesItems.map((item: any) => ({
+                url: `${baseUrl}/work/series/${item.slug}`,
                 lastmod: new Date(item.createdAt).toISOString(),
                 changefreq: 'monthly',
-                priority: 0.7,
+                priority: 0.6,
+            }));
+        }
+
+        if (Array.isArray(productionCompanies)) {
+            productionCompanyUrls = productionCompanies.map((company: any) => ({
+                url: `${baseUrl}/work/production-companies/${company.slug}`,
+                lastmod: new Date(company.createdAt).toISOString(),
+                changefreq: 'monthly',
+                priority: 0.8,
             }));
         }
 
@@ -55,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 url: `${baseUrl}/news/${article.slug}`,
                 lastmod: new Date(article.createdAt).toISOString(),
                 changefreq: 'weekly',
-                priority: 0.6,
+                priority: 0.9,
             }));
         }
 
@@ -68,28 +80,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${baseUrl}/home`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.9 },
         { url: `${baseUrl}/about`, lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 0.8 },
         { url: `${baseUrl}/work`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.9 },
+        { url: `${baseUrl}/work/actors`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
+        { url: `${baseUrl}/work/series`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
+        { url: `${baseUrl}/work/production-companies`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
         { url: `${baseUrl}/news`, lastmod: new Date().toISOString(), changefreq: 'daily', priority: 0.8 },
         { url: `${baseUrl}/contact`, lastmod: new Date().toISOString(), changefreq: 'yearly', priority: 0.7 },
+        { url: `${baseUrl}/snippets`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.6 },
+        { url: `${baseUrl}/careers`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.7 },
     ];
 
     console.log('URLs generated:', {
         staticUrls: staticUrls.length,
         actorUrls: actorUrls.length,
-        portfolioUrls: portfolioUrls.length,
+        seriesUrls: seriesUrls.length,
+        productionCompanyUrls: productionCompanyUrls.length,
         newsUrls: newsUrls.length
     });
 
     return [
         ...staticUrls,
         ...actorUrls,
-        ...portfolioUrls,
+        ...seriesUrls,
+        ...productionCompanyUrls,
         ...newsUrls,
     ];
 }
 
-const slugify = (title: string): string => {
-    return title
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[^a-z0-9-]/g, '');
-};

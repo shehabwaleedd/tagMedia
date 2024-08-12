@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: variables.homePageSeoTitle,
     description: variables.homePageSeoDescription,
-    themeColor: "#000000",
+    themeColor: "#161616",
     openGraph: {
       title: variables.homePageSeoTitle,
       description: variables.homePageSeoDescription,
