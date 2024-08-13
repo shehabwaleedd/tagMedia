@@ -18,12 +18,12 @@ const CarouselContent: React.FC<CarouselProps> = ({ content, type }) => (
                     <div className='imageWrapper'>
                         <Image
                             src={item.image.url}
-                            width={400}
+                            width={500}
                             height={500}
                             alt={item.name}
                             layout="responsive"
                             objectFit="cover"
-                            priority={type === 'actor' ? index < 3 : false}
+                            priority={type === 'actor' ? index < 4 : false}
                         />
                     </div>
                 </Link>
