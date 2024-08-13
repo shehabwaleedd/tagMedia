@@ -12,8 +12,13 @@
     position: relative;
     z-index: 1;
 
-    @media (min-width: 812px) and (max-width: 1255px) {
-        min-height: 70vh;
+    @media (max-width: 1255px) {
+        min-height: 50vh;
+    }
+    
+
+    @media (min-width: 712px) and (max-width: 1022px) {
+        min-height: 60vh;
     }
 
 
@@ -32,8 +37,6 @@
         padding: 1rem;
         border-radius: 2rem;
 
-        @media (max-width: 555px) {}
-
         h2 {
             font-size: var(--navigation-font-size);
             letter-spacing: -0.1rem;
@@ -41,6 +44,10 @@
             font-weight: 400;
             transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
             line-height: 0.98;
+
+            @media (min-width: 712px) and (max-width: 1255px) {
+                font-size: var(--biggest-font-size);
+            }
 
             @media (max-width: 555px) {
                 font-size: var(--bigger-font-size);

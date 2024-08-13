@@ -3,12 +3,12 @@
     grid-template-columns: repeat(2, 1fr);
     height: 100%;
     width: 100%;
-    border-top: 1px solid var(--border-color);
     padding: 3rem;
     position: relative;
     z-index: 2;
     background-color: var(--ui-dark);
-
+    border-radius: 1rem;
+    
     @media (max-width: 1188px) {
         display: flex;
         flex-direction: column;

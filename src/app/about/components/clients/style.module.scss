@@ -5,9 +5,10 @@
     justify-content: center;
     width: 100%;
     padding: var(--section-padding) 1rem;
-    max-width: 80%;
-    margin: 0 auto;
+
     gap: 5vh;
+    background-color: var(--ui-dark);
+    border-radius: 1rem;
 
     @media (max-width: 855px) {
         max-width: 100%;
@@ -30,6 +31,8 @@
         place-content: center;
         place-items: center;
         mix-blend-mode: difference;
+        max-width: 75%;
+        margin: 0 auto;
 
         @media (max-width: 1055px) {
             grid-template-columns: repeat(3, 1fr);
@@ -39,7 +42,7 @@
             width: 10rem;
             height: 10rem;
             object-fit: contain;
-            filter: grayscale(100%) invert(100%);
+            filter:  grayscale(100%) invert(100%);
 
         }
     }
