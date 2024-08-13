@@ -45,7 +45,7 @@
             transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
             line-height: 0.98;
 
-            @media (min-width: 712px) and (max-width: 1255px) {
+            @media (min-width: 556px) and (max-width: 1255px) {
                 font-size: var(--biggest-font-size);
             }
 
