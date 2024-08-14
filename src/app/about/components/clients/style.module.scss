@@ -5,9 +5,11 @@
     justify-content: center;
     width: 100%;
     padding: var(--section-padding) 1rem;
-
     gap: 5vh;
-    background-color: var(--ui-dark);
+    background-color: var(--ui-dark-ob);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(133, 132, 130, 0.3);
     border-radius: 1rem;
 
     @media (max-width: 855px) {

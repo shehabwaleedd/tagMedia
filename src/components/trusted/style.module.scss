@@ -4,9 +4,13 @@
     width: 100%;
     gap: 2rem;
     background-color: var(--ui-dark);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(133, 132, 130, 0.3);
     position: relative;
     z-index: 3;
-
+    margin-top: 2.5vh;
+    border-radius: 1rem;
     .container {
         mix-blend-mode: difference;
         width: 100%;
@@ -18,7 +22,7 @@
             width: 6rem;
             height: 6rem;
             filter: grayscale(100%) invert(100%);
-
+            border-radius: 1rem;
             @media (max-width: 555px) {
                 width: 5rem;
                 height: 5rem;

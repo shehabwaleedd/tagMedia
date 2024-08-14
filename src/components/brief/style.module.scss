@@ -8,6 +8,9 @@
     padding: var(--section-padding) 0;
     position: relative;
     background-color: var(--container-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(133, 132, 130, 0.3);
     border-radius: 2rem;
     padding: 5vh 2rem;
     z-index: 99;

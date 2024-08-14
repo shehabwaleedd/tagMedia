@@ -12,7 +12,10 @@
     z-index: 9;
     align-self: stretch;
     padding: 0.25rem;
-    background-color: var(--container-color);
+    background-color: var(--ui-dark-ob);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(133, 132, 130, 0.3);
 
     .image {
         position: relative;
@@ -76,7 +79,7 @@
         justify-content: center;
         width: 100%;
         padding: 1rem 2rem;
-        background-color: var(--container-color);
+        background-color: var(--card-color);
         color: var(--title-color);
         font-size: var(--normal-font-size);
         font-family: var(--body-font);
@@ -84,10 +87,9 @@
         border-radius: 0.5rem;
         cursor: pointer;
         transition: var(--animation-primary);
-
         &:hover {
             transition: var(--animation-primary);
-            background-color: var(--card);
+            background-color: var(--hover-color);
         }
     }
 

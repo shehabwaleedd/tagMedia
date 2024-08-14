@@ -1,24 +1,16 @@
 :root {
 
-  --container-color: #3130307a;
-  --hover-color: rgba(69, 68, 68, 0.48);
+  --container-color: #24242497;
+  --hover-color: rgba(69, 68, 68, 0.78);
   --title-color: #fafafa;
   --text-color: #e8e7e7;
   --subtitle-color: #bebebe;
   --ui-dark: #161616;
-  --light-grey: #a7a7a7;
+  --ui-dark-ob: #17171797;
+  --card-color: #2b2a2a;
   --dark-grey: #4b4b4b;
-  --color1: #0080FF;
-  --color2: #AAF0D1;
-  --color3: #355BF5;
-  --alternative-color: #18cde1;
-  --card-background-color: #ffffff;
-  --primary-color: #000000;
-  --secondary-color: #333333;
-  /* --accent-color: #45B5AA; */
   --accent-color: #26FFE9;
   --accent-second-color: #327BC4;
-  --lighter-text-color: #989898;
   --border-color: #c1c1c1;
   --animation-primary: 0.4s cubic-bezier(0.5, 0.75, 0, 1);
   --section-padding: min(3.5vw, 3.5em);

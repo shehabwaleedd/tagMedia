@@ -8,6 +8,9 @@
     height: 100%;
     padding-top: 40vh;
     background-color: var(--container-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(133, 132, 130, 0.3);
     border-radius: 1rem;
     
     @media (max-width: 570px) {

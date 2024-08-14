@@ -16,24 +16,30 @@ const avanttLight = localFont({
   src: '../../public/fonts/Avantt-Light.ttf',
   variable: '--font-avantt-light',
   display: 'swap',
+  weight: '300',
 });
 
 const helvetica = localFont({
   src: '../../public/fonts/Helvetica.woff',
   variable: '--font-helvetica',
   display: 'swap',
+  weight: 'normal',
+  preload: true,
 });
 
 const helveticaBold = localFont({
   src: '../../public/fonts/HelveticaNeueMedium.ttf',
   variable: '--font-helvetica-bold',
   display: 'swap',
+  weight: 'bold',
 });
 
 const satoshiRegular = localFont({
   src: '../../public/fonts/Satoshi-Regular.woff2',
   variable: '--font-satoshi-regular',
   display: 'swap',
+  weight: 'normal',
+  preload: true,
 });
 
 

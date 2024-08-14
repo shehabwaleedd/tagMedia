@@ -7,6 +7,9 @@
     padding-top: 10vh;
     height: 100%;
     background-color: var(--container-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(133, 132, 130, 0.3);
     padding: 1rem;
     border-radius: 1rem;
     position: relative;
@@ -36,6 +39,7 @@
         min-height: 60vh;
         padding: 1rem;
         border-radius: 2rem;
+        padding-bottom: 5vh;
 
         h2 {
             font-size: var(--navigation-font-size);
