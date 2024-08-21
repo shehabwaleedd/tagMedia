@@ -4,9 +4,10 @@ interface Route {
 }
 const routesLinks: Route[] = [
     { href: '/', label: 'Home' },
-    { href: '/work', label: 'Work' },
-    { href: '/about', label: 'About' },
+    { href: '/clients', label: 'Clients' },
     { href: '/news', label: 'News' },
+    { href: '/services', label: 'Services' },
+    { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' },
 ];
 

@@ -11,7 +11,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 
 const Footer = () => {
     const router = usePathname();
-    const isProjectPage = router === '/work';
+    const isProjectPage = router === '/clients';
     const [newsCount, setNewsCount] = useState<number>(0);
     const [projectsCount, setProjectsCount] = useState<number>(0);
 
@@ -49,7 +49,7 @@ const Footer = () => {
                             <ul className={styles.menuLinks}>
                                 <li><Link href="/">Home</Link></li>
                                 <li>
-                                    <Link href="/work">
+                                    <Link href="/clients">
                                         Work
                                         <span className={styles.count}>{projectsCount}</span>
                                     </Link>

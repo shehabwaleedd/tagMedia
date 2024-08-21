@@ -4,7 +4,6 @@ import styles from "./page.module.scss";
 import Landing from "@/components/landing";
 import { serverDynamicFetch } from '@/lib/serverDynamicFetch';
 const Brief = dynamic(() => import("@/components/brief"), { ssr: false });
-const ServicesComponent = dynamic(() => import("@/components/servicesCo"), { ssr: false });
 const NewsHomePage = dynamic(() => import("@/components/news"), { ssr: false });
 const WorkWithUs = dynamic(() => import("@/components/workWithUs"), { ssr: false });
 const Integration = dynamic(() => import("@/components/integration"), { ssr: false });
@@ -16,8 +15,6 @@ const Home: React.FC = async () => {
   const work = await serverDynamicFetch('portfolio');
   const integration = await serverDynamicFetch('integration');
   const logos = await serverDynamicFetch('logo');
-  const services = await serverDynamicFetch('service');
-
   return (
     <main className={styles.main}>
       <Landing />
@@ -28,7 +25,6 @@ const Home: React.FC = async () => {
       <Integration integrations={integration} />
       <WorkWithUs />
       <NewsHomePage/>
-      <ServicesComponent data={services}/>
     </main>
   );
 };

@@ -3,7 +3,6 @@ import styles from "./page.module.scss"
 import ContactUpper from "./components/contactUpper"
 import ContactForm from './components/contactForm'
 import ServicesCo from '@/components/servicesCo'
-import Icons from '@/components/icons';
 import { serverDynamicFetch } from '@/lib/serverDynamicFetch';
 import axios from 'axios'
 import { Metadata } from 'next';
@@ -88,13 +87,10 @@ const Contact: React.FC = async () => {
     return (
         <>
             <main className={styles.contact}>
-                <Icons />
-                <section className={styles.contact_container}>
-                    <ContactUpper />
-                    <ContactForm />
-                </section>
-                <ServicesCo data={services} />
+                <ContactUpper />
+                <ContactForm />
             </main>
+            <ServicesCo data={services} />
         </>
     )
 }

@@ -7,6 +7,8 @@
     height: 100%;
     padding: 1rem;
     gap: 1rem;
+    position: relative;
+    z-index: 1;
 
     h1 {
         font-size: var(--biggest-font-size);
@@ -92,11 +94,11 @@
 
 .separator {
     margin: 0 5px;
-    color: #666;
+    color: var(--subtitle-color);
 }
 
 .crumbLink {
-    color: #0070f3;
+    color: var(--title-color);
     text-decoration: none;
 
     &:hover {
@@ -105,5 +107,5 @@
 }
 
 .currentPage {
-    color: #666;
+    color: var(--subtitle-color);
 }

@@ -42,7 +42,7 @@ const Menu: React.FC<MenuProps> = ({ projectsCount, newsCount, currentPathname }
                                 className={`${styles.menuItem} ${currentPathname === link.href ? styles.active : ''}`}
                             >
                                 {link.label}
-                                {link.href === '/work' && (
+                                {link.href === '/clients' && (
                                     <span className={styles.count}>{projectsCount}</span>
                                 )}
                                 {link.href === '/news' && (

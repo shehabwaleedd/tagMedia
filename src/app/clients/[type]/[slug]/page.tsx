@@ -7,7 +7,7 @@ import axios from 'axios';
 import { notFound } from 'next/navigation';
 import { Person, CreativeWork, Organization } from 'schema-dts';
 import { JsonLd } from 'react-schemaorg';
-import CurrentLocation from '@/app/work/[type]/[slug]/components/location';
+import CurrentLocation from '@/app/clients/[type]/[slug]/components/location';
 
 interface ItemData {
     _id: string;
@@ -37,6 +37,7 @@ interface PageProps {
 async function fetchItems(type: string) {
     let endpoint;
     switch (type) {
+        case 'actors':
         case 'actor':
             endpoint = 'partner';
             break;
@@ -116,7 +117,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             images: [imageUrl],
         },
         alternates: {
-            canonical: `https://www.tagmediaagency.com/work/${type}/${slug}`,
+            canonical: `https://www.tagmediaagency.com/clients/${type}/${slug}`,
         },
         
     };
@@ -138,8 +139,10 @@ export default async function WorkItem({ params }: PageProps) {
     }
 
     const itemType = type === 'actor' ? 'Actor' : type === 'series' ? 'Series' : 'Production Company';
-    const canonicalUrl = `https://www.tagmediaagency.com/work/${type}/${slug}`;
+    const canonicalUrl = `https://www.tagmediaagency.com/clients/${type}/${slug}`;
 
+
+    
     return (
         <>
             <Head>
@@ -193,7 +196,7 @@ export default async function WorkItem({ params }: PageProps) {
                         }
                     }),
                     ...(type === 'production-companies' && {
-                        "sameAs": `https://www.tagmediaagency.com/work/production-companies/${slug}`
+                        "sameAs": `https://www.tagmediaagency.com/clients/production-companies/${slug}`
                     })
                 }}
             />

@@ -61,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
     } catch (error) {
         console.error('Failed to fetch variables:', error);
         variables = {
-            servicesSeoTitle: "Work | Tag Media",
+            servicesSeoTitle: "Clients | Tag Media",
             servicesSeoDescription: "Explore the innovative projects and success stories by Tag Media, Egypt's leader in digital and influencer marketing.",
             servicesSeoKeywords: "Tag Media portfolio, digital marketing case studies, influencer marketing projects, Tag Media Egypt",
             servicesSeoImage: "https://res.cloudinary.com/dfxz1hh8s/image/upload/v1710376514/iiqbbhbi0ccgdsm8xtl6.jpg",
@@ -99,7 +99,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
         keywords: variables.servicesSeoKeywords,
         alternates: {
-            canonical: "https://www.tagmediaeg.com/about",
+            canonical: "https://www.tagmediaeg.com/clients",
         },
     };
 }
@@ -136,14 +136,14 @@ export default async function WorkPage() {
     return (
         <>
             <Head>
-                <link rel="canonical" href="https://www.tagmediaagency.com/work" />
+                <link rel="canonical" href="https://www.tagmediaagency.com/clients" />
             </Head>
             <div className={styles.workPage}>
                 <h1 className={styles.visually_hidden}>Our Work and Partners at TAG Media Agency</h1>
-                <UpperDivider main="All Work" />
-                <AnimatedGrid projects={combinedData} title="All Work" 
+                <UpperDivider main="Our Clients" />
+                <AnimatedGrid projects={combinedData} title="Our Clients" 
                 typeUrlMap={{
-                    partner: 'actors',
+                    partner: 'actor',
                     portfolio: 'series',
                     production: 'production-companies'
                 }}

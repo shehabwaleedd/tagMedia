@@ -11,7 +11,7 @@
     padding: 1rem 1.5rem;
     user-select: none;
     transition: var(--animation-primary);
-
+    mix-blend-mode: difference;
     @media (max-width: 555px) {
         padding: 0.5rem;
     }

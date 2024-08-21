@@ -63,7 +63,7 @@ const Slider: React.FC<SliderProps> = ({ content, type }) => {
         }
     }, [loaded, instanceRef, type]);
 
-    const moreLink = type === 'news' ? '/news' : `/work/${type}s`;
+    const moreLink = type === 'news' ? '/news' : `/clients/${type}s`;
     const moreLinkText = `More ${type.charAt(0).toUpperCase() + type.slice(1)}`;
 
     return (

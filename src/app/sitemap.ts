@@ -37,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         if (Array.isArray(actors)) {
             actorUrls = actors.map((actor: any) => ({
-                url: `${baseUrl}/work/actors/${actor.slug}`,
+                url: `${baseUrl}/clients/actors/${actor.slug}`,
                 lastmod: new Date(actor.createdAt).toISOString(),
                 changefreq: 'monthly',
                 priority: 0.7,
@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         if (Array.isArray(seriesItems)) {
             seriesUrls = seriesItems.map((item: any) => ({
-                url: `${baseUrl}/work/series/${item.slug}`,
+                url: `${baseUrl}/clients/series/${item.slug}`,
                 lastmod: new Date(item.createdAt).toISOString(),
                 changefreq: 'monthly',
                 priority: 0.6,
@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         if (Array.isArray(productionCompanies)) {
             productionCompanyUrls = productionCompanies.map((company: any) => ({
-                url: `${baseUrl}/work/production-companies/${company.slug}`,
+                url: `${baseUrl}/clients/production-companies/${company.slug}`,
                 lastmod: new Date(company.createdAt).toISOString(),
                 changefreq: 'monthly',
                 priority: 0.8,
@@ -79,10 +79,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${baseUrl}`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 1 },
         { url: `${baseUrl}/home`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.9 },
         { url: `${baseUrl}/about`, lastmod: new Date().toISOString(), changefreq: 'monthly', priority: 0.8 },
-        { url: `${baseUrl}/work`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.9 },
-        { url: `${baseUrl}/work/actors`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
-        { url: `${baseUrl}/work/series`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
-        { url: `${baseUrl}/work/production-companies`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
+        { url: `${baseUrl}/clients`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.9 },
+        { url: `${baseUrl}/clients/actors`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
+        { url: `${baseUrl}/clients/series`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
+        { url: `${baseUrl}/clients/production-companies`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.8 },
         { url: `${baseUrl}/news`, lastmod: new Date().toISOString(), changefreq: 'daily', priority: 0.8 },
         { url: `${baseUrl}/contact`, lastmod: new Date().toISOString(), changefreq: 'yearly', priority: 0.7 },
         { url: `${baseUrl}/snippets`, lastmod: new Date().toISOString(), changefreq: 'weekly', priority: 0.6 },

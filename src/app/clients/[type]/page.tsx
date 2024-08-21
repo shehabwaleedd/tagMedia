@@ -104,7 +104,7 @@ export async function generateMetadata(
             title: `${title} | Tag Media - Transforming Brands in Egypt`,
             description,
             type: 'website',
-            url: `https://www.tagmediaagency.com/work/${type}`,
+            url: `https://www.tagmediaagency.com/clients/${type}`,
             images: [
                 {
                     url: 'https://www.tagmediaagency.com/og-image.jpg',
@@ -121,7 +121,7 @@ export async function generateMetadata(
             images: ['https://www.tagmediaagency.com/twitter-image.jpg'],
         },
         alternates: {
-            canonical: `https://www.tagmediaagency.com/work/${type}`,
+            canonical: `https://www.tagmediaagency.com/clients/${type}`,
         },
     };
 }
@@ -173,7 +173,7 @@ export default async function WorkListPage({ params }: PageProps) {
                     "@type": "CollectionPage",
                     "name": `${title} | Tag Media`,
                     "description": description,
-                    "url": `https://www.tagmediaagency.com/work/${type}`,
+                    "url": `https://www.tagmediaagency.com/clients/${type}`,
                     "inLanguage": "en",
                     "isPartOf": {
                         "@type": "WebSite",

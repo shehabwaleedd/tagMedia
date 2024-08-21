@@ -1,34 +1,38 @@
-.contactUpper_left {
+.contactUpper {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    padding: var(--section-padding) 0;
-    min-height: 10vh;
     width: 100%;
-    padding: 3rem;
     height: 100%;
     position: relative;
+    gap: 1rem;
+
     @media (max-width: 570px) {
         padding: 0;
     }
 
-    h2 {
-        margin-bottom: 1rem;
-        color: var(--title-color);
-        font-family: var(--body-font);
-        letter-spacing: normal;
-        font-size: 5rem;
-        font-weight: 600;
-        @media (max-width: 570px) {
-            font-size: var(--semi-big-font-size);
-        }
+    iframe {
+        width: 100%;
+        border-radius: 1rem;
+        height: 40vh;
+
     }
-    &_title {
-        display: flex;
-        flex-direction: column;
-        div {
-            display: flex;
+
+    address {
+        padding: 1rem 0;
+        font-style: normal;
+        p {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 }

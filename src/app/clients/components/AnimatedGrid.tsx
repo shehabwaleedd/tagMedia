@@ -78,7 +78,7 @@ const AnimatedGrid: React.FC<AnimatedGridProps> = ({ projects, typeUrlMap }) => 
                 {columns.map((column, columnIndex) => (
                     <div key={columnIndex} className={`${styles.column} ${columnIndex === 1 ? styles.middleColumn : ''}`}>
                         {column.map((project, index) => (
-                            <Link className={styles.projectItem} key={index} href={`/work/${typeUrlMap[project.type]}/${project.slug}`}>
+                            <Link className={styles.projectItem} key={index} href={`/clients/${typeUrlMap[project.type]}/${project.slug}`}>
                                 <div className={styles.projectItem__image}>
                                     <Image
                                         src={project.image.url}

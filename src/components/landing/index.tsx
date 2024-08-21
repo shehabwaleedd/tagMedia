@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import React  from 'react';
+import React from 'react';
 import styles from './style.module.scss';
 import Link from 'next/link';
 import { GoArrowUpRight } from "react-icons/go";
@@ -17,16 +17,16 @@ const Landing: React.FC = () => {
                     <h2>Tomorrow&apos;s</h2>
                 </div>
                 <div className={styles.right}>
-                    <h2>Markets, <span>Today</span></h2>
+                    <h2>Markets, <span className={styles.middle}>Now!</span></h2>
                 </div>
                 <div className={styles.buttons}>
-                    <Link href='/about' className={global.button}>
+                    <Link href='/about' className={global.button2}>
                         <span>
                             About us
                         </span>
                         <GoArrowUpRight />
                     </Link>
-                    <Link href='/contact' className={global.button}>
+                    <Link href='/contact' className={global.button2}>
                         <span>
                             Contact us
                         </span>
