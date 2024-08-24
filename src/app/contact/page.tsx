@@ -2,8 +2,6 @@ import React from 'react'
 import styles from "./page.module.scss"
 import ContactUpper from "./components/contactUpper"
 import ContactForm from './components/contactForm'
-import ServicesCo from '@/components/servicesCo'
-import { serverDynamicFetch } from '@/lib/serverDynamicFetch';
 import axios from 'axios'
 import { Metadata } from 'next';
 
@@ -80,18 +78,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 
 const Contact: React.FC = async () => {
-    const services = await serverDynamicFetch('service');
-
-
 
     return (
-        <>
-            <main className={styles.contact}>
-                <ContactUpper />
-                <ContactForm />
-            </main>
-            <ServicesCo data={services} />
-        </>
+        <main className={styles.contact}>
+            <ContactUpper />
+            <ContactForm />
+        </main>
     )
 }
 

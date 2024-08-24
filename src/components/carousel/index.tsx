@@ -15,17 +15,17 @@ const CarouselContent: React.FC<CarouselProps> = ({ content, type }) => (
         {content.map((item, index) => (
             <div key={item._id} className={`keen-slider__slide carouselItem`}>
                 <Link href={`/clients/${type}/${item.slug}`} className='carouselLink'>
-                    <div className='imageWrapper'>
-                        <Image
-                            src={item.image.url}
-                            width={500}
-                            height={500}
-                            alt={item.name}
-                            layout="responsive"
-                            objectFit="cover"
-                            priority={type === 'actor' ? index < 4 : false}
-                        />
-                    </div>
+
+                    <Image
+                        src={item.image.url}
+                        alt={item.name}
+                        width={type === 'actor' ? 800 : 300}
+                        height={type === 'actor' ? 800 : 300}
+                        objectFit="contain"
+                        priority={type === 'actor' ? index < 4 : false}
+                    />
+
+                    <h3 className="itemTitle">{item.name}</h3>
                 </Link>
             </div>
         ))}
