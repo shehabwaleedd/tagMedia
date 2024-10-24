@@ -640,6 +640,31 @@ export interface SettingsDocumentDataSocialItemsItem {
 }
 
 /**
+ * Item in *Settings → Footer Secondary Links*
+ */
+export interface SettingsDocumentDataFooterSecondaryLinksItem {
+  /**
+   * Link Label field in *Settings → Footer Secondary Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Enter link text
+   * - **API ID Path**: settings.footer_secondary_links[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *Settings → Footer Secondary Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Select a link
+   * - **API ID Path**: settings.footer_secondary_links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -687,6 +712,19 @@ interface SettingsDocumentData {
    */
   social_items: prismic.GroupField<
     Simplify<SettingsDocumentDataSocialItemsItem>
+  >;
+
+  /**
+   * Footer Secondary Links field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_secondary_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  footer_secondary_links: prismic.GroupField<
+    Simplify<SettingsDocumentDataFooterSecondaryLinksItem>
   >;
 }
 
@@ -2206,6 +2244,7 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavItemsItem,
       SettingsDocumentDataSocialItemsItem,
+      SettingsDocumentDataFooterSecondaryLinksItem,
       AllDocumentTypes,
       AboutLowerSlice,
       AboutLowerSliceDefaultPrimary,

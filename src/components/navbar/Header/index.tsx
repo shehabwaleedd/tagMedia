@@ -5,12 +5,14 @@ import styles from './style.module.scss';
 import Button from "./Button";
 import Nav from "./Nav";
 import { toast } from 'sonner';
+import { SettingsDocument } from '@/types/prismicio-types';
 
 interface ResponsiveSize {
     width: string;
     height: string;
     right: string;
     top: string;
+
 }
 
 const aspectRatio = 480 / 600;
@@ -53,10 +55,8 @@ const getResponsiveSize = (width: number): ResponsiveSize => {
     };
 };
 
-const Header: React.FC = () => {
+const Header: React.FC<{ settings: SettingsDocument, clientsCount: number, newsCount: number }> = ({ settings, clientsCount, newsCount }) => {
     const [isActive, setIsActive] = useState<boolean>(false);
-    const [projectsCount, setProjectsCount] = useState<number>(0);
-    const [newsCount, setNewsCount] = useState<number>(0);
     const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
     const pathname = usePathname();
@@ -72,25 +72,6 @@ const Header: React.FC = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [partnersRes, portfolioRes, newsRes] = await Promise.all([
-                    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/partner`).then(res => res.json()),
-                    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio`).then(res => res.json()),
-                    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`).then(res => res.json())
-                ]);
-
-                setProjectsCount(partnersRes.data.length + portfolioRes.data.length);
-                setNewsCount(newsRes.data.result.length);
-            } catch (error: any) {
-                toast.error('Error fetching data');
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
 
     useEffect(() => {
         setIsActive(false);
@@ -122,11 +103,7 @@ const Header: React.FC = () => {
             >
                 <AnimatePresence mode='wait'>
                     {isActive && (
-                        <Nav
-                            projectsCount={projectsCount}
-                            newsCount={newsCount}
-                            currentPathname={pathname}
-                        />
+                        <Nav clientsCount={clientsCount} newsCount={newsCount} currentPathname={pathname} settings={settings} />
                     )}
                 </AnimatePresence>
             </motion.div>

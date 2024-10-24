@@ -11,7 +11,7 @@ import { LinkedInInsightTag } from "@/tags/LinkedInInsightTag";
 import Background from '@/components/background';
 import localFont from 'next/font/local';
 import { createClient } from '@/prismicio';
-import { SettingsDocument } from '@/components/navbar';
+import { SettingsDocument } from '@/types/prismicio-types';
 
 const avanttLight = localFont({
   src: '../../public/fonts/Avantt-Light.ttf',
@@ -125,7 +125,8 @@ export default async function RootLayout({
 
   const client = createClient();
   const settings = await client.getSingle<any>("settings");
-
+  const clientDocs = await client.getAllByType("clients_post");
+  const newsDocs = await client.getAllByType("news_post");
 
   return (
     <html lang="en" suppressHydrationWarning className={`${avanttLight.variable} ${helvetica.variable} ${helveticaBold.variable} ${satoshiRegular.variable}`}>
@@ -139,10 +140,10 @@ export default async function RootLayout({
       <body>
         <Background />
         <Toaster />
-        <Navbar settings={settings} />
+        <Navbar settings={settings} clientsCount={clientDocs.length} newsCount={newsDocs.length} />
         <SmoothScroller />
         {children}
-        <Footer />
+        <Footer settings={settings} clientsCount={clientDocs.length} newsCount={newsDocs.length} />
         <LinkedInInsightTag partnerId={process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID} />
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
         <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FACEBOOK_PIXEL || ""} />

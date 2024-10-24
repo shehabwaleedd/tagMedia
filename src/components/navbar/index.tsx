@@ -5,51 +5,18 @@ import Link from 'next/link';
 import styles from './style.module.scss';
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import Header from "./Header/index";
-import { FaInstagram, FaFacebookF, FaTwitter, FaLinkedinIn, FaYoutube, FaTiktok } from "react-icons/fa6";
-
-import { KeyTextField, ImageField, LinkField, SelectField } from "@prismicio/types";
-
-export interface SettingsDocumentData {
-    site_title: KeyTextField;
-    site_logo: ImageField;
-    nav_items: {
-        link_label: KeyTextField;
-        link_url: LinkField;
-    }[];
-    social_items: {
-        platform: SelectField;
-        social_url: LinkField;
-        icon_name: SelectField;
-    }[];
-}
-
-export interface SettingsDocument extends Document {
-    data: SettingsDocumentData;
-}
-
-
-const ICON_MAP = {
-    'Instagram': FaInstagram,
-    'Facebook': FaFacebookF,
-    'Twitter': FaTwitter,
-    'LinkedIn': FaLinkedinIn,
-    'YouTube': FaYoutube,
-    'TikTok': FaTiktok
-};
+import { SettingsDocument, getIconComponent } from '@/types/prismicio-types';
 
 interface NavbarProps {
     settings: SettingsDocument;
+    clientsCount: number;
+    newsCount: number;
 }
 
-const Navbar = ({ settings }: NavbarProps) => {
+const Navbar = ({ settings, clientsCount, newsCount }: NavbarProps) => {
     const { site_title, site_logo, nav_items, social_items } = settings.data;
 
     // Helper function to get the icon component
-    const getIconComponent = (icon_name: string | null) => {
-        if (!icon_name) return null;
-        return ICON_MAP[icon_name as keyof typeof ICON_MAP];
-    };
-
     const getDocumentUrl = (linkUrl: any) => {
         if (linkUrl?.url) return linkUrl.url;
 
@@ -107,7 +74,7 @@ const Navbar = ({ settings }: NavbarProps) => {
                 </div>
             </nav>
             <div className={`${styles.menu}`}>
-                <Header />
+                <Header settings={settings} clientsCount={clientsCount} newsCount={newsCount} />
             </div>
         </>
     );

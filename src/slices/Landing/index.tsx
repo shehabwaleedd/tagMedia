@@ -4,7 +4,8 @@ import React from 'react';
 import styles from './style.module.scss';
 const Icons = dynamic(() => import('../../components/icons'), { ssr: false });
 import dynamic from 'next/dynamic';
-
+import { SettingsDocument, getIconComponent } from "@/types/prismicio-types";
+import { Client } from "@prismicio/client";
 /**
  * Props for `Landing`.
  */

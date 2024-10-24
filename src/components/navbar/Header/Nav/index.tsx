@@ -4,12 +4,13 @@ import Link from 'next/link';
 import styles from './style.module.scss';
 import { perspective } from './anim';
 import routesLinks from '../../routes';
-import socialIcons from './socialIcons';
-
+import { SettingsDocument, getIconComponent } from '@/types/prismicio-types';
+import { PrismicNextLink } from '@prismicio/next';
 interface MenuProps {
-    projectsCount: number;
+    clientsCount: number;
     newsCount: number;
     currentPathname: string;
+    settings: SettingsDocument;
 }
 
 const footerVariants = {
@@ -24,7 +25,9 @@ const footerVariants = {
     },
 };
 
-const Menu: React.FC<MenuProps> = ({ projectsCount, newsCount, currentPathname }) => {
+const Menu: React.FC<MenuProps> = ({ clientsCount, newsCount, currentPathname, settings }) => {
+    const { social_items } = settings.data;
+
     return (
         <motion.nav className={styles.nav} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
             <div className={styles.body}>
@@ -43,7 +46,7 @@ const Menu: React.FC<MenuProps> = ({ projectsCount, newsCount, currentPathname }
                             >
                                 {link.label}
                                 {link.href === '/clients' && (
-                                    <span className={styles.count}>{projectsCount}</span>
+                                    <span className={styles.count}>{clientsCount}</span>
                                 )}
                                 {link.href === '/news' && (
                                     <span className={styles.count}>{newsCount}</span>
@@ -57,11 +60,16 @@ const Menu: React.FC<MenuProps> = ({ projectsCount, newsCount, currentPathname }
                 <motion.div className={styles.by} variants={footerVariants} initial="hidden" animate="visible">
                     <h3>Follow us</h3>
                     <div className={styles.social}>
-                        {socialIcons.map(({ href, Icon, label }) => (
-                            <Link key={href} href={href} target='_blank' aria-label={label}>
-                                <Icon />
-                            </Link>
-                        ))}
+                        {social_items?.map((item, index) => {
+                            const IconComponent = getIconComponent(item.icon_name);
+                            return IconComponent ? (
+                                <li key={index}>
+                                    <PrismicNextLink field={item.social_url}>
+                                        <IconComponent />
+                                    </PrismicNextLink>
+                                </li>
+                            ) : null;
+                        })}
                     </div>
                 </motion.div>
                 <motion.div className={styles.by} variants={footerVariants} initial="hidden" animate="visible">
