@@ -4,6 +4,8 @@
     max-width: 90%;
     margin: 0 auto;
     gap: 1rem;
+    position: relative;
+    z-index: 10;
 
     @media (max-width: 1200px) {
         flex-direction: column;
@@ -22,18 +24,11 @@
 
 .projectItem {
     width: 100%;
-
-    &__image {
+    img {
         width: 100%;
-        height: auto;
-        position: relative;
-        aspect-ratio: 1 / 1;
-
-        img {
-            min-height: 55vh;
-            object-fit: cover;
-            border-radius: 1rem;
-        }
+        height: 50vh;
+        object-fit: cover;
+        border-radius: 1rem;
     }
 
     &__info {

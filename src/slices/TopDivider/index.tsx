@@ -6,67 +6,29 @@ import styles from "./style.module.scss";
 import { usePathname } from 'next/navigation';
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import { useScroll, useTransform, motion } from 'framer-motion';
 
-/**
- * Props for `TopDivider`.
- */
 export type TopDividerProps = SliceComponentProps<Content.TopDividerSlice>;
 
-/**
- * Component for "TopDivider" Slices.
- */
 const TopDivider = ({ slice }: TopDividerProps): JSX.Element => {
-  const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [topOffset, setTopOffset] = useState(0);
 
-  const isHomePage = pathname === '/';
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start']
+  })
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "100vh"])
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
 
-    const calculateTopOffset = () => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        setTopOffset(rect.top + window.scrollY);
-      }
-    };
-
-    calculateTopOffset();
-    window.addEventListener('resize', calculateTopOffset);
-
-    if (containerRef.current) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: () => `top+=${topOffset}px top`,
-          end: () => isHomePage ? `bottom+=${topOffset}px 30%` : `bottom+=${topOffset}px 50%`,
-          scrub: true,
-          pin: true,
-          pinSpacing: false,
-          invalidateOnRefresh: true,
-        }
-      });
-
-      tl.to(containerRef.current, {
-        opacity: 0,
-        ease: "none",
-      });
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      window.removeEventListener('resize', calculateTopOffset);
-    };
-  }, [isHomePage, topOffset]);
 
   return (
-    <section className={styles.divider} ref={containerRef}>
+    <motion.section className={styles.divider} ref={containerRef} style={{ y, opacity }}>
       <h2>
         {slice.primary.title}
       </h2>
-    </section>
-  )
+    </motion.section>
+  );
 };
 
 export default TopDivider;

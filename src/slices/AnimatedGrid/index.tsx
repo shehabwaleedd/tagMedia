@@ -66,16 +66,9 @@ const AnimatedGrid: React.FC<AnimatedGridProps> = ({ posts }) => {
                 {columns.map((column, columnIndex) => (
                     <div key={columnIndex} className={`${styles.column} ${columnIndex === 1 ? styles.middleColumn : ''}`}>
                         {column.map((post, index) => {
-
                             return (
-                                <Link
-                                    className={styles.projectItem}
-                                    key={index}
-                                    href={`/clients/${post.uid}`}
-                                >
-                                    <div className={styles.projectItem__image}>
-                                        <PrismicNextImage field={post.data.image} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                                    </div>
+                                <Link className={styles.projectItem} key={index} href={`/clients/${post.uid}`}>
+                                    <PrismicNextImage field={post.data.image} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                                     <div className={styles.projectItem__info}>
                                         <h3>{post.data.title}</h3>
                                     </div>

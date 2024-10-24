@@ -8,7 +8,7 @@ export type DisplayProps = SliceComponentProps<Content.DisplaySlice>;
 
 const Display = ({ slice }: DisplayProps): JSX.Element => {
   return (
-    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className={styles.clients}> 
       <h3>{slice.primary.title}</h3>
       <div className={styles.content}>
         {slice.primary.images.map((item, index) => (
