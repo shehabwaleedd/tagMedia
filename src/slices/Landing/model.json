@@ -1,0 +1,47 @@
+{
+  "id": "landing",
+  "type": "SharedSlice",
+  "name": "Landing",
+  "description": "Landing",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "firstline": {
+          "type": "Text",
+          "config": {
+            "label": "firstLine",
+            "placeholder": "Please Enter first line"
+          }
+        },
+        "secondline": {
+          "type": "Text",
+          "config": {
+            "label": "secondLine",
+            "placeholder": "Please Enter Second Line"
+          }
+        },
+        "thirdline": {
+          "type": "Text",
+          "config": {
+            "label": "thirdLine",
+            "placeholder": "Please Enter Third Line"
+          }
+        },
+        "span": {
+          "type": "Text",
+          "config": {
+            "label": "span",
+            "placeholder": "Please Enter The Colored Span"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

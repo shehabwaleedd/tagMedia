@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, ReactNode, useEffect } from 'react';
 import { useKeenSlider } from "keen-slider/react";
-import "@/components/news/NewsHomePage.scss";
+import "@/components/NewsHomePage.scss";
 import "keen-slider/keen-slider.min.css";
 import { GoArrowRight, GoArrowLeft } from "react-icons/go";
 import Link from 'next/link';

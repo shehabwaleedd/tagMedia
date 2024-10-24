@@ -20,7 +20,7 @@ const getResponsiveSize = (width: number): ResponsiveSize => {
 
     if (width <= 380) {
         menuWidth = width * 0.9;
-        menuHeight = 450;
+        menuHeight = width * 1.25;
         right = -menuWidth * 0.022;
         top = -menuHeight * 0.015;
     } else if (width <= 420) {
@@ -30,7 +30,7 @@ const getResponsiveSize = (width: number): ResponsiveSize => {
         top = -menuHeight * 0.015;
     } else if (width <= 480) {
         menuWidth = width * 0.8;
-        menuHeight = menuWidth / aspectRatio;
+        menuHeight = width * 1.1;
         right = -menuWidth * 0.02;
         top = -menuHeight * 0.02;
     } else if (width <= 1067) {

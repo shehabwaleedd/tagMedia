@@ -1,0 +1,33 @@
+{
+  "id": "video",
+  "type": "SharedSlice",
+  "name": "Video",
+  "description": "Video",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video": {
+          "type": "Text",
+          "config": {
+            "label": "video",
+            "placeholder": "Please Enter Video URL"
+          }
+        },
+        "videoopen": {
+          "type": "Text",
+          "config": {
+            "label": "videoOpen",
+            "placeholder": "Please Enter Video Open URL"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

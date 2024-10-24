@@ -1,0 +1,53 @@
+{
+  "id": "logos_marquee",
+  "type": "SharedSlice",
+  "name": "LogosMarquee",
+  "description": "LogosMarquee",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "direction": {
+          "type": "Text",
+          "config": {
+            "label": "direction",
+            "placeholder": "Enter the direction of the marquee"
+          }
+        },
+        "data": {
+          "type": "Group",
+          "config": {
+            "label": "data",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "link",
+                  "placeholder": "Enter Logo's Link",
+                  "allowTargetBlank": true,
+                  "select": null,
+                  "allowText": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

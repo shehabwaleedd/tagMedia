@@ -1,0 +1,49 @@
+{
+  "id": "carousel",
+  "type": "SharedSlice",
+  "name": "Carousel",
+  "description": "Carousel for displaying partner series or actors",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "type": {
+          "type": "Select",
+          "config": {
+            "label": "Carousel Type",
+            "placeholder": "Select the type of carousel",
+            "options": [
+              "actor",
+              "serie",
+              "news"
+            ]
+          }
+        },
+        "carouselItems": {
+          "type": "Group",
+          "config": {
+            "label": "Carousel Items",
+            "fields": {
+              "card": {
+                "type": "Link",
+                "config": {
+                  "label": "card",
+                  "placeholder": "Please Enter Card",
+                  "allowTargetBlank": true,
+                  "select": null,
+                  "allowText": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

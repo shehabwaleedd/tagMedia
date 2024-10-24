@@ -1,0 +1,62 @@
+@import '../../../../styles/vairables';
+
+.newsCard {
+    display: block;
+    background-color: $background-color;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    box-shadow: $box-shadow-sm;
+    transition: $animation-primary;
+    border: 1px solid rgba($subtitle-color, 0.09);
+    height: 100%;
+    &:hover {
+        box-shadow: 0px 2px 16px 0px rgba($accent-color, 0.19);    
+        transition: $animation-primary;
+    }
+}
+
+.image {
+    width: 100%;
+    height: 250px !important;
+    object-fit: cover;
+}
+
+.content {
+    padding: $spacing-sm;
+    padding-top: 0.25rem;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-xs;
+}
+
+.tag {
+    font-size: $small-font-size;
+    color: $accent-color;
+    background-color: rgba($subtitle-color, 0.09);
+    padding: $spacing-xxs $spacing-xs;
+    border-radius: $border-radius-full;
+    margin: $spacing-xxs;
+    margin-left: 0;
+    transition: $animation-primary;
+
+    &:hover {
+        transition: $animation-primary;
+        background-color: rgba($subtitle-color, 0.19);
+    }
+}
+
+.title {
+    font-size: $big-font-size;
+    font-weight: $semi-bold-font-weight;
+    color: $title-color;
+    margin-bottom: $spacing-xs;
+}
+
+.description {
+    font-size: $normal-font-size;
+    color: $text-color;
+    flex-grow: 1;
+}

@@ -1,0 +1,98 @@
+{
+  "id": "hero_section",
+  "type": "SharedSlice",
+  "name": "HeroSection",
+  "description": "HeroSection",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "phrase1": {
+          "type": "Text",
+          "config": {
+            "label": "phrase1",
+            "placeholder": "First Video's Text "
+          }
+        },
+        "phrase2": {
+          "type": "Text",
+          "config": {
+            "label": "phrase2",
+            "placeholder": "Second Video's Text"
+          }
+        },
+        "herovideoposter": {
+          "type": "Image",
+          "config": {
+            "label": "HeroVideoPoster",
+            "constraint": {
+              "width": 1920,
+              "height": 1080
+            },
+            "thumbnails": []
+          }
+        },
+        "videosrc": {
+          "type": "Text",
+          "config": {
+            "label": "videoSrc",
+            "placeholder": "Video Source Link"
+          }
+        },
+        "framelink": {
+          "type": "Text",
+          "config": {
+            "label": "frameLink",
+            "placeholder": "iFrame's Link"
+          }
+        },
+        "gradient": {
+          "type": "Boolean",
+          "config": {
+            "label": "gradient",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        },
+        "isvideo": {
+          "type": "Boolean",
+          "config": {
+            "label": "isVideo",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        },
+        "direction": {
+          "type": "Text",
+          "config": {
+            "label": "direction",
+            "placeholder": "\"leftBottom\" or \"center\""
+          }
+        },
+        "centerphrase": {
+          "type": "Text",
+          "config": {
+            "label": "centerPhrase",
+            "placeholder": "Enter The Center Phrase If It Exists ( Optional )"
+          }
+        },
+        "imglink": {
+          "type": "Image",
+          "config": {
+            "label": "imgLink",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "news_slider",
+  "type": "SharedSlice",
+  "name": "NewsSlider",
+  "description": "News Slider component",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default News Slider variation",
+      "primary": {
+        "title": {
+          "type": "Select",
+          "config": {
+            "label": "Section Title",
+            "options": [
+              "Latest News",
+              "Related Articles"
+            ],
+            "placeholder": "Select section title"
+          }
+        },
+        "text": {
+          "type": "Text",
+          "config": {
+            "label": "Section Text",
+            "placeholder": "Provide a brief description or introduction for this section"
+          }
+        },
+        "cards": {
+          "type": "Group",
+          "config": {
+            "label": "Cards",
+            "repeat": true,
+            "fields": {
+              "referencelink": {
+                "type": "Link",
+                "config": {
+                  "label": "Reference Link",
+                  "placeholder": "Add Card Link (Required)",
+                  "allowTargetBlank": true,
+                  "select": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {}
+    }
+  ]
+}

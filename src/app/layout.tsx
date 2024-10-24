@@ -10,7 +10,8 @@ import { GoogleAnalytics } from "@/tags/GoogleAnalytics";
 import { LinkedInInsightTag } from "@/tags/LinkedInInsightTag";
 import Background from '@/components/background';
 import localFont from 'next/font/local';
-
+import { createClient } from '@/prismicio';
+import { SettingsDocument } from '@/components/navbar';
 
 const avanttLight = localFont({
   src: '../../public/fonts/Avantt-Light.ttf',
@@ -115,24 +116,30 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+  const client = createClient();
+  const settings = await client.getSingle<any>("settings");
+
+
   return (
     <html lang="en" suppressHydrationWarning className={`${avanttLight.variable} ${helvetica.variable} ${helveticaBold.variable} ${satoshiRegular.variable}`}>
       <head>
         <meta name="theme-color" content="#161616" />
-        <link rel="preload" href="/fonts/Avantt-Light.ttf" as="font" type="font/ttf" crossOrigin="anonymous"/>
+        <link rel="preload" href="/fonts/Avantt-Light.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Helvetica.woff" as="font" type="font/woff" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/HelveticaNeueMedium.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>
+        <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>
         <Background />
         <Toaster />
-        <Navbar />
+        <Navbar settings={settings} />
         <SmoothScroller />
         {children}
         <Footer />

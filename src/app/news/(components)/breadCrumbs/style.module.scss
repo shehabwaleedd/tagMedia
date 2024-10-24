@@ -1,0 +1,23 @@
+@import '../../../../styles/vairables';
+
+.breadcrumbs {
+    @include flex(row, flex-start, flex-start);
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.separator {
+    margin: 0 5px;
+    color: #666;
+}
+
+.crumbLink {
+    color: $accent-color;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

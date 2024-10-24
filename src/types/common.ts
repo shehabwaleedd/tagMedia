@@ -1,18 +1,16 @@
 export interface NewsType {
     title: string
     subTitle: string
-    mainImg: MainImg;
-    images: MainImg[];
+    mainimage: MainImg;
     date: string;
     link: string;
     _id: string;
     news?: string;
-    category: string;
     author: string;
     createdAt: string;
     tags: string[];
-    sections: Section[];
-    slug: string;
+    sections?: Section[];
+    uid: string;
     data?: any;
     seoTitle?: string | null;
     seoDescription?: string | null;

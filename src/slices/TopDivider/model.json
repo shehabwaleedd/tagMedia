@@ -1,0 +1,26 @@
+{
+  "id": "top_divider",
+  "type": "SharedSlice",
+  "name": "TopDivider",
+  "description": "TopDivider",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": "Enter Title ( Must )"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

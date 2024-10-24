@@ -1,0 +1,233 @@
+@import '../../styles/vairables';
+
+.video {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: $dark-ui;
+
+    .normalVideo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .gradientVideo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 45%, $background-color 100%);
+            z-index: 99;
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    &.withGradient::after {
+        background: linear-gradient(to bottom,
+                rgba(0, 0, 0, 0.5) 0%,
+                rgba(0, 0, 0, 0.5) 50%,
+                rgba(0, 0, 0, 0.75) 75%,
+                $dark-ui 100%);
+    }
+
+    &.withoutGradient::after {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+
+    .abs {
+        position: absolute;
+        z-index: 3;
+        top: 75%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        max-width: 55%;
+        height: fit-content;
+        width: 100%;
+        pointer-events: none;
+
+        @include respond-to(large-screen) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            p,
+            a {
+                text-align: left !important;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 1290px) and (min-width: 777px) {
+            top: 65%;
+        }
+
+        @include respond-to(medium-tablet) {
+            max-width: 95%;
+            width: 100%;
+            left: 50%;
+        }
+    }
+
+    .center {
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 75%;
+        height: fit-content;
+        width: 100%;
+        pointer-events: none;
+        text-align: center !important;
+        @include flexCenter(column);
+        align-content: center;
+
+        p,
+        a,
+        span {
+            text-align: center !important;
+        }
+
+        @media (max-width: 777px) {
+            max-width: 95%;
+        }
+    }
+}
+
+.mouseScroll {
+    width: 2px;
+    height: 2px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $subtitle-color;
+
+    animation: scroll-anim 3s linear infinite;
+}
+
+.scrollIndicator {
+    width: 28px;
+    height: 40px;
+    border-radius: 20px;
+    opacity: 0px;
+    border: 2px solid $subtitle-color;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+}
+
+@keyframes scroll-anim {
+    0% {
+        opacity: 0;
+        top: 10px;
+        height: 2px;
+    }
+
+    30% {
+        opacity: 1;
+        top: 10px;
+        height: 2px;
+    }
+
+    50% {
+        opacity: 1;
+        top: 10px;
+        height: 14px;
+    }
+
+    70% {
+        opacity: 1;
+        top: 22px;
+        height: 2px;
+    }
+
+    100% {
+        opacity: 0;
+        top: 22px;
+        height: 2px;
+    }
+}
+
+.cursor {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    transition: $animation-primary;
+
+    img {
+        object-fit: contain;
+        transition: $animation-primary;
+    }
+}
+
+.iframeOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.iframeContainer {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    max-width: 1200px;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+.hidePoster {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}

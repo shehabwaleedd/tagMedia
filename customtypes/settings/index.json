@@ -1,0 +1,98 @@
+{
+  "format": "custom",
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "site_title": {
+        "type": "Text",
+        "config": {
+          "label": "Site Title",
+          "placeholder": "Enter site title (e.g. Tag Media)"
+        }
+      },
+      "site_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo",
+          "constraint": {
+            "width": 150,
+            "height": 150
+          },
+          "thumbnails": []
+        }
+      },
+      "nav_items": {
+        "type": "Group",
+        "config": {
+          "label": "Navigation Links",
+          "fields": {
+            "link_label": {
+              "type": "Text",
+              "config": {
+                "label": "Link Label",
+                "placeholder": "Enter link text"
+              }
+            },
+            "link_url": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "Select a link",
+                "select": null
+              }
+            }
+          }
+        }
+      },
+      "social_items": {
+        "type": "Group",
+        "config": {
+          "label": "Social Links",
+          "fields": {
+            "platform": {
+              "type": "Select",
+              "config": {
+                "label": "Social Platform",
+                "placeholder": "Select platform",
+                "options": [
+                  "Instagram",
+                  "Facebook",
+                  "Twitter",
+                  "LinkedIn",
+                  "YouTube",
+                  "TikTok"
+                ]
+              }
+            },
+            "social_url": {
+              "type": "Link",
+              "config": {
+                "label": "Social Link",
+                "placeholder": "Enter social media URL",
+                "allowTargetBlank": true
+              }
+            },
+            "icon_name": {
+              "type": "Select",
+              "config": {
+                "label": "Icon Name",
+                "placeholder": "Select icon",
+                "options": [
+                  "Instagram",
+                  "Facebook",
+                  "Twitter",
+                  "LinkedIn",
+                  "YouTube",
+                  "TikTok"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+@import "../../styles/vairables";
+
+
+.description {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+
+    p {
+        margin: 0;
+        font-family: $font-primary;
+        font-size: $biggest-font-size;
+        color: $background-color;
+        font-weight: 500;
+        pointer-events: none;
+        flex-wrap: wrap;
+        line-height: 1.1;
+        overflow: hidden;
+        display: inline-block;
+
+        @media (max-width: 1156px) {
+            font-size: $bigger-font-size;
+        }
+
+        @media (max-width: 656px) {
+            font-size: $semi-big-font-size;
+        }
+
+        &.subtitle {
+            font-size: $big-font-size;
+            opacity: 0.5;
+            font-weight: 400;
+
+            @media (max-width: 1156px) {
+                font-size: $normal-font-size;
+                font-weight: 300;
+            }
+
+            @media (max-width: 656px) {
+                font-size: $small-font-size;
+            }
+        }
+    }
+
+    .word {
+        display: inline-block;
+        margin-right: 0.25em;
+        margin-bottom: 0.25em;
+        white-space: nowrap;
+    }
+
+    .mask {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+    }
+}

@@ -1,0 +1,189 @@
+@import '../../styles/vairables';
+
+.achievementsCarousel {
+    padding: $spacing-section-mobile;
+    padding-bottom: 0;
+    max-width: $container-max-width-xl;
+    margin: 0 auto;
+    z-index: 10;
+
+    @include respond-to(large-screen) {
+        max-width: $container-max-width-xxl;
+    }
+
+
+
+    &__upper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $spacing-lg;
+        width: 100%;
+
+        @include respond-to(small-tablet) {
+            display: unset;
+        }
+    }
+
+    &__content {
+
+
+        @include respond-to(small-tablet) {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    &__lower {
+        position: relative;
+
+        @include respond-to(small-tablet) {
+            padding-top: 1rem;
+        }
+    }
+}
+
+.container {
+    max-width: $container-max-width-xl;
+    margin: 0 auto;
+    
+    @include respond-to(large-screen) {
+        max-width: 100%;
+    }
+}
+
+.sectionTitle {
+    @extend .sectionTitle;
+    margin-bottom: $spacing-sm;
+}
+
+.sectionText {
+    @extend .sectionText;
+    color: $text-color;
+}
+
+.carouselBtns {
+    display: flex;
+    gap: $spacing-sm;
+    color: $accent-color;
+
+    @include respond-to(ipad) {
+        margin-top: $spacing-sm;
+        justify-content: flex-end;
+        width: 100%;
+        padding-right: 1rem;
+    }
+}
+
+.carouselBtn {
+    @include reset-button;
+    color: $accent-color !important;
+    border: 1px solid $accent-color;
+    border-radius: $border-radius-full;
+    width: 40px;
+    height: 40px;
+    @include flexCenter(row);
+    transition: $transition-primary;
+
+    &:hover {
+        transition: $transition-primary;
+        background-color: $accent-color;
+        color: $white !important;
+    }
+}
+
+.swiper {
+    padding: $spacing-sm;
+}
+
+.swiperSlide {
+    display: flex;
+    height: auto !important;
+}
+
+.card {
+    border-radius: $border-radius-lg;
+    border: 1px solid rgba($subtitle-color, 0.09);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: $background-color;
+
+}
+
+.cardImage {
+    @include responsive-image;
+    height: 200px;
+    object-fit: cover;
+    width: 100% !important;
+    padding: 0;
+    border-top-left-radius: $border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
+}
+
+.cardContent {
+    padding: 1rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.cardTitle {
+    font-size: $big-font-size;
+    font-weight: $semi-bold-font-weight;
+    color: $title-color;
+    margin-bottom: $spacing-xs;
+
+}
+
+.cardDesc {
+    font-size: $normal-font-size;
+    color: $text-color;
+    flex-grow: 1;
+    max-width: 300px;
+
+}
+
+@include respond-to(ipad) {
+    .achievementsCarousel {
+        &__content {
+            max-width: 100%;
+            margin-bottom: $spacing-sm;
+        }
+
+        &__upper {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+}
+
+@include respond-to(phone) {
+    .sectionTitle {
+        font-size: $semi-big-font-size;
+    }
+}
+
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-xs;
+}
+
+.tag {
+    font-size: $small-font-size;
+    color: $accent-color;
+    background-color: rgba($subtitle-color, 0.09);
+    padding: $spacing-xxs $spacing-xs;
+    border-radius: $border-radius-full;
+    margin: $spacing-xxs;
+    margin-left: 0;
+    transition: $animation-primary;
+
+    &:hover {
+        transition: $animation-primary;
+        background-color: rgba($subtitle-color, 0.19);
+    }
+}

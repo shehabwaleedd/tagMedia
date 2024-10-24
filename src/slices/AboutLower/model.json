@@ -1,0 +1,40 @@
+{
+  "id": "about_lower",
+  "type": "SharedSlice",
+  "name": "AboutLower",
+  "description": "AboutLower",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": "Please Enter Left Title"
+          }
+        },
+        "paragraghfirst": {
+          "type": "Text",
+          "config": {
+            "label": "paragraghFirst",
+            "placeholder": "Please Enter Paragraph First"
+          }
+        },
+        "paragraghsecond": {
+          "type": "Text",
+          "config": {
+            "label": "paragraghSecond",
+            "placeholder": "Please Enter Paragraph Second"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

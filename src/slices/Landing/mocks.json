@@ -1,0 +1,29 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"firstline": {
+				"__TYPE__": "FieldContent",
+				"value": "managed",
+				"type": "Text"
+			},
+			"secondline": {
+				"__TYPE__": "FieldContent",
+				"value": "winter",
+				"type": "Text"
+			},
+			"thirdline": {
+				"__TYPE__": "FieldContent",
+				"value": "spell",
+				"type": "Text"
+			},
+			"span": {
+				"__TYPE__": "FieldContent",
+				"value": "day",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

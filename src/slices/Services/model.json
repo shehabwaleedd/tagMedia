@@ -1,0 +1,56 @@
+{
+  "id": "services",
+  "type": "SharedSlice",
+  "name": "Services",
+  "description": "Services",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": "Please Enter Title"
+          }
+        },
+        "services_list": {
+          "type": "Group",
+          "config": {
+            "fields": {
+              "category_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Category Name",
+                  "placeholder": "Enter category name"
+                }
+              },
+              "services_items": {
+                "type": "Group",
+                "config": {
+                  "fields": {
+                    "service_item": {
+                      "type": "Text",
+                      "config": {
+                        "label": "Service Item",
+                        "placeholder": "Enter service item"
+                      }
+                    }
+                  },
+                  "label": "Service Items"
+                }
+              }
+            },
+            "label": "Services"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

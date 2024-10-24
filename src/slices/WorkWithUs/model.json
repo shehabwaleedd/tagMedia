@@ -1,0 +1,70 @@
+{
+  "id": "work_with_us",
+  "type": "SharedSlice",
+  "name": "WorkWithUs",
+  "description": "WorkWithUs",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": "Please Enter Title"
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "description",
+            "placeholder": "Please Enter Description"
+          }
+        },
+        "partnership_options": {
+          "type": "Group",
+          "config": {
+            "label": "partnership_options",
+            "repeat": true,
+            "fields": {
+              "option_title": {
+                "type": "Text",
+                "config": {
+                  "label": "option_title",
+                  "placeholder": "Please Enter Option Title"
+                }
+              },
+              "option_description": {
+                "type": "Text",
+                "config": {
+                  "label": "option_description",
+                  "placeholder": "Please Enter Option Description"
+                }
+              },
+              "button_text": {
+                "type": "Text",
+                "config": {
+                  "label": "button_text",
+                  "placeholder": "Please Enter Button Text"
+                }
+              },
+              "calendarlink": {
+                "type": "Text",
+                "config": {
+                  "label": "calendarLink",
+                  "placeholder": "Please Enter Calendar Link"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

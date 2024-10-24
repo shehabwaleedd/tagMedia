@@ -1,0 +1,34 @@
+{
+  "id": "mini_services",
+  "type": "SharedSlice",
+  "name": "MiniServices",
+  "description": "Mini services section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "primary": {
+        "data": {
+          "type": "Group",
+          "config": {
+            "label": "data",
+            "repeat": true,
+            "fields": {
+              "buttonname": {
+                "type": "Text",
+                "config": {
+                  "label": "buttonName",
+                  "placeholder": "Enter Button Name"
+                }
+              }
+            }
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

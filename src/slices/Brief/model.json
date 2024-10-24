@@ -1,0 +1,49 @@
+{
+  "id": "brief",
+  "type": "SharedSlice",
+  "name": "Brief",
+  "description": "Brief section with title, description and services",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": "Enter the title"
+          }
+        },
+        "desc": {
+          "type": "Text",
+          "config": {
+            "label": "Desc",
+            "placeholder": "Enter the description"
+          }
+        },
+        "data": {
+          "type": "Group",
+          "config": {
+            "label": "Services",
+            "repeat": true,
+            "fields": {
+              "buttonname": {
+                "type": "Text",
+                "config": {
+                  "label": "buttonName",
+                  "placeholder": "Enter Button Name"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

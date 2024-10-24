@@ -1,0 +1,40 @@
+{
+  "id": "contact",
+  "type": "SharedSlice",
+  "name": "Contact",
+  "description": "Contact",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "iframelink": {
+          "type": "Text",
+          "config": {
+            "label": "iframeLink",
+            "placeholder": "Please Enter iFrame link"
+          }
+        },
+        "address": {
+          "type": "Text",
+          "config": {
+            "label": "Address",
+            "placeholder": "Please Enter Adress"
+          }
+        },
+        "phone_number": {
+          "type": "Number",
+          "config": {
+            "label": "Phone Number",
+            "placeholder": "Please Enter Phone Number"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
