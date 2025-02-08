@@ -3,6 +3,7 @@ import React, { useState, useMemo } from 'react';
 import styles from './style.module.scss';
 import NewsCards from '../newsCards/NewsCards';
 import { Content } from '@prismicio/client';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type NewsPostDocument = Content.NewsPostDocument;
 
@@ -48,11 +49,52 @@ const NewsList: React.FC<NewsListProps> = ({ initialNews }) => {
                     ))}
                 </div>
             </div>
-            <div className={styles.newsGrid}>
-                {filteredNews.map((newsItem, index) => (
-                    <NewsCards key={index} news={newsItem} />
-                ))}
-            </div>
+            <AnimatePresence mode="wait">
+                <motion.div
+                    className={styles.newsGrid}
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                        duration: 0.4,
+                        ease: [0.4, 0, 0.2, 1] // Custom easing for smoother motion
+                    }}
+                >
+                    {filteredNews.map((newsItem, index) => (
+                        <motion.div
+                            key={newsItem.id || index}
+                            layout
+                            initial={{
+                                opacity: 0,
+                                scale: 0.8,
+                                y: 20
+                            }}
+                            animate={{
+                                opacity: 1,
+                                scale: 1,
+                                y: 0
+                            }}
+                            exit={{
+                                opacity: 0,
+                                scale: 0.8,
+                                y: -20
+                            }}
+                            transition={{
+                                duration: 0.4,
+                                delay: index * 0.05, // Reduced delay for snappier feel
+                                ease: [0.4, 0, 0.2, 1],
+                                layout: {
+                                    duration: 0.3,
+                                    ease: "easeOut"
+                                }
+                            }}
+                        >
+                            <NewsCards news={newsItem} />
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </AnimatePresence>
         </section>
     );
 };

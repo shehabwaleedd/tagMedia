@@ -1,30 +1,25 @@
+@import '@/styles/variables.scss';
+
 .team {
     display: grid;
     grid-template-columns: 1fr 3fr;
     width: 100%;
-    padding: var(--section-padding) 1rem;
+    padding: $section-padding $spacing-sm;
     position: relative;
     z-index: 10;
 
-    @media (max-width: 1266px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    @include respond-to(laptop) {
+        @include flexCenter(column);
     }
 
-    @media (max-width: 855px) {
-        padding: 5vh 0;
+    @include respond-to(large-tablet) {
+        padding-top: 5vh;
     }
 
     h3 {
-        font-size: var(--big-font-size);
-        color: var(--title-color);
-        font-family: var(--body-font);
-
-        @media (max-width: 570px) {
-            font-size: var(--medium-font-size);
-        }
+        font-size: $big-font-size;
+        color: $title-color;
+        font-family: $body-font;
     }
 
 }
@@ -36,45 +31,43 @@
     width: 100%;
     padding: 1rem;
 
-    @media (max-width: 1266px) {
+    @include respond-to(laptop) {
         grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+        padding: 0;
+        padding-top: 3vh;
     }
-
-    @media (max-width: 766px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0;;
-    }
-
-
 
     .member {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        padding: 0.25rem;
-        transition: var(--animation-primary);
+        @include flex(column, center, flex-start);
+        padding: $spacing-xxs;
+        transition: $animation-primary;
 
         img {
             height: 40vh;
             width: 100%;
             object-fit: cover;
+            border-radius: $border-radius-md;
 
-            border-radius: 0.5rem;
+            @include respond-to(small-tablet) {
+                height: 30vh;
+            }
         }
 
         h4 {
-            font-size: var(--big-font-size);
-            color: var(--title-color);
-            font-family: var(--body-font);
+            font-size: $big-font-size;
+            color: $title-color;
+            font-family: $body-font;
+
+            @include respond-to(small-tablet) {
+                font-size: $medium-font-size;
+            }
         }
 
         p {
-            font-size: var(--normal-font-size);
-            color: var(--text-color);
-            font-family: var(--body-font);
+            font-size: $normal-font-size;
+            color: $text-color;
+            font-family: $body-font;
         }
     }
 

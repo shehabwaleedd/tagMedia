@@ -1,51 +1,49 @@
+@import '@/styles/variables.scss';
+
 .brief {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 1rem;
+    @include flex(column, flex-start, flex-start);
+    gap: $spacing-sm;
     width: 100%;
-    padding: var(--section-padding) 0;
     position: relative;
-    background-color: var(--container-color);
+    background-color: $container-color;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(133, 132, 130, 0.3);
-    border-radius: 2rem;
+    border-radius: $border-radius-xl;
     padding: 5vh 2rem;
     z-index: 99;
 
-    @media (max-width: 999px) {
+    @include respond-to(large-tablet) {
         padding: 0rem;
     }
 
 
     h2 {
-        font-size: var(--body-font-size);
-        color: var(--title-color);
+        font-size: $body-font-size;
+        color: $title-color;
     }
 
     .content {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        padding: 2rem 1rem;
+        gap: $spacing-sm;
+        padding: $spacing-lg $spacing-sm;
         min-height: 35lvh;
 
         @media (min-width: 812px) and (max-width: 1255px) {
-            padding: 2rem;
+            padding: $spacing-lg;
         }
     }
 
     span {
-        font-family: var(--title-font);
-        font-size: var(--semi-big-font-size);
-        color: var(--title-color);
+        font-family: $title-font;
+        font-size: $semi-big-font-size;
+        color: $title-color;
         width: 60%;
 
-        @media (max-width: 570px) {
+        @include respond-to(small-tablet) {
             width: 100%;
-            font-size: var(--body-font-size);
+            font-size: $body-font-size;
             line-height: 1.2;
             padding: 0;
             text-align: start;
@@ -53,10 +51,7 @@
     }
 
     .miniServices {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        @include flexCenter(column);
         width: 100%;
 
         &__container {
@@ -65,8 +60,8 @@
             gap: 1rem;
 
             p {
-                @media (max-width: 555px) {
-                    font-size: var(--small-font-size);
+                @include respond-to(small-tablet) {
+                    font-size: $small-font-size;
                 }
             }
         }
