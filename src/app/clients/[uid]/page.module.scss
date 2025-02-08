@@ -1,9 +1,5 @@
 @import "@/styles/variables";
 
-.main {
-    margin-top: 30vh;
-}
-
 .clientDetails {
     width: 100%;
     max-width: $container-max-width-xl;
@@ -17,6 +13,7 @@
 
     @include respond-to(medium-tablet) {
         width: 96%;
+        margin-top: 12.5vh;
     }
 }
 
