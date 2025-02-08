@@ -32,8 +32,23 @@ export async function generateMetadata({
         .catch(() => notFound());
 
     return {
-        title: page.data.meta_title || `Tag Media - ${page.data.title}`,
+        title: page.data.meta_title || `${page.data.title} | Tag Media Marketing Agency`,
         description: page.data.meta_description || page.data.description.slice(0, 157).toString(),
+        openGraph: {
+            title: page.data.meta_title || `${page.data.title} | Tag Media Marketing Agency`,
+            description: page.data.meta_description || page.data.description.slice(0, 157).toString(),
+            images: [
+                { url: page.data.image?.url || "" }
+            ]
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: page.data.meta_title || `${page.data.title} | Tag Media Marketing Agency`,
+            description: page.data.meta_description || page.data.description.slice(0, 157).toString(),
+            images: [
+                { url: page.data.image?.url || "" }
+            ]
+        }
     };
 }
 

@@ -2,11 +2,12 @@ import styles from "./page.module.scss";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import { format } from "date-fns";
+import { memo } from "react";
 
 interface ClientPostData {
     title: string;
-    description: any; 
-    image: any; 
+    description: any;
+    image: any;
     year: string;
     type: "actor" | "serie" | "production";
 }
@@ -15,37 +16,46 @@ interface ClientPostDocument {
     data: ClientPostData;
 }
 
-export default function ClientDetails({
+const ClientDetails = memo(function ClientDetails({
     page
 }: {
-    page: ClientPostDocument
+    page: ClientPostDocument;
 }) {
     const { title, description, image, year, type } = page.data;
     const formattedDate = year ? format(new Date(year), 'yyyy') : '';
 
     return (
-        <section className={styles.clientDetails}>
-            <div className={styles.heroSection}>
-                <PrismicNextImage
-                    field={image}
-                    className={styles.heroImage}
-                    priority
-                />
-            </div>
+        <article className={styles.clientDetails}>
+            <div className={styles.contentGrid}>
+                <figure className={styles.imageContainer} aria-label="Client image">
+                    <PrismicNextImage
+                        field={image}
+                        className={styles.portfolioImage}
+                        priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt={String(`Portfolio work for ${title}`) as ''}
+                        loading="eager"
+                        aria-label="Client image"
+                    />
+                </figure>
 
-            <div className={styles.contentContainer}>
-                <div className={styles.header}>
-                    <h1 className={styles.title}>{title}</h1>
-                    <div className={styles.meta}>
-                        <span className={styles.type}>{type}</span>
-                        <span className={styles.year}>{formattedDate}</span>
+                <section className={styles.descriptionContainer}>
+                    <header className={styles.header} aria-label="Project header">
+                        <h1 className={styles.title} aria-label="Project title">{title}</h1>
+                        <div className={styles.meta} aria-label="Project metadata">
+                            <span className={styles.type} aria-label="Project type">{type}</span>
+                            <time className={styles.year} dateTime={formattedDate} aria-label="Project year" role="time">
+                                {formattedDate}
+                            </time>
+                        </div>
+                    </header>
+                    <div className={styles.description} role="region" aria-label="Project description">
+                        <PrismicRichText field={description}  />
                     </div>
-                </div>
-
-                <div className={styles.description}>
-                    <PrismicRichText field={description} />
-                </div>
+                </section>
             </div>
-        </section>
+        </article>
     );
-}
+});
+
+export default ClientDetails;
