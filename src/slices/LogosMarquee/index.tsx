@@ -8,6 +8,18 @@ import { SliceComponentProps } from "@prismicio/react";
 
 export type LogosMarqueeProps = SliceComponentProps<Content.LogosMarqueeSlice>;
 
+interface LogoImageProps {
+  image: any;
+  alt?: string;
+}
+
+
+const LogoImage = (({ image, alt }: LogoImageProps) => (
+  <div className={styles.logo_wrapper}>
+    <PrismicNextImage field={image} priority={true} className={styles.logo_image} alt={String(alt || 'Partner logo') as ''} loading="eager" />
+  </div>
+));
+
 const LogosMarquee = ({ slice }: LogosMarqueeProps): JSX.Element => {
 
   const [mounted, setMounted] = useState(false);
@@ -18,17 +30,13 @@ const LogosMarquee = ({ slice }: LogosMarqueeProps): JSX.Element => {
 
   return (
     <section className={styles.logo_marquee}>
-      <div className={styles.container}>
-        {mounted && (
-          <Marquee autoFill={true} speed={40} direction={slice.primary.direction as "left" | "right" | "up" | "down" | undefined}>
-            {slice.primary.data.map((item, index) => (
-              <PrismicNextLink key={index} className={styles.logo_marquee_content} field={item.link} >
-                <PrismicNextImage field={item.image} priority={true} />
-              </PrismicNextLink>
-            ))}
-          </Marquee>
-        )}
-      </div>
+      {mounted && (
+        <Marquee autoFill={true} speed={40} direction={slice.primary.direction as "left" | "right" | "up" | "down" | undefined} gradient={true} gradientColor="#161616" gradientWidth={20} pauseOnHover={true}>
+          {slice.primary.data?.map((item, index) => (
+            <LogoImage key={`logo-${index}`} image={item.image} alt={item.image?.alt || ''} />
+          ))}
+        </Marquee>
+      )}
     </section>
   );
 };
