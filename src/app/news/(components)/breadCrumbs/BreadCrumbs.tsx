@@ -3,13 +3,13 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import styles from './style.module.scss'
-import { Content } from '@prismicio/client'
+
 
 type NewsCardProps = {
-    newsDetails: Content.NewsPostDocument
+    data: any
 }
 
-const BreadCrumbs: React.FC<NewsCardProps> = ({ newsDetails }) => {
+const BreadCrumbs: React.FC<NewsCardProps> = ({ data }) => {
     const pathname = usePathname()
 
     const generateBreadcrumbs = () => {
@@ -18,13 +18,22 @@ const BreadCrumbs: React.FC<NewsCardProps> = ({ newsDetails }) => {
 
         const crumblist = asPathNestedRoutes.map((subpath, idx) => {
             const href = "/" + asPathNestedRoutes.slice(0, idx + 1).join("/")
-            return { href, text: subpath }
+            let text = subpath
+
+            if (subpath === 'news') {
+                text = 'News'
+            } else if (subpath === 'projects') {
+                text = 'Projects'
+            }
+
+            return { href, text }
         })
 
         return [{ href: "/", text: "Home" }, ...crumblist]
     }
 
     const breadcrumbs = generateBreadcrumbs()
+
 
     return (
         <nav className={styles.breadcrumbs}>
@@ -33,7 +42,7 @@ const BreadCrumbs: React.FC<NewsCardProps> = ({ newsDetails }) => {
                     {idx > 0 && <span className={styles.separator}> &gt; </span>}
                     {idx === breadcrumbs.length - 1 ? (
                         <span className={styles.currentPage}>
-                            {newsDetails?.data.title || crumb.text}
+                            {data?.data.title || crumb.text}
                         </span>
                     ) : (
                         <Link href={crumb.href} className={styles.crumbLink}>

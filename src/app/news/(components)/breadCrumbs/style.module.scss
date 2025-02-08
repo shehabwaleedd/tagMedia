@@ -4,8 +4,8 @@
     @include flex(row, flex-start, flex-start);
     width: 100%;
     flex-wrap: wrap;
-    padding: 10px 0;
-    font-size: 14px;
+    padding: 0.625rem 0;
+    font-size: $small-font-size;
 }
 
 .separator {
@@ -16,6 +16,7 @@
 .crumbLink {
     color: $accent-color;
     text-decoration: none;
+    text-transform: capitalize;
 
     &:hover {
         text-decoration: underline;

@@ -3,6 +3,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import { format } from "date-fns";
 import { memo } from "react";
+import BreadCrumbs from "@/app/news/(components)/breadCrumbs/BreadCrumbs";
 
 interface ClientPostData {
     title: string;
@@ -41,6 +42,7 @@ const ClientDetails = memo(function ClientDetails({
 
                 <section className={styles.descriptionContainer}>
                     <header className={styles.header} aria-label="Project header">
+                        <BreadCrumbs data={page} />
                         <h1 className={styles.title} aria-label="Project title">{title}</h1>
                         <div className={styles.meta} aria-label="Project metadata">
                             <span className={styles.type} aria-label="Project type">{type}</span>

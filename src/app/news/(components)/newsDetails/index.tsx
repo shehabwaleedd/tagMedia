@@ -20,7 +20,7 @@ const NewsDetails: React.FC<NewsDetailsProps> = ({ news, relatedArticles }) => {
     return (
         <article className={styles.newsDetails}>
             <section className={styles.header}>
-                <BreadCrumbs newsDetails={news} />
+                <BreadCrumbs data={news} />
                 <h1 className={styles.title}>{news.data.title}</h1>
             </section>
 
