@@ -50,6 +50,14 @@
 }
 
 .sidebar {
+    position: sticky;
+    top: 150px;
+
+    @include respond-to(ipad) {
+        position: relative;
+        top: 0;
+    }
+
     @include respond-to(medium-tablet) {
         order: -1;
     }

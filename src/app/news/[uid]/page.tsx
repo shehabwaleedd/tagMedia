@@ -21,18 +21,20 @@ export default async function Page({ params }: { params: Params }) {
     )
 }
 
-export async function generateMetadata({
-    params,
-}: {
-    params: Params;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params; }): Promise<Metadata> {
     const client = createClient();
-    const page = await client
-        .getByUID("news_post", params.uid)
-        .catch(() => notFound());
+    const page = await client.getByUID("news_post", params.uid).catch(() => notFound());
+
     return {
-        title: page.data.meta_title,
-        description: page.data.meta_description,
+        title: page.data.title,
+        description: page.data.description,
+        openGraph: {
+            title: page.data.title || "News | Tag Media",
+            description: page.data.description || "Explore the latest news and updates from Tag Media",
+            images: [
+                { url: page.data.mainimage?.url || "" }
+            ]
+        }
     };
 }
 

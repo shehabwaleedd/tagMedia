@@ -6,10 +6,7 @@ export default async function Page() {
     const newsPosts = await client.getAllByType("news_post");
 
     return (
-        <>
-            {/* <SliceZone slices={page.data.slices} components={components} /> */}
-            <NewsList initialNews={newsPosts} />
-        </>
+        <NewsList initialNews={newsPosts} />
     );
 }
 
@@ -20,5 +17,12 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
         title: page.data.meta_title,
         description: page.data.meta_description,
+        openGraph: {
+            title: page.data.meta_title || "News | Tag Media",
+            description: page.data.meta_description || "Explore the latest news and updates from Tag Media",
+            images: [
+                { url: page.data.meta_image?.url || "" }
+            ]
+        }
     };
 }

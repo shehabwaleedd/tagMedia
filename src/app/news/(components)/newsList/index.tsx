@@ -50,46 +50,9 @@ const NewsList: React.FC<NewsListProps> = ({ initialNews }) => {
                 </div>
             </div>
             <AnimatePresence mode="wait">
-                <motion.div
-                    className={styles.newsGrid}
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                        duration: 0.4,
-                        ease: [0.4, 0, 0.2, 1] // Custom easing for smoother motion
-                    }}
-                >
+                <motion.div className={styles.newsGrid} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}>
                     {filteredNews.map((newsItem, index) => (
-                        <motion.div
-                            key={newsItem.id || index}
-                            layout
-                            initial={{
-                                opacity: 0,
-                                scale: 0.8,
-                                y: 20
-                            }}
-                            animate={{
-                                opacity: 1,
-                                scale: 1,
-                                y: 0
-                            }}
-                            exit={{
-                                opacity: 0,
-                                scale: 0.8,
-                                y: -20
-                            }}
-                            transition={{
-                                duration: 0.4,
-                                delay: index * 0.05, // Reduced delay for snappier feel
-                                ease: [0.4, 0, 0.2, 1],
-                                layout: {
-                                    duration: 0.3,
-                                    ease: "easeOut"
-                                }
-                            }}
-                        >
+                        <motion.div key={newsItem.id || index} layout initial={{ opacity: 0, scale: 0.8, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: -20 }} transition={{ duration: 0.4, delay: index * 0.05, ease: [0.4, 0, 0.2, 1], layout: { duration: 0.3, ease: "easeOut" } }}>
                             <NewsCards news={newsItem} />
                         </motion.div>
                     ))}
