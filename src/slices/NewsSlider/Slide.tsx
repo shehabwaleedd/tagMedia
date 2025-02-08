@@ -65,7 +65,7 @@ const Slide: React.FC<{ newsPostsData: NewsPost[]; slice: NewsSliderSlice }> = (
                         }}
                         breakpoints={{
                             320: {
-                                slidesPerView: 1.25,
+                                slidesPerView: 1.15,
                                 spaceBetween: 10
                             },
                             640: {

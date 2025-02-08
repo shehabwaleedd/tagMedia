@@ -7,6 +7,12 @@
     position: relative;
     z-index: 10;
 
+
+
+    @include respond-to(ipad) {
+        margin-top: 10vh;
+    }
+
     @include respond-to(phone) {
         padding: $spacing-section-mobile;
     }
@@ -39,6 +45,10 @@
         transition: $animation-primary;
         background-color: $background-color;
         color: $title-color;
+
+        @include respond-to(medium-tablet) {
+            width: 100%;
+        }
 
         &:focus {
             outline: none;
@@ -84,8 +94,8 @@
 
     &.active {
         transition: $animation-primary;
-        background-color: $primary-color;
-        color: $white;
+        background-color: $accent-color;
+        color: #000;
     }
 }
 
