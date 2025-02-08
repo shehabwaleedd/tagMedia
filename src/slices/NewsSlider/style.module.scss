@@ -1,4 +1,4 @@
-@import '../../styles/vairables';
+@import '../../styles/variables';
 
 .achievementsCarousel {
     padding: $spacing-section-mobile;
@@ -46,7 +46,7 @@
 .container {
     max-width: $container-max-width-xl;
     margin: 0 auto;
-    
+
     @include respond-to(large-screen) {
         max-width: 100%;
     }

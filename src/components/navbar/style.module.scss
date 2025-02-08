@@ -1,19 +1,27 @@
+@import '@/styles/_variables.scss';
+
 .navbar {
-    position: fixed;
-    top: 1vh;
-    left: 0;
+    @include position(fixed, 1vh, null, null, 0);
+    @include flex(row, space-between, nul);
     width: 100%;
     z-index: 999;
-    display: flex;
-    justify-content: space-between;
     height: fit-content;
     max-height: 10vh;
-    padding: 1rem 1.5rem;
+    padding: $spacing-sm $spacing-md;
     user-select: none;
-    transition: var(--animation-primary);
+    transition: $animation-primary;
 
-    @media (max-width: 555px) {
-        padding: 0.5rem;
+
+    @include respond-to(ipad) {
+        padding: $spacing-xs;
+        width: fit-content;
+    }
+
+    &.scrolled {
+        .container {
+            padding: $spacing-xs;
+            gap: $spacing-xs;
+        }
     }
 
     &__container_left {
@@ -23,8 +31,15 @@
         width: 100%;
         height: fit-content;
 
-        @media (max-width: 555px) {
-            gap: 0.05rem;
+        @include respond-to(ipad) {
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+
+
+        @include respond-to(small-tablet) {
+            gap: $spacing-xs;
         }
     }
 }
@@ -35,25 +50,23 @@
 }
 
 %link-styles {
-    color: var(--title-color);
-    font-size: 1rem;
-    font-family: var(--body-font);
+    color: $title-color;
+    font-size: $normal-font-size;
+    font-family: $body-font-weight;
     cursor: pointer;
-    transition: var(--animation-primary);
+    transition: $animation-primary;
 
     &:hover {
-        color: var(--accent-color);
+        color: $accent-color;
     }
 }
 
 .left {
+    @include flex(row, flex-start, flex-start);
+    gap: $spacing-sm;
     position: relative;
     z-index: 999;
-    @extend %flex-center;
-    align-items: flex-start;
-    justify-content: flex-start;
     width: 100%;
-    gap: 1rem;
     height: fit-content;
 
     a {
@@ -70,20 +83,22 @@
 
         h2 {
             @extend %link-styles;
-            padding: 0.5rem 1rem;
+            padding: $spacing-xs $spacing-sm;
 
-            @media (max-width: 555px) {
-                padding: 0.25rem;
+            @include respond-to(small-tablet) {
+                padding: $spacing-xxs;
             }
         }
     }
 }
 
-.center, .right {
+.center,
+.right {
     @extend %flex-center;
-    gap: 1rem;
+    gap: $spacing-sm;
     width: 100%;
-    @media (max-width: 1088px) {
+
+    @include respond-to(ipad) {
         display: none;
     }
 
@@ -98,25 +113,21 @@
 
 .right {
     justify-content: flex-end;
-    
-    
+
+
 }
 
 .menu {
     @extend %flex-center;
     justify-content: space-between;
-    transition: var(--animation-primary);
+    transition: $animation-primary;
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 2vh;
+    right: 2vw;
     z-index: 999;
 
     @media (min-width: 1088px) {
         display: none;
-    }
-
-    @media (max-width: 715px) {
-        height: fit-content;
     }
 
     h3 {
@@ -126,32 +137,29 @@
         svg {
             font-size: 0.5rem;
             margin-left: 0.5rem;
-            transition: var(--animation-primary);
+            transition: $animation-primary;
         }
     }
 }
+
 
 .container {
     @extend %flex-center;
     justify-content: space-between;
     width: 100%;
     height: fit-content;
-    gap: 1rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    background-color: var(--container-color);
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+    border-radius: $spacing-sm;
+    background-color: $container-color;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(133, 132, 130, 0.3);
     position: relative;
     z-index: 1;
-    transition: var(--animation-primary);
+    will-change: padding, gap;
 
-    @media (max-width: 1085px) {
-        padding: 0.5rem;
-    }
-
-    a {
-        @extend %link-styles;
+    @include respond-to(ipad) {
+        padding: $spacing-xs;
     }
 }

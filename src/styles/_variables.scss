@@ -1,4 +1,3 @@
-// Breakpoints
 $breakpoint-small-phone: 400px;
 $breakpoint-phone: 480px;
 $breakpoint-small-tablet: 640px;
@@ -8,7 +7,8 @@ $breakpoint-ipad: 1025px;
 $breakpoint-laptop: 1280px;
 $breakpoint-desktop: 1440px;
 $breakpoint-large-screen: 1500px;
-
+$breakpoint-tv: 1920px;
+$breakpoint-4k: 2560px;
 $breakpoints: (
     phone: $breakpoint-phone,
     small-tablet: $breakpoint-small-tablet,
@@ -17,13 +17,16 @@ $breakpoints: (
     ipad: $breakpoint-ipad,
     laptop: $breakpoint-laptop,
     desktop: $breakpoint-desktop,
-    large-screen: $breakpoint-large-screen
+    large-screen: $breakpoint-large-screen,
+    tv: $breakpoint-tv,
+    fourk: $breakpoint-4k
 );
 
 // Colors
 $background-color: rgba(49, 48, 48, 0.48);
 $dark-ui: #161616;
 $slight-dark-ui: #323844;
+$container-color: rgba(49, 48, 48, 0.48);
 $accent-color: #26FFE9;
 $title-color: #fafafa;
 $text-color: #e8e7e7;
@@ -34,6 +37,8 @@ $subtitle-light-color: #b0b0b0;
 $paragraph-color: #a4d4d8;
 $border-color: #eae4d8;
 $form-dark-ui: #23272D;
+$hover-color: rgba(69, 68, 68, 0.78);
+$card-color: #2b2a2a;
 $card-dark-ui: #333A41;
 $button-background: #3d67ff;
 $slight-dark-ui: #323844;
@@ -48,11 +53,13 @@ $primary-color: #0080FF;
 $scrollbarThumb-color: #3d67ff;
 $nav-overlay-color: #3d67ff;
 
+$border: 1px solid $gray;
 
-
-// Font Sizes
+// Responsive Font Sizes
 $gfs: 14.4px;
 $gfs-1: 16.2px;
+$title-size: clamp(5em, 7.5vw, 7.5em);
+$semi-title-size: clamp(3em, 5vw, 5em);
 $small-font-size: 0.8rem;
 $normal-font-size: 1rem;
 $body-font-size: 1.236rem;
@@ -64,15 +71,12 @@ $biggest-font-size: 4.236rem;
 $header-font-size: 5.618rem;
 $navigation-font-size: 6.618rem;
 
-$border: 1px solid $gray;
-
-// Responsive Font Sizes
-$title-size: clamp(5em, 7.5vw, 7.5em);
-$semi-title-size: clamp(3em, 5vw, 5em);
-
 // Fonts
-$paragraph-font: var(--font-public-variable);
-$font-primary: var(--font-public-variable);
+$paragraph-font: var(--satoshi-regular);
+$font-primary: var(--font-helvetica);
+$body-font: var(--font-satoshi-regular);
+$title-font: var(--font-helvetica);
+
 // Animations
 $animation-primary: 0.4s cubic-bezier(0.5, 0.75, 0, 1);
 
@@ -115,6 +119,7 @@ $box-shadow-xxl: 0 0 50px rgba(0, 0, 0, 0.1);
 
 // border-radius
 
+$border-radius: 0.625rem;
 $border-radius-full: 50%;
 $border-radius-sm: 0.25rem;
 $border-radius-md: 0.5rem;
@@ -157,11 +162,6 @@ $container-max-width-xl: 1340px;
 $container-max-width-xxl: 1540px;
 $container-max-width-xxxl: 1740px;
 
-
-
-
-
-// Mixins for common styles
 @mixin reset-list {
     list-style: none;
     margin: 0;
@@ -256,7 +256,20 @@ $container-max-width-xxxl: 1740px;
             @content;
         }
     }
+
+    @else if $breakpoint ==tv {
+        @media (min-width: $breakpoint-tv) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==fourk {
+        @media (min-width: $breakpoint-4k) {
+            @content;
+        }
+    }
 }
+
 
 .sectionTitle {
     font-size: 3rem;
@@ -308,86 +321,6 @@ $container-max-width-xxxl: 1740px;
 
 }
 
-.primaryBtn {
-    background-color: var(--button-background);
-    padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
-    cursor: pointer;
-    transition: var(--animation-primary);
-    text-align: center;
-    color: $white;
-    text-transform: uppercase;
-    white-space: nowrap;
-    &:hover {
-        transition: var(--animation-primary);
-        filter: brightness(1.3);
-    }
-
-    span,
-    a {
-        color: $white !important;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-        font-family: var(--body-font);
-    }
-}
-
-.unifiedUlLi {
-    @include reset-list;
-    list-style-type: disc;
-
-    li {
-        font-size: $body-font-size;
-        font-weight: $body-font-light;
-        position: relative;
-        padding-left: 0.5em;
-        line-height: 1.3;
-
-        &.active {
-            font-weight: $body-font-weight;
-        }
-
-        &:not(:last-child) {
-            margin-bottom: $spacing-sm;
-        }
-
-        @include respond-to(large-screen) {
-            font-size: $big-font-size;
-        }
-
-        @include respond-to(phone) {
-            font-size: $normal-font-size;
-        }
-
-    }
-}
-
-@mixin media-breakpoint-up($breakpoint) {
-    @if map-has-key($breakpoints, $breakpoint) {
-        @media (min-width: map-get($breakpoints, $breakpoint)) {
-            @content;
-        }
-    }
-}
-
-@mixin media-breakpoint-down($breakpoint) {
-    @if map-has-key($breakpoints, $breakpoint) {
-        @media (max-width: #{map-get($breakpoints, $breakpoint) - 1}px) {
-            @content;
-        }
-    }
-}
-
-@mixin media-breakpoint-between($lower, $upper) {
-    @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
-        $min: map-get($breakpoints, $lower);
-        $max: map-get($breakpoints, $upper) - 1;
-
-        @media (min-width: $min) and (max-width: #{$max}px) {
-            @content;
-        }
-    }
-}
 
 @mixin font-style($size, $line-height, $weight: 400) {
     font: $weight #{$size}/#{$line-height} $font-primary;
@@ -407,19 +340,4 @@ $container-max-width-xxxl: 1740px;
     flex-direction: $direction;
     justify-content: $justify;
     align-items: $align;
-}
-
-
-@mixin gradient-bg($theme) {
-    @if $theme =='dark' {
-        background: linear-gradient(to right,
-                rgba(17, 19, 25, 1) 0%,
-                rgba(17, 19, 25, 0) 100%);
-    }
-
-    @else {
-        background: linear-gradient(to right,
-                rgba(255, 255, 255, 1) 0%,
-                rgba(255, 255, 255, 0) 100%);
-    }
 }

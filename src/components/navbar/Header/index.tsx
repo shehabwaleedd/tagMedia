@@ -15,29 +15,27 @@ interface ResponsiveSize {
 
 }
 
-const aspectRatio = 480 / 600;
-
 const getResponsiveSize = (width: number): ResponsiveSize => {
     let menuWidth: number, menuHeight: number, right: number, top: number;
 
     if (width <= 380) {
         menuWidth = width * 0.9;
-        menuHeight = width * 1.25;
-        right = -menuWidth * 0.022;
-        top = -menuHeight * 0.015;
-    } else if (width <= 420) {
-        menuWidth = width * 0.9;
-        menuHeight = menuWidth / aspectRatio
+        menuHeight = width * 1.35;
         right = -menuWidth * 0.022;
         top = -menuHeight * 0.015;
     } else if (width <= 480) {
         menuWidth = width * 0.8;
-        menuHeight = width * 1.1;
-        right = -menuWidth * 0.02;
-        top = -menuHeight * 0.02;
-    } else if (width <= 1067) {
+        menuHeight = width * 1.2;
+        right = -menuWidth * 0.022;
+        top = -menuHeight * 0.015;
+    } else if (width <= 777) {
         menuWidth = width * 0.7;
-        menuHeight = 455;
+        menuHeight = 495;
+        right = -menuWidth * 0.022;
+        top = -menuHeight * 0.015;
+    } else if (width <= 1067) {
+        menuWidth = width * 0.6;
+        menuHeight = 495;
         right = -menuWidth * 0.022;
         top = -menuHeight * 0.015;
     } else {
@@ -84,7 +82,7 @@ const Header: React.FC<{ settings: SettingsDocument, clientsCount: number, newsC
         },
         closed: {
             width: "100px",
-            height: "40px",
+            height: "55px",
             top: "0px",
             right: "0px",
             transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1] }
@@ -95,12 +93,7 @@ const Header: React.FC<{ settings: SettingsDocument, clientsCount: number, newsC
 
     return (
         <header className={styles.header}>
-            <motion.div
-                className={styles.menu}
-                variants={menu}
-                animate={isActive ? "open" : "closed"}
-                initial="closed"
-            >
+            <motion.div className={styles.menu} variants={menu} animate={isActive ? "open" : "closed"} initial="closed">
                 <AnimatePresence mode='wait'>
                     {isActive && (
                         <Nav clientsCount={clientsCount} newsCount={newsCount} currentPathname={pathname} settings={settings} />

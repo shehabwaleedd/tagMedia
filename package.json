@@ -46,6 +46,7 @@
   "devDependencies": {
     "@slicemachine/adapter-next": "^0.3.51",
     "@types/js-cookie": "^3.0.6",
+    "@types/lodash": "^4.17.15",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-beautiful-dnd": "^13.1.8",

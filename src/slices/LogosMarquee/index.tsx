@@ -1,9 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Marquee from "react-fast-marquee";
-import Image from 'next/image';
 import styles from './style.module.scss'
-import Link from 'next/link';
 import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { SliceComponentProps } from "@prismicio/react";

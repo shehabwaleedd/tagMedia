@@ -1,19 +1,20 @@
+@import "@/styles/variables.scss";
+
 .nav{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 60px 10px 10px 10px;
+
+    @include flex(column, space-between, null);
+    padding: 100px 10px 10px 10px;
     box-sizing: border-box;
     position: relative;
-    gap: 1rem;
+    gap: $spacing-sm;
+
     .body{
-        display: flex;
-        gap: 0.5rem;
-        flex-direction: column;
+        @include flex(column, null, null);
+        gap: $spacing-xs;
         overflow: hidden;
-        background-color: var(--hover-color);
-        border-radius: 10px;
-        padding: 1rem;
+        background-color: $hover-color;
+        border-radius: $border-radius;
+        padding: $spacing-sm;
 
         .linkContainer{
             perspective: 120px;
@@ -21,18 +22,16 @@
             perspective-origin: bottom;
         }
         a{
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            @include flex(row, null, center);
+            gap: $spacing-sm;
             text-decoration: none;
-            color: var(--title-color);
-            font-size: var(--body-font-size);
+            color: $title-color;
+            font-size: $body-font-size;
         }
     }
     .footer{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+        @include flex(column, null, null);
+        gap: $spacing-sm;
         a{
 
             text-decoration: none;
@@ -46,10 +45,10 @@
 
 .count {
     padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    background-color: var(--ui-dark);
+    border-radius: $border-radius-lg;
+    background-color: $dark-ui;
     color: #fff;
-    font-size: var(--small-font-size);
+    font-size: $small-font-size;
 }
 
 .by,

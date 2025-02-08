@@ -1,4 +1,4 @@
-@import "../../../styles/vairables";
+@import "../../../styles/variables";
 
 .clientDetails {
     @include flexCenter(column);
@@ -36,6 +36,7 @@
     max-width: $container-max-width-lg;
     margin: 0 auto;
     z-index: 10;
+
     @include respond-to(large-screen) {
         max-width: $container-max-width-xl;
     }

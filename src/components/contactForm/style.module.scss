@@ -1,83 +1,91 @@
+@import "@/styles/variables.scss";
+
 .contact_right {
     display: flex;
     flex-direction: column;
     width: 80%;
 
-    @media (max-width: 555px) {
+    @include respond-to(ipad) {
         width: 100%;
     }
 
     &__container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 1rem;
+        @include flex(column, flex-end, flex-end);
+        gap: $spacing-sm;
+        padding: $spacing-sm;
         width: 100%;
-        padding: 1rem;
-        @media (max-width: 555px) {
+
+        @include respond-to(ipad) {
             padding: 0;
         }
+
         &__input {
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
+            @include flex(column, null, flex-start);
             width: 100%;
-            padding: 1rem;
-            background-color:var(--container-color);
-            color: var(--title-color);
-            font-size: var(--normal-font-size);
-            font-family: var(--body-font);
+            padding: $spacing-sm;
+            background-color: $container-color;
+            color: $title-color;
+            font-size: $normal-font-size;
+            font-family: $body-font;
             border: none;
-            border-radius: 0.5rem;
+            border-radius: $border-radius-md;
             cursor: pointer;
-            gap: 0.25rem;;
-            transition: var(--animation-primary);
+            gap: $spacing-xxs;
+            transition: $animation-primary;
+
             &:hover {
-                transition: var(--animation-primary);
-                background-color: var(--hover-color);
+                transition: $animation-primary;
+                background-color: $hover-color;
             }
+
             label {
-                font-size: var(--medium-font-size);
-                color: var(--title-color);
-                margin-bottom: 0.5rem;
+                font-size: $medium-font-size;
+                color: $title-color;
+                margin-bottom: $spacing-xs;
             }
+
             input {
-                font-size: var(--body-font-size);
-                color: var(--title-color);
-                padding: 0.5rem 0;
+                font-size: $body-font-size;
+                color: $title-color;
+                padding: $spacing-xs 0;
                 width: 100%;
                 border: none;
                 outline: none;
                 background-color: transparent;
+
                 &:focus {
                     outline: none;
-                    border-bottom: 1px solid var(--accent-color);
+                    border-bottom: 1px solid $accent-color;
                 }
-                @media (max-width: 555px) {
-                    font-size: var(--small-font-size);
+
+                @include respond-to(small-tablet) {
+                    font-size: $small-font-size;
                 }
             }
+
             textarea {
-                font-size: var(--body-font-size);
-                color: var(--title-color);
-                padding: 0.5rem 0;
+                font-size: $body-font-size;
+                color: $title-color;
+                padding: $spacing-xs 0;
                 width: 100%;
                 border: none;
                 outline: none;
                 background-color: transparent;
+
                 &:focus {
                     outline: none;
-                    border-bottom: 1px solid var(--accent-color);
+                    border-bottom: 1px solid $accent-color;
                 }
-                @media (max-width: 555px) {
-                    font-size: var(--small-font-size);
+
+                @include respond-to(small-tablet) {
+                    font-size: $small-font-size;
                 }
             }
-        }   
+        }
     }
+
     .btn {
-        padding-left: 1rem;
+        padding-left: $spacing-sm;
         width: fit-content;
     }
 }
@@ -86,5 +94,5 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 1rem;
+    gap: $spacing-sm;
 }
