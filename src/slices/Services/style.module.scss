@@ -8,7 +8,7 @@
     width: 100%;
     position: relative;
     z-index: 2;
-    padding: 15vh 1rem;
+    padding: 15vh $spacing-sm;
 
     @include respond-to(medium-tablet) {
         @include flex(column, center, flex-start);
@@ -61,12 +61,8 @@
 
 
     .serviceCard {
-        background-color: $container-color;
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        border: 1px solid rgba(133, 132, 130, 0.3);
-        border-radius: 1rem;
-        padding: 1.5rem;
+        @include glassmorphismEffect;
+        padding: $spacing-md;
         width: 100%;
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         padding-bottom: 10vh;

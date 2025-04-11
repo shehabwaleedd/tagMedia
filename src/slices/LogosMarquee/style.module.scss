@@ -4,11 +4,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 2rem;
+    padding: 0 $spacing-lg;
     transition: $animation-primary;
 
-    @media (max-width: 768px) {
-        padding: 0 1rem;
+    @include respond-to(medium-tablet, max) {
+        padding: 0 $spacing-sm;
     }
 
 }
@@ -21,16 +21,14 @@
     position: relative;
     top: 0.35rem;
 
-    @media (max-width: 768px) {
+    @include respond-to(medium-tablet, max) {
         width: clamp(5rem, 8vw, 7rem);
     }
 }
 
 
 .logo_marquee {
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(133, 132, 130, 0.3);
+    @include glassmorphismEffect;
     background-color: #161616;
     margin: 0 auto;
     width: 100%;
@@ -38,10 +36,8 @@
     overflow: hidden;
     position: relative;
     z-index: 1;
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-    @media (max-width: 768px) {
+    @include respond-to(medium-tablet, max) {
         max-width: 100%;
     }
 }

@@ -1,50 +1,45 @@
+@import "@/styles/variables";
+
 .workWithUs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     width: 100%;
-    padding: 2rem;
+    padding: $spacing-lg;
     place-content: start;
     place-items: start;
-    // background-color: var(--ui-dark);
     position: relative;
     z-index: 99;
     margin-top: 10vh;
 
-    @media (max-width: 1055px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    @include respond-to(ipad, max) {
+        @include flexCenter(column);
         padding: 0;
     }
 
 }
 
 .left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    @include flex(column, center, flex-start);
     width: 100%;
 
     h3 {
-        font-size: var(--bigger-font-size);
-        color: var(--title-color);
-        font-family: var(--body-font);
+        font-size: $bigger-font-size;
+        color: $title-color;
+        font-family: $body-font;
 
-        @media (max-width: 570px) {
-            font-size: var(--medium-font-size);
+        @include respond-to(small-tablet, max) {
+            font-size: $medium-font-size
         }
     }
 
     p {
-        font-size: var(--normal-font-size);
-        color: var(--subtitle-color);
-        font-family: var(--body-font);
+        font-size: $normal-font-size;
+        color: $subtitle-color;
+        font-family: $body-font;
         max-width: 50%;
 
-        @media (max-width: 555px) {
+        @include respond-to(small-tablet, max) {
             max-width: 95%;
         }
 
@@ -54,82 +49,71 @@
 .right {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: $spacing-sm;
     width: 100%;
     height: 100%;
     place-items: start;
 
-    @media (max-width: 555px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    @include respond-to(small-tablet, max) {
+        @include flexCenter(column);
     }
 
 
     .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        @include flex(column, space-between, null);
+        @include glassmorphismEffect;
         width: 100%;
         height: 100%;
         min-height: 50vh;
-        background-color: var(--container-color);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        border: 1px solid rgba(133, 132, 130, 0.3);
-        border-radius: 1rem;
-        padding: 1rem;
+        padding: $spacing-sm;
 
-        @media (max-width: 555px) {
+        @include respond-to(small-tablet, max) {
             min-height: 30vh;
         }
 
         h3 {
-            font-size: var(--semi-big-font-size);
-            color: var(--title-color);
-            font-family: var(--body-font);
-            padding-bottom: 1rem;
+            font-size: $semi-big-font-size;
+            color: $title-color;
+            font-family: $body-font;
+            padding-bottom: $spacing-sm;
 
-            @media (max-width: 570px) {
-                font-size: var(--medium-font-size);
+            @include respond-to(small-tablet, max) {
+                font-size: $medium-font-size;
             }
         }
 
         p {
-            font-size: var(--normal-font-size);
-            color: var(--subtitle-color);
-            font-family: var(--body-font);
+            font-size: $normal-font-size;
+            color: $subtitle-color;
+            font-family: $body-font;
 
             span {
-                font-size: var(--normal-font-size);
-                padding-left: 1rem;
-                color: var(--subtitle-color);
+                font-size: $normal-font-size;
+                color: $subtitle-color;
+                padding-left: $spacing-sm;
             }
 
-            padding-bottom: 1rem;
+            padding-bottom: $spacing-sm;
             width: 100%;
         }
 
         button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include flexCenter(row);
             width: 100%;
-            padding: 1rem 2rem;
-            background-color: var(--card-color);
-            color: var(--title-color);
-            font-size: var(--normal-font-size);
-            font-family: var(--body-font);
+            padding: $spacing-sm $spacing-lg;
+            background-color: $card-color;
+            color: $title-color;
+            font-size: $normal-font-size;
+            font-family: $body-font;
             border: none;
-            border-radius: 0.5rem;
+            border-radius: $spacing-xs;
             cursor: pointer;
-            gap: 1rem;
-            transition: var(--animation-primary);
+            gap: $spacing-sm;
+            transition: $animation-primary;
 
             &:hover {
-                transition: var(--animation-primary);
-                background-color: var(--hover-color);
+                transition: $animation-primary;
+                background-color: $hover-color;
             }
         }
     }

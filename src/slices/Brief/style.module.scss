@@ -2,14 +2,10 @@
 
 .brief {
     @include flex(column, flex-start, flex-start);
+    @include glassmorphismEffect;
     gap: $spacing-sm;
     width: 100%;
     position: relative;
-    background-color: $container-color;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(133, 132, 130, 0.3);
-    border-radius: $border-radius-xl;
     padding: 5vh 2rem;
     z-index: 99;
 

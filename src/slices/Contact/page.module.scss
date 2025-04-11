@@ -2,22 +2,18 @@
 
 .contact {
     @include flexCenter(row);
+    @include glassmorphismEffect;
+    @include containerMaxWidth;
     align-items: stretch;
     padding: $spacing-md;
     background-color: var(--ui-dark-ob);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(133, 132, 130, 0.3);
-    border-radius: $border-radius-xl;
     width: 100%;
     gap: $spacing-lg;
-    max-width: 1600px;
-    margin: 0 auto;
     overflow: hidden;
 
 
     iframe {
-        border-radius: 1rem !important;
+        border-radius: $border-radius-lg !important;
     }
 
     @include respond-to(ipad) {
@@ -33,7 +29,7 @@
     }
 
     h1 {
-        margin-bottom: 20px;
+        margin-bottom: $spacing-ms;
     }
 
 

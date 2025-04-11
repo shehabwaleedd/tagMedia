@@ -1,26 +1,19 @@
-$breakpoint-small-phone: 400px;
-$breakpoint-phone: 480px;
-$breakpoint-small-tablet: 640px;
-$breakpoint-medium-tablet: 788px;
-$breakpoint-large-tablet: 900px;
-$breakpoint-ipad: 1025px;
-$breakpoint-laptop: 1280px;
-$breakpoint-desktop: 1440px;
-$breakpoint-large-screen: 1500px;
-$breakpoint-tv: 1920px;
-$breakpoint-4k: 2560px;
+@use "sass:map";
+
 $breakpoints: (
-    phone: $breakpoint-phone,
-    small-tablet: $breakpoint-small-tablet,
-    medium-tablet: $breakpoint-medium-tablet,
-    large-tablet: $breakpoint-large-tablet,
-    ipad: $breakpoint-ipad,
-    laptop: $breakpoint-laptop,
-    desktop: $breakpoint-desktop,
-    large-screen: $breakpoint-large-screen,
-    tv: $breakpoint-tv,
-    fourk: $breakpoint-4k
+    small-phone: 400px,
+    phone: 480px,
+    small-tablet: 640px,
+    medium-tablet: 788px,
+    large-tablet: 900px,
+    ipad: 1025px,
+    laptop: 1280px,
+    desktop: 1440px,
+    large-screen: 1500px,
+    tv: 1920px,
+    fourk: 2560
 );
+
 
 // Colors
 $background-color: rgba(49, 48, 48, 0.48);
@@ -134,8 +127,11 @@ $border-radius-xxl: 2rem;
 // Spacing
 $spacing-xxs: 0.25rem;
 $spacing-xs: 0.5rem;
+$spacing-sx: 0.75rem;
 $spacing-sm: 1rem;
+$spacing-ms: 1.25rem;
 $spacing-md: 1.5rem;
+$spacing-ml: 1.75rem;
 $spacing-lg: 2rem;
 $spacing-xl: 3rem;
 $spacing-xxl: 4rem;
@@ -210,63 +206,9 @@ $container-max-width-xxxl: 1740px;
     white-space: nowrap;
 }
 
-@mixin respond-to($breakpoint) {
-    @if $breakpoint ==phone {
-        @media (max-width: $breakpoint-phone) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==small-tablet {
-        @media (max-width: $breakpoint-small-tablet) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==medium-tablet {
-        @media (max-width: $breakpoint-medium-tablet) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==large-tablet {
-        @media (max-width: $breakpoint-large-tablet) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==ipad {
-        @media (max-width: $breakpoint-ipad) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==laptop {
-        @media (max-width: $breakpoint-laptop) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==desktop {
-        @media (max-width: $breakpoint-desktop) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==large-screen {
-        @media (min-width: $breakpoint-large-screen) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==tv {
-        @media (min-width: $breakpoint-tv) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint ==fourk {
-        @media (min-width: $breakpoint-4k) {
+@mixin respond-to($breakpoint, $type: max) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (#{$type}-width: map.get($breakpoints, $breakpoint)) {
             @content;
         }
     }
@@ -342,4 +284,34 @@ $container-max-width-xxxl: 1740px;
     flex-direction: $direction;
     justify-content: $justify;
     align-items: $align;
+}
+
+
+@mixin glassmorphismEffect {
+    background-color: $container-color;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(133, 132, 130, 0.3);
+    border-radius: $border-radius-xl;
+}
+
+@mixin containerMaxWidth {
+    max-width: 92%;
+    margin: 0 auto;
+
+    @include respond-to(large-screen, min) {
+        max-width: 85%;
+    }
+
+    @include respond-to(desktop, max) {
+        max-width: 92%;
+    }
+
+    @include respond-to(ipad, max) {
+        padding: $spacing-sm;
+    }
+
+    @include respond-to(phone, max) {
+        max-width: $container-max-width-md;
+    }
 }

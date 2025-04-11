@@ -5,11 +5,8 @@
     max-width: $container-max-width-xl;
     margin: 0 auto;
     padding: clamp(2rem, 5vw, 4rem);
-    background-color: $background-color;
     margin-top: 20vh;
-    border-radius: $border-radius-lg;  
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    @include glassmorphismEffect;
 
     @include respond-to(medium-tablet) {
         width: 96%;
@@ -25,9 +22,9 @@
 
 .title {
     font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 700;
+    font-weight: $bold-font-weight;
     color: $title-color;
-    margin-bottom: 1rem;
+    margin-bottom: $spacing-sm;
 }
 
 .meta {
@@ -39,16 +36,15 @@
 
 .type {
     text-transform: uppercase;
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: $small-font-size;
     color: $accent-color;
     background-color: rgba($accent-color, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-xxl;
 }
 
 .year {
-    font-size: 0.875rem;
+    font-size: $small-font-size;
     color: $text-color;
     display: flex;
     align-items: center;
@@ -57,7 +53,7 @@
 .contentGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
-    gap: clamp(2rem, 4vw, 4rem);
+    gap: clamp($spacing-lg, 4vw, $spacing-xxl);
     align-items: start;
 
     @media (min-width: 1024px) {
@@ -87,16 +83,16 @@
 .descriptionContainer {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: $spacing-md;
 }
 
 .description {
     color: $text-color;
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-size: clamp($normal-font-size, 1.5vw, $body-font-size);
     line-height: 1.6;
 
     p {
-        margin-bottom: 1rem;
+        margin-bottom: $spacing-sm;
 
         &:last-child {
             margin-bottom: 0;

@@ -6,11 +6,8 @@
     width: 100%;
     padding: $section-padding $spacing-sm;
     gap: 5vh;
+    @include glassmorphismEffect;
     background-color: $dark-ui;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(133, 132, 130, 0.3);
-    border-radius: $border-radius-lg;
 
     @include respond-to(medium-tablet) {
         max-width: 100%;
