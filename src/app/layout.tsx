@@ -11,7 +11,6 @@ import { LinkedInInsightTag } from "@/tags/LinkedInInsightTag";
 import Background from '@/components/background';
 import localFont from 'next/font/local';
 import { createClient } from '@/prismicio';
-import { SettingsDocument } from '@/types/prismicio-types';
 
 const avanttLight = localFont({
   src: '../../public/fonts/Avantt-Light.ttf',
@@ -44,20 +43,17 @@ const satoshiRegular = localFont({
 });
 
 
-
-// Define the shape of your variables
 interface Variables {
   homePageSeoTitle: string;
   homePageSeoDescription: string;
   homePageSeoKeywords: string;
   homePageSeoImage: string;
-  // Add other variables as needed
 }
 
 async function getVariables(): Promise<Variables> {
   try {
     const response = await axios.get<Variables>(`${process.env.NEXT_PUBLIC_BASE_URL}/variable`, {
-      headers: { 'Cache-Control': 'max-age=3600' } // Cache for 1 hour
+      headers: { 'Cache-Control': 'max-age=3600' }
     });
     return response.data;
   } catch (error) {
@@ -72,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
     variables = await getVariables();
   } catch (error) {
     console.error('Failed to fetch variables:', error);
-    // Fallback to default values if fetch fails
+
     variables = {
       homePageSeoTitle: "Tag Media",
       homePageSeoDescription: "Tag Media is Egypt's pioneer in digital and influencer marketing. We transform brands to power growth.",

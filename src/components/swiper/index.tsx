@@ -111,11 +111,7 @@ interface ArrowProps {
 }
 
 const Arrow: React.FC<ArrowProps> = ({ disabled, left, onClick }) => (
-    <button
-        onClick={onClick}
-        className={`arrow ${left ? "arrow--left" : "arrow--right"} ${disabled ? "arrow--disabled" : ""}`}
-        aria-label={left ? "Previous slide" : "Next slide"}
-    >
+    <button onClick={onClick} className={`arrow ${left ? "arrow--left" : "arrow--right"} ${disabled ? "arrow--disabled" : ""}`} aria-label={left ? "Previous slide" : "Next slide"}>
         {left ? <GoArrowLeft /> : <GoArrowRight />}
     </button>
 );

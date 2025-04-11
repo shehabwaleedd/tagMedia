@@ -33,17 +33,8 @@ const Menu: React.FC<MenuProps> = ({ clientsCount, newsCount, currentPathname, s
             <div className={styles.body}>
                 {routesLinks.map((link, i) => (
                     <div key={`b_${i}`} className={styles.linkContainer}>
-                        <motion.div
-                            custom={i}
-                            variants={perspective}
-                            initial="initial"
-                            animate="enter"
-                            exit="exit"
-                        >
-                            <Link
-                                href={link.href}
-                                className={`${styles.menuItem} ${currentPathname === link.href ? styles.active : ''}`}
-                            >
+                        <motion.div custom={i} variants={perspective} initial="initial" animate="enter" exit="exit">
+                            <Link href={link.href} className={`${styles.menuItem} ${currentPathname === link.href ? styles.active : ''}`}>
                                 {link.label}
                                 {link.href === '/clients' && (
                                     <span className={styles.count}>{clientsCount}</span>
