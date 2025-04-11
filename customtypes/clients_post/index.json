@@ -58,6 +58,29 @@
           "default_value": "actor"
         }
       },
+      "gallery_images": {
+        "type": "Group",
+        "config": {
+          "label": "Client Gallery",
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Gallery Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "caption": {
+              "type": "Text",
+              "config": {
+                "label": "Image Caption",
+                "placeholder": "Enter image caption"
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

@@ -1,0 +1,245 @@
+@import "@/styles/variables";
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-top: $spacing-lg;
+
+    @include respond-to(medium-tablet) {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    @include respond-to(mobile) {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: $spacing-sm;
+    }
+}
+
+.galleryItem {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: $border-radius;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+
+        .imageOverlay {
+            opacity: 1;
+        }
+
+        .galleryImage {
+            transform: scale(1.05);
+        }
+
+        .caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent-color;
+        outline-offset: 2px;
+    }
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.galleryImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.imageOverlay {
+    @include position(absolute, 0, null, null, 0);
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+    @include flexCenter(row);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.viewIcon {
+    @include flexCenter(row);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    backdrop-filter: blur(4px);
+}
+
+.caption {
+    @include position(absolute, null, null, 0, 0);
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+    padding: $spacing-sm;
+    color: white;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: $small-font-size;
+    text-align: center;
+}
+
+.fullscreenOverlay {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    @include flexCenter(row);
+    backdrop-filter: blur(10px);
+}
+
+
+.fullscreenImageContainer {
+    @include flexCenter(row);
+    width: 100%;
+    height: 80%;
+    padding: 0 $spacing-xl;
+
+    @include respond-to(mobile) {
+        padding: 0 $spacing-md;
+    }
+}
+
+.fullscreenImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.fullscreenCaption {
+    @include position(absolute, null, null, 80px, 50%);
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    max-width: 80%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-xxl;
+    backdrop-filter: blur(10px);
+
+    p {
+        font-size: $body-font-size;
+        margin: 0;
+    }
+}
+
+.navButton {
+    @include flexCenter(row);
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    backdrop-filter: blur(5px);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 1002;
+
+    &:hover,
+    &:focus-visible {
+        background-color: rgba(255, 255, 255, 0.25);
+        transform: scale(1.1);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent-color;
+        outline-offset: 2px;
+    }
+}
+
+.closeButton {
+    top: 20px;
+    right: 20px;
+
+    @include respond-to(mobile) {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+.prevButton {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include respond-to(mobile) {
+        left: 10px;
+    }
+
+    &:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+}
+
+.nextButton {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include respond-to(mobile) {
+        right: 10px;
+    }
+
+    &:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+}
+
+.imageCounter {
+    @include position(absolute, null, null, 80px, 50%);
+    transform: translateX(-50%);
+    color: white;
+    font-size: $small-font-size;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-xxl;
+    backdrop-filter: blur(8px);
+    z-index: 1002;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .galleryItem,
+    .galleryImage,
+    .caption,
+    .navButton,
+    .fullscreenOverlay,
+    .fullscreenContent,
+    .imageOverlay {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+.gallerySection {
+    margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.galleryTitle {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: $spacing-lg;
+    color: $title-color;
+    font-weight: $bold-font-weight;
+}
