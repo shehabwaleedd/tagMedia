@@ -8,8 +8,8 @@
     gap: $spacing-sm;
 
     @include respond-to(medium-tablet) {
-        width: 96%;
         margin-top: 12.5vh;
+        padding: $spacing-xs;
     }
 }
 
@@ -122,10 +122,14 @@
 .ctaSection {
     margin-top: clamp(4rem, 10vh, 6rem);
     text-align: center;
-    padding: clamp(2rem, 5vw, 4rem);
+    padding: $spacing-md;
     @include glassmorphismEffect;
     position: relative;
     overflow: hidden;
+
+    @include respond-to(phone) {
+        margin-top: $spacing-sm;
+    }
 
     &::before {
         content: '';
@@ -172,6 +176,7 @@
 
 .gallerySection {
     width: 100%;
+    padding-top: $spacing-lg;
 }
 
 .fullscreenOverlay {
@@ -193,7 +198,7 @@
     height: 80%;
     padding: 0 $spacing-xl;
 
-    @include respond-to(mobile) {
+    @include respond-to(phone) {
         padding: 0 $spacing-md;
     }
 }
@@ -235,6 +240,10 @@
     transition: background-color 0.2s ease, transform 0.2s ease;
     z-index: 1002;
 
+    @include respond-to(medium-tablet) {
+        mix-blend-mode: difference;
+    }
+
     &:hover,
     &:focus-visible {
         background-color: rgba(255, 255, 255, 0.25);
@@ -251,7 +260,7 @@
     top: 20px;
     right: 20px;
 
-    @include respond-to(mobile) {
+    @include respond-to(phone) {
         top: 10px;
         right: 10px;
     }
@@ -262,7 +271,7 @@
     top: 50%;
     transform: translateY(-50%);
 
-    @include respond-to(mobile) {
+    @include respond-to(phone) {
         left: 10px;
     }
 
@@ -276,7 +285,7 @@
     top: 50%;
     transform: translateY(-50%);
 
-    @include respond-to(mobile) {
+    @include respond-to(phone) {
         right: 10px;
     }
 
@@ -295,4 +304,9 @@
     border-radius: $border-radius-xxl;
     backdrop-filter: blur(8px);
     z-index: 1002;
+
+    @include respond-to(medium-tablet) {
+        bottom: $spacing-sm;
+    }
+    
 }

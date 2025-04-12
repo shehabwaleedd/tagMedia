@@ -308,7 +308,7 @@ $container-max-width-xxxl: 1740px;
     }
 
     @include respond-to(phone, max) {
-        max-width: $container-max-width-md;
+        max-width: 97%;
     }
 }
 
