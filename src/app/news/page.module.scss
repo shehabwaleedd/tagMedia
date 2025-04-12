@@ -1,68 +1,65 @@
+@import "@/styles/variables";
+
 .news {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter(column);
     width: 100%;
     min-height: 100vh;
     position: relative;
+    padding-top: 15vh;
 
-    @media (max-width: 855px) {
+    @include respond-to(medium-tablet, max) {
         padding: 0.75rem;
+        padding-top: 10vh;
     }
 
     &__upper_content {
         position: relative;
-
         display: flex;
         flex-direction: column;
         text-align: center;
         z-index: 3;
-        gap: 2rem;
+        gap: $spacing-lg;
         width: 100%;
 
         h1 {
-            font-size: var(--biggest-font-size);
-            color: var(--title-color);
+            font-size: $bigger-font-size;
+            color: $title-color;
             text-transform: capitalize;
             letter-spacing: 0.25rem;
-            font-family: var(--title-font);
+            font-family: $title-font;
 
-            @media (max-width: 768px) {
-                font-size: 1.6rem;
+            @include respond-to(medium-tablet, max) {
+                font-size: $big-font-size;
             }
         }
 
         .divider {
             width: 10vw;
             height: 1px;
-            background-color: var(--ui-dark);
+            background-color: $dark-ui;
         }
     }
 
     &__container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
-        gap: 1rem;
+        gap: $spacing-sm;
         width: 100%;
-        padding: 2rem;
+        padding: $spacing-lg;
 
-        @media (max-width: 1068px) {
+        @include respond-to(ipad, max) {
             grid-template-columns: repeat(auto-fill, minmax(30vw, 1fr));
         }
 
-        @media (max-width: 768px) {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        @include respond-to(medium-tablet, max) {
+            @include flexCenter(column);
             padding: 0;
         }
 
         img {
             height: 20vh !important;
 
-            @media (max-width: 855px) {
+            @include respond-to(large-tablet, max) {
                 height: 30vh !important;
             }
 
@@ -73,13 +70,13 @@
 .breadcrumbs {
     display: flex;
     align-items: center;
-    padding: 10px 0;
-    font-size: 14px;
+    padding: $spacing-xs 0;
+    font-size: $small-font-size;
     flex-wrap: wrap;
 }
 
 .separator {
-    margin: 0 5px;
+    margin: 0 $spacing-xxs;
     color: #666;
 }
 

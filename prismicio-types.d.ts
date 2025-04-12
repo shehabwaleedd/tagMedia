@@ -1159,6 +1159,26 @@ export interface ContactSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#number
    */
   phone_number: prismic.NumberField;
+
+  /**
+   * Title field in *Contact → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Please Enter Title
+   * - **API ID Path**: contact.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Contact → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Please Enter Description
+   * - **API ID Path**: contact.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
 }
 
 /**
