@@ -12,6 +12,20 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Page Title",
+            "placeholder": "Please Enter Page Title e.g. Contact Us"
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Page Description",
+            "placeholder": "Please Enter Page Description"
+          }
+        },
         "iframelink": {
           "type": "Text",
           "config": {

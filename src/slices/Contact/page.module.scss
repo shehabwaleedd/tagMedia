@@ -1,6 +1,24 @@
 @import "@/styles/variables.scss";
 
 .contact {
+    @include flexCenter(column);
+    gap: $spacing-lg;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 10vh;
+}
+
+.header {
+    @include flexCenter(column);
+    width: 100%;
+
+    h1 {
+        font-weight: 600;
+
+    }
+}
+
+.wrapper {
     @include flexCenter(row);
     @include glassmorphismEffect;
     @include containerMaxWidth;
