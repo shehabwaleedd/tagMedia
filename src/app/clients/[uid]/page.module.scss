@@ -2,16 +2,21 @@
 
 .clientDetails {
     width: 100%;
-    max-width: $container-max-width-xl;
-    margin: 0 auto;
     padding: clamp(2rem, 5vw, 4rem);
     margin-top: 20vh;
-    @include glassmorphismEffect;
+    @include flexCenter(column);
+    gap: $spacing-sm;
 
     @include respond-to(medium-tablet) {
         width: 96%;
         margin-top: 12.5vh;
     }
+}
+
+.wrapper {
+    @include glassmorphismEffect;
+    @include containerMaxWidth;
+    padding: $spacing-lg;
 }
 
 .meta {
@@ -163,4 +168,131 @@
             box-shadow: 0 10px 20px rgba($accent-color, 0.3);
         }
     }
+}
+
+.gallerySection {
+    width: 100%;
+}
+
+.fullscreenOverlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    @include flexCenter(row);
+    backdrop-filter: blur(10px);
+}
+
+
+.fullscreenImageContainer {
+    @include flexCenter(row);
+    width: 100%;
+    height: 80%;
+    padding: 0 $spacing-xl;
+
+    @include respond-to(mobile) {
+        padding: 0 $spacing-md;
+    }
+}
+
+.fullscreenImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.fullscreenCaption {
+    @include position(absolute, null, null, 80px, 50%);
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    max-width: 80%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-xxl;
+    backdrop-filter: blur(10px);
+
+    p {
+        font-size: $body-font-size;
+        margin: 0;
+    }
+}
+
+.navButton {
+    @include flexCenter(row);
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    backdrop-filter: blur(5px);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 1002;
+
+    &:hover,
+    &:focus-visible {
+        background-color: rgba(255, 255, 255, 0.25);
+        transform: scale(1.1);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent-color;
+        outline-offset: 2px;
+    }
+}
+
+.closeButton {
+    top: 20px;
+    right: 20px;
+
+    @include respond-to(mobile) {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+.prevButton {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include respond-to(mobile) {
+        left: 10px;
+    }
+
+    &:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+}
+
+.nextButton {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include respond-to(mobile) {
+        right: 10px;
+    }
+
+    &:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+}
+
+.imageCounter {
+    @include position(absolute, null, null, 80px, 50%);
+    transform: translateX(-50%);
+    color: white;
+    font-size: $small-font-size;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-xxl;
+    backdrop-filter: blur(8px);
+    z-index: 1002;
 }

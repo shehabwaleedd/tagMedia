@@ -315,3 +315,13 @@ $container-max-width-xxxl: 1740px;
         max-width: $container-max-width-md;
     }
 }
+
+.sectionContainer {
+    @include flexCenter(column);
+    width: 100%;
+    gap: $spacing-sm;
+    position: relative;
+    padding: $spacing-md;
+    @include containerMaxWidth;
+
+}
