@@ -1,88 +1,77 @@
+@import "@/styles/variables";
+
 .main {
     min-height: 100lvh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: var(--ui-dark);
-    padding: 0.75rem;
-    gap: 1rem;
+    @include flexCenter(column);
+    background-color: $dark-ui;
+    padding: $spacing-sx;
+    gap: $spacing-sm;
 }
 
 
 .banner {
-    position: fixed;
-    top: 0;
-    left: 0;
+    @include position(fixed, 0, null, null, 0);
     z-index: 9999;
     width: 100%;
     height: 100lvh;
-    background-color: var(--accent-color);
+    background-color: $accent-color;
 
     &__content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        @include flexCenter(column);
         height: 100%;
         width: 100%;
-        gap: 1rem;
+        gap: $spacing-sm;
     }
 }
 
 .button2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter(row);
     width: fit-content;
     padding: 1rem 2rem;
-    background-color: var(--accent-color);
-    color: var(--background-color);
-    font-size: var(--normal-font-size);
-    font-family: var(--body-font);
+    background-color: $accent-color;
+    color: $background-color;
+    font-size: $normal-font-size;
+    font-family: $body-font;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    gap: 1rem;
-    transition: var(--animation-primary);
+    gap: $spacing-sm;
+    transition: $animation-primary;
 
 
     span {
-        color: var(--background-color);
+        color: $background-color;
     }
     &:hover {
-        transition: var(--animation-primary);
-        background-color: var(--hover-color);
+        transition: $animation-primary;
+        background-color: $hover-color;
     }
 
     @media (max-width: 400px) {
-        padding: 1rem;
+        padding: $spacing-sm;
     }
 }
 
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter(row);
     width: fit-content;
-    padding: 1rem 2rem;
-    background-color: var(--card-color);
-    color: var(--title-color);
-    font-size: var(--normal-font-size);
-    font-family: var(--body-font);
+    padding: $spacing-sm $spacing-lg;
+    background-color: $card-color;
+    color: $title-color;
+    font-size: $normal-font-size;
+    font-family: $body-font;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    gap: 1rem;
-    ;
-    transition: var(--animation-primary);
+    gap: $spacing-sm;
+    transition: $animation-primary;
 
     &:hover {
-        transition: var(--animation-primary);
-        background-color: var(--hover-color);
+        transition: $animation-primary;
+        background-color: $hover-color;
     }
 
     @media (max-width: 400px) {
-        padding: 1rem;
+        padding: $spacing-sm;
     }
 }

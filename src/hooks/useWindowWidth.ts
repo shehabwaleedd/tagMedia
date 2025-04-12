@@ -7,7 +7,7 @@ export const BREAKPOINTS = {
     LARGE_TABLET: 900,
     TABLET: 1067,
     LAPTOP: 1068,
-    MEDIUM_LAPTOP: 1320,
+    MEDIUM_LAPTOP: 1220,
     LARGE_LAPTOP: 1400,
 } as const;
 

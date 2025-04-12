@@ -1,12 +1,11 @@
 'use client'
-
-import React, { useRef, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import styles from './style.module.scss';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
-import { Content, isFilled, ImageField, KeyTextField, PrismicDocument } from '@prismicio/client';
+import { ImageField, KeyTextField, PrismicDocument } from '@prismicio/client';
 import { PrismicNextImage } from '@prismicio/next';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import useWindowSize from '@/hooks/useWindowWidth';
 
 type AnimatedGridProps = {
     posts: PrismicDocument<NewsItemData, string, string>[];
@@ -17,69 +16,63 @@ type NewsItemData = {
     title: KeyTextField;
 };
 
-const AnimatedGrid: React.FC<AnimatedGridProps> = ({ posts }) => {
-    const gridRef = useRef<HTMLDivElement>(null);
+const AnimatedGrid = ({ posts }: AnimatedGridProps) => {
+    const { windowWidth } = useWindowSize();
+    const isDesktop = windowWidth >= 1221;
 
-    useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+    const { scrollYProgress } = useScroll();
+    const column1Y = useTransform(scrollYProgress, [0, 1], ['0%', '-5%']);
+    const column2Y = useTransform(scrollYProgress, [0, 1], ['2.5%', '-10%']);
+    const column3Y = useTransform(scrollYProgress, [0, 1], ['0%', '-5%']);
 
-        if (typeof window !== 'undefined' && gridRef.current) {
-            const columns = gsap.utils.toArray<HTMLDivElement>(`.${styles.column}`);
+    const columns = useMemo(() => {
+        const cols: PrismicDocument<NewsItemData, string, string>[][] = [[], [], []];
+        posts.forEach((post, index) => {
+            if (isDesktop) {
+                cols[index % 3].push(post);
+            } else {
+                cols[0].push(post);
+            }
+        });
+        return cols;
+    }, [posts, isDesktop]);
 
-            let mm = gsap.matchMedia();
+    const renderPost = (post: PrismicDocument<NewsItemData, string, string>, index: number) => (
+        <Link className={styles.projectItem} key={index} href={`/clients/${post.uid}`}>
+            <PrismicNextImage field={post.data.image} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+            <div className={styles.projectItem__info}>
+                <h3>{post.data.title}</h3>
+            </div>
+        </Link>
+    );
 
-            mm.add("(min-width: 1024px)", () => {
-                gsap.set(columns[1], { y: '2.5%' });
-
-                columns.forEach((column, index) => {
-                    gsap.to(column, {
-                        y: index === 1 ? '-10%' : '-5%',
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: gridRef.current,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: true,
-                        }
-                    });
-                });
-            });
-
-            mm.add("(max-width: 1023px)", () => {
-                gsap.set(columns, { clearProps: "all" });
-            });
-        }
-
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []);
-
-    const columns: PrismicDocument<NewsItemData, string, string>[][] = [[], [], []];
-    posts.forEach((post, index) => {
-        columns[index % 3].push(post);
-    });
+    if (!isDesktop) {
+        return (
+            <div className={styles.gridContainer}>
+                <div className={styles.grid}>
+                    <div className={styles.column}>
+                        {posts.map((post, index) => renderPost(post, index))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.gridContainer}>
-            <div className={styles.grid} ref={gridRef}>
-                {columns.map((column, columnIndex) => (
-                    <div key={columnIndex} className={`${styles.column} ${columnIndex === 1 ? styles.middleColumn : ''}`}>
-                        {column.map((post, index) => {
-                            return (
-                                <Link className={styles.projectItem} key={index} href={`/clients/${post.uid}`}>
-                                    <PrismicNextImage field={post.data.image} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                                    <div className={styles.projectItem__info}>
-                                        <h3>{post.data.title}</h3>
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </div>
-                ))}
+            <div className={styles.grid}>
+                <motion.div className={styles.column} style={{ y: column1Y }}>
+                    {columns[0].map((post, index) => renderPost(post, index))}
+                </motion.div>
+                <motion.div className={`${styles.column} ${styles.middleColumn}`} style={{ y: column2Y }}>
+                    {columns[1].map((post, index) => renderPost(post, index))}
+                </motion.div>
+                <motion.div className={styles.column} style={{ y: column3Y }}>
+                    {columns[2].map((post, index) => renderPost(post, index))}
+                </motion.div>
             </div>
         </div>
     );
 };
 
-export default AnimatedGrid;
+export default React.memo(AnimatedGrid);
