@@ -19,7 +19,6 @@ const Footer = ({ settings, newsCount = 0, clientsCount = 0 }: FooterProps) => {
     const router = usePathname();
     const { site_title, social_items, footer_secondary_links } = settings.data;
 
-    // Helper function to get document URL (same as navbar)
     const getDocumentUrl = (linkUrl: any) => {
         if (linkUrl?.url) return linkUrl.url;
 

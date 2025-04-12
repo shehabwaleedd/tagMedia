@@ -292,24 +292,13 @@ $container-max-width-xxxl: 1740px;
 }
 
 @mixin containerMaxWidth {
-    max-width: 92%;
+    max-width: 96%;
     margin: 0 auto;
 
     @include respond-to(large-screen, min) {
         max-width: 85%;
     }
 
-    @include respond-to(desktop, max) {
-        max-width: 92%;
-    }
-
-    @include respond-to(ipad, max) {
-        padding: $spacing-sm;
-    }
-
-    @include respond-to(phone, max) {
-        max-width: 97%;
-    }
 }
 
 .sectionContainer {
@@ -320,4 +309,9 @@ $container-max-width-xxxl: 1740px;
     padding: $spacing-md;
     @include containerMaxWidth;
 
+}
+
+@mixin wrapper() {
+    width: 100%;
+    @include containerMaxWidth;
 }

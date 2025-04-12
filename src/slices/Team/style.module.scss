@@ -7,6 +7,7 @@
     padding: $section-padding $spacing-sm;
     position: relative;
     z-index: 10;
+    @include containerMaxWidth;
 
     @include respond-to(laptop) {
         @include flexCenter(column);

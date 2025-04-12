@@ -1,23 +1,26 @@
+@import "@/styles/variables";
+
 .aboutLower {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     height: 100%;
     width: 100%;
-    padding: 3rem;
+    padding: $spacing-xl;
     position: relative;
     z-index: 2;
-    background-color: var(--ui-dark);
-    border-radius: 1rem;
+    background-color: $dark-ui;
+    border-radius: $border-radius-lg;
+    @include containerMaxWidth;
 
-    @media (max-width: 1188px) {
+    @include respond-to(laptop, max) {
         display: flex;
         flex-direction: column;
-        padding: 2rem;
-        gap: 1rem;
+        padding: $spacing-lg;
+        gap: $spacing-sm;
     }
 
-    @media (max-width: 555px) {
-        padding: 1rem;
+    @include respond-to(small-tablet, max) {
+        padding: $spacing-sm;
     }
 
 
@@ -28,8 +31,8 @@
         height: 100%;
 
         h3 {
-            font-size: var(--body-font-size);
-            color: var(--subtitle-color);
+            font-size: $body-font-size;
+            color: $subtitle-color;
             text-transform: lowercase;
         }
 
@@ -43,14 +46,14 @@
         flex-direction: column;
         width: 100%;
         height: 100%;
-        gap: 2rem;
+        gap: $spacing-lg;
 
         p {
-            font-size: var(--big-font-size);
-            color: var(--title-color);
+            font-size: $big-font-size;
+            color: $title-color;
 
-            @media (max-width: 888px) {
-                font-size: var(--normal-font-size);
+            @include respond-to(large-tablet) {
+                font-size: $normal-font-size;
             }
 
         }

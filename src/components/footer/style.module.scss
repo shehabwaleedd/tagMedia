@@ -6,6 +6,8 @@
     position: relative;
     overflow: hidden;
     bottom: 0;
+    @include containerMaxWidth;
+    width: 100%;
 
     @include respond-to(small-tablet) {
         padding: $spacing-xs;
@@ -19,8 +21,7 @@
         gap: $spacing-sm;
         width: 100%;
         height: 100%;
-        padding: $spacing-lg;
-        padding-bottom: 0;
+        padding-top: $spacing-lg;
 
         @media (min-width: 812px) and (max-width: 1255px) {
             grid-template-columns: 1fr 2fr;

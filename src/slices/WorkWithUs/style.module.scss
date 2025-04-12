@@ -5,12 +5,12 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     width: 100%;
-    padding: $spacing-lg;
     place-content: start;
     place-items: start;
     position: relative;
     z-index: 99;
     margin-top: 10vh;
+    @include containerMaxWidth;
 
     @include respond-to(ipad, max) {
         @include flexCenter(column);

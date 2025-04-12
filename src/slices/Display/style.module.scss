@@ -4,10 +4,7 @@
 
     @include flexCenter(column);
     width: 100%;
-    padding: $section-padding $spacing-sm;
-    gap: 5vh;
-    @include glassmorphismEffect;
-    background-color: $dark-ui;
+    
 
     @include respond-to(medium-tablet) {
         max-width: 100%;
@@ -22,49 +19,37 @@
 
     .content {
         display: grid;
-        grid-gap: $spacing-sm;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+        justify-content: center;
+        gap: $spacing-md;
         width: 100%;
-        height: 100%;
-        align-items: stretch;
-        justify-items: center;
-        grid-template-columns: repeat(5, 1fr);
 
-
-        @include respond-to(desktop) {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        @include respond-to(laptop) {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        @include respond-to(medium-tablet) {
+        @include respond-to(large-tablet, max) {
             grid-template-columns: repeat(3, 1fr);
         }
 
-        @include respond-to(phone) {
+        @include respond-to(medium-tablet, max) {
             grid-template-columns: repeat(2, 1fr);
+            gap: $spacing-md;
         }
+
+        a {
+            @include flexCenter(row);
+        }
+
 
         img {
-            width: 100%;
-            max-height: 100px;
-            min-height: 100px;
-            max-width: 175px;
-            min-width: 175px;
+            width: 45%;
             object-fit: contain;
-
-            @include respond-to(laptop) {
-                max-height: 70px;
-                max-width: 130px;
-                min-width: 130px;
-            }
-
-            @include respond-to(phone) {
-                max-height: 50px;
-                max-width: 100px;
-                min-width: 100px;
-            }
         }
     }
+}
+
+.sectionContainer {
+    padding: $section-padding $spacing-sm;
+    @include glassmorphismEffect;
+    @include containerMaxWidth;
+    width: 100%;
+    gap: 5vh;
 }
