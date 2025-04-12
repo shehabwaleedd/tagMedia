@@ -18,7 +18,7 @@ const footerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            delay: 1,
+            delay: 0.25,
             duration: 0.5,
             ease: [0.215, 0.61, 0.355, 1],
         },
@@ -30,7 +30,7 @@ const Menu: React.FC<MenuProps> = ({ clientsCount, newsCount, currentPathname, s
 
     return (
         <motion.nav className={styles.nav} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-            <div className={styles.body}>
+            <motion.div className={styles.body} variants={footerVariants} initial="hidden" animate="visible">
                 {routesLinks.map((link, i) => (
                     <div key={`b_${i}`} className={styles.linkContainer}>
                         <motion.div custom={i} variants={perspective} initial="initial" animate="enter" exit="exit">
@@ -46,7 +46,7 @@ const Menu: React.FC<MenuProps> = ({ clientsCount, newsCount, currentPathname, s
                         </motion.div>
                     </div>
                 ))}
-            </div>
+            </motion.div>
             <motion.footer className={styles.footer}>
                 <motion.div className={styles.by} variants={footerVariants} initial="hidden" animate="visible">
                     <h3>Follow us</h3>

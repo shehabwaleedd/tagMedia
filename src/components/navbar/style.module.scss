@@ -10,6 +10,7 @@
     padding: $spacing-sm $spacing-md;
     user-select: none;
     transition: $animation-primary;
+    margin: 0 auto;
 
     @include respond-to(ipad) {
         display: none;
@@ -127,12 +128,12 @@
 }
 
 .navbarContainer {
-    position: fixed;
-    top: 0;
-    width: calc(100% - 2.5em);
+    width: 98%;
     height: 64px;
-    margin: $spacing-sx;
+    margin: 0 auto;
+    margin-top: $spacing-sm;
     @include glassmorphismEffect;
+    border-radius: 1rem;
     overflow: hidden;
     pointer-events: all;
     z-index: 1000;
@@ -148,6 +149,7 @@
     width: 100%;
     height: 64px;
     padding: 0 $spacing-sm;
+    padding-right: $spacing-sx;
 }
 
 .menuToggle {
