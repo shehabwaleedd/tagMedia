@@ -1,15 +1,13 @@
+@import "@/styles/variables";
+
 .iconContainer {
-    position: absolute;
-    right: 4rem;
-    top: 10rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.5rem;
+    @include position(absolute, 10rem, 4rem, null,null);
+    @include flex(column, null, flex-end);
+    gap: $spacing-xs;
     z-index: 99;
 
-    @media (max-width: 555px) {
-        right: 2rem;
+    @include respond-to(small-tablet) {
+        right: $spacing-lg;
         top: 13vh;
     }
 }
@@ -17,26 +15,23 @@
 .iconMenu {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: $spacing-xs;
+    margin-top: $spacing-xs;
     opacity: 0;
-    // transform: translateY(-20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter(row);
     cursor: pointer;
     transition: transform 0.3s ease;
 
     svg {
         font-size: 3rem;
-        color: var(--accent-color);
+        color: $accent-color;
 
-        @media (max-width: 555px) {
-            font-size: 2rem;
+        @include respond-to(small-tablet) {
+            font-size: $semi-big-font-size;
         }
     }
 }

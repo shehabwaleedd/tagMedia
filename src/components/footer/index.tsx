@@ -2,7 +2,6 @@
 import React from 'react';
 import styles from './style.module.scss';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaFacebookF, FaSnapchat, FaInstagram } from "react-icons/fa6";
 import { AiOutlineYoutube } from "react-icons/ai";
@@ -16,7 +15,7 @@ interface FooterProps {
 }
 
 const Footer = ({ settings, newsCount = 0, clientsCount = 0 }: FooterProps) => {
-    const router = usePathname();
+
     const { site_title, social_items, footer_secondary_links } = settings.data;
 
     const getDocumentUrl = (linkUrl: any) => {

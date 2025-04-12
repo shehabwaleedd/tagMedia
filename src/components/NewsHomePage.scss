@@ -1,31 +1,33 @@
+@import "@/styles/variables";
+
 .newsHomePage {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 3dvh 0;
-    gap: 3rem;
+    gap: $spacing-xl;
     position: relative;
     z-index: 99;
 
     h2 {
         font-size: 3rem;
         font-weight: 700;
-        color: var(--title-color);
+        color: $title-color;
         text-transform: uppercase;
         letter-spacing: 0.05rem;
         position: relative;
         text-align: center;
 
-        @media (max-width: 768px) {
-            font-size: 1.6rem;
+        @include respond-to(medium-tablet) {
+            font-size: $big-font-size;
         }
     }
 
     &__upper {
         display: flex;
         align-items: center;
-        position: relative; // Added to enable absolute positioning of h2
-        gap: 2rem;
+        position: relative;
+        gap: $spacing-lg;
         width: 100%;
 
         h2 {
@@ -41,21 +43,21 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 1rem;
+    padding-bottom: $spacing-sm;
 
     a {
-        font-size: var(--normal-font-size);
-        color: var(--title-color);
-        transition: var(--animation-primary);
+        font-size: $normal-font-size;
+        color: $title-color;
+        transition: $animation-primary;
+
         &:hover {
-            color: var(--accent-color);
+            color: $accent-color;
         }
     }
 }
 
 .keen-slider {
-    max-width: 95vw;
-    margin: 0 auto;
+    @include containerMaxWidth;
     height: auto;
 }
 
@@ -69,28 +71,29 @@
     justify-content: flex-end;
     width: 100%;
     position: relative;
-    gap: 0.5rem;
+    gap: $spacing-xs;
     cursor: pointer;
     background: none;
     border: none;
-    font-size: 24px;
-    
+    font-size: $big-font-size;
+
     transition: opacity 0.3s ease;
 
     .arrow {
-        background-color: var(--container-color);
-        font-size: 1.25rem;
-        padding: 0.25rem 0.5rem;
-        padding-top: 0.5rem;
-        color: var(--title-color);
-        border-radius: 10px;
+        background-color: $container-color;
+        font-size: $body-font-size;
+        padding: $spacing-xxs $spacing-xs;
+        padding-top: $spacing-xs;
+        color: $title-color;
+        border-radius: 0.625rem;
+
         &:focus {
             outline: none;
         }
+
         &--disabled {
             opacity: 0.3;
             cursor: not-allowed;
         }
     }
 }
-
