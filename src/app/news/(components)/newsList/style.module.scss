@@ -1,4 +1,4 @@
-@import '../../../../styles/variables';
+@import '@/styles/variables';
 
 .newsList {
     padding: $spacing-section;
@@ -6,14 +6,13 @@
     width: 100%;
     position: relative;
     z-index: 10;
+    margin-top: 15vh;
 
-
-
-    @include respond-to(ipad) {
+    @include respond-to(ipad, max) {
         margin-top: 10vh;
     }
 
-    @include respond-to(phone) {
+    @include respond-to(phone, max) {
         padding: $spacing-section-mobile;
     }
 
