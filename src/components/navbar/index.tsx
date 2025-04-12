@@ -104,10 +104,7 @@ const Navbar = ({ settings, clientsCount, newsCount }: NavbarProps) => {
 
     const DesktopNavbar = useMemo(() => (
         <nav className={styles.navbar}>
-            <motion.div
-                className={`${styles.container} regular-container`}
-                animate={{ y: navbarVisible ? 0 : -100 }}
-                transition={transition}>
+            <motion.div className={`${styles.container} regular-container`} animate={{ y: navbarVisible ? 0 : -100 }} transition={transition}>
                 <Logo />
                 {NavLinks}
                 {SocialLinks}
@@ -121,19 +118,10 @@ const Navbar = ({ settings, clientsCount, newsCount }: NavbarProps) => {
                 <div className={styles.navbarBar}>
                     <Logo size={40} />
                     <div className={styles.menuToggle}>
-                        <button
-                            className={`${styles.hamburgerIcon} ${isActive ? styles.active : ''}`}
-                            onClick={toggleMenu} />
+                        <button className={`${styles.hamburgerIcon} ${isActive ? styles.active : ''}`} onClick={toggleMenu} />
                     </div>
                 </div>
-                <motion.div
-                    className={`${styles.menuContent} menu-content`}
-                    animate={{
-                        clipPath: isActive
-                            ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
-                            : "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"
-                    }}
-                    transition={transition}>
+                <motion.div className={`${styles.menuContent} menu-content`} animate={{ clipPath: isActive ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" : "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" }} transition={transition}>
                     <AnimatePresence>
                         {isActive && (
                             <Nav clientsCount={clientsCount} newsCount={newsCount} currentPathname={pathname} settings={settings} />)}

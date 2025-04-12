@@ -216,7 +216,7 @@ $container-max-width-xxxl: 1740px;
 
 
 .sectionTitle {
-    font-size: 3rem;
+    font-size: $bigger-font-size;
     color: $title-color;
     margin-bottom: $spacing-md;
     font-weight: 450;
@@ -224,13 +224,9 @@ $container-max-width-xxxl: 1740px;
     max-width: $container-max-width-lg;
     font-family: $paragraph-font;
 
-    @include respond-to(large-screen) {
-        font-size: 3.5rem;
+    @include respond-to(large-screen, min) {
+        font-size: 3rem;
         max-width: $container-max-width-xl;
-    }
-
-    @include respond-to(laptop) {
-        font-size: $bigger-font-size;
     }
 
     @include respond-to(ipad) {
