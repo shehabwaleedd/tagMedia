@@ -9,6 +9,8 @@
     position: relative;
     z-index: 2;
     padding: 15vh $spacing-sm;
+    
+    @include containerMaxWidth;
 
     @include respond-to(medium-tablet) {
         @include flex(column, center, flex-start);
@@ -22,8 +24,7 @@
         justify-content: center;
         gap: $spacing-lg;
         width: 100%;
-        max-width: 80%;
-        margin: 0 auto;
+
 
         @include respond-to(laptop) {
             max-width: 100%;
@@ -78,8 +79,8 @@
         }
 
         .serviceIcon {
-            margin-right: 0.5rem;
-            font-size: 1.75rem;
+            margin-right: $spacing-xs;
+            font-size: $big-font-size;
             color: var(--icon-color);
         }
 
@@ -98,7 +99,7 @@
         ul {
             list-style: none;
             padding: 0;
-            margin: 0 0 1.5rem 0;
+            margin: 0 0 $spacing-md 0;
 
             li {
                 font-size: $normal-font-size;

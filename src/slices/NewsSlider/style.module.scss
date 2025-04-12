@@ -3,8 +3,6 @@
 .achievementsCarousel {
     padding: $spacing-section-mobile;
     padding-bottom: 0;
-    max-width: $container-max-width-xl;
-    margin: 0 auto;
     z-index: 10;
 
     @include respond-to(large-screen) {
@@ -14,9 +12,7 @@
 
 
     &__upper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex(row, space-between, center);
         margin-bottom: $spacing-lg;
         width: 100%;
 
@@ -38,18 +34,13 @@
         position: relative;
 
         @include respond-to(small-tablet) {
-            padding-top: 1rem;
+            padding-top: $spacing-sm;
         }
     }
 }
 
 .container {
-    max-width: $container-max-width-xl;
-    margin: 0 auto;
-
-    @include respond-to(large-screen) {
-        max-width: 100%;
-    }
+    @include containerMaxWidth;
 }
 
 .sectionTitle {
@@ -122,8 +113,7 @@
 }
 
 .cardContent {
-    padding: 1rem;
-    padding-top: 1rem;
+    padding: $spacing-sm;
     display: flex;
     flex-direction: column;
     flex-grow: 1;

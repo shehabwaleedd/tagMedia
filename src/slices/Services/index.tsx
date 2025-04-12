@@ -4,12 +4,6 @@ import styles from './style.module.scss';
 
 export type ServicesProps = SliceComponentProps<Content.ServicesSlice>;
 
-type Service = {
-  category_name: string;
-  services_items: {
-    service_item: string;
-  }[];
-};
 
 const hardcodedService = {
   category_name: "End-to-end",

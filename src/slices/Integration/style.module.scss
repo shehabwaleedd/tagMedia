@@ -4,6 +4,7 @@
     @include flexCenter(column);
     width: 100%;
     @include glassmorphismEffect;
+    @include containerMaxWidth;
     padding: 3vh 0;
     text-align: center;
 

@@ -3,7 +3,7 @@
 .workWithUs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: $spacing-sm;
     width: 100%;
     place-content: start;
     place-items: start;

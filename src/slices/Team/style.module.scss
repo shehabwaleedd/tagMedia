@@ -28,9 +28,9 @@
 .teamContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: $spacing-sm;
     width: 100%;
-    padding: 1rem;
+    padding: $spacing-sm;
 
     @include respond-to(laptop) {
         grid-template-columns: repeat(2, 1fr);

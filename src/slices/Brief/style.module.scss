@@ -8,6 +8,7 @@
     position: relative;
     padding: 5vh 2rem;
     z-index: 99;
+    @include containerMaxWidth;
 
     @include respond-to(large-tablet) {
         padding: 0rem;

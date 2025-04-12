@@ -1,9 +1,13 @@
+@import "@/styles/variables";
+
 .carousel {
     position: relative;
     z-index: 99;
     padding: 5vh 0;
     width: 100%;
-    @media (max-width: 1288px) {
+    @include containerMaxWidth;
+
+    @include respond-to(laptop) {
         padding: 3vh 0;
     }
 
@@ -15,32 +19,29 @@
     }
 
     .carouselLink {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        @include flexCenter(column);
         height: 100%;
         text-decoration: none;
         color: inherit;
-        
-            img {
-                object-fit: cover;
-                transition: transform 0.3s ease;
-                width: 700px;
-                height: 500px;
-                border-radius: 1rem;
-            }
+
+        img {
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            width: 700px;
+            height: 500px;
+            border-radius: $border-radius-lg;
+        }
     }
 
     .itemTitle {
-        margin-top: 10px;
-        font-size: 1rem;
+        margin-top: $spacing-xs;
+        font-size: $normal-font-size;
         font-weight: bold;
         text-align: center;
         padding: 0 5px;
 
-        @media (min-width: 768px) {
-            font-size: 1.2rem;
+        @include respond-to(medium-tablet, min) {
+            font-size: $body-font-size;
         }
     }
 }
@@ -50,7 +51,7 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-    
+
 }
 
 .keen-slider__slide {
