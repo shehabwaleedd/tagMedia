@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './style.module.scss';
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { SettingsDocument, getIconComponent } from '@/types/prismicio-types';
-import { motion, useScroll, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, AnimatePresence, useMotionValueEvent } from 'framer-motion';
 import useWindowSize from '@/hooks/useWindowWidth';
 import Nav from "./Header/Nav";
 import { usePathname } from 'next/navigation';
@@ -23,7 +23,7 @@ const Navbar = ({ settings, clientsCount, newsCount }: NavbarProps) => {
     const isTablet = useMemo(() => windowWidth < 1088, [windowWidth]);
     const [navbarVisible, setNavbarVisible] = useState(true);
     const { scrollY } = useScroll();
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const lastScrollY = React.useRef(0);
 
     const toggleMenu = useCallback(() => setIsActive(prev => !prev), []);
 
@@ -35,35 +35,23 @@ const Navbar = ({ settings, clientsCount, newsCount }: NavbarProps) => {
         return "#";
     }, []);
 
-    useEffect(() => {
-        const unsubscribe = scrollY.onChange(current => {
-            if (isActive) return;
-            const isScrollingDown = current > lastScrollY;
-            const hasScrolledPastThreshold = current > 50;
+    useMotionValueEvent(scrollY, "change", (current) => {
+        if (isActive) return;
+
+        const isScrollingDown = current > lastScrollY.current;
+        const hasScrolledPastThreshold = current > 50;
+
+        if (isScrollingDown && hasScrolledPastThreshold !== !navbarVisible) {
             setNavbarVisible(!isScrollingDown || !hasScrolledPastThreshold);
-            setLastScrollY(current);
-        });
-        return () => unsubscribe();
-    }, [scrollY, lastScrollY, isActive]);
+        } else if (!isScrollingDown && !navbarVisible) {
+            setNavbarVisible(true);
+        }
+
+        lastScrollY.current = current;
+    });
 
     useEffect(() => setIsActive(false), [pathname]);
 
-    useEffect(() => {
-        if (isActive) {
-            const scrollY = window.scrollY;
-            document.body.style.overflow = "hidden";
-            document.body.style.position = "fixed";
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.width = "100%";
-            return () => {
-                document.body.style.overflow = "";
-                document.body.style.position = "";
-                document.body.style.top = "";
-                document.body.style.width = "";
-                window.scrollTo(0, scrollY);
-            };
-        }
-    }, [isActive]);
 
     const transition = useMemo(() => ({
         duration: 0.6,

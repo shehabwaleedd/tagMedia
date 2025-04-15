@@ -58,6 +58,7 @@
 .by,
 .secondaryLinks {
     @include glassmorphismEffect;
+    border-radius: $border-radius;
     background-color: $hover-color;
     padding: $spacing-sm;
     display: flex;
