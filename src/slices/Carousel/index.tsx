@@ -8,10 +8,7 @@ import { SliceComponentProps } from '@prismicio/react';
 import { createClient } from '@/prismicio';
 import NewsCard from '@/app/news/(components)/newsCards/NewsCards';
 
-
 type NewsPostDocument = Content.NewsPostDocument;
-
-
 type CarouselSlice = Content.CarouselSlice;
 
 interface Post {
@@ -31,13 +28,17 @@ interface CarouselProps {
   type: "actor" | "serie" | "news";
 }
 
-const ClientContent = ({ post }: { post: Post }) => (
-  <div className="carouselItem">
-    <PrismicNextImage field={post.data.image} />
-    <p className="itemTitle">{post.data.title}</p>
-  </div>
-);
+const ClientContent = ({ post }: { post: Post }) => {
+  // Get dimensions directly from the image field
+  const dimensions = post.data.image.dimensions || { width: 700, height: 500 };
 
+  return (
+    <div className="carouselItem">
+      <PrismicNextImage field={post.data.image} width={dimensions.width} height={dimensions.height} className="carouselImage" />
+      <p className="itemTitle">{post.data.title}</p>
+    </div>
+  );
+};
 
 const CarouselContent = ({ posts, type }: CarouselProps) => {
   const isNews = type === "news";

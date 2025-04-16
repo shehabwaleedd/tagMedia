@@ -18,6 +18,14 @@
         height: 100%;
     }
 
+    .carouselImage {
+        object-fit: contain;
+        transition: transform 0.3s ease;
+        border-radius: $border-radius-lg;
+        width: 100%;
+        height: auto;
+    }
+
     .carouselLink {
         @include flexCenter(column);
         height: 100%;
@@ -59,4 +67,12 @@
     overflow: visible;
     width: 100%;
     min-height: 250px;
+}
+
+.newsImage {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    border-radius: $border-radius-lg;
+    transition: transform 0.3s ease;
 }

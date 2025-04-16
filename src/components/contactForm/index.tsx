@@ -32,10 +32,10 @@ const ContactForm: React.FC = () => {
 
         try {
             const response = await emailjs.sendForm(
-                'service_5y7rll1',
-                'template_3xzot3e',
+                'service_8w0yrra',
+                'template_hhjk74t',
                 formRef.current,
-                '4nyzjigYhVGMwCX0W'
+                '5m5atldGOJSmu_rHK'
             );
             toast.success("Your message has been sent successfully!");
             setFormData(initialFormData);

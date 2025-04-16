@@ -11,9 +11,12 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
+
+    const dimensions = news.data.image.dimensions || { width: 700, height: 500 };
+
     return (
         <Link className={styles.newsCard} href={`/news/${news.uid}`}>
-            <PrismicNextImage field={news.data.mainimage} className={styles.image} />
+            <PrismicNextImage field={news.data.mainimage} className={styles.image} width={dimensions.width} height={dimensions.height} />
             <div className={styles.content}>
                 <div className={styles.tags}>
                     {news.data.tags.map((tag, index) => (
