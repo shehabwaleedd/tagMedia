@@ -9,12 +9,14 @@ interface FormData {
     name: string;
     email: string;
     message: string;
+    number: number;
 }
 
 const initialFormData: FormData = {
     name: "",
     email: "",
     message: "",
+    number: 0,
 };
 
 const ContactForm: React.FC = () => {
@@ -72,11 +74,11 @@ const ContactForm: React.FC = () => {
             <form onSubmit={handleSubmit} ref={formRef}>
                 <div className={styles.contact_right__container}>
                     <div className={styles.group}>
-                        {['name', 'email'].map((key) => (
+                        {['name', 'email', "number"].map((key) => (
                             <div key={key} className={styles.contact_right__container__input}>
                                 <label htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
                                 <input
-                                    type={key === 'email' ? 'email' : 'text'}
+                                    type={key === 'email' ? 'email' : key === 'number' ? 'number' : 'text'}
                                     id={key}
                                     name={key}
                                     value={formData[key as keyof FormData]}

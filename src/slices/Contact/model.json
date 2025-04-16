@@ -46,6 +46,13 @@
             "label": "Phone Number",
             "placeholder": "Please Enter Phone Number"
           }
+        },
+        "whatsapp_numher": {
+          "type": "Number",
+          "config": {
+            "label": "Whatsapp Numher",
+            "placeholder": "Please Enter Whatsapp Number"
+          }
         }
       },
       "items": {}

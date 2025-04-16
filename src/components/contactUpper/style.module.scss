@@ -57,3 +57,11 @@
 .accent {
     color: $accent-color !important;
 }
+
+.whatsappButton {
+    @include flex(row, flex-start, center);
+    width: 100%;
+    gap: $spacing-sm;
+    color: $accent-color;
+    font-size: $body-font-size;
+}

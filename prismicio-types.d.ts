@@ -91,6 +91,31 @@ export type ClientsDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Client Post → Client Gallery*
+ */
+export interface ClientsPostDocumentDataGalleryImagesItem {
+  /**
+   * Gallery Image field in *Client Post → Client Gallery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: clients_post.gallery_images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image Caption field in *Client Post → Client Gallery*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Enter image caption
+   * - **API ID Path**: clients_post.gallery_images[].caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  caption: prismic.KeyTextField;
+}
+
 type ClientsPostDocumentDataSlicesSlice = never;
 
 /**
@@ -152,6 +177,19 @@ interface ClientsPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   type: prismic.SelectField<"actor" | "serie" | "production", "filled">;
+
+  /**
+   * Client Gallery field in *Client Post*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: clients_post.gallery_images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  gallery_images: prismic.GroupField<
+    Simplify<ClientsPostDocumentDataGalleryImagesItem>
+  >;
 
   /**
    * Slice Zone field in *Client Post*
@@ -613,7 +651,13 @@ export interface SettingsDocumentDataSocialItemsItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   platform: prismic.SelectField<
-    "Instagram" | "Facebook" | "Twitter" | "LinkedIn" | "YouTube" | "TikTok"
+    | "Instagram"
+    | "Facebook"
+    | "Twitter"
+    | "LinkedIn"
+    | "YouTube"
+    | "TikTok"
+    | "Snapchat"
   >;
 
   /**
@@ -635,7 +679,13 @@ export interface SettingsDocumentDataSocialItemsItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   icon_name: prismic.SelectField<
-    "Instagram" | "Facebook" | "Twitter" | "LinkedIn" | "YouTube" | "TikTok"
+    | "Instagram"
+    | "Facebook"
+    | "Twitter"
+    | "LinkedIn"
+    | "YouTube"
+    | "TikTok"
+    | "Snapchat"
   >;
 }
 
@@ -1131,6 +1181,26 @@ export type CarouselSlice = prismic.SharedSlice<
  */
 export interface ContactSliceDefaultPrimary {
   /**
+   * Page Title field in *Contact → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Please Enter Page Title e.g. Contact Us
+   * - **API ID Path**: contact.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Page Description field in *Contact → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Please Enter Page Description
+   * - **API ID Path**: contact.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
    * iframeLink field in *Contact → Default → Primary*
    *
    * - **Field Type**: Text
@@ -1161,24 +1231,14 @@ export interface ContactSliceDefaultPrimary {
   phone_number: prismic.NumberField;
 
   /**
-   * Title field in *Contact → Default → Primary*
+   * Whatsapp Numher field in *Contact → Default → Primary*
    *
-   * - **Field Type**: Text
-   * - **Placeholder**: Please Enter Title
-   * - **API ID Path**: contact.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Field Type**: Number
+   * - **Placeholder**: Please Enter Whatsapp Number
+   * - **API ID Path**: contact.default.primary.whatsapp_numher
+   * - **Documentation**: https://prismic.io/docs/field#number
    */
-  title: prismic.KeyTextField;
-
-  /**
-   * Description field in *Contact → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Please Enter Description
-   * - **API ID Path**: contact.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  description: prismic.KeyTextField;
+  whatsapp_numher: prismic.NumberField;
 }
 
 /**
@@ -2246,6 +2306,7 @@ declare module "@prismicio/client" {
       ClientsDocumentDataSlicesSlice,
       ClientsPostDocument,
       ClientsPostDocumentData,
+      ClientsPostDocumentDataGalleryImagesItem,
       ClientsPostDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,

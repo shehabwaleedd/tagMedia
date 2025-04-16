@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './style.module.scss';
 import { KeyTextField, NumberField } from '@prismicio/client';
+import { FaWhatsapp } from "react-icons/fa6";
+import Link from 'next/link';
 
 const ContactPage = ({
     iFrameLink,
@@ -52,6 +54,12 @@ const ContactUpper = ({
                             Phone: <a href={`tel:${phone}`}>{phone}</a>
                         </p>
                     </address>
+                    <Link href={`https://api.whatsapp.com/send?phone=${phone}`} target="_blank" rel="noopener noreferrer">
+                        <button className={styles.whatsappButton} >
+                            <FaWhatsapp />
+                            WhatsApp
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>
