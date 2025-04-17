@@ -118,10 +118,10 @@ const ClientDetails = memo(function ClientDetails({ page }: { page: ClientPostDo
                         </section>
                     </div>
 
-                    {hasGallery && (
+                    {hasGallery && gallery_images.length > 0 && (
                         <section className={styles.gallerySection}>
                             <div className={styles.sectionHeading}>
-                                <h2 className={styles.sectionTitle}>Project Gallery</h2>
+                                <h2 className={styles.sectionTitle}>Gallery</h2>
                                 <div className={styles.sectionDivider}></div>
                             </div>
                             <ImageGallery images={gallery_images} selectedImage={selectedImage} isFullscreenOpen={isFullscreenOpen} openFullscreen={openFullscreen} closeFullscreen={closeFullscreen} navigateImage={navigateImage} thumbnailRefs={thumbnailRefs} />
