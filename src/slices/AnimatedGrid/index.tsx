@@ -84,11 +84,6 @@ const ProjectCard = React.memo(({ post }: { post: PrismicDocument<any, string, s
             </div>
             <div className={styles.content}>
                 <h3 className={styles.title}>{post.data.title}</h3>
-                {post.data.description && (
-                    <div className={styles.description}>
-                        <PrismicRichText field={post.data.description} />
-                    </div>
-                )}
             </div>
         </Link>
     );
