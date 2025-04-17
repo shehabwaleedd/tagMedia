@@ -1,65 +1,171 @@
 @import "@/styles/variables";
 
-.grid {
-    display: flex;
+.projectContainer {
     width: 100%;
-    gap: 1rem;
-    position: relative;
-    z-index: 10;
-    @include containerMaxWidth;
-
-    @include respond-to(laptop) {
-        flex-direction: column;
-        padding: $spacing-sx;
-    }
-
-}
-
-.column {
-    flex: 1;
+    padding: 2rem 0;
     display: flex;
     flex-direction: column;
-    gap: $spacing-ms;
+    align-items: center;
+    position: relative;
+    z-index: 9;
+}
 
-    @media (max-width: 1221px) and (min-width: 655px) {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        padding: $spacing-sx;
+.searchBar {
+    margin-bottom: $spacing-md;
+    transition: $animation-primary;
+
+    input {
+        width: 20vw;
+        padding: $spacing-sm;
+        border: none;
+        box-shadow: 0px 2px 16px 0px rgba($accent-color, 0.09);
+        border-radius: $border-radius-full;
+        font-size: $normal-font-size;
+        text-align: center;
+        transition: $animation-primary;
+        background-color: $background-color;
+        color: $title-color;
+
+        @include respond-to(medium-tablet) {
+            width: 100%;
+        }
+
+        &:focus {
+            outline: none;
+            border: none;
+        }
+
+        &:hover {
+            box-shadow: 0px 2px 16px 0px rgba($accent-color, 0.25);
+        }
+
+        &:focus-visible {
+            outline: none;
+            border: none;
+        }
+
+        &:active {
+            box-shadow: 0px 2px 16px 0px rgba($accent-color, 0.25);
+        }
+
+        &::placeholder {
+            color: $subtitle-color;
+        }
     }
 }
 
-
-.projectItem {
+.tabs {
+    @include flexCenter(row);
+    margin-bottom: $spacing-lg;
+    white-space: nowrap;
+    flex-wrap: wrap;
     width: 100%;
+    transition: $animation-primary;
+}
 
-    img {
-        width: 100%;
-        height: 50vh;
-        object-fit: cover;
-        border-radius: $border-radius-lg;
-    }
+.tab {
+    @include reset-button;
+    padding: $spacing-xs $spacing-sm;
+    margin: 0 $spacing-xxs;
+    font-size: $normal-font-size;
+    color: $text-color;
+    border-radius: $border-radius-full;
+    transition: $animation-primary;
 
-    &__info {
-        margin-top: 10px;
-
-        h3 {
-            margin: 0;
-            font-size: $big-font-size;
-            color: $title-color;
-            font-family: $body-font;
-            text-align: center;
-        }
-
-        p {
-            margin: 5px 0 0;
-            font-size: $small-font-size;
-        }
+    &.active {
+        transition: $animation-primary;
+        background-color: $accent-color;
+        color: #000;
     }
 }
 
-.productionImg {
-    width: 100% !important;
-    height: 20vh !important;
-    border-radius: $border-radius-lg !important;
-    object-fit: contain !important;
+.gridContainer {
+    @include containerMaxWidth;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 450px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.noResults {
+    width: 100%;
+    text-align: center;
+    padding: 4rem 0;
+    color: $text-color;
+    font-size: $normal-font-size;
+}
+
+.newsCard {
+    display: block;
+    background-color: $background-color;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    box-shadow: $box-shadow-sm;
+    transition: $animation-primary;
+    @include glassmorphismEffect;
+    height: 100%;
+    text-decoration: none;
+
+
+    @media (max-width: 450px) {
+        width: 100%;
+    }
+
+
+    &:hover {
+        box-shadow: 0px 2px 16px 0px rgba($accent-color, 0.19);
+        transition: $animation-primary;
+    }
+}
+
+.imageContainer {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: $animation-primary;
+}
+
+.content {
+    padding: $spacing-sm;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: $big-font-size;
+    font-weight: $semi-bold-font-weight;
+    color: $title-color;
+    margin-bottom: $spacing-xs;
+}
+
+.description {
+    font-size: $normal-font-size;
+    color: $text-color;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }

@@ -1,78 +1,100 @@
 'use client'
-import React, { useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import styles from './style.module.scss';
 import Link from 'next/link';
-import { ImageField, KeyTextField, PrismicDocument } from '@prismicio/client';
+import { PrismicDocument } from '@prismicio/client';
 import { PrismicNextImage } from '@prismicio/next';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import useWindowSize from '@/hooks/useWindowWidth';
 
-type AnimatedGridProps = {
-    posts: PrismicDocument<NewsItemData, string, string>[];
+type ProjectGridProps = {
+    posts: PrismicDocument<any, string, string>[];
 };
 
-type NewsItemData = {
-    image: ImageField;
-    title: KeyTextField;
-};
+type FilterCategory = 'all' | 'actor' | 'serie';
 
-const AnimatedGrid = ({ posts }: AnimatedGridProps) => {
-    const { windowWidth } = useWindowSize();
-    const isDesktop = windowWidth >= 1221;
+const ProjectGrid = ({ posts }: ProjectGridProps) => {
+    const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const { scrollYProgress } = useScroll();
-    const column1Y = useTransform(scrollYProgress, [0, 1], ['0%', '-5%']);
-    const column2Y = useTransform(scrollYProgress, [0, 1], ['2.5%', '-10%']);
-    const column3Y = useTransform(scrollYProgress, [0, 1], ['0%', '-5%']);
+    const handleFilterChange = useCallback((filter: FilterCategory) => {
+        setActiveFilter(filter);
+    }, []);
 
-    const columns = useMemo(() => {
-        const cols: PrismicDocument<NewsItemData, string, string>[][] = [[], [], []];
-        posts.forEach((post, index) => {
-            if (isDesktop) {
-                cols[index % 3].push(post);
-            } else {
-                cols[0].push(post);
-            }
-        });
-        return cols;
-    }, [posts, isDesktop]);
+    const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value);
+    }, []);
 
-    const renderPost = (post: PrismicDocument<NewsItemData, string, string>, index: number) => (
-        <Link className={styles.projectItem} key={index} href={`/clients/${post.uid}`}>
-            <PrismicNextImage field={post.data.image} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-            <div className={styles.projectItem__info}>
-                <h3>{post.data.title}</h3>
-            </div>
-        </Link>
-    );
+    const filteredPosts = useMemo(() => {
+        let results = [...posts];
 
-    if (!isDesktop) {
-        return (
-            <div className={styles.gridContainer}>
-                <div className={styles.grid}>
-                    <div className={styles.column}>
-                        {posts.map((post, index) => renderPost(post, index))}
-                    </div>
-                </div>
-            </div>
-        );
-    }
+        if (activeFilter !== 'all') {
+            results = results.filter(post => {
+                return post.data.type === activeFilter;
+            });
+        }
+
+        if (searchQuery.trim()) {
+            const query = searchQuery.toLowerCase();
+            results = results.filter(post => {
+                const title = typeof post.data.title === 'string'
+                    ? post.data.title.toLowerCase()
+                    : '';
+                return title.includes(query);
+            });
+        }
+
+        return results;
+    }, [activeFilter, searchQuery, posts]);
 
     return (
-        <div className={styles.gridContainer}>
-            <div className={styles.grid}>
-                <motion.div className={styles.column} style={{ y: column1Y }}>
-                    {columns[0].map((post, index) => renderPost(post, index))}
-                </motion.div>
-                <motion.div className={`${styles.column} ${styles.middleColumn}`} style={{ y: column2Y }}>
-                    {columns[1].map((post, index) => renderPost(post, index))}
-                </motion.div>
-                <motion.div className={styles.column} style={{ y: column3Y }}>
-                    {columns[2].map((post, index) => renderPost(post, index))}
-                </motion.div>
+        <div className={styles.projectContainer}>
+            <div className={styles.searchBar}>
+                <input type="text" placeholder="Search" value={searchQuery} onChange={handleSearchChange} />
+            </div>
+
+            <div className={styles.tabs}>
+                <button className={`${styles.tab} ${activeFilter === 'all' ? styles.active : ''}`} onClick={() => handleFilterChange('all')}>
+                    All Clients
+                </button>
+                <button className={`${styles.tab} ${activeFilter === 'actor' ? styles.active : ''}`} onClick={() => handleFilterChange('actor')}>
+                    Actors
+                </button>
+                <button className={`${styles.tab} ${activeFilter === 'serie' ? styles.active : ''}`} onClick={() => handleFilterChange('serie')}>
+                    Series
+                </button>
+            </div>
+
+            <div className={styles.gridContainer}>
+                {filteredPosts.length === 0 ? (
+                    <div className={styles.noResults}>
+                        <p>No clients found in this category</p>
+                    </div>
+                ) : (
+                    <div className={styles.grid}>
+                        {filteredPosts.map((post, index) => (
+                            <ProjectCard key={`${post.uid}-${index}`} post={post} />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
 };
 
-export default React.memo(AnimatedGrid);
+const ProjectCard = React.memo(({ post }: { post: PrismicDocument<any, string, string> }) => {
+    return (
+        <Link href={`/clients/${post.uid}`} className={styles.newsCard}>
+            <div className={styles.imageContainer}>
+                <PrismicNextImage field={post.data.image} className={styles.image} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+            </div>
+            <div className={styles.content}>
+                <h3 className={styles.title}>
+                    {post.data.title}
+                </h3>
+            </div>
+        </Link>
+    );
+});
+
+ProjectCard.displayName = 'ProjectCard';
+
+export default ProjectGrid;
