@@ -20,6 +20,50 @@
           "placeholder": "Enter Description ( Must )"
         }
       },
+      "featured_actors": {
+        "type": "Group",
+        "config": {
+          "label": "Featured Actors (Ordered)",
+          "fields": {
+            "actor": {
+              "type": "Link",
+              "config": {
+                "label": "Actor",
+                "select": "document",
+                "customtypes": [
+                  "clients_post"
+                ],
+                "filters": {
+                  "filter": "my.clients_post.type",
+                  "value": "actor"
+                }
+              }
+            }
+          }
+        }
+      },
+      "featured_series": {
+        "type": "Group",
+        "config": {
+          "label": "Featured Series (Ordered)",
+          "fields": {
+            "series": {
+              "type": "Link",
+              "config": {
+                "label": "Series",
+                "select": "document",
+                "customtypes": [
+                  "clients_post"
+                ],
+                "filters": {
+                  "filter": "my.clients_post.type",
+                  "value": "serie"
+                }
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 import Link from 'next/link';
 import { PrismicDocument } from '@prismicio/client';
 import { PrismicNextImage } from '@prismicio/next';
+import { PrismicRichText } from '@prismicio/react';
 
 type ProjectGridProps = {
     posts: PrismicDocument<any, string, string>[];
@@ -11,7 +12,8 @@ type ProjectGridProps = {
 
 type FilterCategory = 'all' | 'actor' | 'serie';
 
-const ProjectGrid = ({ posts }: ProjectGridProps) => {
+
+const AnimatedGrid = ({ posts }: ProjectGridProps) => {
     const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -52,15 +54,9 @@ const ProjectGrid = ({ posts }: ProjectGridProps) => {
             </div>
 
             <div className={styles.tabs}>
-                <button className={`${styles.tab} ${activeFilter === 'all' ? styles.active : ''}`} onClick={() => handleFilterChange('all')}>
-                    All Clients
-                </button>
-                <button className={`${styles.tab} ${activeFilter === 'actor' ? styles.active : ''}`} onClick={() => handleFilterChange('actor')}>
-                    Actors
-                </button>
-                <button className={`${styles.tab} ${activeFilter === 'serie' ? styles.active : ''}`} onClick={() => handleFilterChange('serie')}>
-                    Series
-                </button>
+                <button className={`${styles.tab} ${activeFilter === 'all' ? styles.active : ''}`} onClick={() => handleFilterChange('all')}>All Clients</button>
+                <button className={`${styles.tab} ${activeFilter === 'actor' ? styles.active : ''}`} onClick={() => handleFilterChange('actor')}>Actors</button>
+                <button className={`${styles.tab} ${activeFilter === 'serie' ? styles.active : ''}`} onClick={() => handleFilterChange('serie')}>Series</button>
             </div>
 
             <div className={styles.gridContainer}>
@@ -87,9 +83,12 @@ const ProjectCard = React.memo(({ post }: { post: PrismicDocument<any, string, s
                 <PrismicNextImage field={post.data.image} className={styles.image} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
             </div>
             <div className={styles.content}>
-                <h3 className={styles.title}>
-                    {post.data.title}
-                </h3>
+                <h3 className={styles.title}>{post.data.title}</h3>
+                {post.data.description && (
+                    <div className={styles.description}>
+                        <PrismicRichText field={post.data.description} />
+                    </div>
+                )}
             </div>
         </Link>
     );
@@ -97,4 +96,4 @@ const ProjectCard = React.memo(({ post }: { post: PrismicDocument<any, string, s
 
 ProjectCard.displayName = 'ProjectCard';
 
-export default ProjectGrid;
+export default AnimatedGrid;

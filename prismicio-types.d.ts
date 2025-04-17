@@ -41,6 +41,29 @@ interface ClientsDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
+
+  featured_actors?: {
+    actor?: {
+      id: string;
+      type: string;
+      tags: string[];
+      lang: string;
+      slug: string;
+      link_type: string;
+    };
+  }[];
+
+  featured_series?: {
+    series?: {
+      id: string;
+      type: string;
+      tags: string[];
+      lang: string;
+      slug: string;
+      link_type: string;
+    };
+  }[];
+
   slices: prismic.SliceZone<ClientsDocumentDataSlicesSlice> /**
    * Meta Title field in *Clients*
    *
