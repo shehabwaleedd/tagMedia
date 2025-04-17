@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Script from 'next/script'
 import React from 'react'
 
@@ -27,12 +28,7 @@ export const FacebookPixel: React.FC<FacebookPixelProps> = ({ pixelId }) => {
                 `}
             </Script>
             <noscript>
-                <img
-                    height="1"
-                    width="1"
-                    style={{ display: 'none' }}
-                    src={`https://www.facebook.com/tr?id=${fbPixelId}&ev=PageView&noscript=1`}
-                />
+                <Image height="1" width="1" style={{ display: 'none' }} src={`https://www.facebook.com/tr?id=${fbPixelId}&ev=PageView&noscript=1`} alt="Facebook Pixel" unoptimized />
             </noscript>
         </>
     )

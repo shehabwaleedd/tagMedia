@@ -17,6 +17,8 @@ export default async function Page() {
   );
 }
 
+
+
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("homepage");

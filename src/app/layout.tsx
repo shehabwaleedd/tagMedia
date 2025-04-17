@@ -63,13 +63,13 @@ async function getVariables(): Promise<Variables> {
   }
 }
 
+
 export async function generateMetadata(): Promise<Metadata> {
   let variables: Variables;
   try {
     variables = await getVariables();
   } catch (error) {
     console.error('Failed to fetch variables:', error);
-
     variables = {
       homePageSeoTitle: "Tag Media",
       homePageSeoDescription: "Tag Media is Egypt's pioneer in digital and influencer marketing. We transform brands to power growth.",
@@ -79,9 +79,9 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.tagmediaeg.com"),
     title: variables.homePageSeoTitle,
     description: variables.homePageSeoDescription,
-    themeColor: "#161616",
     openGraph: {
       title: variables.homePageSeoTitle,
       description: variables.homePageSeoDescription,
@@ -130,7 +130,6 @@ export default async function RootLayout({
       <head>
         <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=tagmediaa"></script>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="2fb08859-33f5-4dce-9879-d297a4842597"></script>
-        <meta name="theme-color" content="#161616" />
       </head>
       <body>
         <Background />
