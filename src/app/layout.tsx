@@ -32,6 +32,7 @@ const helveticaBold = localFont({
   variable: '--font-helvetica-bold',
   display: 'swap',
   weight: 'bold',
+  preload: true,
 });
 
 const satoshiRegular = localFont({
@@ -127,11 +128,9 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${avanttLight.variable} ${helvetica.variable} ${helveticaBold.variable} ${satoshiRegular.variable}`}>
       <head>
+        <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=tagmediaa"></script>
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="2fb08859-33f5-4dce-9879-d297a4842597"></script>
         <meta name="theme-color" content="#161616" />
-        <link rel="preload" href="/fonts/Avantt-Light.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Helvetica.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/HelveticaNeueMedium.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>
         <Background />
