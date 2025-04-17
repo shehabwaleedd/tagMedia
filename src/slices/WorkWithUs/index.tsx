@@ -21,11 +21,7 @@ const WorkWithUs = ({ slice }: WorkWithUsProps): JSX.Element => {
   }, []);
 
   return (
-    <section
-      className={styles.workWithUs}
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
+    <section className={styles.workWithUs} data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
       <div className={styles.left}>
         <h3>
           {slice.primary.title}

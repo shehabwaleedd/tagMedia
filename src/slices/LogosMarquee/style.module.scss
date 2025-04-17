@@ -4,7 +4,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 $spacing-lg;
+    padding: $spacing-sm $spacing-lg;
     transition: $animation-primary;
 
     @include respond-to(medium-tablet, max) {
@@ -14,8 +14,9 @@
 }
 
 .logo_image {
-    width: clamp(4rem, 8vw, 7rem);
+    width: 100%;
     height: auto;
+    max-width: 100px;
     aspect-ratio: 1;
     object-fit: contain;
     position: relative;
